@@ -78,7 +78,7 @@ function Serial_ReceiveDataCallback (data){
 }
 
 function Serial_SendData (data){
-  console.log('[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
+  console.log('[DEBUG] - Serial_SendData - Sending data serial: ' + data);
   Obj_SerialPort.write(data);
 }
 

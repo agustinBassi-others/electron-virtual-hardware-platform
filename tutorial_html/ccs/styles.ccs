@@ -1,0 +1,52 @@
+@charset "utf-8"
+
+body{
+  background-color:#11c;
+}
+
+#title{
+	background-color: #a2c;
+	margin-top: 15px;
+}
+
+#headmain{
+	background-color:#aF1;
+	margin-top: 15px;
+}
+
+nav{
+	background-color: #DA1;
+	margin-top: 15px;
+}
+
+li{
+	background-color: #64f;
+	display: inline;
+}
+
+#asidebar{
+	background-color: #A39;
+	float: left;
+	height: 600px;
+}
+
+section{
+	background-color: #a85;
+	margin-left: 200px;
+	margin-right: 15px;
+	margin-top: 15px;
+	margin-top: 15px;
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#epigraph{
+	background-color: #421;
+}
+
+#footer{
+	background-color: #051;
+	clear: both;
+	margin-top: 300px;
+}
