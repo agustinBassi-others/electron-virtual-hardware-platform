@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Botones</title>
+
+  <link rel="stylesheet" href="/media/mint/Documentos_HP/estudios/mse/tesis/virtual_hard_platform/tutorial_html/ccs/botones.ccs"/>
+
+</head>
+
+<body>
+
+	<header>
+		<h1 class="title">Plataforma de hardware virtual</h1>
+	</header>
+
+	<hr/>
+
+	<nav class="nav_bar">
+		<u1>
+			<li class="nav_item">About us</li>
+			<li class="nav_item">Our products</li>
+			<li class="nav_item">Contact us</li>
+		</u1>
+	</nav>
+
+	<hr/>
+
+	<section class="section_ports">
+
+		<span id="aviable_ports_label">Puertos disponibles</span>
+		<select id="ports" name="ports">
+			<option>COM 1</option>
+			<option>COM 2</option>
+			<option>COM 3</option>
+		</select>
+		<input type="submit" id="connect_button" name="Conectar" class="connect_button">
+		<span id="port_state_label">Estado: Desconectado</span>
+
+	</section>
+
+	<section class="section_leds"> 
+		<figure class="led_zone">
+			<img src="../images/led_blue.png" width="200" height="200">
+			<br/>
+			<figcaption>LED 1</figcaption>
+		</figure> 
+		<figure class="led_zone">
+			<img src="../images/led_red.png" width="200" height="200">
+			<br/>
+			<figcaption>LED 2</figcaption>
+		</figure> 
+		<figure class="led_zone">
+			<img src="../images/led_green.png" width="200" height="200">
+			<br/>
+			<figcaption>LED 3</figcaption>
+		</figure> 
+		<figure class="led_zone">
+			<img src="../images/led_blue.png" width="200" height="200">
+			<br/>
+			<figcaption>LED 4</figcaption>
+		</figure>    
+     </section>
+
+	<section class="section_tecs">
+		<span>
+			<input type="image" src="../images/button_tec.png" width="2%" height="2%" class="tec_obj"/>
+			<figcaption>TEC1</figcaption>
+		</span>
+		<input type="image" src="../images/button_tec.png" width="2%" height="2%" class="tec_obj"/>
+		<figcaption>TEC2</figcaption>
+
+		<input type="image" src="../images/button_tec.png" width="2%" height="2%" class="tec_obj"/>
+		<figcaption>TEC3</figcaption>
+
+		<input type="image" src="../images/button_tec.png" width="2%" height="2%" class="tec_obj"/>
+		<figcaption>TEC4</figcaption>
+	</section>
+
+</body>
+
+</html>
+
+<!--
+
+<form class="config_form">
+
+
+	<span id="aviable_ports_label">Puertos disponibles</span>
+	<select id="ports" name="ports">
+		<option>COM 1</option>
+		<option>COM 2</option>
+		<option>COM 3</option>
+	</select>
+	<span id="port_state_label">Desconectado</span>
+</form>
+
+<a href="#" class="button1">Button 1</a>
+<a href="#" class="button2">Button 2</a>
+<a href="#" class="button3">Button 3</a>
+<a href="#" class="button4">Button 4</a>
+<a href="#" class="button5">Button 5</a>
+
+	<p>Nombre </p><input type="text" id="text1" name="Texto"/>
+
+	<input type="image" src="../images/button_tec.png" width="5%" height="5%" />
+
+	<input type="range" id="range1" name="range"/>
+
+-->

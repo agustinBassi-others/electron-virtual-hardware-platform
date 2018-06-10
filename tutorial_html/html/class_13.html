@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Tutorial HTML 12</title>
+
+  
+<script>
+
+var image = new Array(3);
+
+function showAlert(){
+	alert("Pensamiento");
+}	
+
+function FlorDriver (){
+	//document.getElementsByTagName("img")[0].onclick=showAlert;
+
+	
+
+	for (var i = 0, i < 4; i++){
+		image[i] = document.getElementsByTagName("img")[i];
+
+		image.addEventListener("mouseover", crecer, false);
+		image.addEventListener("mouseout", achicar, false);
+		image.addEventListener("click", showAlert, false);
+	}
+}
+
+function crecer(){
+	image.width=225;
+	image.height=255;
+}
+
+function achicar(){
+	image.width=200;
+	image.height=200;
+}
+
+window.onload=FlorDriver;
+
+</script>
+
+
+</head>
+
+<body>
+
+<p><img src="/media/mint/Documentos_HP/estudios/mse/tesis/virtual_hard_platform/tutorial_html/others/ejercicio1/imagenes/1.jpg" alt="Flores de corte" width="200" height="200"></p>
+
+<p><img src="/media/mint/Documentos_HP/estudios/mse/tesis/virtual_hard_platform/tutorial_html/others/ejercicio1/imagenes/2.jpg" alt="Flores de corte" width="200" height="200"></p>
+
+<p><img src="/media/mint/Documentos_HP/estudios/mse/tesis/virtual_hard_platform/tutorial_html/others/ejercicio1/imagenes/3.jpg" alt="Flores de corte" width="200" height="200"></p>
+
+<p><img src="/media/mint/Documentos_HP/estudios/mse/tesis/virtual_hard_platform/tutorial_html/others/ejercicio1/imagenes/4.jpg" alt="Flores de corte" width="200" height="200"></p>
+
+</body>
+
+</html>
