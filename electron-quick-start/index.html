@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="h1_title">Virtual Hardware Platform</h1>
+    </header>
+
+    <nav>
+        <div id="nav_bar">
+            <a href="#home" id="nav_home">Home</a>
+            <a href="#news" id="nav_news">News</a>
+            <a href="#contact" id="nav_contact">Contact</a>
+            <a href="#about"id="nav_about">About</a>
+        </div>
+    </nav>
+
+    <section>
+        <hr/>
+        <br/>
+
+        <label id="lbl_aviable_ports">Port disponibles</label>
+        <input list="list_aviable_ports">
+        <datalist id="list_aviable_ports">
+            <option value="COM1" class="com_port"/>
+            <option value="COM2" class="com_port"/>
+            <option value="COM3" class="com_port"/>
+            <option value="COM4" class="com_port"/>
+            <option value="COM5" class="com_port"/>
+        </datalist>
+        <label id="lbl_port_state">Estado: Conectado</label>
+
+        <hr/>
+        <br/>
+
+        <div class="Class_ButtonsContainer">
+            <div class="Class_ButtonContainer">
+                <img id="btn_tec1" src="images/button.jpeg" alt="">
+                <label id="lbl_tec1">Tec 1</label>
+            </div>
+            <div class="Class_ButtonContainer">
+                <img id="btn_tec2" src="images/button.jpeg" alt="">
+                <label id="lbl_tec2">Tec 2</label>
+            </div>
+            <div class="Class_ButtonContainer">
+                <img id="btn_tec2" src="images/button.jpeg" alt="">
+                <label id="lbl_tec3">Tec 3</label>
+            </div>
+            <div class="Class_ButtonContainer">
+                <img id="btn_tec2" src="images/button.jpeg" alt="">
+                <label id="lbl_tec4">Tec 4</label>
+            </div>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+
+        <div class="Class_LedsContainer">
+            <div class="Class_LedContainer">
+                <img id="img_led1" src="images/led_violet.png" alt="">
+                <label id="lbl_led1">LED 1</label>
+            </div>
+            <div class="Class_LedContainer">
+                <img id="img_led2" src="images/led_violet.png" alt="">
+                <label id="lbl_led2">LED 2</label>
+            </div>
+            <div class="Class_LedContainer">
+                <img id="img_led3" src="images/led_violet.png" alt="">
+                <label id="lbl_led3">LED 3</label>
+            </div>
+            <div class="Class_LedContainer">
+                <img id="img_led4" src="images/led_violet.png" alt="">
+                <label id="lbl_led4">LED 4</label>
+            </div>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <div class="Class_AcdContainer">
+            <input type="range" min="0" max="1023" step="1" id="range_adc">
+            <br/>
+            <input type="range" min="0" max="1023" step="1" id="range_dac">
+        </div>
+       
+
+        <br/>
+        <br/>
+        <br/>
+
+        <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
+        <br/>
+        <label id="lbl_lcd1">Display LCD Winstar</label>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <label id="disp_7seg">6</label>
+        <br/>
+        <label id="lbl_7seg">Display 7 segments</label>
+
+    </section>
+
+    <footer>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <label>Copyright 2018</label>
+    </footer>
+    <script>
+        require('./renderer.js')
+    </script>
+</body>
+
+</html>

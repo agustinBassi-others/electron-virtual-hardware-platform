@@ -1,0 +1,87 @@
+body{
+    background-color: blueviolet;
+}
+
+.Class_Title{
+    color: yellowgreen;
+    background-color: blueviolet;
+    text-align: center;
+    font: bold 35px Verdana;
+    margin: 2%;
+}
+
+.Class_NavBar{
+    background-color: orange;
+}
+
+.Class_NavItem{
+    background-color: cornflowerblue;
+    background-color: green;
+    text-align: center;
+    font: bold 20px Verdana;
+}
+
+
+.Class_ButtonContainer{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    flex-direction: column
+}
+
+.Class_ButtonContainer img{
+    width: 100%
+}
+
+.Class_ButtonContainer label{
+    color: beige;
+    background-color: green;
+    text-align: center;
+    font: bold 20px Verdana;
+}
+
+.Class_ButtonsContainer{
+    display: flex;
+}
+
+.Class_LedContainer{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 70px;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.Class_LedContainer img{
+    width: 100%
+}
+
+.Class_LedContainer label{
+    color: beige;
+    background-color: green;
+    text-align: center;
+    font: bold 20px Verdana;
+    margin: 5px;
+}
+
+.Class_LedsContainer{
+    display: flex;
+}
+
+.Class_AcdContainer{
+    background-color: rgb(28, 209, 89);
+}
+
+.Class_DisplayLcd{
+    background: url('images/lcd1.png');
+    width: 70%;
+    height: 15%;
+    font: bold 20px Verdana;
+    background-color: blue;
+    display: flex;
+    text-align: center;
+    font: bold 20px Verdana;
+    margin: 5px;
+}
