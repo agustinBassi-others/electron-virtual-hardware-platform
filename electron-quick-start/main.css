@@ -1,5 +1,5 @@
 body{
-    background-color: blueviolet;
+    background-color: green;
 }
 
 /*===========[ Titulo ]=======================*/
@@ -105,16 +105,15 @@ body{
 /*===========[ LCD ]==========================*/
 
 .Class_DisplayLcd{
-    background: url('images/led_green.svg');
+    background: url('images/lcd_display.svg');
     font: bold 40px Verdana;
-    background-color: blue;
     border: 4px;
     border-color: aquamarine;
     width: 100%;
     text-align: center;
     padding-top: 55px;
-    width: 444px;
-    height: 145px;
+    width: 440px;
+    height: 142px;
 }
 
 .Class_LabelLcd{
@@ -128,9 +127,33 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: violet;
 }
 
 /*===========[ 7 Segmentos ]==================*/
+
+.Class_Display7Segments{
+    background: url('images/7segments.svg');
+    font: bold 215px Verdana;
+    color: red;
+    padding-left: 20px;
+    border: 4px;
+    width: 100%;
+    width: 140px;
+    height: 235px;
+}
+
+.Class_LabelLcd{
+    color: beige;
+    background-color: green;
+    text-align: center;
+    font: bold 20px Verdana;
+}
+
+.Class_7SegmentsContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: blue;
+}
 
 /*===========[ Footer ]=======================*/
