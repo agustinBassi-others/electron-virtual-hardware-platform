@@ -88,18 +88,65 @@ body{
 /*===========[ Analogicos]====================*/
 
 .Class_AnalogContainer{
-    background-color: indianred;
     margin: 2%;
+    width: 32%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .Class_AdcContainer{
-    margin: 5%;
-    background-color: yellow;
+    -webkit-appearance: none;
+    width: 90%;
+    height: 25px;
+    background: #9b1212;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.Class_AdcContainer:hover {
+    opacity: 1;
+}
+
+.Class_AdcContainer::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: violet;
+    cursor: pointer;
 }
 
 .Class_DacContainer{
-    margin: 5%;
-    background-color: olive;
+    -webkit-appearance: none;
+    width: 90%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.Class_DacContainer:hover {
+    opacity: 1;
+}
+
+.Class_DacContainer::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+/*===========[ Displays contaninter ]=========*/
+
+.Class_DisplaysContainer{
+    display: flex;
+    margin: 2%;
 }
 
 /*===========[ LCD ]==========================*/
@@ -132,14 +179,12 @@ body{
 /*===========[ 7 Segmentos ]==================*/
 
 .Class_Display7Segments{
-    background: url('images/7segments.svg');
-    font: bold 215px Verdana;
+    background: url('images/7segments_v2.svg');
+    font: bold 185px Verdana;
     color: red;
-    padding-left: 20px;
-    border: 4px;
-    width: 100%;
-    width: 140px;
-    height: 235px;
+    width: 180px;
+    height: 198px;
+    padding-left: 50px;
 }
 
 .Class_LabelLcd{
@@ -153,7 +198,6 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: blue;
 }
 
 /*===========[ Footer ]=======================*/

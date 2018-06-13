@@ -92,30 +92,31 @@
 <!-- /*===========[ Analogicos]====================*/ -->
 
         <div class="Class_AnalogContainer">
-                <div class="Class_AdcContainer">
-                    <input type="range" min="0" max="1023" step="1" id="range_adc">
-                </div>
-                <div class="Class_DacContainer">
-                    <input type="range" min="0" max="1023" step="1" id="range_dac">
-                </div>
+                    <input type="range" min="0" max="1023" step="1" id="range_adc" class="Class_AdcContainer">
+                    <label id="lbl_7segments1" class="Class_LabelLcd">ADC CH1</label>
+                    <br/>
+                    <input type="range" min="0" max="1023" step="1" id="range_dac" class="Class_DacContainer">
+                    <label id="lbl_7segments1" class="Class_LabelLcd">DAC CH1</label>
         </div>
 
+        <div class="Class_DisplaysContainer">
 <!-- /*===========[ LCD ]==========================*/ -->
        
-        <div class="Class_LcdContainer">
-            <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
-            <br/>
-            <label id="lbl_lcd1" class="Class_LabelLcd">Display LCD Winstar</label>
-        </div>
+            <div class="Class_LcdContainer">
+                <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
+                <br/>
+                <label id="lbl_lcd1" class="Class_LabelLcd">Display LCD Winstar</label>
+            </div>
 
 <!-- /*===========[ 7 Segmentos ]==================*/ -->
 
-        <div class="Class_7SegmentsContainer">
-            <label id="disp_7segments1" class="Class_Display7Segments">6</label>
-            <br/>
-            <label id="lbl_7segments1" class="Class_LabelLcd">Display 7 segmentos</label>
-        </div>
+            <div class="Class_7SegmentsContainer">
+                <label id="disp_7segments1" class="Class_Display7Segments">6</label>
+                <br/>
+                <label id="lbl_7segments1" class="Class_LabelLcd">Display 7 segmentos</label>
+            </div>
 
+        </div>   
     </section>
 
 <!-- /*===========[ Footer ]=======================*/ -->
