@@ -2,6 +2,8 @@ body{
     background-color: blueviolet;
 }
 
+/*===========[ Titulo ]=======================*/
+
 .Class_Title{
     color: yellowgreen;
     background-color: blueviolet;
@@ -10,8 +12,13 @@ body{
     margin: 2%;
 }
 
+/*===========[ Barra navegacion ]=============*/
+
 .Class_NavBar{
     background-color: orange;
+    align-items: center;
+    margin: 2%;
+    padding: 1%;
 }
 
 .Class_NavItem{
@@ -19,15 +26,20 @@ body{
     background-color: green;
     text-align: center;
     font: bold 20px Verdana;
+
 }
 
+/*===========[ Puertos disponibles ]==========*/
+
+/*===========[ Botones ]======================*/
 
 .Class_ButtonContainer{
     display: flex;
     align-items: center;
     height: 50px;
     width: 50px;
-    flex-direction: column
+    flex-direction: column;
+    margin: 2%;
 }
 
 .Class_ButtonContainer img{
@@ -45,6 +57,8 @@ body{
     display: flex;
 }
 
+/*===========[ LEDs ]=========================*/
+
 .Class_LedContainer{
     display: flex;
     align-items: center;
@@ -52,6 +66,7 @@ body{
     width: 70px;
     flex-direction: column;
     margin: 20px;
+    margin: 2%;
 }
 
 .Class_LedContainer img{
@@ -70,18 +85,52 @@ body{
     display: flex;
 }
 
-.Class_AcdContainer{
-    background-color: rgb(28, 209, 89);
+/*===========[ Analogicos]====================*/
+
+.Class_AnalogContainer{
+    background-color: indianred;
+    margin: 2%;
 }
 
+.Class_AdcContainer{
+    margin: 5%;
+    background-color: yellow;
+}
+
+.Class_DacContainer{
+    margin: 5%;
+    background-color: olive;
+}
+
+/*===========[ LCD ]==========================*/
+
 .Class_DisplayLcd{
-    background: url('images/lcd1.png');
-    width: 70%;
-    height: 15%;
-    font: bold 20px Verdana;
+    background: url('images/led_green.svg');
+    font: bold 40px Verdana;
     background-color: blue;
-    display: flex;
+    border: 4px;
+    border-color: aquamarine;
+    width: 100%;
+    text-align: center;
+    padding-top: 55px;
+    width: 444px;
+    height: 145px;
+}
+
+.Class_LabelLcd{
+    color: beige;
+    background-color: green;
     text-align: center;
     font: bold 20px Verdana;
-    margin: 5px;
 }
+
+.Class_LcdContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: violet;
+}
+
+/*===========[ 7 Segmentos ]==================*/
+
+/*===========[ Footer ]=======================*/

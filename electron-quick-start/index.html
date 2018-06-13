@@ -11,9 +11,13 @@
 
 <body>
 
+<!-- /*===========[ Titulo ]=======================*/ -->
+
     <header>
         <h1 id="h1_title">Virtual Hardware Platform</h1>
     </header>
+
+<!-- /*===========[ Barra navegacion ]=============*/ -->
 
     <nav>
         <div id="nav_bar">
@@ -23,6 +27,8 @@
             <a href="#about"id="nav_about">About</a>
         </div>
     </nav>
+
+<!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
         <hr/>
@@ -40,11 +46,12 @@
         <label id="lbl_port_state">Estado: Conectado</label>
 
         <hr/>
-        <br/>
+
+<!-- /*===========[ Botones ]======================*/ -->
 
         <div class="Class_ButtonsContainer">
             <div class="Class_ButtonContainer">
-                <img id="btn_tec1" src="images/button.jpeg" alt="">
+                <img id="btn_tec1" src="images/button_no_pressed.svg" alt="">
                 <label id="lbl_tec1">Tec 1</label>
             </div>
             <div class="Class_ButtonContainer">
@@ -61,10 +68,7 @@
             </div>
         </div>
 
-        <br/>
-        <br/>
-        <br/>
-
+<!-- /*===========[ LEDs ]=========================*/ -->
 
         <div class="Class_LedsContainer">
             <div class="Class_LedContainer">
@@ -85,28 +89,26 @@
             </div>
         </div>
 
-        <br/>
-        <br/>
-        <br/>
+<!-- /*===========[ Analogicos]====================*/ -->
 
-        <div class="Class_AcdContainer">
-            <input type="range" min="0" max="1023" step="1" id="range_adc">
-            <br/>
-            <input type="range" min="0" max="1023" step="1" id="range_dac">
+        <div class="Class_AnalogContainer">
+                <div class="Class_AdcContainer">
+                    <input type="range" min="0" max="1023" step="1" id="range_adc">
+                </div>
+                <div class="Class_DacContainer">
+                    <input type="range" min="0" max="1023" step="1" id="range_dac">
+                </div>
         </div>
+
+<!-- /*===========[ LCD ]==========================*/ -->
        
+        <div class="Class_LcdContainer">
+            <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
+            <br/>
+            <label id="lbl_lcd1" class="Class_LabelLcd">Display LCD Winstar</label>
+        </div>
 
-        <br/>
-        <br/>
-        <br/>
-
-        <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
-        <br/>
-        <label id="lbl_lcd1">Display LCD Winstar</label>
-
-        <br/>
-        <br/>
-        <br/>
+<!-- /*===========[ 7 Segmentos ]==================*/ -->
 
         <label id="disp_7seg">6</label>
         <br/>
@@ -114,13 +116,12 @@
 
     </section>
 
+<!-- /*===========[ Footer ]=======================*/ -->
+
     <footer>
-        <br/>
-        <br/>
-        <hr/>
-        <br/>
         <label>Copyright 2018</label>
     </footer>
+
     <script>
         require('./renderer.js')
     </script>
