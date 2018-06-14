@@ -31,61 +31,60 @@
 <!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
+        <div class="Class_PortsContainer">
+            <label id="lbl_aviable_ports">Port disponibles</label>
+            <input list="list_aviable_ports">
+            <datalist id="list_aviable_ports">
+                <option value="COM1" class="com_port"/>
+                <option value="COM2" class="com_port"/>
+                <option value="COM3" class="com_port"/>
+                <option value="COM4" class="com_port"/>
+                <option value="COM5" class="com_port"/>
+            </datalist>
+            <img id="img_port_state" src="images/switch_off.svg" alt="">
+            <label id="lbl_port_state">Estado: Conectado</label>
+        </div>
         <hr/>
-        <br/>
 
-        <label id="lbl_aviable_ports">Port disponibles</label>
-        <input list="list_aviable_ports">
-        <datalist id="list_aviable_ports">
-            <option value="COM1" class="com_port"/>
-            <option value="COM2" class="com_port"/>
-            <option value="COM3" class="com_port"/>
-            <option value="COM4" class="com_port"/>
-            <option value="COM5" class="com_port"/>
-        </datalist>
-        <label id="lbl_port_state">Estado: Conectado</label>
+<!-- /*===========[ LEDs ]=========================*/ -->
 
-        <hr/>
+<div class="Class_LedsContainer">
+    <div class="Class_LedContainer">
+        <img id="img_led1" src="images/led_off.svg" alt="">
+        <label id="lbl_led1">LED 1</label>
+    </div>
+    <div class="Class_LedContainer">
+        <img id="img_led2" src="images/led_red.svg" alt="">
+        <label id="lbl_led2">LED 2</label>
+    </div>
+    <div class="Class_LedContainer">
+        <img id="img_led3" src="images/led_green.svg" alt="">
+        <label id="lbl_led3">LED 3</label>
+    </div>
+    <div class="Class_LedContainer">
+        <img id="img_led4" src="images/led_blue.svg" alt="">
+        <label id="lbl_led4">LED 4</label>
+    </div>
+</div>
 
 <!-- /*===========[ Botones ]======================*/ -->
 
         <div class="Class_ButtonsContainer">
             <div class="Class_ButtonContainer">
                 <img id="btn_tec1" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec1">Tec 1</label>
+                <label id="lbl_tec1">TEC 1</label>
             </div>
             <div class="Class_ButtonContainer">
                 <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec2">Tec 2</label>
+                <label id="lbl_tec2">TEC 2</label>
             </div>
             <div class="Class_ButtonContainer">
                 <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec3">Tec 3</label>
+                <label id="lbl_tec3">TEC 3</label>
             </div>
             <div class="Class_ButtonContainer">
                 <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec4">Tec 4</label>
-            </div>
-        </div>
-
-<!-- /*===========[ LEDs ]=========================*/ -->
-
-        <div class="Class_LedsContainer">
-            <div class="Class_LedContainer">
-                <img id="img_led1" src="images/led_off.svg" alt="">
-                <label id="lbl_led1">LED 1</label>
-            </div>
-            <div class="Class_LedContainer">
-                <img id="img_led2" src="images/led_red.svg" alt="">
-                <label id="lbl_led2">LED 2</label>
-            </div>
-            <div class="Class_LedContainer">
-                <img id="img_led3" src="images/led_green.svg" alt="">
-                <label id="lbl_led3">LED 3</label>
-            </div>
-            <div class="Class_LedContainer">
-                <img id="img_led4" src="images/led_blue.svg" alt="">
-                <label id="lbl_led4">LED 4</label>
+                <label id="lbl_tec4">TEC 4</label>
             </div>
         </div>
 
@@ -98,6 +97,7 @@
                     <input type="range" min="0" max="1023" step="1" id="range_dac" class="Class_DacContainer">
                     <label id="lbl_7segments1" class="Class_LabelLcd">DAC CH1</label>
         </div>
+
 
         <div class="Class_DisplaysContainer">
 <!-- /*===========[ LCD ]==========================*/ -->

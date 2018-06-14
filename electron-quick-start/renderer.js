@@ -6,10 +6,10 @@
 
 // led.classList.add("redText")
 
-// setTimeout(() => {
+// setTimeout(() => {red
 //     led.classList.remove("redText")
 // }, 1000);
-document.getElementById("btn_tec1").addEventListener("click", e =>{
+document.getElementById("btn_tec1").addEventListener("click", e => {
   console.log(e.target.src);
 })
 
@@ -21,3 +21,16 @@ document.getElementById("nav_home").classList.add("Class_NavItem")
 document.getElementById("nav_news").classList.add("Class_NavItem")
 document.getElementById("nav_contact").classList.add("Class_NavItem")
 document.getElementById("nav_about").classList.add("Class_NavItem")
+
+//variables
+let redLed = document.getElementById("img_led2")
+let redLedIsOn = true
+// events
+redLed.addEventListener('click', (e) => {
+  if (redLedIsOn){
+    e.target.src = 'images/led_off.svg'
+  } else{
+    e.target.src = 'images/led_red.svg'
+  }
+  redLedIsOn = !redLedIsOn
+})

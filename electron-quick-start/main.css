@@ -1,3 +1,18 @@
+@font-face {
+    font-family: regularCode;
+    src: url("fonts/CallingCode-Regular.ttf");
+}
+
+@font-face {
+    font-family: segments7;
+    src: url("fonts/7segments_font.ttf");
+}
+
+@font-face {
+    font-family: lcdFont;
+    src: url("fonts/lcddot_tr.ttf");
+}
+
 body{
     background-color: green;
 }
@@ -31,30 +46,11 @@ body{
 
 /*===========[ Puertos disponibles ]==========*/
 
-/*===========[ Botones ]======================*/
-
-.Class_ButtonContainer{
+.Class_PortsContainer{
     display: flex;
     align-items: center;
-    height: 50px;
-    width: 50px;
-    flex-direction: column;
+    flex-direction: row;
     margin: 2%;
-}
-
-.Class_ButtonContainer img{
-    width: 100%
-}
-
-.Class_ButtonContainer label{
-    color: beige;
-    background-color: green;
-    text-align: center;
-    font: bold 20px Verdana;
-}
-
-.Class_ButtonsContainer{
-    display: flex;
 }
 
 /*===========[ LEDs ]=========================*/
@@ -85,11 +81,38 @@ body{
     display: flex;
 }
 
+/*===========[ Botones ]======================*/
+
+.Class_ButtonContainer{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    flex-direction: column;
+    margin: 2%;
+}
+
+.Class_ButtonContainer img{
+    width: 100%
+}
+
+.Class_ButtonContainer label{
+    color: beige;
+    background-color: green;
+    text-align: center;
+    font: bold 20px Verdana;
+    font-family: regularCode!important;
+}
+
+.Class_ButtonsContainer{
+    display: flex;
+}
+
 /*===========[ Analogicos]====================*/
 
 .Class_AnalogContainer{
     margin: 2%;
-    width: 32%;
+    width: 570px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -97,51 +120,52 @@ body{
 
 .Class_AdcContainer{
     -webkit-appearance: none;
-    width: 90%;
-    height: 25px;
-    background: #9b1212;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color: black;
+    background: url('images/pote_v2.svg');
     outline: none;
-    opacity: 0.7;
+    opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
-}
-
-.Class_AdcContainer:hover {
-    opacity: 1;
 }
 
 .Class_AdcContainer::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
-    background: violet;
+    width: 30px;
+    height: 70px;
+    border: 0;
+    background: url('images/slider2.svg');
     cursor: pointer;
 }
 
 .Class_DacContainer{
     -webkit-appearance: none;
-    width: 90%;
-    height: 25px;
-    background: #d3d3d3;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color: black;
+    background: url('images/pote_v2.svg');
     outline: none;
-    opacity: 0.7;
+    opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
-}
-
-.Class_DacContainer:hover {
-    opacity: 1;
 }
 
 .Class_DacContainer::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
+    width: 30px;
+    height: 70px;
+    border: 0;
+    background: url('images/slider2.svg');
     cursor: pointer;
 }
+
 /*===========[ Displays contaninter ]=========*/
 
 .Class_DisplaysContainer{
@@ -153,7 +177,7 @@ body{
 
 .Class_DisplayLcd{
     background: url('images/lcd_display.svg');
-    font: bold 40px Verdana;
+    font: 40px lcdFont;
     border: 4px;
     border-color: aquamarine;
     width: 100%;
@@ -180,7 +204,7 @@ body{
 
 .Class_Display7Segments{
     background: url('images/7segments_v2.svg');
-    font: bold 185px Verdana;
+    font: 185px segments7;
     color: red;
     width: 180px;
     height: 198px;
