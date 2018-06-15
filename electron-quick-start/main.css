@@ -1,15 +1,22 @@
+/*===========[ Gemera;es ]=======================*/
+
 @font-face {
-    font-family: regularCode;
+    font-family: Font_RegularCode;
     src: url("fonts/CallingCode-Regular.ttf");
 }
 
 @font-face {
-    font-family: segments7;
+    font-family: Font_AppText;
+    src: url("fonts/CallingCode-Regular.ttf");
+}
+
+@font-face {
+    font-family: Font_7Segments;
     src: url("fonts/7segments_font.ttf");
 }
 
 @font-face {
-    font-family: lcdFont;
+    font-family: Font_Lcd;
     src: url("fonts/lcddot_tr.ttf");
 }
 
@@ -17,211 +24,173 @@ body{
     background-color: green;
 }
 
+.PcbSkillText{
+    font: bold 20px Font_AppText;
+}
+
 /*===========[ Titulo ]=======================*/
 
-.Class_Title{
+.Title{
     color: yellowgreen;
     background-color: blueviolet;
     text-align: center;
-    font: bold 35px Verdana;
-    margin: 2%;
+    font: bold 35px Font_AppText;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 40px;
 }
 
 /*===========[ Barra navegacion ]=============*/
 
-.Class_NavBar{
+.NavigationBar{
     background-color: orange;
+    display: flex;
     align-items: center;
-    margin: 2%;
-    padding: 1%;
+    flex-direction: row;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 5px;
 }
 
-.Class_NavItem{
+.NavigationItem{
     background-color: cornflowerblue;
     background-color: green;
-    text-align: center;
     font: bold 20px Verdana;
-
+    margin-left: 50px;
+    margin-right: 50px; 
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /*===========[ Puertos disponibles ]==========*/
 
-.Class_PortsContainer{
+.PortsCont{
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 2%;
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
-/*===========[ LEDs ]=========================*/
+/*===========[ GPIO ]=========================*/
 
-.Class_LedContainer{
+.GpiosCont{
     display: flex;
     align-items: center;
-    height: 50px;
-    width: 70px;
-    flex-direction: column;
-    margin: 20px;
-    margin: 2%;
+    height: 200px;
+    width: 500px;
+    flex-direction: row;
+    background-color: brown;
+    margin-left: 12px;
 }
 
-.Class_LedContainer img{
-    width: 100%
-}
-
-.Class_LedContainer label{
-    color: beige;
-    background-color: green;
-    text-align: center;
-    font: bold 20px Verdana;
-    margin: 5px;
-}
-
-.Class_LedsContainer{
-    display: flex;
-}
-
-/*===========[ Botones ]======================*/
-
-.Class_ButtonContainer{
+.GpioCont{
     display: flex;
     align-items: center;
-    height: 50px;
-    width: 50px;
+    height: 190px;
+    width: 100px;
     flex-direction: column;
-    margin: 2%;
-}
-
-.Class_ButtonContainer img{
-    width: 100%
-}
-
-.Class_ButtonContainer label{
-    color: beige;
-    background-color: green;
-    text-align: center;
-    font: bold 20px Verdana;
-    font-family: regularCode!important;
-}
-
-.Class_ButtonsContainer{
-    display: flex;
+    background-color: yellowgreen;
+    margin: 12.5px;
 }
 
 /*===========[ Analogicos]====================*/
 
-.Class_AnalogContainer{
-    margin: 2%;
-    width: 570px;
-    align-items: center;
+.AnalogsCont{
     display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 100px;
+    width: 500px;
+    background-color: gold;
+    margin-left: 12px;
+}
+
+.AnalogCont{
+    display: flex;
+    align-items: center;
     flex-direction: column;
+    height: 100px;
+    width: 225px;
+    background-color: royalblue;
+    margin: 12.5px;
 }
 
-.Class_AdcContainer{
+.AnalogCont_Slider{
     -webkit-appearance: none;
-    width: 100%;
+    width: 225px;
     height: 50px;
-    border-radius: 5px;
-    border-width: 3px;
-    border-color: black;
-    background: url('images/pote_v2.svg');
+    background: url('images/potentiometer.svg');
     outline: none;
     opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    margin-bottom: 20px;
 }
 
-.Class_AdcContainer::-webkit-slider-thumb {
+.AnalogCont_Slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 30px;
-    height: 70px;
+    width: 25px;
+    height: 60px;
     border: 0;
-    background: url('images/slider2.svg');
-    cursor: pointer;
-}
-
-.Class_DacContainer{
-    -webkit-appearance: none;
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-    border-width: 3px;
-    border-color: black;
-    background: url('images/pote_v2.svg');
-    outline: none;
-    opacity: 1;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.Class_DacContainer::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 30px;
-    height: 70px;
-    border: 0;
-    background: url('images/slider2.svg');
+    background: url('images/slider.svg');
     cursor: pointer;
 }
 
 /*===========[ Displays contaninter ]=========*/
 
-.Class_DisplaysContainer{
+.DisplaysCont{
     display: flex;
-    margin: 2%;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 12px;
+    background-color: violet;
+    height: 200px;
+    width: 500px;
 }
 
 /*===========[ LCD ]==========================*/
 
-.Class_DisplayLcd{
-    background: url('images/lcd_display.svg');
-    font: 40px lcdFont;
-    border: 4px;
-    border-color: aquamarine;
-    width: 100%;
-    text-align: center;
-    padding-top: 55px;
-    width: 440px;
-    height: 142px;
-}
-
-.Class_LabelLcd{
-    color: beige;
-    background-color: green;
-    text-align: center;
-    font: bold 20px Verdana;
-}
-
-.Class_LcdContainer{
+.LcdCont{
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 350px;
+    height: 200px;
+    background-color: rebeccapurple;
+    margin: 12.5px;
+}
+
+.LcdCont_Lcd{
+    background: url('images/lcd_display.svg');
+    font: 40px Font_Lcd;
+    text-align: center;
+    width: 350px;
+    height: 150px;
 }
 
 /*===========[ 7 Segmentos ]==================*/
 
-.Class_Display7Segments{
-    background: url('images/7segments_v2.svg');
-    font: 185px segments7;
-    color: red;
-    width: 180px;
-    height: 198px;
-    padding-left: 50px;
-}
-
-.Class_LabelLcd{
-    color: beige;
-    background-color: green;
-    text-align: center;
-    font: bold 20px Verdana;
-}
-
-.Class_7SegmentsContainer{
+.Segments7Cont{
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100px;
+    height: 200px;
+    background-color: cadetblue
+}
+
+.Segments7Cont_Display{
+    background: url('images/display_7segs.svg');
+    font: 120px Font_7Segments;
+    color: red;
+    width: 100px;
+    height: 150px;
+    padding-left: 0px;
+    text-align: center;
 }
 
 /*===========[ Footer ]=======================*/

@@ -14,106 +14,96 @@
 <!-- /*===========[ Titulo ]=======================*/ -->
 
     <header>
-        <h1 id="h1_title">Virtual Hardware Platform</h1>
+        <h1 class="Title">Virtual Hardware Platform</h1>
     </header>
 
 <!-- /*===========[ Barra navegacion ]=============*/ -->
 
     <nav>
-        <div id="nav_bar">
-            <a href="#home" id="nav_home">Home</a>
-            <a href="#news" id="nav_news">News</a>
-            <a href="#contact" id="nav_contact">Contact</a>
-            <a href="#about"id="nav_about">About</a>
+        <div class="NavigationBar">
+            <a href="#home" class="NavigationItem">Home</a>
+            <a href="#news" class="NavigationItem">News</a>
+            <a href="#contact" class="NavigationItem">Contact</a>
+            <a href="#about" class="NavigationItem">About</a>
         </div>
     </nav>
 
 <!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
-        <div class="Class_PortsContainer">
-            <label id="lbl_aviable_ports">Port disponibles</label>
+
+        <div class="PortsCont">
+            <label class="PortsCont_LblAviablePorts">Port disponibles</label>
             <input list="list_aviable_ports">
             <datalist id="list_aviable_ports">
-                <option value="COM1" class="com_port"/>
-                <option value="COM2" class="com_port"/>
-                <option value="COM3" class="com_port"/>
-                <option value="COM4" class="com_port"/>
-                <option value="COM5" class="com_port"/>
+                <option value="COM1" class="PortsCont_ComPortOption"/>
+                <option value="COM2" class="PortsCont_ComPortOption"/>
+                <option value="COM3" class="PortsCont_ComPortOption"/>
+                <option value="COM4" class="PortsCont_ComPortOption"/>
+                <option value="COM5" class="PortsCont_ComPortOption"/>
             </datalist>
-            <img id="img_port_state" src="images/switch_off.svg" alt="">
-            <label id="lbl_port_state">Estado: Conectado</label>
+            <img id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
+            <label id="PortsCont_LblPortState">Estado: Conectado</label>
         </div>
         <hr/>
 
-<!-- /*===========[ LEDs ]=========================*/ -->
+<!-- /*===========[ GPIO ]=========================*/ -->
 
-<div class="Class_LedsContainer">
-    <div class="Class_LedContainer">
-        <img id="img_led1" src="images/led_off.svg" alt="">
-        <label id="lbl_led1">LED 1</label>
+<div class="GpiosCont">
+    <div class="GpioCont">
+        <img  id="GpioCont_ImgLed1" src="images/led_yellow.svg" alt="">
+        <label class="PcbSkillText">LED 1</label>
+        <img id="GpioCont_ImgTec1" src="images/news/button_no_pressed.svg" alt="">
+        <label class="PcbSkillText">TEC 1</label>
     </div>
-    <div class="Class_LedContainer">
-        <img id="img_led2" src="images/led_red.svg" alt="">
-        <label id="lbl_led2">LED 2</label>
+    <div class="GpioCont">
+        <img id="GpioCont_ImgLed2" src="images/led_cyan.svg" alt="">
+        <label class="PcbSkillText">LED 2</label>
+        <img id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
+        <label class="PcbSkillText">TEC 2</label>
     </div>
-    <div class="Class_LedContainer">
-        <img id="img_led3" src="images/led_green.svg" alt="">
-        <label id="lbl_led3">LED 3</label>
+    <div class="GpioCont">
+        <img id="GpioCont_ImgLed3" src="images/led_green.svg" alt="">
+        <label class="PcbSkillText">LED 3</label>
+        <img id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
+        <label class="PcbSkillText">TEC 3</label>
     </div>
-    <div class="Class_LedContainer">
-        <img id="img_led4" src="images/led_blue.svg" alt="">
-        <label id="lbl_led4">LED 4</label>
+    <div class="GpioCont">
+        <img id="GpioCont_ImgLed4" src="images/led_violet.svg" alt="">
+        <label class="PcbSkillText">LED 4</label>
+        <img id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
+        <label class="PcbSkillText">TEC 4</label>
     </div>
 </div>
 
-<!-- /*===========[ Botones ]======================*/ -->
-
-        <div class="Class_ButtonsContainer">
-            <div class="Class_ButtonContainer">
-                <img id="btn_tec1" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec1">TEC 1</label>
-            </div>
-            <div class="Class_ButtonContainer">
-                <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec2">TEC 2</label>
-            </div>
-            <div class="Class_ButtonContainer">
-                <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec3">TEC 3</label>
-            </div>
-            <div class="Class_ButtonContainer">
-                <img id="btn_tec2" src="images/button_no_pressed.svg" alt="">
-                <label id="lbl_tec4">TEC 4</label>
-            </div>
-        </div>
-
 <!-- /*===========[ Analogicos]====================*/ -->
 
-        <div class="Class_AnalogContainer">
-                    <input type="range" min="0" max="1023" step="1" id="range_adc" class="Class_AdcContainer">
-                    <label id="lbl_7segments1" class="Class_LabelLcd">ADC CH1</label>
-                    <br/>
-                    <input type="range" min="0" max="1023" step="1" id="range_dac" class="Class_DacContainer">
-                    <label id="lbl_7segments1" class="Class_LabelLcd">DAC CH1</label>
+    <div class="AnalogsCont">
+        <div class="AnalogCont">
+            <input type="range" min="0" max="1023" step="1" id="range_adc" class="AnalogCont_Slider">
+            <label class="PcbSkillText">ADC CH1</label>
         </div>
+        <div class="AnalogCont">
+            <input type="range" min="0" max="1023" step="1" id="range_dac" class="AnalogCont_Slider">
+            <label class="PcbSkillText">DAC CH1</label>
+        </div>
+    </div>
 
 
-        <div class="Class_DisplaysContainer">
+        <div class="DisplaysCont">
 <!-- /*===========[ LCD ]==========================*/ -->
        
-            <div class="Class_LcdContainer">
-                <label id="disp_lcd1" class="Class_DisplayLcd">Texto Display LCD</label>
-                <br/>
-                <label id="lbl_lcd1" class="Class_LabelLcd">Display LCD Winstar</label>
+            <div class="LcdCont">
+                <label id="LcdCont_Lcd" class="LcdCont_Lcd">Texto Display LCD</label>
+                <label class="PcbSkillText">LCD</label>
             </div>
 
 <!-- /*===========[ 7 Segmentos ]==================*/ -->
 
-            <div class="Class_7SegmentsContainer">
-                <label id="disp_7segments1" class="Class_Display7Segments">6</label>
+            <div class="Segments7Cont">
+                <label id="Segments7Cont_Display" class="Segments7Cont_Display">6</label>
                 <br/>
-                <label id="lbl_7segments1" class="Class_LabelLcd">Display 7 segmentos</label>
+                <label class="PcbSkillText">7 segs</label>
             </div>
 
         </div>   
@@ -121,7 +111,7 @@
 
 <!-- /*===========[ Footer ]=======================*/ -->
 
-    <footer>
+    <footer class="Footer">
         <label>Copyright 2018</label>
     </footer>
 
