@@ -20,17 +20,19 @@
     src: url("fonts/lcddot_tr.ttf");
 }
 
-body{
+body {
     background-color: green;
 }
 
-.PcbSkillText{
+.PcbSkillText {
     font: bold 20px Font_AppText;
+    height: 30px;
+    color: whitesmoke;
 }
 
 /*===========[ Titulo ]=======================*/
 
-.Title{
+.Title {
     color: yellowgreen;
     background-color: blueviolet;
     text-align: center;
@@ -44,7 +46,7 @@ body{
 
 /*===========[ Barra navegacion ]=============*/
 
-.NavigationBar{
+.NavigationBar {
     background-color: orange;
     display: flex;
     align-items: center;
@@ -54,19 +56,19 @@ body{
     padding: 5px;
 }
 
-.NavigationItem{
+.NavigationItem {
     background-color: cornflowerblue;
     background-color: green;
     font: bold 20px Verdana;
     margin-left: 50px;
-    margin-right: 50px; 
+    margin-right: 50px;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 /*===========[ Puertos disponibles ]==========*/
 
-.PortsCont{
+.PortsCont {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -76,7 +78,7 @@ body{
 
 /*===========[ GPIO ]=========================*/
 
-.GpiosCont{
+.GpiosCont {
     display: flex;
     align-items: center;
     height: 200px;
@@ -86,7 +88,7 @@ body{
     margin-left: 12px;
 }
 
-.GpioCont{
+.GpioCont {
     display: flex;
     align-items: center;
     height: 190px;
@@ -98,7 +100,7 @@ body{
 
 /*===========[ Analogicos]====================*/
 
-.AnalogsCont{
+.AnalogsCont {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -108,7 +110,7 @@ body{
     margin-left: 12px;
 }
 
-.AnalogCont{
+.AnalogCont {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -118,7 +120,7 @@ body{
     margin: 12.5px;
 }
 
-.AnalogCont_Slider{
+.AnalogCont_Slider {
     -webkit-appearance: none;
     width: 225px;
     height: 50px;
@@ -142,7 +144,7 @@ body{
 
 /*===========[ Displays contaninter ]=========*/
 
-.DisplaysCont{
+.DisplaysCont {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -154,7 +156,7 @@ body{
 
 /*===========[ LCD ]==========================*/
 
-.LcdCont{
+.LcdCont {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -164,17 +166,31 @@ body{
     margin: 12.5px;
 }
 
-.LcdCont_Lcd{
+.LcdCont_Lcd {
     background: url('images/lcd_display.svg');
     font: 40px Font_Lcd;
     text-align: center;
     width: 350px;
     height: 150px;
+    margin-bottom: 20px;
+}
+
+.LcdCont_Lcd p {
+    padding: 0 20px;
+    text-align: left
+}
+
+.LcdCont_TextContainer {
+    height: 68px;
+    position: relative;
+    top: 25px;
+    font-size: 20px;
+    padding: 2px 15px;
 }
 
 /*===========[ 7 Segmentos ]==================*/
 
-.Segments7Cont{
+.Segments7Cont {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -183,14 +199,18 @@ body{
     background-color: cadetblue
 }
 
-.Segments7Cont_Display{
+.Segments7Cont_Display {
     background: url('images/display_7segs.svg');
     font: 120px Font_7Segments;
     color: red;
     width: 100px;
     height: 150px;
-    padding-left: 0px;
     text-align: center;
+    margin-bottom: 0px;
 }
 
 /*===========[ Footer ]=======================*/
+
+.Footer{
+    text-align: center;
+}
