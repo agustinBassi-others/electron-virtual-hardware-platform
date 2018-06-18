@@ -20,11 +20,13 @@
 <!-- /*===========[ Barra navegacion ]=============*/ -->
 
     <nav>
-        <div class="NavigationBar">
-            <a href="#home" class="NavigationItem">Home</a>
-            <a href="#news" class="NavigationItem">News</a>
-            <a href="#contact" class="NavigationItem">Contact</a>
-            <a href="#about" class="NavigationItem">About</a>
+        <div class="NavigationCont">
+            <div class="NavigationBar">
+                <a href="#home" class="NavigationItem">Home</a>
+                <a href="#news" class="NavigationItem">News</a>
+                <a href="#contact" class="NavigationItem">Contact</a>
+                <a href="#about" class="NavigationItem">About</a>
+            </div>
         </div>
     </nav>
 
@@ -34,8 +36,8 @@
 
         <div class="PortsCont">
             <label class="PortsCont_LblAviablePorts">Port disponibles</label>
-            <input list="list_aviable_ports">
-            <datalist id="list_aviable_ports">
+            <input list="PortsCont_AviablePortsList">
+            <datalist id="PortsCont_AviablePortsList">
                 <option value="COM1" class="PortsCont_ComPortOption"/>
                 <option value="COM2" class="PortsCont_ComPortOption"/>
                 <option value="COM3" class="PortsCont_ComPortOption"/>
@@ -43,9 +45,8 @@
                 <option value="COM5" class="PortsCont_ComPortOption"/>
             </datalist>
             <img id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
-            <label id="PortsCont_LblPortState">Estado: Conectado</label>
+            <label class="PortsCont_LblPortState">Estado: Desconectado</label>
         </div>
-        <hr/>
 
 <!-- /*===========[ GPIO ]=========================*/ -->
 
@@ -118,7 +119,9 @@
 <!-- /*===========[ Footer ]=======================*/ -->
 
     <footer class="Footer">
-        <label>Copyright 2018</label>
+        <label>Copyright Agustin Bassi - 2018</label>
+        <br/>
+        <label>jagustinbassi@gmail.com</label>
     </footer>
 
     <script>
