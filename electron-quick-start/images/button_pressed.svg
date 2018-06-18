@@ -11,7 +11,7 @@
    viewBox="0 0 75 75"
    stroke-miterlimit="10"
    id="svg3837"
-   sodipodi:docname="button_asd.svg"
+   sodipodi:docname="button_no_pressed.svg"
    width="75"
    height="75"
    style="fill:none;stroke:none;stroke-linecap:square;stroke-miterlimit:10"
@@ -83,7 +83,7 @@
      inkscape:cx="76.513932"
      inkscape:cy="-101.70782"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="1080"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg3837" />
   <clipPath
@@ -185,9 +185,4 @@
        inkscape:connector-curvature="0"
        style="fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round" />
   </g>
-  <path
-     style="fill:#4d4d4d;fill-opacity:1;stroke-width:0.54392833"
-     d="m 36.100059,51.0957 c -4.284956,-1.043167 -7.738249,-4.285863 -9.231605,-8.66862 -1.043742,-3.063217 -1.052539,-5.656908 -0.0308,-9.081626 2.836379,-9.507123 14.648644,-12.126174 21.035869,-4.664138 2.309804,2.698486 3.188615,5.374253 3.172619,9.659858 -0.02184,5.849984 -3.614923,10.889449 -8.878568,12.452583 -2.949661,0.875955 -3.580688,0.907358 -6.067515,0.301943 z"
-     id="path108"
-     inkscape:connector-curvature="0" />
 </svg>
