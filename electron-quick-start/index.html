@@ -11,13 +11,13 @@
 
 <body>
 
-<!-- /*===========[ Titulo ]=======================*/ -->
+    <!-- /*===========[ Titulo ]=======================*/ -->
 
     <header>
         <h1 class="Title">Virtual Hardware Platform</h1>
     </header>
 
-<!-- /*===========[ Barra navegacion ]=============*/ -->
+    <!-- /*===========[ Barra navegacion ]=============*/ -->
 
     <nav>
         <div class="NavigationCont">
@@ -30,70 +30,74 @@
         </div>
     </nav>
 
-<!-- /*===========[ Puertos disponibles ]==========*/ -->
+    <!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
 
         <div class="PortsCont">
-            <label class="PortsCont_LblAviablePorts">Port disponibles</label>
-            <input list="PortsCont_AviablePortsList">
-            <datalist id="PortsCont_AviablePortsList">
-                <option value="COM1" class="PortsCont_ComPortOption"/>
-                <option value="COM2" class="PortsCont_ComPortOption"/>
-                <option value="COM3" class="PortsCont_ComPortOption"/>
-                <option value="COM4" class="PortsCont_ComPortOption"/>
-                <option value="COM5" class="PortsCont_ComPortOption"/>
-            </datalist>
-            <img id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
-            <label class="PortsCont_LblPortState">Estado: Desconectado</label>
+            <div class="left">
+                <label class="PortsCont_LblAviablePorts">Port disponibles</label>
+                <input list="PortsCont_AviablePortsList">
+                <datalist id="PortsCont_AviablePortsList">
+                    <option value="COM1" class="PortsCont_ComPortOption" />
+                    <option value="COM2" class="PortsCont_ComPortOption" />
+                    <option value="COM3" class="PortsCont_ComPortOption" />
+                    <option value="COM4" class="PortsCont_ComPortOption" />
+                    <option value="COM5" class="PortsCont_ComPortOption" />
+                </datalist>
+                <img draggable="false" id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
+            </div>
+            <div class="right">
+                <label class="PortsCont_LblPortState">Estado: Desconectado</label>
+            </div>
         </div>
 
-<!-- /*===========[ GPIO ]=========================*/ -->
+        <!-- /*===========[ GPIO ]=========================*/ -->
 
-<div class="GpiosCont">
-    <div class="GpioCont">
-        <img  id="GpioCont_ImgLed1" src="images/led_yellow.svg" alt="">
-        <label class="PcbSkillText">LED 1</label>
-        <img id="GpioCont_ImgTec1" src="images/news/button_no_pressed.svg" alt="">
-        <label class="PcbSkillText">TEC 1</label>
-    </div>
-    <div class="GpioCont">
-        <img id="GpioCont_ImgLed2" src="images/led_cyan.svg" alt="">
-        <label class="PcbSkillText">LED 2</label>
-        <img id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
-        <label class="PcbSkillText">TEC 2</label>
-    </div>
-    <div class="GpioCont">
-        <img id="GpioCont_ImgLed3" src="images/led_green.svg" alt="">
-        <label class="PcbSkillText">LED 3</label>
-        <img id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
-        <label class="PcbSkillText">TEC 3</label>
-    </div>
-    <div class="GpioCont">
-        <img id="GpioCont_ImgLed4" src="images/led_violet.svg" alt="">
-        <label class="PcbSkillText">LED 4</label>
-        <img id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
-        <label class="PcbSkillText">TEC 4</label>
-    </div>
-</div>
-
-<!-- /*===========[ Analogicos]====================*/ -->
-
-    <div class="AnalogsCont">
-        <div class="AnalogCont">
-            <input type="range" min="0" max="1023" step="1" id="range_adc" class="AnalogCont_Slider">
-            <label class="PcbSkillText">ADC CH1</label>
+        <div class="GpiosCont">
+            <div class="GpioCont">
+                <img draggable="false" id="GpioCont_ImgLed1" src="images/led_yellow.svg" alt="">
+                <label class="PcbSkillText">LED 1</label>
+                <img draggable="false" id="GpioCont_ImgTec1" src="images/button_no_pressed.svg" alt="">
+                <label class="PcbSkillText">TEC 1</label>
+            </div>
+            <div class="GpioCont">
+                <img draggable="false" id="GpioCont_ImgLed2" src="images/led_cyan.svg" alt="">
+                <label class="PcbSkillText">LED 2</label>
+                <img draggable="false" id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
+                <label class="PcbSkillText">TEC 2</label>
+            </div>
+            <div class="GpioCont">
+                <img draggable="false" id="GpioCont_ImgLed3" src="images/led_green.svg" alt="">
+                <label class="PcbSkillText">LED 3</label>
+                <img draggable="false" id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
+                <label class="PcbSkillText">TEC 3</label>
+            </div>
+            <div class="GpioCont">
+                <img draggable="false" id="GpioCont_ImgLed4" src="images/led_violet.svg" alt="">
+                <label class="PcbSkillText">LED 4</label>
+                <img draggable="false" id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
+                <label class="PcbSkillText">TEC 4</label>
+            </div>
         </div>
-        <div class="AnalogCont">
-            <input type="range" min="0" max="1023" step="1" id="range_dac" class="AnalogCont_Slider">
-            <label class="PcbSkillText">DAC CH1</label>
+
+        <!-- /*===========[ Analogicos]====================*/ -->
+
+        <div class="AnalogsCont">
+            <div class="AnalogCont">
+                <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeAdc" class="AnalogCont_Slider">
+                <label class="PcbSkillText">ADC CH1</label>
+            </div>
+            <div class="AnalogCont">
+                <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeDac" class="AnalogCont_Slider">
+                <label class="PcbSkillText">DAC CH1</label>
+            </div>
         </div>
-    </div>
 
 
         <div class="DisplaysCont">
-<!-- /*===========[ LCD ]==========================*/ -->
-       
+            <!-- /*===========[ LCD ]==========================*/ -->
+
             <div class="LcdCont">
                 <div id="LcdCont_Lcd" class="LcdCont_Lcd">
                     <div class="LcdCont_TextContainer">
@@ -105,7 +109,7 @@
                 <label class="PcbSkillText">LCD</label>
             </div>
 
-<!-- /*===========[ 7 Segmentos ]==================*/ -->
+            <!-- /*===========[ 7 Segmentos ]==================*/ -->
 
             <div class="Segments7Cont">
                 <label id="Segments7Cont_Display" class="Segments7Cont_Display">6</label>
@@ -113,10 +117,10 @@
                 <label class="PcbSkillText">7 SEG</label>
             </div>
 
-        </div>   
+        </div>
     </section>
 
-<!-- /*===========[ Footer ]=======================*/ -->
+    <!-- /*===========[ Footer ]=======================*/ -->
 
     <footer class="Footer">
         <label>Copyright Agustin Bassi - 2018</label>

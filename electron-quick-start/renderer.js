@@ -79,22 +79,22 @@ const IMG_LED_VIOLET      = "images/led_violet.svg"
 const IMG_LED_YELOW       = "images/led_yellow.svg"
 const IMG_LED_WHITE       = "images/led_white.svg"
 
-let PortSelected_Value= "COM1";
-let PortSwitch_State  = false;
-let Led1_State        = false;
-let Led2_State        = false;
-let Led3_State        = false;
-let Led4_State        = false;
-let Tec1_State        = true;
-let Tec2_State        = true;
-let Tec3_State        = true;
-let Tec4_State        = true;
-let Adc1_Value        = 0;
-let Dac1_Value        = 0;
-let Display7Segs_Text = "0";
-let DisplayLcd_Text   = "Hello world!";
+let PortSelected_Value    = "COM1";
+let PortSwitch_State      = false;
+let Led1_State            = false;
+let Led2_State            = false;
+let Led3_State            = false;
+let Led4_State            = false;
+let Tec1_State            = true;
+let Tec2_State            = true;
+let Tec3_State            = true;
+let Tec4_State            = true;
+let Adc1_Value            = 0;
+let Dac1_Value            = 340;
+let Display7Segs_Text     = "3";
+let DisplayLcd_Text       = " \\(-)/ Hello CIAA \\(-)/ Temp 21° - Hum 68% Adc Value: 872";
 
-/*==================[Objects events declaration]============================*/
+/*==================[Objects events and initialization]=========================*/
 
 document.getElementById("PortsCont_AviablePortsList").addEventListener('click', (e) => {
   console.log("[Event] - PortsCont_AviablePortsList - Eligieron puerto: " + e.target.value);
@@ -123,6 +123,12 @@ document.getElementById("GpioCont_ImgTec1").addEventListener('mouseup', (e) => {
   e.target.src = IMG_TEC_NO_PRESSED;
 })
 
+document.getElementById("GpioCont_ImgTec1").addEventListener('mouseout', (e) => {
+  Tec1_State = true;
+  console.log("[Event] - GpioCont_ImgTec1 - Tec 1 released");
+  e.target.src = IMG_TEC_NO_PRESSED;
+})
+
 document.getElementById("GpioCont_ImgTec2").addEventListener('mousedown', (e) => {
   Tec2_State = false;
   console.log("[Event] - GpioCont_ImgTec2 - Tec 1 pressed");
@@ -130,6 +136,12 @@ document.getElementById("GpioCont_ImgTec2").addEventListener('mousedown', (e) =>
 })
 
 document.getElementById("GpioCont_ImgTec2").addEventListener('mouseup', (e) => {
+  Tec2_State = true;
+  console.log("[Event] - GpioCont_ImgTec2 - Tec 1 released");
+  e.target.src = IMG_TEC_NO_PRESSED;
+})
+
+document.getElementById("GpioCont_ImgTec2").addEventListener('mouseout', (e) => {
   Tec2_State = true;
   console.log("[Event] - GpioCont_ImgTec2 - Tec 1 released");
   e.target.src = IMG_TEC_NO_PRESSED;
@@ -147,6 +159,12 @@ document.getElementById("GpioCont_ImgTec3").addEventListener('mouseup', (e) => {
   e.target.src = IMG_TEC_NO_PRESSED;
 })
 
+document.getElementById("GpioCont_ImgTec3").addEventListener('mouseout', (e) => {
+  Tec3_State = true;
+  console.log("[Event] - GpioCont_ImgTec3 - Tec 1 released");
+  e.target.src = IMG_TEC_NO_PRESSED;
+})
+
 document.getElementById("GpioCont_ImgTec4").addEventListener('mousedown', (e) => {
   Tec4_State = false;
   console.log("[Event] - GpioCont_ImgTec4 - Tec 1 pressed");
@@ -159,8 +177,34 @@ document.getElementById("GpioCont_ImgTec4").addEventListener('mouseup', (e) => {
   e.target.src = IMG_TEC_NO_PRESSED;
 })
 
+document.getElementById("GpioCont_ImgTec4").addEventListener('mouseout', (e) => {
+  Tec4_State = true;
+  console.log("[Event] - GpioCont_ImgTec4 - Tec 1 released");
+  e.target.src = IMG_TEC_NO_PRESSED;
+})
+
+var RangeAdc = document.getElementById("AnalogCont_RangeAdc");
+RangeAdc.oninput = function() {
+  Adc1_Value = this.value;
+  console.log("[Event] - AnalogCont_RangeAdc - El valor del ADC es: " + Adc1_Value);
+}
+
+document.getElementById("AnalogCont_RangeDac").disabled = true;
+document.getElementById("AnalogCont_RangeDac").value = Dac1_Value;
+
+
+document.querySelector(".LcdCont_TextContainer p").innerHTML = DisplayLcd_Text;
+
+document.querySelector(".Segments7Cont_Display").innerHTML = Display7Segs_Text;
+
+// setInterval(function () {
+//   Dac1_Value.value = Dac1_Value.value + 100
+// }, 2000)
+
 
 /*==================[internal function declaration]==========================*/
+
+
 
 function GetHardwareInputState (commandToParse){
 

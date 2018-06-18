@@ -27,12 +27,15 @@
 
 body{
     background-color: green;
+    user-select: none;
 }
 
 .PcbSkillText{
-    font: bold 30px Font_PcbSkill;
-    color: whitesmoke;   
+    font: bold 20px Font_PcbSkill;
+    color: whitesmoke;  
+    user-select: none; 
 }
+
 
 /*===========[ Titulo ]=======================*/
 
@@ -85,6 +88,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: row;
+    justify-content: space-between;
     margin-left: 12px;
     margin-right: 12px;
     border-top: 2px;
@@ -104,6 +108,16 @@ body{
 
 .PortsCont_LblPortState{
     font: 15px Font_AppText;
+}
+
+.left{
+    display: inherit;
+    align-items: center
+}
+
+.right{
+    display: inherit;
+    align-items: center
 }
 
 /*===========[ GPIO ]=========================*/
@@ -207,7 +221,8 @@ body{
 
 .LcdCont_Lcd p {
     padding: 0 20px;
-    text-align: left
+    text-align: left;
+    user-select: none;
 }
 
 .LcdCont_TextContainer {
@@ -237,6 +252,7 @@ body{
     height: 150px;
     text-align: center;
     margin-bottom: 0px;
+    user-select: none;
 }
 
 /*===========[ Footer ]=======================*/
