@@ -33,26 +33,36 @@
     <!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
-
         <div class="PortsCont">
-            <div class="left">
-                <label class="PortsCont_LblAviablePorts">Port disponibles</label>
+            <div class="PortsCont_LeftContainer">
+                <label class="PortsCont_LblAviablePorts">Port disponibles:</label>
                 <input list="PortsCont_AviablePortsList">
-                <datalist id="PortsCont_AviablePortsList">
+                <datalist class="PortsCont_AviablePortsList" id="PortsCont_AviablePortsList" style=" width: 90px!important;">
                     <option value="COM1" class="PortsCont_ComPortOption" />
                     <option value="COM2" class="PortsCont_ComPortOption" />
                     <option value="COM3" class="PortsCont_ComPortOption" />
                     <option value="COM4" class="PortsCont_ComPortOption" />
                     <option value="COM5" class="PortsCont_ComPortOption" />
                 </datalist>
-                <img draggable="false" id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
+                <label class="PortsCont_LblAviableBaudrate">Baudrate:</label>
+                <input list="PortsCont_AviableBaudrateList">
+                <datalist class="PortsCont_AviableBaudrateList" id="PortsCont_AviableBaudrateList" style=" width: 50px!important;">
+                    <option value="9600" class="PortsCont_BaudrateOption" />
+                    <option value="19200" class="PortsCont_BaudrateOption" />
+                    <option value="38400" class="PortsCont_BaudrateOption" />
+                    <option value="57600" class="PortsCont_BaudrateOption" />
+                    <option value="115200" class="PortsCont_BaudrateOption" />
+                </datalist>
+                <img draggable="false" class="PortsCont_ImgPortSwitch" id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
             </div>
-            <div class="right">
-                <label class="PortsCont_LblPortState">Estado: Desconectado</label>
+            <div class="PortsCont_RightContainer">
+                <label id="PortsCont_LblPortState" class="PortsCont_LblPortState">Estado: </label>
             </div>
         </div>
 
-        <!-- /*===========[ GPIO ]=========================*/ -->
+        <div class="functionalContainer">
+            <div class="functionalLeft">
+                <!-- /*===========[ GPIO ]=========================*/ -->
 
         <div class="GpiosCont">
             <div class="GpioCont">
@@ -117,6 +127,19 @@
                 <label class="PcbSkillText">7 SEG</label>
             </div>
 
+        </div>
+            </div>
+            <div class="functionalRight">
+                <label for="commands">Comando: </label>
+                <input type="text" name="commands" id="commands">
+                <br>
+                <button id="sendCommand">Enviar comando</button>
+                <br>
+                <span>Recibido: </span>
+                <div id="received">
+                    <p>asdasdasdas</p>
+                </div>
+            </div>
         </div>
     </section>
 

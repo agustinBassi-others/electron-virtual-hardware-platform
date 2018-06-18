@@ -65,6 +65,8 @@ PeriphericalMap = {
 
 /*==================[internal data declaration]==============================*/
 
+const APP_REFRESH_INTERVAL = 200;
+
 const IMG_SWITCH_ON       = "images/switch_on.svg"
 const IMG_SWITCH_OFF      = "images/switch_off.svg"
 
@@ -78,9 +80,11 @@ const IMG_LED_CYAN        = "images/led_cyan.svg"
 const IMG_LED_VIOLET      = "images/led_violet.svg"
 const IMG_LED_YELOW       = "images/led_yellow.svg"
 const IMG_LED_WHITE       = "images/led_white.svg"
+const IMG_LED_OFF         = "images/led_off.svg"
 
 let PortSelected_Value    = "COM1";
 let PortSwitch_State      = false;
+let PortConnection_State   = "Estado: No se puede conectar. Revise el puerto seleccionado!"
 let Led1_State            = false;
 let Led2_State            = false;
 let Led3_State            = false;
@@ -110,6 +114,8 @@ document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e)
     e.target.src = IMG_SWITCH_OFF
   }
 })
+
+document.querySelector(".PortsCont_LblPortState").innerHTML = PortConnection_State;
 
 document.getElementById("GpioCont_ImgTec1").addEventListener('mousedown', (e) => {
   Tec1_State = false;
@@ -204,8 +210,45 @@ document.querySelector(".Segments7Cont_Display").innerHTML = Display7Segs_Text;
 
 /*==================[internal function declaration]==========================*/
 
+setInterval(UpdateAppState, APP_REFRESH_INTERVAL)
 
+function UpdateAppState () {
+  document.querySelector(".PortsCont_LblPortState").innerHTML  = PortConnection_State;
+  document.getElementById("AnalogCont_RangeDac").value         = Dac1_Value;
+  document.querySelector(".LcdCont_TextContainer p").innerHTML = DisplayLcd_Text;
+  document.querySelector(".Segments7Cont_Display").innerHTML   = Display7Segs_Text;
+  
+  if (!Led1_State){
+    document.getElementById("GpioCont_ImgLed1").src = IMG_LED_OFF;
+  } else {
+    document.getElementById("GpioCont_ImgLed1").src = IMG_LED_RED;
+  }
 
-function GetHardwareInputState (commandToParse){
+  if (!Led2_State){
+    document.getElementById("GpioCont_ImgLed2").src = IMG_LED_OFF;
+  } else {
+    document.getElementById("GpioCont_ImgLed2").src = IMG_LED_GREEN;
+  }
+
+  if (!Led3_State){
+    document.getElementById("GpioCont_ImgLed3").src = IMG_LED_OFF;
+  } else {
+    document.getElementById("GpioCont_ImgLed3").src = IMG_LED_BLUE;
+  }
+
+  if (!Led4_State){
+    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_OFF;
+  } else {
+    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_VIOLET;
+  }
 
 }
+
+
+
+
+document.getElementById("sendCommand").addEventListener('click', (e) => {
+ console.log(document.getElementById("commands").value);
+ 
+})
+

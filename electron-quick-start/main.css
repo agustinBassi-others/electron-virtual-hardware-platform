@@ -36,6 +36,15 @@ body{
     user-select: none; 
 }
 
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+.functionalContainer{
+    display: flex;
+    flex-direction: row;
+}
 
 /*===========[ Titulo ]=======================*/
 
@@ -102,22 +111,42 @@ body{
     padding-top: 5px;
 }
 
+.PortsCont_LeftContainer{
+    display: inherit;
+    align-items: center
+}
+
+.PortsCont_RightContainer{
+    display: inherit;
+    align-items: center;
+    background-color: aquamarine; 
+}
+
 .PortsCont_LblAviablePorts{
     font: 15px Font_AppText;
+    margin-right: 15px;
+}
+
+.PortsCont_AviablePortsList{
+    width: 90px!important;
+}
+
+.PortsCont_LblAviableBaudrate{
+    font: 15px Font_AppText;
+    margin-right: 15px;
+    
+}
+
+.PortsCont_AviableBaudrateList{
+   
+}
+
+.PortsCont_ImgPortSwitch{
+    margin-left: 15px;
 }
 
 .PortsCont_LblPortState{
     font: 15px Font_AppText;
-}
-
-.left{
-    display: inherit;
-    align-items: center
-}
-
-.right{
-    display: inherit;
-    align-items: center
 }
 
 /*===========[ GPIO ]=========================*/
