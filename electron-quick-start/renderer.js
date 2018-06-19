@@ -40,23 +40,40 @@ redLed.addEventListener('click', (e) => {
 
 /*==================[typedef]================================================*/
 
-PeriphericalMap = {
+const Command_t = {
+	COMMAND_GPIO_READ         : 'a',
+	COMMAND_GPIO_WRITE        : 'b',
+	COMMAND_ADC_READ          : 'c',
+	COMMAND_DAC_WRITE         : 'd',
+	COMMAND_LCD_WRITE_BYTE    : 'e',
+	COMMAND_LCD_WRITE_STRING  : 'f',
+	COMMAND_7SEG_WRITE        : 'g',
+	COMMAND_MOTOR_RIGHT       : 'h',
+	COMMAND_MOTOR_LEFT        : 'i',
+}
+
+CommandType_t = {
+	COMMAND_REQUEST  : '0',
+	COMMAND_RESPONSE : '1',
+}
+
+PeriphMap_t = {
   // Valores corespondientes a las teclas bluetooth
-	LEDR           : 'q',
-	LEDG           : 'w',
-	LEDB           : 'e',
-	LED1           : 'r',
-	LED2           : 't',
-	LED3           : 'y',
+	LEDR           : 'a',
+	LEDG           : 'b',
+	LEDB           : 'c',
+	LED1           : 'd',
+	LED2           : 'e',
+	LED3           : 'f',
 	// Valores corespondientes a las teclas bluetooth
-	TEC1           : '1',
-	TEC2           : '2',
-	TEC3           : '3',
-	TEC4           : '4',
+	TEC1           : 'g',
+	TEC2           : 'h',
+	TEC3           : 'i',
+	TEC4           : 'j',
 	// Valores coorespondientes a los pines ADC
-	ADC_CH1        : 'z',
+	ADC_CH1        : 'k',
 	// Valores coorespondientes a los pines DAC
-	DAC_CH1        : 'v',
+	DAC_CH1        : 'n',
 	// Valores coorespondientes al periferico LCD
 	DISPLAY_LCD1   : 'o',
 	// Valores coorespondientes al periferico 7 segmentos
@@ -99,6 +116,8 @@ let Display7Segs_Text     = "3";
 let DisplayLcd_Text       = " \\(-)/ Hello CIAA \\(-)/ Temp 21° - Hum 68% Adc Value: 872";
 
 let SerialBuffer          = "a";
+let DebugProcessed_Text   = "Debug processed text";
+let DebugSended_Text      = "Debug sended text";
 
 /*==================[Objects events and initialization]=========================*/
 
@@ -244,22 +263,70 @@ function UpdateAppState () {
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_VIOLET;
   }
 
+  document.getElementById("DebugCont_ProccesedText").innerHTML = DebugProcessed_Text;
+  document.getElementById("DebugCont_SendedText").innerHTML = DebugSended_Text;
+
 }
 
-function ParseSerialCommand (commandText){
+function ParseSerialCommand (commString){
 
-  //var commandText = command;
+  if (commString.charAt(0) == '<' && commString.charAt(2) == ';' && commString.charAt(4) == ';' && commString.charAt(commString.length -1) == '>'){
+    let command = commString.charAt(1);
+    let periphericalMap = commString.charAt(3);
 
-  let initCommand = commandText.indexOf("<");
-  let endCommand = commandText.indexOf(">");
-  let commandLenght = commandText.length -1;
+    switch(command){
+      case Command_t.COMMAND_GPIO_WRITE:
+        DebugProcessed_Text = "COMMAND_GPIO_WRITE";
+        let state;
 
-  console.log("Init command: " + initCommand + ", End command: " + endCommand + ", lenght: " + commandLenght)
+        if (commString.charAt(5) == '0'){
+          state = false;
+        } else if (commString.charAt(5) == '1'){
+          state = true;
+        } else {
+          state = -1;
+          DebugProcessed_Text = "COMMAND_GPIO_WRITE - Invalid state received!";
+        }
 
-  if ( (commandText.indexOf("<") == 0) && (commandText.indexOf(">") == commandText.length -1) ){
-    document.getElementById("DebugCont_ProccesedText").innerHTML = "Valid";
+        if (state != -1){
+          if (periphericalMap == PeriphMap_t.LED1){
+            Led1_State = state;
+          } else if (periphericalMap == PeriphMap_t.LED2){
+            Led2_State = state;
+          } else if (periphericalMap == PeriphMap_t.LED3){
+            Led3_State = state;
+          } else if (periphericalMap == PeriphMap_t.LED4){
+            Led4_State = state;
+          } else {
+            DebugProcessed_Text = "COMMAND_GPIO_WRITE - Invalid peripherical received!";
+          }
+        }
+        
+        break;
+      case Command_t.COMMAND_DAC_WRITE:
+        DebugProcessed_Text = "COMMAND_DAC_WRITE";
+        break;
+      case Command_t.COMMAND_LCD_WRITE_STRING:
+        DebugProcessed_Text = "COMMAND_LCD_WRITE_STRING";
+        break;
+      case Command_t.COMMAND_7SEG_WRITE:
+        DebugProcessed_Text = "COMMAND_7SEG_WRITE"; 
+        if (periphericalMap == PeriphMap_t.DISPLAY__7SEGS){
+          Display7Segs_Text = commString.charAt(5);
+        }
+        break;
+      case Command_t.COMMAND_GPIO_READ:
+        DebugProcessed_Text = "COMMAND_GPIO_READ"; 
+        break;
+      case Command_t.COMMAND_ADC_READ:
+        DebugProcessed_Text = "COMMAND_ADC_READ"; 
+        break;
+      default:
+        DebugProcessed_Text = "Invalid command";
+    }
+
   } else {
-    document.getElementById("DebugCont_ProccesedText").innerHTML = "Invalid";
+    DebugProcessed_Text = "Invalid command string";
   }
 }
 
@@ -267,7 +334,6 @@ function ParseSerialCommand (commandText){
 
 document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
   SerialBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
-  document.getElementById("DebugCont_ReceivedText").innerHTML = SerialBuffer;
   ParseSerialCommand(SerialBuffer);
 })
 
