@@ -60,87 +60,95 @@
             </div>
         </div>
 
-        <div class="functionalContainer">
-            <div class="functionalLeft">
-                <!-- /*===========[ GPIO ]=========================*/ -->
+        <div class="ComponentsCont">
 
-        <div class="GpiosCont">
-            <div class="GpioCont">
-                <img draggable="false" id="GpioCont_ImgLed1" src="images/led_yellow.svg" alt="">
-                <label class="PcbSkillText">LED 1</label>
-                <img draggable="false" id="GpioCont_ImgTec1" src="images/button_no_pressed.svg" alt="">
-                <label class="PcbSkillText">TEC 1</label>
-            </div>
-            <div class="GpioCont">
-                <img draggable="false" id="GpioCont_ImgLed2" src="images/led_cyan.svg" alt="">
-                <label class="PcbSkillText">LED 2</label>
-                <img draggable="false" id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
-                <label class="PcbSkillText">TEC 2</label>
-            </div>
-            <div class="GpioCont">
-                <img draggable="false" id="GpioCont_ImgLed3" src="images/led_green.svg" alt="">
-                <label class="PcbSkillText">LED 3</label>
-                <img draggable="false" id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
-                <label class="PcbSkillText">TEC 3</label>
-            </div>
-            <div class="GpioCont">
-                <img draggable="false" id="GpioCont_ImgLed4" src="images/led_violet.svg" alt="">
-                <label class="PcbSkillText">LED 4</label>
-                <img draggable="false" id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
-                <label class="PcbSkillText">TEC 4</label>
-            </div>
-        </div>
+            <div class="ComponentsCont_Left">
+            <!-- /*===========[ GPIO ]=========================*/ -->
 
-        <!-- /*===========[ Analogicos]====================*/ -->
-
-        <div class="AnalogsCont">
-            <div class="AnalogCont">
-                <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeAdc" class="AnalogCont_Slider">
-                <label class="PcbSkillText">ADC CH1</label>
-            </div>
-            <div class="AnalogCont">
-                <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeDac" class="AnalogCont_Slider">
-                <label class="PcbSkillText">DAC CH1</label>
-            </div>
-        </div>
-
-
-        <div class="DisplaysCont">
-            <!-- /*===========[ LCD ]==========================*/ -->
-
-            <div class="LcdCont">
-                <div id="LcdCont_Lcd" class="LcdCont_Lcd">
-                    <div class="LcdCont_TextContainer">
-                        <p>
-                            Texto Display LCD
-                        </p>
+                <div class="GpiosCont">
+                    <div class="GpioCont">
+                        <img draggable="false" id="GpioCont_ImgLed1" src="images/led_yellow.svg" alt="">
+                        <label class="PcbSkillText">LED 1</label>
+                        <img draggable="false" id="GpioCont_ImgTec1" src="images/button_no_pressed.svg" alt="">
+                        <label class="PcbSkillText">TEC 1</label>
+                    </div>
+                    <div class="GpioCont">
+                        <img draggable="false" id="GpioCont_ImgLed2" src="images/led_cyan.svg" alt="">
+                        <label class="PcbSkillText">LED 2</label>
+                        <img draggable="false" id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
+                        <label class="PcbSkillText">TEC 2</label>
+                    </div>
+                    <div class="GpioCont">
+                        <img draggable="false" id="GpioCont_ImgLed3" src="images/led_green.svg" alt="">
+                        <label class="PcbSkillText">LED 3</label>
+                        <img draggable="false" id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
+                        <label class="PcbSkillText">TEC 3</label>
+                    </div>
+                    <div class="GpioCont">
+                        <img draggable="false" id="GpioCont_ImgLed4" src="images/led_violet.svg" alt="">
+                        <label class="PcbSkillText">LED 4</label>
+                        <img draggable="false" id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
+                        <label class="PcbSkillText">TEC 4</label>
                     </div>
                 </div>
-                <label class="PcbSkillText">LCD</label>
-            </div>
 
-            <!-- /*===========[ 7 Segmentos ]==================*/ -->
+                <!-- /*===========[ Analogicos]====================*/ -->
 
-            <div class="Segments7Cont">
-                <label id="Segments7Cont_Display" class="Segments7Cont_Display">6</label>
-                <br/>
-                <label class="PcbSkillText">7 SEG</label>
-            </div>
+                <div class="AnalogsCont">
+                    <div class="AnalogCont">
+                        <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeAdc" class="AnalogCont_Slider">
+                        <label class="PcbSkillText">ADC CH1</label>
+                    </div>
+                    <div class="AnalogCont">
+                        <input type="range" min="0" max="1023" step="1" id="AnalogCont_RangeDac" class="AnalogCont_Slider">
+                        <label class="PcbSkillText">DAC CH1</label>
+                    </div>
+                </div>
 
-        </div>
-            </div>
-            <div class="functionalRight">
-                <label for="commands">Comando: </label>
-                <input type="text" name="commands" id="commands">
-                <br>
-                <button id="sendCommand">Enviar comando</button>
-                <br>
-                <span>Recibido: </span>
-                <div id="received">
-                    <p>asdasdasdas</p>
+                <div class="DisplaysCont">
+                    <!-- /*===========[ LCD ]==========================*/ -->
+
+                    <div class="LcdCont">
+                        <div id="LcdCont_Lcd" class="LcdCont_Lcd">
+                            <div class="LcdCont_TextContainer">
+                                <p>
+                                    Texto Display LCD
+                                </p>
+                            </div>
+                        </div>
+                        <label class="PcbSkillText">LCD</label>
+                    </div>
+
+                    <!-- /*===========[ 7 Segmentos ]==================*/ -->
+
+                    <div class="Segments7Cont">
+                        <label id="Segments7Cont_Display" class="Segments7Cont_Display">6</label>
+                        <br/>
+                        <label class="PcbSkillText">7 SEG</label>
+                    </div>
                 </div>
             </div>
+        
+            <div class="ComponentsCont_Right">
+                <div class="DebugCont">
+                    <label id="DebugCont_LblCommand" class="DebugCont_LblCommand">Comando:</label>
+                    <input type="text" name="DebugCont_TxtBoxCommand" id="DebugCont_TxtBoxCommand">
+                    <br>
+                    <button id="DebugCont_BtnSend">Enviar comando</button>
+                    <br>
+                    <label id="DebugCont_LblReceived" class="DebugCont_LblReceived">Recibido:</label>
+                    <div id="DebugCont_ReceivedText">
+                        <p>Hello world!</p>
+                    </div>
+                    <label id="DebugCont_LblProccessed" class="DebugCont_LblProccessed">Procesado:</label>
+                    <div id="DebugCont_ProccesedText">
+                        <p>Bye world!</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
     </section>
 
     <!-- /*===========[ Footer ]=======================*/ -->

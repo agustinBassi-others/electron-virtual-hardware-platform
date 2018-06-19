@@ -98,6 +98,8 @@ let Dac1_Value            = 340;
 let Display7Segs_Text     = "3";
 let DisplayLcd_Text       = " \\(-)/ Hello CIAA \\(-)/ Temp 21° - Hum 68% Adc Value: 872";
 
+let SerialBuffer          = "a";
+
 /*==================[Objects events and initialization]=========================*/
 
 document.getElementById("PortsCont_AviablePortsList").addEventListener('click', (e) => {
@@ -244,11 +246,30 @@ function UpdateAppState () {
 
 }
 
+function ParseSerialCommand (commandText){
 
+  //var commandText = command;
 
+  let initCommand = commandText.indexOf("<");
+  let endCommand = commandText.indexOf(">");
+  let commandLenght = commandText.length -1;
 
-document.getElementById("sendCommand").addEventListener('click', (e) => {
- console.log(document.getElementById("commands").value);
- 
+  console.log("Init command: " + initCommand + ", End command: " + endCommand + ", lenght: " + commandLenght)
+
+  if ( (commandText.indexOf("<") == 0) && (commandText.indexOf(">") == commandText.length -1) ){
+    document.getElementById("DebugCont_ProccesedText").innerHTML = "Valid";
+  } else {
+    document.getElementById("DebugCont_ProccesedText").innerHTML = "Invalid";
+  }
+}
+
+//===============[ Debug Container]===================================
+
+document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
+  SerialBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
+  document.getElementById("DebugCont_ReceivedText").innerHTML = SerialBuffer;
+  ParseSerialCommand(SerialBuffer);
 })
+
+
 
