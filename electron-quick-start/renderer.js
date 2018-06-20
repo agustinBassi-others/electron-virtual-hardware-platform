@@ -61,10 +61,10 @@ PeriphMap_t = {
   // Valores corespondientes a las teclas bluetooth
 	LEDR           : 'a',
 	LEDG           : 'b',
-	LEDB           : 'c',
-	LED1           : 'd',
-	LED2           : 'e',
-	LED3           : 'f',
+	LED1           : 'c',
+	LED2           : 'd',
+	LED3           : 'e',
+	LED4           : 'f',
 	// Valores corespondientes a las teclas bluetooth
 	TEC1           : 'g',
 	TEC2           : 'h',
@@ -305,9 +305,45 @@ function ParseSerialCommand (commString){
         break;
       case Command_t.COMMAND_DAC_WRITE:
         DebugProcessed_Text = "COMMAND_DAC_WRITE";
+        let valueStr = commString.slice(5, (commString.length - 1) );
+        let valueInt = parseInt(valueStr);
+        
+        if (!isNaN(valueInt)){
+          if (valueInt < 0){
+            valueInt = 0;
+          } else if (valueInt > 1023){
+            valueInt = 1023;
+          } 
+          Dac1_Value = valueInt;
+        }
         break;
       case Command_t.COMMAND_LCD_WRITE_STRING:
         DebugProcessed_Text = "COMMAND_LCD_WRITE_STRING";
+        let lcdLine = commString.charAt(5);
+        let lcdStr = commString.slice(7, (commString.length - 1) );
+
+        if (lcdLine == "0"){
+          if (lcdStr != ""){
+            if (lcdStr.length > 50){
+              lcdStr = lcdStr.slice(0, 49);
+            }
+            DisplayLcd_Text = lcdStr;
+          }
+        } else if (lcdLine == "1" || lcdLine == "2" || lcdLine == "3"){
+          if (lcdStr != ""){
+            if (lcdStr.length > 18){
+              lcdStr = lcdStr.slice(0, 17);
+            }
+            if (lcdLine == "2"){
+              DisplayLcd_Text = "<br>" + lcdStr;
+            } else if (lcdLine == "3"){
+              DisplayLcd_Text = "<br><br>" + lcdStr;
+            } else {
+              DisplayLcd_Text = lcdStr;
+            }
+          }
+        }
+        
         break;
       case Command_t.COMMAND_7SEG_WRITE:
         DebugProcessed_Text = "COMMAND_7SEG_WRITE"; 
