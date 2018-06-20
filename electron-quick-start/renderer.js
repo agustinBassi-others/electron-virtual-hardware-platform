@@ -82,6 +82,24 @@ PeriphMap_t = {
 
 /*==================[internal data declaration]==============================*/
 
+const STRING_EMPTY = "";
+
+const GPIO_STATE_HIGH  = '1';
+const GPIO_STATE_LOW  = '0';
+const GPIO_STATE_INVALID  = -1;
+
+const ANALOG_MIN_VALUE = 0;
+const ANALOG_MAX_VALUE = 1023;
+
+const LCD_MULTI_LINE = "0";
+const LCD_FIRST_LINE = "1";
+const LCD_SECOND_LINE = "2";
+const LCD_THIRD_LINE = "3";
+const LCD_MULTI_LINE_LENGHT = 55;
+const LCD_LINE_LENGHT = 55;
+const LCD_LINE_2_PREAMBULE = "<br>";
+const LCD_LINE_3_PREAMBULE = "<br><br>";
+
 const APP_REFRESH_INTERVAL = 200;
 
 const IMG_SWITCH_ON       = "images/switch_on.svg"
@@ -110,8 +128,8 @@ let Tec1_State            = true;
 let Tec2_State            = true;
 let Tec3_State            = true;
 let Tec4_State            = true;
-let Adc1_Value            = 0;
-let Dac1_Value            = 340;
+let Adc1_Value            = 512;
+let Dac1_Value            = 512;
 let Display7Segs_Text     = "3";
 let DisplayLcd_Text       = " \\(-)/ Hello CIAA \\(-)/ Temp 21° - Hum 68% Adc Value: 872";
 
@@ -234,10 +252,8 @@ document.querySelector(".Segments7Cont_Display").innerHTML = Display7Segs_Text;
 setInterval(UpdateAppState, APP_REFRESH_INTERVAL)
 
 function UpdateAppState () {
+  
   document.querySelector(".PortsCont_LblPortState").innerHTML  = PortConnection_State;
-  document.getElementById("AnalogCont_RangeDac").value         = Dac1_Value;
-  document.querySelector(".LcdCont_TextContainer p").innerHTML = DisplayLcd_Text;
-  document.querySelector(".Segments7Cont_Display").innerHTML   = Display7Segs_Text;
   
   if (!Led1_State){
     document.getElementById("GpioCont_ImgLed1").src = IMG_LED_OFF;
@@ -263,6 +279,12 @@ function UpdateAppState () {
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_VIOLET;
   }
 
+  document.getElementById("AnalogCont_RangeDac").value         = Dac1_Value;
+
+  document.querySelector(".LcdCont_TextContainer p").innerHTML = DisplayLcd_Text;
+  
+  document.querySelector(".Segments7Cont_Display").innerHTML   = Display7Segs_Text;
+
   document.getElementById("DebugCont_ProccesedText").innerHTML = DebugProcessed_Text;
   document.getElementById("DebugCont_SendedText").innerHTML = DebugSended_Text;
 
@@ -277,26 +299,27 @@ function ParseSerialCommand (commString){
     switch(command){
       case Command_t.COMMAND_GPIO_WRITE:
         DebugProcessed_Text = "COMMAND_GPIO_WRITE";
-        let state;
+        
+        let gpioState;
 
-        if (commString.charAt(5) == '0'){
-          state = false;
-        } else if (commString.charAt(5) == '1'){
-          state = true;
+        if (commString.charAt(5) == GPIO_STATE_LOW){
+          gpioState = false;
+        } else if (commString.charAt(5) == GPIO_STATE_HIGH){
+          gpioState = true;
         } else {
-          state = -1;
+          gpioState = GPIO_STATE_INVALID;
           DebugProcessed_Text = "COMMAND_GPIO_WRITE - Invalid state received!";
         }
 
-        if (state != -1){
+        if (gpioState != GPIO_STATE_INVALID){
           if (periphericalMap == PeriphMap_t.LED1){
-            Led1_State = state;
+            Led1_State = gpioState;
           } else if (periphericalMap == PeriphMap_t.LED2){
-            Led2_State = state;
+            Led2_State = gpioState;
           } else if (periphericalMap == PeriphMap_t.LED3){
-            Led3_State = state;
+            Led3_State = gpioState;
           } else if (periphericalMap == PeriphMap_t.LED4){
-            Led4_State = state;
+            Led4_State = gpioState;
           } else {
             DebugProcessed_Text = "COMMAND_GPIO_WRITE - Invalid peripherical received!";
           }
@@ -305,57 +328,134 @@ function ParseSerialCommand (commString){
         break;
       case Command_t.COMMAND_DAC_WRITE:
         DebugProcessed_Text = "COMMAND_DAC_WRITE";
-        let valueStr = commString.slice(5, (commString.length - 1) );
-        let valueInt = parseInt(valueStr);
+
+        let dacStringValue = commString.slice(5, (commString.length - 1) );
+        let dacIntValue = parseInt(dacStringValue);
         
-        if (!isNaN(valueInt)){
-          if (valueInt < 0){
-            valueInt = 0;
-          } else if (valueInt > 1023){
-            valueInt = 1023;
+        if (!isNaN(dacIntValue)){
+          if (dacIntValue < ANALOG_MIN_VALUE){
+            dacIntValue = ANALOG_MIN_VALUE;
+          } else if (dacIntValue > ANALOG_MAX_VALUE){
+            dacIntValue = ANALOG_MAX_VALUE;
           } 
-          Dac1_Value = valueInt;
+          Dac1_Value = dacIntValue;
         }
+
         break;
       case Command_t.COMMAND_LCD_WRITE_STRING:
         DebugProcessed_Text = "COMMAND_LCD_WRITE_STRING";
+        
         let lcdLine = commString.charAt(5);
         let lcdStr = commString.slice(7, (commString.length - 1) );
 
-        if (lcdLine == "0"){
-          if (lcdStr != ""){
-            if (lcdStr.length > 50){
-              lcdStr = lcdStr.slice(0, 49);
+        if (lcdLine == LCD_MULTI_LINE){
+          if (lcdStr != STRING_EMPTY){
+            if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
+              lcdStr = lcdStr.slice(0, LCD_MULTI_LINE_LENGHT);
             }
             DisplayLcd_Text = lcdStr;
           }
-        } else if (lcdLine == "1" || lcdLine == "2" || lcdLine == "3"){
-          if (lcdStr != ""){
-            if (lcdStr.length > 18){
-              lcdStr = lcdStr.slice(0, 17);
+        } else if (lcdLine == LCD_FIRST_LINE || lcdLine == LCD_SECOND_LINE || lcdLine == LCD_THIRD_LINE){
+          
+          if (lcdStr != STRING_EMPTY){
+            
+            if (lcdStr.length > LCD_LINE_LENGHT){
+              lcdStr = lcdStr.slice(0, LCD_LINE_LENGHT);
             }
-            if (lcdLine == "2"){
-              DisplayLcd_Text = "<br>" + lcdStr;
-            } else if (lcdLine == "3"){
-              DisplayLcd_Text = "<br><br>" + lcdStr;
+
+            if (lcdLine == LCD_SECOND_LINE){
+              DisplayLcd_Text = LCD_LINE_2_PREAMBULE + lcdStr;
+            } else if (lcdLine == LCD_THIRD_LINE){
+              DisplayLcd_Text = LCD_LINE_3_PREAMBULE + lcdStr;
             } else {
               DisplayLcd_Text = lcdStr;
             }
           }
+
         }
         
         break;
       case Command_t.COMMAND_7SEG_WRITE:
         DebugProcessed_Text = "COMMAND_7SEG_WRITE"; 
+
         if (periphericalMap == PeriphMap_t.DISPLAY__7SEGS){
-          Display7Segs_Text = commString.charAt(5);
+
+          if ( (commString.charAt(5) != STRING_EMPTY) && (commString.charAt(5) != '>') ){
+            Display7Segs_Text = commString.charAt(5);
+          }
+
         }
+
         break;
       case Command_t.COMMAND_GPIO_READ:
-        DebugProcessed_Text = "COMMAND_GPIO_READ"; 
+        DebugProcessed_Text = "COMMAND_GPIO_READ";
+        
+        let commandType = commString.charAt(5);
+
+        if (commandType == CommandType_t.COMMAND_REQUEST){
+
+          let gpioReadState = GPIO_STATE_INVALID;
+
+          if (periphericalMap == PeriphMap_t.LED1){
+            gpioReadState = Led1_State;
+          } else if (periphericalMap == PeriphMap_t.LED2){
+            gpioReadState = Led2_State;
+          } else if (periphericalMap == PeriphMap_t.LED3){
+            gpioReadState = Led3_State;
+          } else if (periphericalMap == PeriphMap_t.LED4){
+            gpioReadState = Led4_State;
+          } else if (periphericalMap == PeriphMap_t.TEC1){
+            gpioReadState = Tec1_State;
+          } else if (periphericalMap == PeriphMap_t.TEC2){
+            gpioReadState = Tec2_State;
+          } else if (periphericalMap == PeriphMap_t.TEC3){
+            gpioReadState = Tec3_State;
+          } else if (periphericalMap == PeriphMap_t.TEC4){
+            gpioReadState = Tec4_State;
+          }
+
+          if (gpioReadState != GPIO_STATE_INVALID){
+            
+            if (!gpioReadState){
+              gpioReadState = GPIO_STATE_LOW;
+            } else {
+              gpioReadState = GPIO_STATE_HIGH;
+            }
+
+            let commandResponse = 
+              "{" +
+              Command_t.COMMAND_GPIO_READ + 
+              ";" +
+              periphericalMap + 
+              ";" +
+              CommandType_t.COMMAND_RESPONSE + 
+              ";" +
+              gpioReadState +
+              "}";
+            
+            DebugSended_Text = commandResponse;
+          }
+
+        }
+
         break;
       case Command_t.COMMAND_ADC_READ:
         DebugProcessed_Text = "COMMAND_ADC_READ"; 
+
+        if (periphericalMap == PeriphMap_t.ADC_CH1){
+          
+          let commandResponse = 
+            "{" +
+            Command_t.COMMAND_ADC_READ + 
+            ";" +
+            periphericalMap + 
+            ";" +
+            ("000" + Adc1_Value).slice(-4) +
+            "}";
+
+            DebugSended_Text = commandResponse;
+        }
+
         break;
       default:
         DebugProcessed_Text = "Invalid command";
