@@ -124,23 +124,19 @@ section{
     background-color: aquamarine; 
 }
 
+.PortsCont_OptionList{
+    width: 100px;
+}
+
 .PortsCont_LblAviablePorts{
     font: 15px Font_AppText;
     margin-right: 15px;
-}
-
-.PortsCont_AviablePortsList{
-    width: 90px!important;
 }
 
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
     margin-right: 15px;
     
-}
-
-.PortsCont_AviableBaudrateList{
-   
 }
 
 .PortsCont_ImgPortSwitch{

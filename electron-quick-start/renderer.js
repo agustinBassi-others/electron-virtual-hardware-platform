@@ -82,6 +82,8 @@ PeriphMap_t = {
 
 /*==================[internal data declaration]==============================*/
 
+const BAUD_RATES_LIST = [9600, 19200, 38400, 57600, 115200];
+
 const STRING_EMPTY = "";
 
 const GPIO_STATE_HIGH  = '1';
@@ -117,7 +119,9 @@ const IMG_LED_YELOW       = "images/led_yellow.svg"
 const IMG_LED_WHITE       = "images/led_white.svg"
 const IMG_LED_OFF         = "images/led_off.svg"
 
-let PortSelected_Value    = "COM1";
+let PortSelected    = "";
+let BaudRateSelected    = 0;
+
 let PortSwitch_State      = false;
 let PortConnection_State   = "Estado: No se puede conectar. Revise el puerto seleccionado!"
 let Led1_State            = false;
@@ -141,12 +145,18 @@ let DebugSended_Text      = "Debug sended text";
 
 document.getElementById("PortsCont_AviablePortsList").addEventListener('click', (e) => {
   console.log("[Event] - PortsCont_AviablePortsList - Eligieron puerto: " + e.target.value);
-  PortSelected_Value = e.target.value;
+  PortSelected = e.target.value;
+})
+
+document.getElementById("PortsCont_AviableBaudrateList").addEventListener('click', (e) => {
+  console.log("[Event] - PortsCont_AviableBaudrateList - Eligieron baudrate: " + e.target.value);
+  BaudRateSelected = e.target.value;
 })
 
 document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e) => {
   PortSwitch_State = !PortSwitch_State;
   console.log("[Event] - PortsCont_ImgPortSwitch - Puerto COM: " + PortSwitch_State);
+  SendConnectCommandToServer();
   if (PortSwitch_State){
     e.target.src = IMG_SWITCH_ON
   } else {
@@ -466,11 +476,109 @@ function ParseSerialCommand (commString){
   }
 }
 
+function GetAviablePorts (){
+  let getPortsRequest = "{get_ports;request}"
+  // {get_ports;response;0}
+  // {get_ports;response;COM1}
+  // {get_ports;response;/dev/tty/USB0}
+  // {get_ports;response;/dev/tty/USB0;COM4;USB3}
+
+  DebugSended_Text = getPortsRequest; // SendPortRequestToServer (portsRequest)
+
+  let getPortsResponse = SerialBuffer//ReceivePortResponseFromServer();
+
+  document.getElementById("PortsCont_AviablePortsList").innerHTML = STRING_EMPTY;
+  document.getElementById("PortsCont_AviableBaudrateList").innerHTML = STRING_EMPTY;
+
+  if (
+    getPortsResponse.charAt(0) == "<" && 
+    getPortsResponse.charAt(getPortsResponse.length-1) == ">" &&
+    getPortsResponse.length >= 21 
+  ){
+    
+    getPortsResponse = getPortsResponse.substring(1, getPortsResponse.length-1);
+
+    getPortsResponse = getPortsResponse.split(';');
+
+    if (getPortsResponse[0] == "get_ports" && getPortsResponse[1] == "response" && getPortsResponse[2] != STRING_EMPTY){
+      if (getPortsResponse[2] == "0"){
+        PortConnection_State = "Puertos disponibles: 0";
+      } else {
+        PortConnection_State = "Puertos disponibles: " + (getPortsResponse.length - 2);
+
+        for (var i = 2; i < getPortsResponse.length; i++){
+          let portListObj = document.getElementById("PortsCont_AviablePortsList");
+          let portOption = document.createElement("option");
+          portOption.text = getPortsResponse[i];
+          portListObj.add(portOption);
+        }
+        PortSelected = getPortsResponse[2];
+
+        BAUD_RATES_LIST.forEach(element => {
+          let baudRateListObj = document.getElementById("PortsCont_AviableBaudrateList");
+          let baudRateOption = document.createElement("option");
+          baudRateOption.text = element;
+          baudRateListObj.add(baudRateOption);
+        });
+        BaudRateSelected = BAUD_RATES_LIST[0];
+      }
+    }
+    
+  } else {
+    PortConnection_State = "No se pueden listar los puertos!"
+  }
+
+}
+
+function SendConnectCommandToServer(){
+  console.log("Port: " + PortSelected + " - Baud: " + BaudRateSelected);
+
+  let connectPortsRequest = 
+    "{connect_port;request;" + 
+    PortSelected + ";" + 
+    BaudRateSelected + 
+    "}"
+  
+    DebugSended_Text = connectPortsRequest;
+
+    // ReceiveConnectCommandFromServer ("<connect_port;response;ok>");
+}
+
+function ReceiveConnectCommandFromServer (connectResponse){
+  let isConnected = false;
+
+  if (
+    connectResponse.charAt(0) == "<" && 
+    connectResponse.charAt(connectResponse.length-1) == ">" &&
+    connectResponse.length >= 26 
+  ){
+    connectResponse = connectResponse.substring(1, connectResponse.length-1);
+    connectResponse = connectResponse.split(';');
+
+    if (connectResponse[0] == "connect_port" && connectResponse[1] == "response" && connectResponse[2] != STRING_EMPTY){
+
+      if (connectResponse[2] == "ok"){
+        PortConnection_State = "Conectado al sistema embebido"
+        isConnected = true;
+      } else {
+        PortConnection_State = "No conectado. Error message: " + connectResponse[2];
+      }
+
+    }
+  } else {
+    PortConnection_State = "No se recibio respuesta de conexion"
+  }
+
+  return isConnected;
+}
+
 //===============[ Debug Container]===================================
 
 document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
   SerialBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
-  ParseSerialCommand(SerialBuffer);
+  //ParseSerialCommand(SerialBuffer);
+  // GetAviablePorts();
+  ReceiveConnectCommandFromServer (SerialBuffer);
 })
 
 

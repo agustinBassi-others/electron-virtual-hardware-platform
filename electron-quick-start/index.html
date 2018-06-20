@@ -36,23 +36,9 @@
         <div class="PortsCont">
             <div class="PortsCont_LeftContainer">
                 <label class="PortsCont_LblAviablePorts">Port disponibles:</label>
-                <input list="PortsCont_AviablePortsList">
-                <datalist class="PortsCont_AviablePortsList" id="PortsCont_AviablePortsList" style=" width: 90px!important;">
-                    <option value="COM1" class="PortsCont_ComPortOption" />
-                    <option value="COM2" class="PortsCont_ComPortOption" />
-                    <option value="COM3" class="PortsCont_ComPortOption" />
-                    <option value="COM4" class="PortsCont_ComPortOption" />
-                    <option value="COM5" class="PortsCont_ComPortOption" />
-                </datalist>
+                <select name="PortsCont_AviablePortsList" id="PortsCont_AviablePortsList" class="PortsCont_OptionList"></select>
                 <label class="PortsCont_LblAviableBaudrate">Baudrate:</label>
-                <input list="PortsCont_AviableBaudrateList">
-                <datalist class="PortsCont_AviableBaudrateList" id="PortsCont_AviableBaudrateList" style=" width: 50px!important;">
-                    <option value="9600" class="PortsCont_BaudrateOption" />
-                    <option value="19200" class="PortsCont_BaudrateOption" />
-                    <option value="38400" class="PortsCont_BaudrateOption" />
-                    <option value="57600" class="PortsCont_BaudrateOption" />
-                    <option value="115200" class="PortsCont_BaudrateOption" />
-                </datalist>
+                <select name="PortsCont_AviableBaudrateList" id="PortsCont_AviableBaudrateList" class="PortsCont_OptionList"></select>
                 <img draggable="false" class="PortsCont_ImgPortSwitch" id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
             </div>
             <div class="PortsCont_RightContainer">
