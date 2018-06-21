@@ -126,7 +126,7 @@ App_Initialize();
 
 /*==================[internal function declaration]==========================*/
 
-function Time_SleepMs(milliseconds) {
+function Hal_Time_SleepMs(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds){
@@ -135,57 +135,95 @@ function Time_SleepMs(milliseconds) {
   }
 }
 
-function Socket_SendData (dataToSend){
+function Hal_Socket_SendData (dataToSend){
   DebugSendedText = dataToSend;
 }
 
-function Socket_ReceiveData (){
+function Hal_Socket_ReceiveData (){
   return ServerBuffer;
 }
 
-function Command_SendListPorts(){
-  let portsRequest =
-  COMMAND_INIT +
-  ServerCommand_t.COMM_SERVER_LIST_PORTS + 
-  COMMAND_SEPARATOR +
-  ServerCommandType_t.TYPE_SERVER_REQUEST + 
-  COMMAND_END;
-
-  Socket_SendData(portsRequest);
+function Api_SetConnectionStateMessage (messageToWrite) {
+  PortConnectionText = messageToWrite;
 }
 
-function Command_ReceiveListPorts (listPortsResponse){
+function Api_Server_SendCommand (serverCommand){
+  let dataToSend = STRING_EMPTY;
+
+  switch (serverCommand){
+    
+    case ServerCommand_t.COMM_SERVER_LIST_PORTS:
+      dataToSend =
+        COMMAND_INIT +
+        ServerCommand_t.COMM_SERVER_LIST_PORTS + 
+        COMMAND_SEPARATOR +
+        ServerCommandType_t.TYPE_SERVER_REQUEST + 
+        COMMAND_END;
+    break;
+
+    case ServerCommand_t.COMM_SERVER_CONNECT_PORT:
+      dataToSend = 
+        COMMAND_INIT +
+        ServerCommand_t.COMM_SERVER_CONNECT_PORT + 
+        COMMAND_SEPARATOR +
+        ServerCommandType_t.TYPE_SERVER_REQUEST + 
+        COMMAND_SEPARATOR +
+        PortSelected + 
+        COMMAND_SEPARATOR + 
+        BaudRateSelected +
+        COMMAND_END;
+    break;
+
+    case ServerCommand_t.COMM_SERVER_DISCONNECT_PORT:
+      dataToSend = 
+        COMMAND_INIT +
+        ServerCommand_t.COMM_SERVER_DISCONNECT_PORT + 
+        COMMAND_SEPARATOR +
+        ServerCommandType_t.TYPE_SERVER_REQUEST + 
+        COMMAND_END;
+    break;
+
+    default:
+      console.log("El mensaje a enviar al servidor es invalido!");
+  }
+ 
+  if (dataToSend != STRING_EMPTY){
+    Hal_Socket_SendData(dataToSend);
+  }
+}
+
+function Api_Server_ParseResponse_ListPorts (response){
   let isPortsListReceived = false;
 
   if (
-    listPortsResponse.charAt(0) == COMMAND_INIT && 
-    listPortsResponse.charAt(listPortsResponse.length-1) == COMMAND_END &&
-    listPortsResponse.length >= 21 
+    response.charAt(0) == COMMAND_INIT && 
+    response.charAt(response.length-1) == COMMAND_END &&
+    response.length >= 21 
   ){
     
-    listPortsResponse = listPortsResponse.substring(1, listPortsResponse.length-1);
+    response = response.substring(1, response.length-1);
 
-    listPortsResponse = listPortsResponse.split(COMMAND_SEPARATOR);
+    response = response.split(COMMAND_SEPARATOR);
 
     if (
-      listPortsResponse[0] == ServerCommand_t.COMM_SERVER_LIST_PORTS && 
-      listPortsResponse[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
-      listPortsResponse[2] != STRING_EMPTY
+      response[0] == ServerCommand_t.COMM_SERVER_LIST_PORTS && 
+      response[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
+      response[2] != STRING_EMPTY
     ){
-      if (listPortsResponse[2] == NO_PORTS_RESPONSE){
-        PortConnectionText = "Puertos disponibles: 0";
+
+      if (response[2] == NO_PORTS_RESPONSE){
+        Api_SetConnectionStateMessage("Puertos disponibles: 0");
       } else {
-        //TODO remover todos los elementos de las listas antes de cargarlos nuevamente
 
-        PortConnectionText = "Puertos disponibles: " + (listPortsResponse.length - 2);
+        Api_SetConnectionStateMessage("Puertos disponibles: " + (response.length - 2) );
 
-        for (var i = 2; i < listPortsResponse.length; i++){
+        for (var i = 2; i < response.length; i++){
           let portListObj = document.getElementById("PortsCont_AviablePortsList");
           let portOption = document.createElement("option");
-          portOption.text = listPortsResponse[i];
+          portOption.text = response[i];
           portListObj.add(portOption);
         }
-        PortSelected = listPortsResponse[2];
+        PortSelected = response[2];
 
         BAUD_RATES_LIST.forEach(element => {
           let baudRateListObj = document.getElementById("PortsCont_AviableBaudrateList");
@@ -200,107 +238,77 @@ function Command_ReceiveListPorts (listPortsResponse){
     }
     
   } else {
-    PortConnectionText = "No se pueden listar los puertos!"
+    Api_SetConnectionStateMessage("No se pueden listar los puertos!");
   }
 
   return isPortsListReceived;
 }
 
-function Command_SendConnectToPort(){
-  console.log("Port: " + PortSelected + " - Baud: " + BaudRateSelected);
-
-  let connectPortsRequest = 
-    COMMAND_INIT +
-    ServerCommand_t.COMM_SERVER_CONNECT_PORT + 
-    COMMAND_SEPARATOR +
-    ServerCommandType_t.TYPE_SERVER_REQUEST + 
-    COMMAND_SEPARATOR +
-    PortSelected + 
-    COMMAND_SEPARATOR + 
-    BaudRateSelected +
-    COMMAND_END;
-  
-    Socket_SendData (connectPortsRequest);
-}
-
-function Command_ReceiveConnectToPort (connectResponse){
+function Api_Server_ParseResponse_Connect (response){
   let isConnected = false;
 
   if (
-    connectResponse.charAt(0) == COMMAND_INIT && 
-    connectResponse.charAt(connectResponse.length-1) == COMMAND_END &&
-    connectResponse.length >= 26 
+    response.charAt(0) == COMMAND_INIT && 
+    response.charAt(response.length-1) == COMMAND_END &&
+    response.length >= 26 
   ){
-    connectResponse = connectResponse.substring(1, connectResponse.length-1);
-    connectResponse = connectResponse.split(COMMAND_SEPARATOR);
+    response = response.substring(1, response.length-1);
+    response = response.split(COMMAND_SEPARATOR);
 
     if (
-      connectResponse[0] == ServerCommand_t.COMM_SERVER_CONNECT_PORT && 
-      connectResponse[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
-      connectResponse[2] != STRING_EMPTY
+      response[0] == ServerCommand_t.COMM_SERVER_CONNECT_PORT && 
+      response[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
+      response[2] != STRING_EMPTY
     ){
 
-      if (connectResponse[2] == SERVER_OK_RESPONSE){
-        PortConnectionText = "Conectado al sistema embebido"
+      if (response[2] == SERVER_OK_RESPONSE){
+        Api_SetConnectionStateMessage("Conectado al sistema embebido");
         isConnected = true;
       } else {
-        PortConnectionText = "No conectado. Error message: " + connectResponse[2];
+        Api_SetConnectionStateMessage("No conectado. Error message: " + response[2]);
       }
 
     }
   } else {
-    PortConnectionText = "No se recibio respuesta de conexion"
+    Api_SetConnectionStateMessage("No se recibio respuesta de conexion");
   }
 
   return isConnected;
 }
 
-function Command_SendDisconnectToPort(){
-  console.log("Port: " + PortSelected + " - Baud: " + BaudRateSelected);
-
-  let connectPortsRequest = 
-    COMMAND_INIT +
-    ServerCommand_t.COMM_SERVER_DISCONNECT_PORT + 
-    COMMAND_SEPARATOR +
-    ServerCommandType_t.TYPE_SERVER_REQUEST + 
-    COMMAND_END;
-  
-    Socket_SendData (connectPortsRequest);
-}
-
-function Command_ReceiveDisconnectToPort (disconnectResponse){
-  let isConnected = true;
+function Api_Server_ParseResponse_Disconnect (response){
+  let isDisconnected = false;
 
   if (
-    disconnectResponse.charAt(0) == COMMAND_INIT && 
-    disconnectResponse.charAt(disconnectResponse.length-1) == COMMAND_END &&
-    disconnectResponse.length >= 26 
+    response.charAt(0) == COMMAND_INIT && 
+    response.charAt(response.length-1) == COMMAND_END &&
+    response.length >= 26 
   ){
-    disconnectResponse = disconnectResponse.substring(1, disconnectResponse.length-1);
-    disconnectResponse = disconnectResponse.split(COMMAND_SEPARATOR);
+    response = response.substring(1, response.length-1);
+    response = response.split(COMMAND_SEPARATOR);
 
     if (
-      disconnectResponse[0] == ServerCommand_t.COMM_SERVER_DISCONNECT_PORT && 
-      disconnectResponse[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
-      disconnectResponse[2] != STRING_EMPTY
+      response[0] == ServerCommand_t.COMM_SERVER_DISCONNECT_PORT && 
+      response[1] == ServerCommandType_t.TYPE_SERVER_RESPONSE && 
+      response[2] != STRING_EMPTY
     ){
 
-      if (disconnectResponse[2] == SERVER_OK_RESPONSE){
-        PortConnectionText = "Desconectado del sistema embebido"
-        isConnected = false;
+      if (response[2] == SERVER_OK_RESPONSE){
+        Api_SetConnectionStateMessage("Desconectado del sistema embebido");
+        isDisconnected = true;
       } else {
-        PortConnectionText = "No desconectado. Error message: " + disconnectResponse[2];
+        Api_SetConnectionStateMessage("No desconectado. Error message: " + response[2]);
       }
 
     }
   } else {
-    PortConnectionText = "No se recibio respuesta de desconexion"
+    Api_SetConnectionStateMessage("No se recibio respuesta de desconexion");
   }
 
-  return isConnected;
+  return !isDisconnected;
 }
 
-function App_ExecuteCommandFromSerial (commString){
+function Api_Serial_ParseCommandArrived (commString){
 
   if (
     commString.charAt(0) == COMMAND_INIT && 
@@ -492,18 +500,18 @@ function App_TryToListPorts (){
   if (!IsPortsAreListed){
     console.log("Tratando de listar los puertos");
 
-    Command_SendListPorts();
-    let commandReceived = Socket_ReceiveData();
-    IsPortsAreListed = Command_ReceiveListPorts(commandReceived);
+    Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_LIST_PORTS);// Command_SendListPorts();
+    let commandReceived = Hal_Socket_ReceiveData();
+    IsPortsAreListed = Api_Server_ParseResponse_ListPorts(commandReceived);
   }
 }
 
 function App_TryToConnectPort (){
   if (IsPortsAreListed){
     console.log("Intentando conectar...");
-    Command_SendConnectToPort();
-    let commandReceived = Socket_ReceiveData();
-    PortConnectionState = Command_ReceiveConnectToPort(commandReceived);
+    Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_CONNECT_PORT); // Command_SendConnectToPort();
+    let commandReceived = Hal_Socket_ReceiveData();
+    PortConnectionState = Api_Server_ParseResponse_Connect(commandReceived);
   } else {
     console.log("Para conectar primero se deben listar los puertos");
   }
@@ -512,10 +520,22 @@ function App_TryToConnectPort (){
 function App_TryToDisconnectPort (){
   if (PortConnectionState){
     console.log("Intentando desconectar...");
-    Command_SendDisconnectToPort();
-    let commandReceived = Socket_ReceiveData();
-    PortConnectionState = Command_ReceiveDisconnectToPort(commandReceived);
+    Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_DISCONNECT_PORT); //Command_SendDisconnectToPort();
+    let commandReceived = Hal_Socket_ReceiveData();
+    PortConnectionState = Api_Server_ParseResponse_Disconnect(commandReceived);
     if (!PortConnectionState){
+      let portListObj = document.getElementById("PortsCont_AviablePortsList");//var select = document.getElementById("PortsCont_AviablePortsList");
+      var length = portListObj.options.length;
+      for (i = 0; i < length; i++) {
+        portListObj.remove(0);
+      }
+
+      let baudRateListObj = document.getElementById("PortsCont_AviableBaudrateList");
+      length = baudRateListObj.options.length;
+      for (i = 0; i < length; i++) {
+        baudRateListObj.remove(0);
+      }
+
       IsPortsAreListed = false;
     }
   } else {
