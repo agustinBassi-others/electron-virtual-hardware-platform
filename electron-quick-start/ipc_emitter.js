@@ -1,50 +1,45 @@
 
 var IpcClient = require('node-ipc');
 
+const IPC_TOPIC_MESSAGE    = 'message'
+const IPC_TOPIC_CONNECT    = 'connect'
+const IPC_TOPIC_DISCONNECT = 'disconnect'
+
+const IPC_SOCKET_ID        = 'ipcSocketId'
+const IPC_CONNECTION_RETRY = 1500
+
 Ipc_Client_CreateClient ()
 
-function Ipc_Client_ReceiveData (data){
-    IpcClient.log('got a message from world : '.debug, data);
+function Ipc_Client_CallbackReceiveData (data){
+    console.log("[DEBUG] - Ipc_Client_ReceiveData - Receive from server: " + data)
 }
 
 function Ipc_Client_SendData (topic, data){
-    IpcClient.of.world.emit(
-        topic,  //any event or message type your server listens for
-        data
-    )
+    console.log("[DEBUG] - Ipc_Client_SendData - Send to server: " + data)
+    IpcClient.of.ipcSocketId.emit(topic, data)
 }
 
-function Ipc_Client_DisconnectFromServer (data){
-    IpcClient.log('disconnected from world'.notice);
+function Ipc_Client_CallbackDisconnected (){
+    console.log("[NORMAL] - Ipc_Client_DisconnectFromServer - Disconnected from server")
 }
 
 function Ipc_Client_CreateClient (){
-    IpcClient.config.id   = 'hello';
-    IpcClient.config.retry= 1500;
+    IpcClient.config.retry= IPC_CONNECTION_RETRY;
+
+    console.log("[NORMAL] - Ipc_Client_CreateClient - Creating IPC Client...")
     
     IpcClient.connectTo(
-        'world',
+        IPC_SOCKET_ID,
         function(){
-            IpcClient.of.world.on(
-                'connect',
+            IpcClient.of.ipcSocketId.on(
+                IPC_TOPIC_CONNECT,
                 function(){
-                    IpcClient.log('## connected to world ##'.rainbow, IpcClient.config.delay);
-                    Ipc_Client_SendData(
-                        'message',  //any event or message type your server listens for
-                        'hello'
-                    )
+                    console.log("[NORMAL] - Ipc_Client_CreateClient - Conected to server")
+                    Ipc_Client_SendData(IPC_TOPIC_MESSAGE, 'Saludo desde el cliente')
                 }
             );
-            IpcClient.of.world.on(
-                'disconnect',
-                () =>
-                Ipc_Client_DisconnectFromServer()
-            );
-            IpcClient.of.world.on(
-                'message',  //any event or message type your server listens for
-                (data) => 
-                Ipc_Client_ReceiveData(data)
-            );
+            IpcClient.of.ipcSocketId.on(IPC_TOPIC_DISCONNECT, () => Ipc_Client_CallbackDisconnected());
+            IpcClient.of.ipcSocketId.on(IPC_TOPIC_MESSAGE, (data) => Ipc_Client_CallbackReceiveData(data));
         }
     );
     

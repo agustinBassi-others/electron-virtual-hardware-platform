@@ -1,42 +1,36 @@
 var IpcServer = require('node-ipc');
 
-Ipc_Server_CreateServer()
-    
 
-function Ipc_Server_ReceiveData (data,socket){
-    IpcServer.log('got a message : '.debug, data);
-    Ipc_Server_SendData (socket, data)
+const IPC_TOPIC_MESSAGE    = 'message'
+const IPC_TOPIC_DISCONNECT = 'socket.disconnected'
+
+const IPC_SOCKET_ID        = 'ipcSocketId'
+const IPC_CONNECTION_RETRY = 1500
+
+Ipc_Server_CreateServer()
+
+function Ipc_Server_CallbackReceiveData (data, socket){
+    console.log("[DEBUG] - Ipc_Server_ReceiveData - Receive from client: " + data)
+    Ipc_Server_SendData (socket, 'Saludo desde el servidor')
 }
 
 function Ipc_Server_SendData (socket, data){
-    IpcServer.server.emit(
-        socket,
-        'message',  //this can be anything you want so long as
-                    //your client knows.
-        data + ' world!'
-    );
+    console.log("[DEBUG] - Ipc_Server_SendData - Sending to client: " + data)
+    IpcServer.server.emit(socket, IPC_TOPIC_MESSAGE, data);
 }
 
-function Ipc_Server_DisconectClient (socket, destroyedSocketID){
-    IpcServer.log('client ' + destroyedSocketID + ' has disconnected!');
+function Ipc_Server_CallbackDisconectedClient (){
+    console.log("[NORMAL] - Ipc_Server_CallbackDisconectedClient - The client has been disconnected!")
 }
 
 function Ipc_Server_CreateServer (){
-    IpcServer.config.id   = 'world';
-    IpcServer.config.retry= 1500;
+    IpcServer.config.id   = IPC_SOCKET_ID;
+    IpcServer.config.retry= IPC_CONNECTION_RETRY;
 
     IpcServer.serve(
         function(){
-            IpcServer.server.on(
-                'message',
-                (data,socket) =>
-                Ipc_Server_ReceiveData(data,socket)
-            );
-			IpcServer.server.on(
-                'socket.disconnected',
-                (socket, destroyedSocketID) =>
-                Ipc_Server_DisconectClient(socket, destroyedSocketID) 
-			);
+            IpcServer.server.on(IPC_TOPIC_MESSAGE, (data,socket) => Ipc_Server_CallbackReceiveData(data,socket) );
+			IpcServer.server.on(IPC_TOPIC_DISCONNECT, () => Ipc_Server_CallbackDisconectedClient() );
         }
     );
 
