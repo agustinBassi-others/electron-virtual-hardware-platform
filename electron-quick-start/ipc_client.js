@@ -42,8 +42,9 @@ function Ipc_Client_CreateClient (){
             IpcClient.of.ipcSocketId.on(IPC_TOPIC_MESSAGE, (data) => Ipc_Client_CallbackReceiveData(data));
         }
     );
-    
 }
+
+
 
 
 
