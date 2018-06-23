@@ -124,6 +124,14 @@ let DebugSendedText            = "Debug sended text";
 
 Logic_InitializeApp();
 
+/*/////////////////////////////////////////////////////////////////////////////
+////////////////////// TODO LIST //////////////////////////////////////////////
+
+- Sacarle los comentarios al package.json y ponerle los del proyecto.
+
+
+/////////////////////////////////////////////////////////////////////////////*/
+
 /*==================[internal function declaration]==========================*/
 
 function Driver_Time_SleepMs(milliseconds) {
@@ -135,13 +143,7 @@ function Driver_Time_SleepMs(milliseconds) {
   }
 }
 
-function Driver_Socket_SendData (dataToSend){
-  DebugSendedText = dataToSend;
-}
 
-function Driver_Socket_ReceiveData (){
-  return ServerBuffer;
-}
 
 function Api_SetConnectionStateMessage (messageToWrite) {
   PortConnectionText = messageToWrite;
@@ -653,6 +655,8 @@ function Logic_InitializeApp (){
   setInterval(Logic_UpdateAppState, APP_REFRESH_INTERVAL)
 
   setInterval(Logic_TryToListPorts, 1000)
+
+  Driver_Socket_InitClient();
 }
 
 function Logic_UpdateAppState () {
@@ -711,3 +715,172 @@ document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
 
 
 
+var net = require('net');
+ 
+// Configuration parameters
+var HOST = 'localhost';
+var PORT = 1234;
+ 
+
+// Create Server instance 
+var server = net.createServer(onClientConnected);  
+ 
+server.listen(PORT, HOST, function() {  
+  console.log('server listening on %j', server.address());
+});
+ 
+function onClientConnected(sock) {  
+  var remoteAddress = sock.remoteAddress + ':' + sock.remotePort;
+  console.log('new client connected: %s', remoteAddress);
+ 
+  sock.on('data', function(data) {
+    console.log('%s Says: %s', remoteAddress, data);
+    sock.write(data);
+    //sock.write(' exit');
+  });
+  sock.on('close',  function () {
+    console.log('connection from %s closed', remoteAddress);
+  });
+  sock.on('error', function (err) {
+    console.log('Connection %s error: %s', remoteAddress, err.message);
+  });
+};
+
+
+
+
+// var net = require('net');
+
+// const SERVER_HOST = 'localhost';
+// const SERVER_PORT = 1234;
+ 
+// var client = new net.Socket();
+ 
+// function Driver_Socket_InitClient (){
+//   console.log('Client connected ');//to: ' + SERVER_HOST + ':' + SERVER_PORT);
+//   // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+//   Driver_Socket_SendData("Mensaje de bienvenida desde la UI")
+
+// }
+// client.connect(SERVER_PORT, SERVER_HOST, function() {
+//   Driver_Socket_InitClient ();
+// });
+
+// client.on('data', function(data) {    
+//   Driver_Socket_ReceiveData (data);
+// });
+
+// // Add a 'close' event handler for the client socket
+// client.on('close', function() {
+//     console.log('Client closed');
+// });
+
+// client.on('error', function(err) {
+//     console.error(err);
+// });
+
+
+// Driver_Socket_InitClient(SERVER_PORT, SERVER_HOST);
+
+// function Driver_Socket_InitClient (serverPort, serverHost){
+//   TcpSocketclient.connect(serverPort, serverHost, function() {
+//     console.log('Client connected to: ' + SERVER_HOST + ':' + SERVER_PORT);
+//     // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+//     Driver_Socket_SendData("Enviando bienvenida desde Driver_Socket_SendData")
+//   }); 
+// }
+ 
+
+ 
+// TcpSocketclient.on('data', (data) => Driver_Socket_ReceiveData(data) );
+ 
+// // Add a 'close' event handler for the client socket
+// TcpSocketclient.on('close', () => Driver_Socket_Close() );
+ 
+// TcpSocketclient.on('error', function(err) {
+//     console.error(err);
+// });
+
+function Driver_Socket_SendData (dataToSend){
+  DebugSendedText = dataToSend;
+}
+
+function Driver_Socket_ReceiveData (data){
+  // console.log('Client received: ' + data);
+  // if (data.toString().endsWith('exit')) {
+  //   // client.destroy();
+  // }
+  // return data;
+}
+ 
+// function Driver_Socket_Close (){
+//   TcpSocketclient.destroy();
+//   console.log('Client closed');
+// }
+
+
+
+// var net = require('net');
+ 
+// var HOST = 'localhost';
+// var PORT = 1234;
+ 
+// var client = new net.Socket();
+ 
+// client.connect(PORT, HOST, function() {
+//     console.log('Client connected to: ' + HOST + ':' + PORT);
+//     // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+//     client.write('Hello World!');
+ 
+// });
+ 
+// client.on('data', function(data) {    
+//     console.log('Client received: ' + data);
+//      if (data.toString().endsWith('exit')) {
+//        client.destroy();
+//     }
+// });
+ 
+// // Add a 'close' event handler for the client socket
+// client.on('close', function() {
+//     console.log('Client closed');
+// });
+ 
+// client.on('error', function(err) {
+//     console.error(err);
+// });
+
+// const socket = Required_SocketIo.io('http://localhost');
+
+// console.log(socket.id); // undefined
+
+// socket.on('command', (msg) => {
+//   Api_SetConnectionStateMessage("Command received: " + msg);
+// });
+// socket.on('new message', (msg) => {
+//   Api_SetConnectionStateMessage("Message from server: " + msg);
+// });
+// socket.on('close', () => {
+//   Api_SetConnectionStateMessage('Lost connection to device.');
+// });
+
+// socket.on('disconnect', () => {
+//   socket.open();
+// });
+
+// var net = require('net');
+
+// var client = new net.Socket();
+// client.connect(1337, '127.0.0.1', function() {
+// 	console.log('Connected');
+// 	client.write('Hello, server! Love, Client.');
+// });
+
+// client.on('data', function(data) {
+// 	console.log('Received: ' + data);
+// 	client.destroy(); // kill client after server's response
+// });
+
+// client.on('close', function() {
+// 	console.log('Connection closed');
+// });
