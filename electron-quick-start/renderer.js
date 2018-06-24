@@ -112,7 +112,7 @@ let PortSelected               = "";
 let BaudRateSelected           = 0;
 let IsPortsAreListed           = false;
 
-let PortConnectionState        = false;
+let IsConnectedToEmbeddedSystem        = false;
 let PortConnectionText         = "Estado: Iniciando..."
 let Led1State                  = false;
 let Led2State                  = false;
@@ -127,7 +127,6 @@ let Dac1Value                  = 512;
 let Segment7Text               = "-";
 let LcdText                    = " \\(-)/ Hello CIAA \\(-)/";
 
-let SerialBuffer               = "";
 let ServerBuffer               = "";
 
 let DebugProcessedText         = "Debug processed text";
@@ -148,14 +147,6 @@ function Driver_Time_SleepMs(milliseconds) {
   }
 }
 
-function Driver_Socket_SendData (dataToSend){
-  DebugSendedText = dataToSend;
-  Ipc_Client_SendData(IPC_TOPIC_MESSAGE, dataToSend);
-}
-
-function Driver_Socket_ReceiveData (){
-  return ServerBuffer;
-}
 
 function Api_SetConnectionStateMessage (messageToWrite) {
   PortConnectionText = messageToWrite;
@@ -202,7 +193,7 @@ function Api_Server_SendCommand (serverCommand){
   }
  
   if (dataToSend != STRING_EMPTY){
-    Driver_Socket_SendData(dataToSend);
+    Driver_Ipc_SendData(dataToSend);
   }
 }
 
@@ -475,7 +466,7 @@ function Api_Serial_ParseCommandArrived (commString){
               gpioReadState +
               COMMAND_END;
             
-            DebugSendedText = commandResponse;
+            Driver_Ipc_SendData(commandResponse);
           }
 
         }
@@ -496,7 +487,7 @@ function Api_Serial_ParseCommandArrived (commString){
             ("000" + Adc1Value).slice(-4) +
             COMMAND_END;
 
-            DebugSendedText = commandResponse;
+            Driver_Ipc_SendData(commandResponse);
         }
 
         break;
@@ -515,7 +506,7 @@ function Logic_TryToListPorts (){
     console.log("Tratando de listar los puertos");
 
     Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_LIST_PORTS);// Command_SendListPorts();
-    let commandReceived = Driver_Socket_ReceiveData();
+    let commandReceived = Driver_Ipc_ReadDataBuffer();
     IsPortsAreListed = Api_Server_ParseResponse_ListPorts(commandReceived);
   }
 }
@@ -524,20 +515,20 @@ function Logic_TryToConnectPort (){
   if (IsPortsAreListed){
     console.log("Intentando conectar...");
     Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_CONNECT_PORT); // Command_SendConnectToPort();
-    let commandReceived = Driver_Socket_ReceiveData();
-    PortConnectionState = Api_Server_ParseResponse_Connect(commandReceived);
+    let commandReceived = Driver_Ipc_ReadDataBuffer();
+    IsConnectedToEmbeddedSystem = Api_Server_ParseResponse_Connect(commandReceived);
   } else {
     console.log("Para conectar primero se deben listar los puertos");
   }
 }
 
 function Logic_TryToDisconnectPort (){
-  if (PortConnectionState){
+  if (IsConnectedToEmbeddedSystem){
     console.log("Intentando desconectar...");
     Api_Server_SendCommand(ServerCommand_t.COMM_SERVER_DISCONNECT_PORT); //Command_SendDisconnectToPort();
-    let commandReceived = Driver_Socket_ReceiveData();
-    PortConnectionState = Api_Server_ParseResponse_Disconnect(commandReceived);
-    if (!PortConnectionState){
+    let commandReceived = Driver_Ipc_ReadDataBuffer();
+    IsConnectedToEmbeddedSystem = Api_Server_ParseResponse_Disconnect(commandReceived);
+    if (!IsConnectedToEmbeddedSystem){
       let portListObj = document.getElementById("PortsCont_AviablePortsList");//var select = document.getElementById("PortsCont_AviablePortsList");
       var length = portListObj.options.length;
       for (i = 0; i < length; i++) {
@@ -570,7 +561,7 @@ function Logic_InitializeApp (){
   
   document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e) => {
 
-    if (!PortConnectionState){
+    if (!IsConnectedToEmbeddedSystem){
       Logic_TryToConnectPort();
     } else {
       Logic_TryToDisconnectPort();
@@ -666,16 +657,28 @@ function Logic_InitializeApp (){
 
   setInterval(Logic_UpdateAppState, APP_REFRESH_INTERVAL)
 
-  Ipc_Client_CreateClient ()
+  Driver_Ipc_CreateClient ()
 
   setInterval(Logic_TryToListPorts, 1000)
+
+  setInterval(Logic_CheckIfPeriphericalCommand, 100)
 
   
 }
 
+function Logic_CheckIfPeriphericalCommand (){
+  if (IsConnectedToServer && IsConnectedToEmbeddedSystem){
+    var dataFromServer = Driver_Ipc_ReadDataBuffer();
+    if (dataFromServer != ""){
+      Api_Serial_ParseCommandArrived(dataFromServer);
+      Driver_Ipc_WriteDataBuffer ("");
+    }
+  }
+}
+
 function Logic_UpdateAppState () {
   
-  if (PortConnectionState){
+  if (IsConnectedToEmbeddedSystem){
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_ON;
   } else {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_OFF;
@@ -722,37 +725,28 @@ function Logic_UpdateAppState () {
 //===============[ Debug Container]===================================
 
 document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
-  SerialBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
-  ServerBuffer = SerialBuffer;
-  Api_Serial_ParseCommandArrived(SerialBuffer);
+  // ServerBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
+  // Api_Serial_ParseCommandArrived(ServerBuffer);
 })
 
 
+let IsConnectedToServer = false;
 
-function Ipc_Client_CallbackReceiveData (data){
-  
-  if (data == IPC_CLIENTUP_RES_OK){
-    console.log("[DEBUG] - Ipc_Client_ReceiveData - Connected to server OK");
-  } else if (data == IPC_CLIENTUP_RES_ERR){
-    console.log("[DEBUG] - Ipc_Client_ReceiveData - Connected to server ERROR");
-  } else {
-    console.log("[DEBUG] - Ipc_Client_ReceiveData - Data recibida: " + data);
-    ServerBuffer = data;
-    SerialBuffer = data;
-    Api_Serial_ParseCommandArrived(data)
-  }
+function Driver_Ipc_ReadDataBuffer (){
+  return ServerBuffer;
 }
 
-function Ipc_Client_SendData (topic, data){
-  console.log("[DEBUG] - Ipc_Client_SendData - Send to server: " + data)
-  IpcClient.of.ipcSocketId.emit(topic, data)
+function Driver_Ipc_WriteDataBuffer (dataToWrite){
+  ServerBuffer = dataToWrite;
 }
 
-function Ipc_Client_CallbackDisconnected (){
-  console.log("[NORMAL] - Ipc_Client_DisconnectFromServer - Disconnected from server")
+function Driver_Ipc_SendData (topic, dataToSend){
+  DebugSendedText = dataToSend;
+  console.log("[DEBUG] - Ipc_Client_SendData - Send to server: " + dataToSend)
+  IpcClient.of.ipcSocketId.emit(topic, dataToSend)
 }
 
-function Ipc_Client_CreateClient (){
+function Driver_Ipc_CreateClient (){
   IpcClient.config.retry = IPC_CONNECTION_RETRY;
 
   console.log("[NORMAL] - Ipc_Client_CreateClient - Creating IPC Client...")
@@ -764,11 +758,17 @@ function Ipc_Client_CreateClient (){
               IPC_TOPIC_CONNECT,
               function(){
                   console.log("[NORMAL] - Ipc_Client_CreateClient - Conected to server")
-                  Ipc_Client_SendData(IPC_TOPIC_MESSAGE, IPC_CLIENTUP_REQ)
+                  Driver_Ipc_SendData(IPC_TOPIC_MESSAGE, IPC_CLIENTUP_REQ)
+                  IsConnectedToServer = true;
               }
           );
-          IpcClient.of.ipcSocketId.on(IPC_TOPIC_DISCONNECT, () => Ipc_Client_CallbackDisconnected());
-          IpcClient.of.ipcSocketId.on(IPC_TOPIC_MESSAGE, (data) => Ipc_Client_CallbackReceiveData(data));
+          IpcClient.of.ipcSocketId.on(IPC_TOPIC_DISCONNECT, function(){
+            console.log("[NORMAL] - Ipc_Client_DisconnectFromServer - Disconnected from server")
+            IsConnectedToServer = false;
+          });
+          IpcClient.of.ipcSocketId.on(IPC_TOPIC_MESSAGE, function(data){
+            Driver_Ipc_WriteDataBuffer(data);
+          } );
       }
   );
 }
