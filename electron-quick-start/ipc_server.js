@@ -6,6 +6,10 @@ const IPC_TOPIC_DISCONNECT = 'socket.disconnected'
 const IPC_SOCKET_ID        = 'ipcSocketId'
 const IPC_CONNECTION_RETRY = 1500
 
+const IPC_CLIENTUP_REQ     = "{client_up;request}"
+const IPC_CLIENTUP_RES_OK  = "{client_up;response;ok}"
+const IPC_CLIENTUP_RES_ERR = "{client_up;response;error}"
+
 var IpcSocketFd            = 0;
 
 Ipc_Server_CreateServer()
@@ -15,7 +19,13 @@ function Ipc_Server_CallbackReceiveData (data, socket){
         console.log("[DEBUG] - Ipc_Server_ReceiveData - Inicializando el socket global") 
         IpcSocketFd = socket;
     }
-    console.log("[DEBUG] - Ipc_Server_ReceiveData - Receive from client: " + data) 
+    if (data == IPC_CLIENTUP_REQ){
+        console.log("[DEBUG] - Ipc_Server_CallbackReceiveData - Client connected.");
+        Ipc_Server_SendData (IPC_CLIENTUP_RES_OK);
+    } else {
+        console.log("[DEBUG] - Ipc_Server_ReceiveData - Receive from client: " + data) 
+    }
+    
 }
 
 function Ipc_Server_SendData (data){
