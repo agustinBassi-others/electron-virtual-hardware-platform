@@ -28,7 +28,7 @@ const RESPONSE_DISCONNECT_PORTS_ERR = "{disconnect_port;response;error}"
 
 /*==================[internal data declaration]==============================*/
 
-var IpcSocketFd            = 0;
+var IpcSocketFd = 0;
 
 /*==================[Objects events and initialization]=========================*/
 
@@ -77,8 +77,6 @@ function Ipc_Server_CreateServer (){
 
     IpcServer.server.start();
 }
-
-
 
 // Readline lets us tap into the process events
 const readline = require('readline');
