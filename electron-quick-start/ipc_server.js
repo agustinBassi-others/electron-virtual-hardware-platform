@@ -1,31 +1,59 @@
+/*==================[inclusions]=============================================*/
+
 var IpcServer = require('node-ipc');
 
-const IPC_TOPIC_MESSAGE    = 'message'
-const IPC_TOPIC_DISCONNECT = 'socket.disconnected'
+/*==================[macros]=================================================*/
 
-const IPC_SOCKET_ID        = 'ipcSocketId'
-const IPC_CONNECTION_RETRY = 1500
+const IPC_TOPIC_MESSAGE             = 'message'
+const IPC_TOPIC_DISCONNECT          = 'socket.disconnected'
 
-const IPC_CLIENTUP_REQ     = "{client_up;request}"
-const IPC_CLIENTUP_RES_OK  = "{client_up;response;ok}"
-const IPC_CLIENTUP_RES_ERR = "{client_up;response;error}"
+const IPC_SOCKET_ID                 = 'ipcSocketId'
+const IPC_CONNECTION_RETRY          = 1500
+
+const REQUEST_CLIENTUP              = "{client_up;request}"
+const RESPONSE_CLIENTUP_OK          = "{client_up;response;ok}"
+const RESPONSE_CLIENTUP_ERR         = "{client_up;response;error}"
+
+const REQUEST_LIST_PORTS            = "{list_ports;request}"
+const RESPONSE_LIST_PORTS_OK        = "{list_ports;response;COM4;USB3}"
+const RESPONSE_LIST_PORTS_ERR       = "{list_ports;response;error}"
+
+const REQUEST_CONNECT_PORT          = "{connect_port;request;COM4;9600}"
+const RESPONSE_CONNECT_PORTS_OK     = "{connect_port;response;ok}"
+const RESPONSE_CONNECT_PORTS_ERR    = "{connect_port;response;error}"
+
+const REQUEST_DISCONNECT_PORTS      = "{disconnect_port;request}"
+const RESPONSE_DISCONNECT_PORTS_OK  = "{disconnect_port;response;ok}"
+const RESPONSE_DISCONNECT_PORTS_ERR = "{disconnect_port;response;error}"
+
+/*==================[internal data declaration]==============================*/
 
 var IpcSocketFd            = 0;
 
+/*==================[Objects events and initialization]=========================*/
+
 Ipc_Server_CreateServer()
+
+/*==================[internal function declaration]==========================*/
+
+function Mock_ServerResponses (clientRequest){
+    if (clientRequest == REQUEST_CLIENTUP){
+        Ipc_Server_SendData (RESPONSE_CLIENTUP_OK);
+    } else if (clientRequest == REQUEST_LIST_PORTS){
+        Ipc_Server_SendData (RESPONSE_LIST_PORTS_OK);
+    } else if (clientRequest == REQUEST_CONNECT_PORT){
+        Ipc_Server_SendData (RESPONSE_CONNECT_PORTS_OK);
+    } else if (clientRequest == REQUEST_DISCONNECT_PORTS){
+        Ipc_Server_SendData (RESPONSE_DISCONNECT_PORTS_OK);
+    } 
+}
 
 function Ipc_Server_CallbackReceiveData (data, socket){
     if (IpcSocketFd == 0){
         console.log("[DEBUG] - Ipc_Server_ReceiveData - Inicializando el socket global") 
         IpcSocketFd = socket;
     }
-    if (data == IPC_CLIENTUP_REQ){
-        console.log("[DEBUG] - Ipc_Server_CallbackReceiveData - Client connected.");
-        Ipc_Server_SendData (IPC_CLIENTUP_RES_OK);
-    } else {
-        console.log("[DEBUG] - Ipc_Server_ReceiveData - Receive from client: " + data) 
-    }
-    
+    Mock_ServerResponses (data);
 }
 
 function Ipc_Server_SendData (data){
@@ -35,6 +63,7 @@ function Ipc_Server_SendData (data){
 
 function Ipc_Server_CallbackDisconectedClient (){
     console.log("[NORMAL] - Ipc_Server_CallbackDisconectedClient - The client has been disconnected!")
+    IpcSocketFd = 0;
 }
 
 function Ipc_Server_CreateServer (){
