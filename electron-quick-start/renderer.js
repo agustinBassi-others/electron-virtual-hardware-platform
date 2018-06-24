@@ -150,6 +150,7 @@ function Driver_Time_SleepMs(milliseconds) {
 
 function Driver_Socket_SendData (dataToSend){
   DebugSendedText = dataToSend;
+  Ipc_Client_SendData(IPC_TOPIC_MESSAGE, dataToSend);
 }
 
 function Driver_Socket_ReceiveData (){
@@ -736,6 +737,9 @@ function Ipc_Client_CallbackReceiveData (data){
     console.log("[DEBUG] - Ipc_Client_ReceiveData - Connected to server ERROR");
   } else {
     console.log("[DEBUG] - Ipc_Client_ReceiveData - Data recibida: " + data);
+    ServerBuffer = data;
+    SerialBuffer = data;
+    Api_Serial_ParseCommandArrived(data)
   }
 }
 
