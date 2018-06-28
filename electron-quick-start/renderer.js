@@ -209,6 +209,7 @@ function Driver_Ipc_ReadServerBuffer (){
  * @param  {String} dataToWrite
  */
 function Driver_Ipc_WriteServerBuffer (dataToWrite){
+  console.log("[DEBUG] - Driver_Ipc_WriteServerBuffer - Writing server buffer: " + dataToWrite)
   ServerBuffer = dataToWrite;
 }
 
@@ -750,7 +751,7 @@ function Api_Serial_ParseCommandArrived (commString){
               gpioReadState +
               COMMAND_END;
             
-            Driver_Ipc_SendData(commandResponse);
+            Driver_Ipc_SendData(IpcTopic_t.MESSAGE, commandResponse);
           }
 
         }
@@ -771,7 +772,7 @@ function Api_Serial_ParseCommandArrived (commString){
             ("000" + Adc1Value).slice(-4) +
             COMMAND_END;
 
-            Driver_Ipc_SendData(commandResponse);
+            Driver_Ipc_SendData(IpcTopic_t.MESSAGE, commandResponse);
         }
 
         break;
@@ -908,9 +909,12 @@ function Logic_TryToDisconnectPort (){
 function Logic_CheckIfPeriphericalCommand (){
   if (FlagServerConnected && FlagClientIsUp && FlagPortsListed && FlagEmbeddedSysConnected){
     var dataFromServer = Driver_Ipc_ReadServerBuffer();
+    console.log("[DEBUG] - Logic_CheckIfPeriphericalCommand - Llego: '" + dataFromServer + "'");
     if (dataFromServer != STRING_EMPTY){
+      console.log("[DEBUG] - Logic_CheckIfPeriphericalCommand - Chequeando si es valido");
       let isValidCommand = Api_Serial_ParseCommandArrived(dataFromServer);
       if (isValidCommand){
+        console.log("[DEBUG] - Logic_CheckIfPeriphericalCommand - Es un comando valido");
         Driver_Ipc_WriteServerBuffer (STRING_EMPTY);
       }
     }

@@ -1,33 +1,33 @@
 
-var net = require('net');
+// var net = require('net');
  
-var HOST = 'localhost';
-var PORT = 1234;
+// var HOST = 'localhost';
+// var PORT = 1234;
  
-var client = new net.Socket();
+// var client = new net.Socket();
  
-client.connect(PORT, HOST, function() {
-    console.log('Client connected to: ' + HOST + ':' + PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    client.write('{port_list;response;COM1;COM2;COM3}');
+// client.connect(PORT, HOST, function() {
+//     console.log('Client connected to: ' + HOST + ':' + PORT);
+//     // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
+//     client.write('{port_list;response;COM1;COM2;COM3}');
  
-});
+// });
  
-client.on('data', function(data) {    
-    console.log('Client received: ' + data);
-     if (data.toString().endsWith('exit')) {
-       client.destroy();
-    }
-});
+// client.on('data', function(data) {    
+//     console.log('Client received: ' + data);
+//      if (data.toString().endsWith('exit')) {
+//        client.destroy();
+//     }
+// });
  
-// Add a 'close' event handler for the client socket
-client.on('close', function() {
-    console.log('Client closed');
-});
+// // Add a 'close' event handler for the client socket
+// client.on('close', function() {
+//     console.log('Client closed');
+// });
  
-client.on('error', function(err) {
-    console.error(err);
-});
+// client.on('error', function(err) {
+//     console.error(err);
+// });
 
 
 // var net = require('net');
@@ -95,96 +95,96 @@ client.on('error', function(err) {
 
 
 
-// //=======================[File description]=====================================
+//=======================[File description]=====================================
 
-// //=======================[Libraries requieres]==================================
+//=======================[Libraries requieres]==================================
 
-// 'use strict';
+'use strict';
 
-// const Required_App        = require('express')();
-// const Required_Http       = require('http').Server(Required_App);
-// const Required_SocketIo   = require('socket.io')(Required_Http);
-// // const Required_SerialPort = require('serialport');
+const Required_App        = require('express')();
+const Required_Http       = require('http').Server(Required_App);
+const Required_SocketIo   = require('socket.io')(Required_Http);
+const Required_SerialPort = require('serialport');
 
-// //=======================[Script constants]=====================================
+//=======================[Script constants]=====================================
 
-// // const SERIAL_PORT        = '/dev/pts/6';
-// // const SERIAL_BAUDRATE    = 115200;
-// const HTTP_PORT          = process.env.PORT || 3000;
+const SERIAL_PORT        = '/dev/pts/6';
+const SERIAL_BAUDRATE    = 115200;
+const HTTP_PORT          = process.env.PORT || 3000;
 
-// const HTTP_RESPONSE_FILE = 'index.html';
+const HTTP_RESPONSE_FILE = 'index.html';
 
-// const TAG_MSG_COMMAND    = 'command';
-// const TAG_MSG_CLOSE      = 'close';
+const TAG_MSG_COMMAND    = 'command';
+const TAG_MSG_CLOSE      = 'close';
 
-// //=======================[Script variables]=====================================
+//=======================[Script variables]=====================================
 
-// //=======================[Objects initialization]===============================
+//=======================[Objects initialization]===============================
 
-// // const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
-// // const Obj_Parser     = new Obj_ReadLine();
-// // const Obj_SerialPort = new Required_SerialPort(SERIAL_PORT, { baudRate: SERIAL_BAUDRATE });
+const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
+const Obj_Parser     = new Obj_ReadLine();
+const Obj_SerialPort = new Required_SerialPort(SERIAL_PORT, { baudRate: SERIAL_BAUDRATE });
 
-// //=======================[Objects events]=======================================
+//=======================[Objects events]=======================================
 
-// Required_App.get     ('/', (req, res)        => Http_SendRequestToClient(req, res) );
+Required_App.get     ('/', (req, res)        => Http_SendRequestToClient(req, res) );
 
-// Required_Http.listen (HTTP_PORT, ()          => Socket_CreateSocketListener() );
+Required_Http.listen (HTTP_PORT, ()          => Socket_CreateSocketListener() );
 
-// Required_SocketIo.on ('connection', (socket) => Socket_NewClientConnectedCallback(socket) );
+Required_SocketIo.on ('connection', (socket) => Socket_NewClientConnectedCallback(socket) );
 
-// // Obj_SerialPort.on    ('open', ()             => Serial_OpenPort() );
+Obj_SerialPort.on    ('open', ()             => Serial_OpenPort() );
 
-// // Obj_SerialPort.on    ('data', (data)         => Serial_ReceiveDataCallback(data) );
+Obj_SerialPort.on    ('data', (data)         => Serial_ReceiveDataCallback(data) );
 
-// // Obj_SerialPort.on    ('close', ()            => Serial_ClosePort() );
+Obj_SerialPort.on    ('close', ()            => Serial_ClosePort() );
 
-// //=======================[Function definitions]=================================
+//=======================[Function definitions]=================================
 
-// function Http_SendRequestToClient (req, res){
-//   console.log('[NORMAL] - Http_SendRequestToClient - Sending to client the HTML file: ' + HTTP_RESPONSE_FILE);
-//   res.sendfile(HTTP_RESPONSE_FILE);
-// }
+function Http_SendRequestToClient (req, res){
+  console.log('[NORMAL] - Http_SendRequestToClient - Sending to client the HTML file: ' + HTTP_RESPONSE_FILE);
+  res.sendfile(HTTP_RESPONSE_FILE);
+}
 
-// function Socket_CreateSocketListener (){
-//   console.log(`[NORMAL] - Socket_CreateSocketListener - Socket server listening on port: ${HTTP_PORT}`);
-// }
+function Socket_CreateSocketListener (){
+  console.log(`[NORMAL] - Socket_CreateSocketListener - Socket server listening on port: ${HTTP_PORT}`);
+}
 
-// function Socket_NewClientConnectedCallback (socket){
-//   console.log('[NORMAL] - Socket_NewClientConnectedCallback - New client connected');
-//   socket.on('message', (msg) => Socket_ReceiveDataCallback (msg));
-// }
+function Socket_NewClientConnectedCallback (socket){
+  console.log('[NORMAL] - Socket_NewClientConnectedCallback - New client connected');
+  socket.on('message', (msg) => Socket_ReceiveDataCallback (msg));
+}
 
-// function Socket_ReceiveDataCallback (msg) {
-//   console.log('[DEBUG] - Socket_ReceiveDataCallback - Message received from client: ' + msg + '\n\r');
-//   Serial_SendData (msg + '\n');
-// }
+function Socket_ReceiveDataCallback (msg) {
+  console.log('[DEBUG] - Socket_ReceiveDataCallback - Message received from client: ' + msg + '\n\r');
+  Serial_SendData (msg + '\n');
+}
 
-// function Socket_SendDataToClient (messageTag, data){
-//   console.log('[DEBUG] - Socket_SendDataToClient - Sending to client. Tag: ' + messageTag + '. Data: ' + data);
-//   Required_SocketIo.sockets.emit(messageTag, data);
-// }
+function Socket_SendDataToClient (messageTag, data){
+  console.log('[DEBUG] - Socket_SendDataToClient - Sending to client. Tag: ' + messageTag + '. Data: ' + data);
+  Required_SocketIo.sockets.emit(messageTag, data);
+}
 
-// // function Serial_OpenPort (){
-// //   console.log('[NORMAL] - Serial_OpenPort - Port open at ' + SERIAL_PORT);
-// // }
+function Serial_OpenPort (){
+  console.log('[NORMAL] - Serial_OpenPort - Port open at ' + SERIAL_PORT);
+}
 
-// // function Serial_ReceiveDataCallback (data){
-// //   console.log('[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
-// //   Socket_SendDataToClient (TAG_MSG_COMMAND, data.toString());
-// // }
+function Serial_ReceiveDataCallback (data){
+  console.log('[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
+  Socket_SendDataToClient (TAG_MSG_COMMAND, data.toString());
+}
 
-// // function Serial_SendData (data){
-// //   console.log('[DEBUG] - Serial_SendData - Sending data serial: ' + data);
-// //   Obj_SerialPort.write(data);
-// // }
+function Serial_SendData (data){
+  console.log('[DEBUG] - Serial_SendData - Sending data serial: ' + data);
+  Obj_SerialPort.write(data);
+}
 
-// // function Serial_ClosePort(){
-// //   console.log('[NORMAL] - Serial close - Closing serial port...');
-// //   Socket_SendDataToClient (TAG_MSG_CLOSE, ' ');
-// // }
+function Serial_ClosePort(){
+  console.log('[NORMAL] - Serial close - Closing serial port...');
+  Socket_SendDataToClient (TAG_MSG_CLOSE, ' ');
+}
 
-// //=======================[End of file]==========================================
+//=======================[End of file]==========================================
 
 
 

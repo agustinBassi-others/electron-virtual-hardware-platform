@@ -27,7 +27,7 @@
 
 
 //7 SEGS WRITE 3
-{g;p;3}
+{g;p;4}
 //7 SEGS WRITE 9
 {g;p;9}
 //7 SEGS WRITE F
@@ -79,3 +79,87 @@
 {disconnect_port;response;ok}
 // RESPONDER QUE SE DESCONECTO CON ERROR
 {disconnect_port;response;error}
+
+------------------------------------------------------------------------------------------
+
+//LED 1 OFF
+echo "{b;c;0}" > /dev/pts/2
+//LED 1 ON
+echo "{b;c;1}" > /dev/pts/2
+
+//LED 2 OFF
+echo "{b;d;0}" > /dev/pts/2
+//LED 2 ON
+echo "{b;d;1}" > /dev/pts/2
+
+//LED 3 OFF
+echo "{b;e;0}" > /dev/pts/2
+//LED 3 ON
+echo "{b;e;1}" > /dev/pts/2
+
+//LED 4 OFF
+echo "{b;f;0}" > /dev/pts/2
+//LED 3 ON
+echo "{b;f;1}" > /dev/pts/2
+
+//DAC WRITE 200
+echo "{d;n;200}" > /dev/pts/2
+//DAC WRITE 600
+echo "{d;n;600}" > /dev/pts/2
+//DAC WRITE 1000
+echo "{d;n;1000}" > /dev/pts/2
+
+
+//7 SEGS WRITE 3
+echo "{g;p;4}" > /dev/pts/2
+//7 SEGS WRITE 9
+echo "{g;p;9}" > /dev/pts/2
+//7 SEGS WRITE F
+echo "{g;p;F}" > /dev/pts/2
+
+//LCD WRITE MULTI LINE
+echo "{f;o;0;Hola LCD este es un mensaje multilinea hasta 55}" > /dev/pts/2
+//LCD WRITE LINE 1
+echo "{f;o;1;Mensaje linea 1}" > /dev/pts/2
+//LCD WRITE LINE 2
+echo "{f;o;2;Mensaje linea 2}" > /dev/pts/2
+//LCD WRITE LINE 3
+echo "{f;o;3;Mensaje linea 3}" > /dev/pts/2
+
+//GPIO READ LED 1
+echo "{a;c;0}" > /dev/pts/2
+//GPIO READ LED 2
+echo "{a;d;0}" > /dev/pts/2
+//GPIO READ LED 3
+echo "{a;e;0}" > /dev/pts/2
+//GPIO READ LED 4
+echo "{a;f;0}" > /dev/pts/2
+//GPIO READ TEC 1
+echo "{a;g;0}" > /dev/pts/2
+//GPIO READ TEC 2
+echo "{a;h;0}" > /dev/pts/2
+//GPIO READ TEC 3
+echo "{a;i;0}" > /dev/pts/2
+//GPIO READ TEC 3
+echo "{a;j;0}" > /dev/pts/2
+
+//ADC READ CH1
+echo "{c;k;0}" > /dev/pts/2
+
+
+// RESPONDER QUE NO HAY PUERTOS DISPONIBLES
+echo "{list_ports;response;0}" > /dev/pts/2
+// RESPONDER QUE ESTA DISPONIBLE COM1
+echo "{list_ports;response;COM1}" > /dev/pts/2
+// RESPONDER QUE ESTA DISPONIBLE COM4 y USB3
+echo "{list_ports;response;COM4;USB3}" > /dev/pts/2
+
+// RESPONDER QUE SE CONECTO OK
+echo "{connect_port;response;ok}" > /dev/pts/2
+// RESPONDER QUE SE CONECTO CON ERROR
+echo "{connect_port;response;error}" > /dev/pts/2
+
+// RESPONDER QUE SE DESCONECTO OK
+echo "{disconnect_port;response;ok}" > /dev/pts/2
+// RESPONDER QUE SE DESCONECTO CON ERROR
+echo "{disconnect_port;response;error}" > /dev/pts/2

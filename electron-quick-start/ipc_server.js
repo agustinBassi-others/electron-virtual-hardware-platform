@@ -1,5 +1,12 @@
 /*==================[inclusions]=============================================*/
 
+'use strict';
+
+// Readline lets us tap into the process events
+const readline = require('readline');
+
+const Required_SerialPort = require('serialport');
+
 var IpcServer = require('node-ipc');
 
 /*==================[macros]=================================================*/
@@ -26,13 +33,34 @@ const REQUEST_DISCONNECT_PORTS      = "{disconnect_port;request}"
 const RESPONSE_DISCONNECT_PORTS_OK  = "{disconnect_port;response;ok}"
 const RESPONSE_DISCONNECT_PORTS_ERR = "{disconnect_port;response;error}"
 
+
+const SERIAL_PORT        = '/dev/pts/4';
+const SERIAL_BAUDRATE    = 115200;
+const HTTP_PORT          = process.env.PORT || 3000;
+
+const HTTP_RESPONSE_FILE = 'index.html';
+
+const TAG_MSG_COMMAND    = 'command';
+const TAG_MSG_CLOSE      = 'close';
+
 /*==================[internal data declaration]==============================*/
 
 var IpcSocketFd = 0;
+const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
+const Obj_Parser     = new Obj_ReadLine();
+const Obj_SerialPort = new Required_SerialPort(SERIAL_PORT, { baudRate: SERIAL_BAUDRATE });
 
 /*==================[Objects events and initialization]=========================*/
 
-Ipc_Server_CreateServer()
+Ipc_Server_CreateServer();
+
+Keyboard_InitKeyListener();
+
+Obj_SerialPort.on    ('open', ()             => Serial_OpenPort() );
+
+Obj_SerialPort.on    ('data', (data)         => Serial_ReceiveDataCallback(data) );
+
+Obj_SerialPort.on    ('close', ()            => Serial_ClosePort() );
 
 /*==================[internal function declaration]==========================*/
 
@@ -50,10 +78,12 @@ function Mock_ServerResponses (clientRequest){
 
 function Ipc_Server_CallbackReceiveData (data, socket){
     if (IpcSocketFd == 0){
-        console.log("[DEBUG] - Ipc_Server_ReceiveData - Inicializando el socket global") 
+        console.log("[DEBUG] - Ipc_Server_CallbackReceiveData - Inicializando el socket global") 
         IpcSocketFd = socket;
     }
+    console.log("[DEBUG] - Ipc_Server_CallbackReceiveData - Recibido: " + data.toString())
     Mock_ServerResponses (data);
+    Serial_SendData (data);
 }
 
 function Ipc_Server_SendData (data){
@@ -78,12 +108,7 @@ function Ipc_Server_CreateServer (){
     IpcServer.server.start();
 }
 
-// Readline lets us tap into the process events
-const readline = require('readline');
-
-Serial_InitKeyListener();
-
-function Serial_InitKeyListener (){
+function Keyboard_InitKeyListener (){
     // Allows us to listen for events from stdin
     readline.emitKeypressEvents(process.stdin);
     // Raw mode gets rid of standard keypress events and other
@@ -105,4 +130,27 @@ function Serial_InitKeyListener (){
             SerialBuffer = SerialBuffer + keyPressed;
         }
     });
+}
+
+
+function Serial_OpenPort (){
+    console.log('[NORMAL] - Serial_OpenPort - Port open at ' + SERIAL_PORT);
+}
+
+function Serial_ReceiveDataCallback (data){
+    var SerialBuffer = "";
+    console.log('[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
+    SerialBuffer = data.toString().replace(/(\n)/g,"");
+
+    Ipc_Server_SendData (SerialBuffer);
+}
+
+function Serial_SendData (data){
+    console.log('[DEBUG] - Serial_SendData - Sending data serial: ' + data);
+    Obj_SerialPort.write(data);
+}
+
+function Serial_ClosePort(){
+    console.log('[NORMAL] - Serial close - Closing serial port...');
+    // Socket_SendDataToClient (TAG_MSG_CLOSE, ' ');
 }
