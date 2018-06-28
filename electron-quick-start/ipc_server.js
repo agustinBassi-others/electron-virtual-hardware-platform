@@ -36,9 +36,6 @@ const RESPONSE_DISCONNECT_PORTS_ERR = "{disconnect_port;response;error}"
 
 const SERIAL_PORT        = '/dev/pts/4';
 const SERIAL_BAUDRATE    = 115200;
-const HTTP_PORT          = process.env.PORT || 3000;
-
-const HTTP_RESPONSE_FILE = 'index.html';
 
 const TAG_MSG_COMMAND    = 'command';
 const TAG_MSG_CLOSE      = 'close';
@@ -49,8 +46,11 @@ var IpcSocketFd = 0;
 const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
 const Obj_Parser     = new Obj_ReadLine();
 const Obj_SerialPort = new Required_SerialPort(SERIAL_PORT, { baudRate: SERIAL_BAUDRATE });
+var SerialPortsList = "";
 
 /*==================[Objects events and initialization]=========================*/
+
+
 
 Ipc_Server_CreateServer();
 
@@ -68,7 +68,9 @@ function Mock_ServerResponses (clientRequest){
     if (clientRequest == REQUEST_CLIENTUP){
         Ipc_Server_SendData (RESPONSE_CLIENTUP_OK);
     } else if (clientRequest == REQUEST_LIST_PORTS){
-        Ipc_Server_SendData (RESPONSE_LIST_PORTS_OK);
+        Serial_ListPorts();
+        // Ipc_Server_SendData (RESPONSE_LIST_PORTS_OK);
+        Ipc_Server_SendData ("{list_ports;response;" + SerialPortsList + "}");
     } else if (clientRequest == REQUEST_CONNECT_PORT){
         Ipc_Server_SendData (RESPONSE_CONNECT_PORTS_OK);
     } else if (clientRequest == REQUEST_DISCONNECT_PORTS){
@@ -135,6 +137,13 @@ function Keyboard_InitKeyListener (){
 
 function Serial_OpenPort (){
     console.log('[NORMAL] - Serial_OpenPort - Port open at ' + SERIAL_PORT);
+    // Obj_SerialPort.list(function (err, ports) {
+    //     ports.forEach(function(port) {
+    //       console.log(port.comName);
+    //       console.log(port.pnpId);
+    //       console.log(port.manufacturer);
+    //     });
+    //   });
 }
 
 function Serial_ReceiveDataCallback (data){
@@ -153,4 +162,27 @@ function Serial_SendData (data){
 function Serial_ClosePort(){
     console.log('[NORMAL] - Serial close - Closing serial port...');
     // Socket_SendDataToClient (TAG_MSG_CLOSE, ' ');
+}
+
+function Serial_ListPorts (){
+var serialport = require('serialport');
+
+var i = 0;
+    // list serial ports:
+    serialport.list(function (err, ports) {
+        ports.forEach(function(port) {
+            console.log(port.comName);
+            if (i == 0){
+                // portList = portList + port.comName;
+                SerialPortsList = SerialPortsList.concat("", port.comName);
+            } else {
+                SerialPortsList = SerialPortsList.concat(";", port.comName);
+                // portList = portList + ";" + port.comName;
+            }
+            i++;
+        });
+        console.log("\n\r" + SerialPortsList);
+    });
+    
+
 }
