@@ -64,7 +64,7 @@ Obj_SerialPort.on    ('close', ()            => Serial_ClosePort() );
 
 /*==================[internal function declaration]==========================*/
 
-function Mock_ServerResponses (clientRequest){
+function ParseDataFromClient (clientRequest){
     if (clientRequest == REQUEST_CLIENTUP){
         Ipc_Server_SendData (RESPONSE_CLIENTUP_OK);
     } else if (clientRequest == REQUEST_LIST_PORTS){
@@ -72,10 +72,13 @@ function Mock_ServerResponses (clientRequest){
         // Ipc_Server_SendData (RESPONSE_LIST_PORTS_OK);
         Ipc_Server_SendData ("{list_ports;response;" + SerialPortsList + "}");
     } else if (clientRequest == REQUEST_CONNECT_PORT){
+        Serial_OpenPort
         Ipc_Server_SendData (RESPONSE_CONNECT_PORTS_OK);
     } else if (clientRequest == REQUEST_DISCONNECT_PORTS){
         Ipc_Server_SendData (RESPONSE_DISCONNECT_PORTS_OK);
-    } 
+    } else {
+
+    }
 }
 
 function Ipc_Server_CallbackReceiveData (data, socket){
@@ -84,7 +87,7 @@ function Ipc_Server_CallbackReceiveData (data, socket){
         IpcSocketFd = socket;
     }
     console.log("[DEBUG] - Ipc_Server_CallbackReceiveData - Recibido: " + data.toString())
-    Mock_ServerResponses (data);
+    ParseDataFromClient (data);
     Serial_SendData (data);
 }
 
@@ -168,18 +171,20 @@ function Serial_ListPorts (){
 var serialport = require('serialport');
 
 var i = 0;
+    
     // list serial ports:
     serialport.list(function (err, ports) {
+        SerialPortsList = "";
         ports.forEach(function(port) {
-            console.log(port.comName);
-            if (i == 0){
-                // portList = portList + port.comName;
-                SerialPortsList = SerialPortsList.concat("", port.comName);
-            } else {
-                SerialPortsList = SerialPortsList.concat(";", port.comName);
-                // portList = portList + ";" + port.comName;
+            if (!port.comName.includes("/dev/ttyS")){
+                console.log(port.comName);
+                if (i == 0){
+                    SerialPortsList = SerialPortsList.concat("", port.comName);
+                } else {
+                    SerialPortsList = SerialPortsList.concat(";", port.comName);
+                }
+                i++;
             }
-            i++;
         });
         console.log("\n\r" + SerialPortsList);
     });
