@@ -56,6 +56,8 @@ Ipc_Server_CreateServer();
 
 Keyboard_InitKeyListener();
 
+Serial_ListPorts()
+
 Obj_SerialPort.on    ('open', ()             => Serial_OpenPort() );
 
 Obj_SerialPort.on    ('data', (data)         => Serial_ReceiveDataCallback(data) );
@@ -171,12 +173,12 @@ function Serial_ListPorts (){
 var serialport = require('serialport');
 
 var i = 0;
-    
+    // console.log(port.comName);
     // list serial ports:
     serialport.list(function (err, ports) {
         SerialPortsList = "";
         ports.forEach(function(port) {
-            if (!port.comName.includes("/dev/ttyS")){
+            if (!port.comName.includes("/daev/ttyS")){
                 console.log(port.comName);
                 if (i == 0){
                     SerialPortsList = SerialPortsList.concat("", port.comName);

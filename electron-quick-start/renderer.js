@@ -1112,3 +1112,66 @@ document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
 
 
 
+
+
+
+
+/*==================[inclusions]=============================================*/
+
+'use strict';
+
+// Readline lets us tap into the process events
+const readline = require('readline');
+
+const Required_SerialPort = require('serialport');
+
+/*==================[macros]=================================================*/
+
+const SERIAL_PORT        = '/dev/pts/4';
+const SERIAL_BAUDRATE    = 115200;
+
+/*==================[internal data declaration]==============================*/
+
+const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
+const Obj_Parser     = new Obj_ReadLine();
+const Obj_SerialPort = new Required_SerialPort(SERIAL_PORT, { baudRate: SERIAL_BAUDRATE });
+var SerialPortsList = "";
+
+/*==================[Objects events and initialization]=========================*/
+
+Serial_OpenPort();
+
+Obj_SerialPort.on    ('open', ()             => Serial_OpenPort() );
+
+Obj_SerialPort.on    ('data', (data)         => Serial_ReceiveDataCallback(data) );
+
+Obj_SerialPort.on    ('close', ()            => Serial_ClosePort() );
+
+/*==================[internal function declaration]==========================*/
+
+function Serial_OpenPort (){
+    console.log('[NORMAL] - Serial_OpenPort - Port open at ' + SERIAL_PORT);
+    // Obj_SerialPort.list(function (err, ports) {
+    //     ports.forEach(function(port) {
+    //       console.log(port.comName);
+    //       console.log(port.pnpId);
+    //       console.log(port.manufacturer);
+    //     });
+    //   });
+}
+
+function Serial_ReceiveDataCallback (data){
+    var SerialBuffer = "";
+    console.log('[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
+    SerialBuffer = data.toString().replace(/(\n)/g,"");
+}
+
+function Serial_SendData (data){
+    console.log('[DEBUG] - Serial_SendData - Sending data serial: ' + data);
+    Obj_SerialPort.write(data);
+}
+
+function Serial_ClosePort(){
+    console.log('[NORMAL] - Serial close - Closing serial port...');
+    // Socket_SendDataToClient (TAG_MSG_CLOSE, ' ');
+}
