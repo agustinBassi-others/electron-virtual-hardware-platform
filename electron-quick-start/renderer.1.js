@@ -101,7 +101,7 @@ const Log_t = {
   WARN    : 1,
   NORMAL  : 2,
   DEBUG   : 3,
-  VERBOSE : 4
+  EVENT   : 4
 }
 
 // Posibles comandos que puede enviar el sistema embebido
@@ -165,7 +165,8 @@ let LcdText                    = "\\(-)/ Hello CIAA \\(-)/";
 let DebugProcessedText         = "Debug processed text";
 let DebugSendedText            = "Debug sended text";
 
-var   Obj_SerialPort; 
+let   Obj_SerialPort;
+let LogLevel = Log_t.ERROR; 
 
 /*==================[Objects events and initialization]=========================*/
 
@@ -173,13 +174,35 @@ Logic_InitializeApp();
 
 /*==================[internal function declaration]==========================*/
 
+function Log_SetLevel (logLevel){
+  LogLevel = logLevel;
+}
+
+function Log_GetLevel(){
+  return LogLevel;
+}
 
 function Log_Print (logLevel, func, message){
-  console.log ("[" + logLevel + "] - " + func + ": " + message);
+  if (logLevel <= LogLevel){
+
+    if (logLevel == Log_t.ERROR){
+      logLevel = "[ERROR] ";
+    } else if (logLevel == Log_t.WARN){
+      logLevel = "[WARN]  ";
+    } else if (logLevel == Log_t.NORMAL){
+      logLevel = "[NORMAL]";
+    } else if (logLevel == Log_t.DEBUG){
+      logLevel = "[DEBUG] ";
+    } else if (logLevel == Log_t.EVENT){
+      logLevel = "[EVENT] ";
+    } 
+    console.log (logLevel + " - " + func + ": " + message);
+  }
+  
 }
 
 function Serial_SendData (data){
-  Log_Print (Log_t.DEBUG, "Not_defined", '[DEBUG] - Serial_SendData - Sending data serial: ' + data);
+  Log_Print (Log_t.DEBUG, "Serial_SendData", 'Sending data serial: ' + data);
   
   Obj_SerialPort.write(data);
 }
@@ -197,7 +220,7 @@ function Serial_FillPortsList(){
           isSomePortSelected = true;
         }
 
-        Log_Print (Log_t.DEBUG, "Not_defined", port.comName);
+        Log_Print (Log_t.DEBUG, "Serial_FillPortsList", "Port detected" + port.comName);
 
         let portListObj = document.getElementById("PortsCont_AviablePortsList");
         let portOption = document.createElement("option");
@@ -242,18 +265,18 @@ function Serial_ClearPortsLists(){
  * @todo recibir como parametro los callbacks y el conected flag
  */
 function Serial_CreateConnection (port, baudrate){
-  Log_Print (Log_t.DEBUG, "Not_defined", '[NORMAL] - Serial_OpenPort - Try open at ' + port + " - baudrate: " + baudrate);
+  Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Try open at ' + port + " - baudrate: " + baudrate);
   
   Obj_SerialPort = new Required_SerialPort(PortSelected, { baudRate: parseInt(BaudRateSelected) });
 
   Obj_SerialPort.on    ('open', function(){
-    Log_Print (Log_t.DEBUG, "Not_defined", '[NORMAL] - Serial_OpenPort - Connected');
+    Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Serial port connected');
     FlagEmbeddedSysConnected = true;
   } );
 
   Obj_SerialPort.on    ('data', function(data){
 
-    Log_Print (Log_t.DEBUG, "Serial_ReceiveDataCallback", 'Data received from serial: ' + data);
+    Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Data received from serial: ' + data);
     var SerialBuffer = "";
     SerialBuffer = data.toString().replace(/(\n)/g,"");
     Api_ExecuteVirtualPeriphericalCall(SerialBuffer);
@@ -261,7 +284,7 @@ function Serial_CreateConnection (port, baudrate){
   } );
 
   Obj_SerialPort.on    ('close', function(){
-    Log_Print (Log_t.NORMAL, "Serial close", 'Close callback');
+    Log_Print (Log_t.NORMAL, "Serial_CreateConnection", 'Close callback');
     Serial_CloseConnection();
     // todo closeCallback();
   } );
@@ -276,7 +299,7 @@ function Serial_CreateConnection (port, baudrate){
 function Serial_CloseConnection (){
   if (FlagEmbeddedSysConnected){
     // Serial_ClosePort();
-    Log_Print (Log_t.DEBUG, "Not_defined", '[NORMAL] - Serial close - Closing serial port...');
+    Log_Print (Log_t.DEBUG, "Serial_CloseConnection", 'Closing serial port...');
 
     Obj_SerialPort.end();
 
@@ -534,7 +557,7 @@ function Api_ExecuteVirtualPeriphericalCall (commString){
  */
 function Api_TryToListPorts (){
   if (!FlagPortsListed){
-    Log_Print ("NORMAL", "Logic_TryToListPorts", "Intentando listar los puertos");
+    Log_Print (Log_t.DEBUG, "Logic_TryToListPorts", "Trying to list ports...");
     Serial_FillPortsList();
   }
 }
@@ -549,12 +572,12 @@ function Api_ManageSerialConnection (){
   if (!FlagEmbeddedSysConnected){
     PortSelected = "/dev/pts/13";
     Serial_CreateConnection(PortSelected, BaudRateSelected);
-    Log_Print ("NORMAL", "Logic_ManageSerialConnection", "Estado: Conectado al embebido");
-    Serial_WriteConnectionLabel ("Estado: Conectado al embebido");
+    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System connected");
+    Serial_WriteConnectionLabel ("State: Embedded System connected");
   } else {
     Serial_CloseConnection();
-    Log_Print ("NORMAL", "Logic_ManageSerialConnection", "Estado: Desconectado del embebido");
-    Serial_WriteConnectionLabel ("Estado: Desconectado del embebido");
+    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
+    Serial_WriteConnectionLabel ("State: Embedded System disconnected");
   }
 }
 
@@ -566,13 +589,16 @@ function Api_ManageSerialConnection (){
  * por la aplicacion.
  */
 function Logic_InitializeApp (){
+
+  Log_SetLevel(Log_t.EVENT);
+
   document.getElementById("PortsCont_AviablePortsList").addEventListener('click', (e) => {
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - PortsCont_AviablePortsList - Eligieron puerto: " + e.target.value);
+    Log_Print (Log_t.EVENT, "PortsCont_AviablePortsList", "Selected port: " + e.target.value);
     PortSelected = e.target.value;
   })
   
   document.getElementById("PortsCont_AviableBaudrateList").addEventListener('click', (e) => {
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - PortsCont_AviableBaudrateList - Eligieron baudrate: " + e.target.value);
+    Log_Print (Log_t.EVENT, "PortsCont_AviableBaudrateList", "Selected baudrate: " + e.target.value);
     BaudRateSelected = e.target.value;
   })
   
@@ -584,80 +610,80 @@ function Logic_InitializeApp (){
   
   document.getElementById("GpioCont_ImgTec1").addEventListener('mousedown', (e) => {
     Tec1State = false;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec1 - Tec 1 pressed");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec1").addEventListener('mouseup', (e) => {
     Tec1State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec1 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec1").addEventListener('mouseout', (e) => {
     Tec1State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec1 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec2").addEventListener('mousedown', (e) => {
     Tec2State = false;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec2 - Tec 1 pressed");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec2").addEventListener('mouseup', (e) => {
     Tec2State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec2 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec2").addEventListener('mouseout', (e) => {
     Tec2State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec2 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec3").addEventListener('mousedown', (e) => {
     Tec3State = false;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec3 - Tec 1 pressed");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec3").addEventListener('mouseup', (e) => {
     Tec3State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec3 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec3").addEventListener('mouseout', (e) => {
     Tec3State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec3 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec4").addEventListener('mousedown', (e) => {
     Tec4State = false;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec4 - Tec 1 pressed");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec4").addEventListener('mouseup', (e) => {
     Tec4State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec4 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   document.getElementById("GpioCont_ImgTec4").addEventListener('mouseout', (e) => {
     Tec4State = true;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - GpioCont_ImgTec4 - Tec 1 released");
+    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
   
   var RangeAdc = document.getElementById("AnalogCont_RangeAdc");
   RangeAdc.oninput = function() {
     Adc1Value = this.value;
-    Log_Print (Log_t.DEBUG, "Not_defined", "[Event] - AnalogCont_RangeAdc - El valor del ADC es: " + Adc1Value);
+    Log_Print (Log_t.EVENT, "AnalogCont_RangeAdc", "ADC Value changed to: " + Adc1Value);
   }
   
   document.getElementById("AnalogCont_RangeDac").disabled = true;
