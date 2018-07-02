@@ -148,7 +148,7 @@ let BaudRateSelected           = 115200;
 let FlagPortsListed            = false;
 let FlagEmbeddedSysConnected   = false;
 // Variables asociadas a los objetos HTML
-let PortConnectionText         = "Estado: Intentando listar los puertos"
+let PortConnectionText         = "State: Trying to list ports..."
 let Led1State                  = false;
 let Led2State                  = false;
 let Led3State                  = false;
@@ -258,36 +258,37 @@ function Serial_ClearPortsLists(){
   }
 }
 
-/**
- * 
- * @param {*} port 
- * @param {*} baudrate 
- * @todo recibir como parametro los callbacks y el conected flag
- */
-function Serial_CreateConnection (port, baudrate){
-  Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Try open at ' + port + " - baudrate: " + baudrate);
+function Serial_CreateConnection (port, baudrate, openCallback, dataCallback, closeCallback){
+  Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Try open port ' + port + " - at: " + baudrate + " baudios");
   
   Obj_SerialPort = new Required_SerialPort(PortSelected, { baudRate: parseInt(BaudRateSelected) });
 
-  Obj_SerialPort.on    ('open', function(){
-    Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Serial port connected');
-    FlagEmbeddedSysConnected = true;
-  } );
+  Obj_SerialPort.on    ('open', () => openCallback(true) );
 
-  Obj_SerialPort.on    ('data', function(data){
+  Obj_SerialPort.on    ('data', data => dataCallback(data));
+  
+  Obj_SerialPort.on    ('close', () => closeCallback() );
+}
 
-    Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Data received from serial: ' + data);
-    var SerialBuffer = "";
-    SerialBuffer = data.toString().replace(/(\n)/g,"");
-    Api_ExecuteVirtualPeriphericalCall(SerialBuffer);
-    // todo dataCallback(data);
-  } );
+/**
+ * Escribe un mensaje en label del panel de conexion (arriba a la izquierda)
+ * @param  {String} messageToWrite mensaje a escribir
+ */
+function Serial_WriteConnectionLabel (messageToWrite) {
+  PortConnectionText = messageToWrite;
+}
 
-  Obj_SerialPort.on    ('close', function(){
-    Log_Print (Log_t.NORMAL, "Serial_CreateConnection", 'Close callback');
-    Serial_CloseConnection();
-    // todo closeCallback();
-  } );
+function Serial_CallbackOpen(flag){
+  Log_Print (Log_t.DEBUG, "Api_SerialCallbackOpen", 'Serial port connected, flag: ' + flag);
+  FlagEmbeddedSysConnected = true;
+}
+
+function Serial_CallbackDataArrived(data){
+  Log_Print (Log_t.DEBUG, "Api_SerialCallbackDataArrived", 'Data received from serial: ' + data);
+  var SerialBuffer = "";
+  SerialBuffer = data.toString().replace(/(\n)/g,"");
+  Logic_ParseCommandArrived(SerialBuffer);
+  // todo dataCallback(data);
 }
 
 /**
@@ -312,15 +313,48 @@ function Serial_CloseConnection (){
 
     delete Obj_SerialPort;
   }
-  
 }
 
 /**
- * Escribe un mensaje en label del panel de conexion (arriba a la izquierda)
- * @param  {String} messageToWrite mensaje a escribir
+ * Trata de listar los puertos disponibles.
+ * Esta funcion se dispara periodicamente.
+ * Para que se ejecuten sus acciones, primero es necesario que exista conexion
+ * con el servidor, y ademas, el cliente este dado de alta.
  */
-function Serial_WriteConnectionLabel (messageToWrite) {
-  PortConnectionText = messageToWrite;
+function Api_SerialTryToListPorts (){
+  if (!FlagPortsListed){
+    Log_Print (Log_t.DEBUG, "Logic_TryToListPorts", "Trying to list ports...");
+    Serial_FillPortsList();
+  }
+}
+
+
+/**
+ * Trata de conectase al puerto y baudrate seleccionados por el usuario.
+ * Esta funcion se dispara cuando el usuario presiona el boton de conexion/desconexion.
+ * Para que se ejecuten sus acciones, es necesario que exista conexion con el 
+ * servidor, el cliente este dado de alta y los puertos esten listados.
+ */
+function Api_SerialManageConnection (){
+  if (!FlagEmbeddedSysConnected){
+    //TODO Borrar
+    PortSelected = "/dev/pts/13";
+
+    Serial_CreateConnection(
+      PortSelected, 
+      BaudRateSelected, 
+      Serial_CallbackOpen, 
+      Serial_CallbackDataArrived,
+      Serial_CloseConnection
+    );
+
+    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System connected");
+    Serial_WriteConnectionLabel ("State: Embedded System connected");
+  } else {
+    Serial_CloseConnection();
+    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
+    Serial_WriteConnectionLabel ("State: Embedded System disconnected");
+  }
 }
 
 /**
@@ -353,7 +387,7 @@ function Serial_WriteConnectionLabel (messageToWrite) {
  * 
  * @returns {Boolean} isValidCommand true si es un comando valido, false caso contrario.
  */
-function Api_ExecuteVirtualPeriphericalCall (commString){
+function Logic_ParseCommandArrived (commString){
   var isValidCommand = false;
   
   // Chequea que la respuesta del servidor tenga formato correcto.
@@ -550,38 +584,6 @@ function Api_ExecuteVirtualPeriphericalCall (commString){
 }
 
 /**
- * Trata de listar los puertos disponibles.
- * Esta funcion se dispara periodicamente.
- * Para que se ejecuten sus acciones, primero es necesario que exista conexion
- * con el servidor, y ademas, el cliente este dado de alta.
- */
-function Api_TryToListPorts (){
-  if (!FlagPortsListed){
-    Log_Print (Log_t.DEBUG, "Logic_TryToListPorts", "Trying to list ports...");
-    Serial_FillPortsList();
-  }
-}
-
-/**
- * Trata de conectase al puerto y baudrate seleccionados por el usuario.
- * Esta funcion se dispara cuando el usuario presiona el boton de conexion/desconexion.
- * Para que se ejecuten sus acciones, es necesario que exista conexion con el 
- * servidor, el cliente este dado de alta y los puertos esten listados.
- */
-function Api_ManageSerialConnection (){
-  if (!FlagEmbeddedSysConnected){
-    PortSelected = "/dev/pts/13";
-    Serial_CreateConnection(PortSelected, BaudRateSelected);
-    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System connected");
-    Serial_WriteConnectionLabel ("State: Embedded System connected");
-  } else {
-    Serial_CloseConnection();
-    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
-    Serial_WriteConnectionLabel ("State: Embedded System disconnected");
-  }
-}
-
-/**
  * Inicializa la aplicacion. Esta funcion es llamada al inicio del archivo.
  * Basicamente las opraciones que realiza son darles comportamiento a los 
  * objetos HTML obtenidos desde el document y asociar algunas variables a esos objetos.
@@ -603,7 +605,7 @@ function Logic_InitializeApp (){
   })
   
   document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e) => {
-    Api_ManageSerialConnection();
+    Api_SerialManageConnection();
   })
   
   document.querySelector(".PortsCont_LblPortState").innerHTML = PortConnectionText;
@@ -695,7 +697,7 @@ function Logic_InitializeApp (){
 
   setInterval(Logic_UpdateAppState, INTERVAL_REFRESH_APP);
 
-  setInterval(Api_TryToListPorts, INTERVAL_LIST_PORTS);
+  setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
 
 }
 
