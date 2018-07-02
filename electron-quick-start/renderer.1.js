@@ -47,15 +47,11 @@
 
 /*==================[inclusions]=============================================*/
 
-
-// 'use strict';
-
-// Readline lets us tap into the process events
-const readline = require('readline');
-
 const Required_SerialPort = require('serialport');
 
 /*==================[macros]=================================================*/
+
+const STRING_EMPTY             = "";
 
 // Settings asociados al formato de los comandos
 const COMMAND_INIT             = "{";
@@ -63,7 +59,6 @@ const COMMAND_END              = "}";
 const COMMAND_SEPARATOR        = ";";
 // Settings asociados a la conexion con puertos COM
 const BAUD_RATES_LIST          = [9600, 19200, 38400, 57600, 115200];
-const NO_PORTS_RESPONSE        = "0" 
 // Posibles estados de los GPIO
 const GPIO_STATE_HIGH          = '1';
 const GPIO_STATE_LOW           = '0';
@@ -82,9 +77,7 @@ const LCD_LINE_2_PREAMBULE     = "<br>";
 const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
 const INTERVAL_REFRESH_APP     = 200;
-const INTERVAL_CONNECT_SERVER  = 1000;
 const INTERVAL_LIST_PORTS      = 1000;
-const INTERVAL_PERIPH_COMMANDS = 200;
 // Paths con imagenes de los swtiches
 const IMG_SWITCH_ON            = "images/switch_on.svg"
 const IMG_SWITCH_OFF           = "images/switch_off.svg"
@@ -100,9 +93,6 @@ const IMG_LED_VIOLET           = "images/led_violet.svg"
 const IMG_LED_YELOW            = "images/led_yellow.svg"
 const IMG_LED_WHITE            = "images/led_white.svg"
 const IMG_LED_OFF              = "images/led_off.svg"
-
-const SERIAL_PORT        = '/dev/pts/4';
-const SERIAL_BAUDRATE    = 115200;
 
 /*==================[typedef]================================================*/
 
@@ -175,8 +165,6 @@ let LcdText                    = "\\(-)/ Hello CIAA \\(-)/";
 let DebugProcessedText         = "Debug processed text";
 let DebugSendedText            = "Debug sended text";
 
-const Obj_ReadLine   = Required_SerialPort.parsers.Readline;
-const Obj_Parser     = new Obj_ReadLine();
 var   Obj_SerialPort; 
 
 /*==================[Objects events and initialization]=========================*/
@@ -265,13 +253,15 @@ function Serial_CreateConnection (port, baudrate){
 
   Obj_SerialPort.on    ('data', function(data){
 
-    Log_Print (Log_t.DEBUG, "Not_defined", '[DEBUG] - Serial_ReceiveDataCallback - Data received from serial: ' + data);
-    Api_ExecuteVirtualPeriphericalCall(data);
+    Log_Print (Log_t.DEBUG, "Serial_ReceiveDataCallback", 'Data received from serial: ' + data);
+    var SerialBuffer = "";
+    SerialBuffer = data.toString().replace(/(\n)/g,"");
+    Api_ExecuteVirtualPeriphericalCall(SerialBuffer);
     // todo dataCallback(data);
   } );
 
   Obj_SerialPort.on    ('close', function(){
-    Log_Print (Log_t.DEBUG, "Not_defined", '[NORMAL] - Serial close - Close callback');
+    Log_Print (Log_t.NORMAL, "Serial close", 'Close callback');
     Serial_CloseConnection();
     // todo closeCallback();
   } );
@@ -342,6 +332,7 @@ function Serial_WriteConnectionLabel (messageToWrite) {
  */
 function Api_ExecuteVirtualPeriphericalCall (commString){
   var isValidCommand = false;
+  
   // Chequea que la respuesta del servidor tenga formato correcto.
   if (
     commString.charAt(0) == COMMAND_INIT && 
@@ -556,6 +547,7 @@ function Api_TryToListPorts (){
  */
 function Api_ManageSerialConnection (){
   if (!FlagEmbeddedSysConnected){
+    PortSelected = "/dev/pts/13";
     Serial_CreateConnection(PortSelected, BaudRateSelected);
     Log_Print ("NORMAL", "Logic_ManageSerialConnection", "Estado: Conectado al embebido");
     Serial_WriteConnectionLabel ("Estado: Conectado al embebido");
