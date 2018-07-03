@@ -10,13 +10,100 @@
 
 /*==================[internal functions declaration]=========================*/
 
-static void	TestBluetoothCommands	(void);
-
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
+
+/*==================[external functions definition]==========================*/
+
+int main(void){
+
+	/* Inicializar la placa */
+	boardConfig();
+
+	vBoardConfig(UART_USB, VIRTUAL_BAUDRATE);
+
+	while(1) {
+
+		vGpioWrite(V_LED1, TRUE);
+		gpioWrite(LED1, TRUE);
+		delay(500);
+
+		vGpioWrite(V_LED2, TRUE);
+		gpioWrite(LED2, TRUE);
+		delay(500);
+
+		vGpioWrite(V_LED3, TRUE);
+		gpioWrite(LED3, TRUE);
+		delay(500);
+
+		vGpioWrite(V_LED1, FALSE);
+		gpioWrite(LED1, FALSE);
+		delay(500);
+
+		vGpioWrite(V_LED2, FALSE);
+		gpioWrite(LED2, FALSE);
+		delay(500);
+
+		vGpioWrite(V_LED3, FALSE);
+		gpioWrite(LED3, FALSE);
+		delay(500);
+
+		//		TestBluetoothCommands();
+		//		TestGpioWrite();
+		//		TestGpioRead();
+		//		TestGpioToggle();
+		//		TestGpioReadAndToggle();
+//		TestDisplayWriteByte();
+//		TestDisplayWriteString();
+//		TestAdc();
+//		TestDac();
+//		Test7Segments();
+		//TestIntegral2();
+	}
+	return 0 ;
+}
+
+/*==================[end of file]============================================*/
+
+
+
+/* todo: gran BUG de programacion. Resulta que no andaba el delay.
+ * Pense que era el codigo, pero lo que paso fue que con freeRTOS en la
+ * sapi lo comentamos al tick config. Esto fue porque freeRTOS necesita
+ * usar el tick. Lo que pasa, es que mas alla que haya dos sapi (una baremetal
+ * y la otra rtos, en un momento el codigo de freeRTOS no compilaba, entonces
+ * comentamos la funcion tick config en la sapi baremetal tambien. */
+/* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
+
+/**
+ * El paradigma respecto a la aplicacion en C y bluetooth es que para el micro
+ * sera transparente si el acceso es a hardware real o a hardware fisico, es decir
+ * en la biblioteca appPoncho se incluiran funciones como si fueran hardware real
+ * que ya esta configurado y disponible para usar.
+ * Hay que imaginar que la app dispone de hardware real al que se accede, por lo
+ * que, cuando se manda por ejemplo uartWriteString por la uart, en realidad, en la
+ * aplicacion no hay ningun hardware que pueda soportar esa opcion. Si puede llegar
+ * a ver un display que sea capaz de recibir texto, entonces, si se quiere manadr
+ * una cadena de texto por bluetooth hacia un display de la APP se deberia mandar, por ejemplo
+ *
+ * 		appPonchoDisplayWrite ("Cadena de texto");
+ *
+ * Ya que una funcion de este tipo tiene mucho mas sentido si se esta emulando hardware real.
+ * Este mismo concepto tiene el mismo efecto para todos los perifericos.
+ *
+ * Algunas aclaraciones y/o limitaciones;
+ *
+ * 	Debido que se esta emulando hardware el envio/recepcion de comandos hacia la app
+ * 	sera bloqueante. Imaginar el caso de querer leer una tecla de hardware fisico.
+ * 	El micro pregunta por un pin y si o si se va a devolver algo. Entonces claramente
+ * 	se debe quedar bloqueado esperando que le llegue un dato, si no es como si fisicamente
+ * 	hubiera perdido conexion con el hardware.
+ *
+ * @return
+ */
 
 //static void	TestBluetoothCommands	(void){
 //	while (gpioRead(TEC2));
@@ -373,138 +460,78 @@ static void	TestBluetoothCommands	(void);
 //
 //}
 
-static void TestIntegral (){
-
-	while (gpioRead(TEC2));
-	appPonchoGpioWrite(BT_LEDR, TRUE);
-	gpioWrite(LEDR, TRUE);
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoGpioWrite(BT_LED1, TRUE);
-	gpioWrite(LED1, TRUE);
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPoncho7SegmentsWrite(BT_7SEG, '5');
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoDacWrite(BT_DAC1, appPonchoAdcRead(BT_CH1));
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoDacWrite(BT_DAC1, appPonchoAdcRead(BT_CH1));
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoDisplayWriteByte(BT_LCD1, 'm');
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoDisplayWriteString(BT_LCD1, "Aqui llego Bala, bala!");
-	delay (2000);
-
-	while (gpioRead(TEC2));
-	appPonchoGpioWrite(BT_LED3, !appPonchoGpioRead(BT_TEC4));
-	gpioWrite(LED3, appPonchoGpioRead(BT_TEC4));
-	delay (2000);
-}
-
-void TestIntegral2 (){
-	uint8_t adcValue = 0;
-	static uint8_t counter = '0';
-
-	if (!appPonchoGpioRead(BT_TEC1)){
-		appPonchoGpioToggle(BT_LEDB);
-		gpioToggle(LEDB);
-	}
-
-	if (!appPonchoGpioRead(BT_TEC2)){
-			appPonchoGpioToggle(BT_LED1);
-			gpioToggle(LED1);
-		}
-
-	if (!appPonchoGpioRead(BT_TEC3)){
-			appPonchoGpioToggle(BT_LED2);
-			gpioToggle(LED2);
-		}
-
-	if (!appPonchoGpioRead(BT_TEC4)){
-			appPonchoGpioToggle(BT_LED3);
-			gpioToggle(LED3);
-		}
-
-	adcValue = appPonchoAdcRead(BT_CH1);
-	appPonchoDacWrite(BT_DAC1, adcValue);
-	appPoncho7SegmentsWrite(BT_7SEG, ((adcValue/25) + '0') );
-
-	appPonchoDisplayWriteByte(BT_LCD1, counter);
-
-	if (++counter > '9'){
-		counter = '0';
-		appPonchoDisplayWriteString(BT_LCD1, "Se resetea el contador...");
-		delay (2000);
-	}
-	adcValue = 0;
-}
-/*==================[external functions definition]==========================*/
-
-/* todo: gran BUG de programacion. Resulta que no andaba el delay.
- * Pense que era el codigo, pero lo que paso fue que con freeRTOS en la
- * sapi lo comentamos al tick config. Esto fue porque freeRTOS necesita
- * usar el tick. Lo que pasa, es que mas alla que haya dos sapi (una baremetal
- * y la otra rtos, en un momento el codigo de freeRTOS no compilaba, entonces
- * comentamos la funcion tick config en la sapi baremetal tambien. */
-/* FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE RESET. */
-
-/**
- * El paradigma respecto a la aplicacion en C y bluetooth es que para el micro
- * sera transparente si el acceso es a hardware real o a hardware fisico, es decir
- * en la biblioteca appPoncho se incluiran funciones como si fueran hardware real
- * que ya esta configurado y disponible para usar.
- * Hay que imaginar que la app dispone de hardware real al que se accede, por lo
- * que, cuando se manda por ejemplo uartWriteString por la uart, en realidad, en la
- * aplicacion no hay ningun hardware que pueda soportar esa opcion. Si puede llegar
- * a ver un display que sea capaz de recibir texto, entonces, si se quiere manadr
- * una cadena de texto por bluetooth hacia un display de la APP se deberia mandar, por ejemplo
- *
- * 		appPonchoDisplayWrite ("Cadena de texto");
- *
- * Ya que una funcion de este tipo tiene mucho mas sentido si se esta emulando hardware real.
- * Este mismo concepto tiene el mismo efecto para todos los perifericos.
- *
- * Algunas aclaraciones y/o limitaciones;
- *
- * 	Debido que se esta emulando hardware el envio/recepcion de comandos hacia la app
- * 	sera bloqueante. Imaginar el caso de querer leer una tecla de hardware fisico.
- * 	El micro pregunta por un pin y si o si se va a devolver algo. Entonces claramente
- * 	se debe quedar bloqueado esperando que le llegue un dato, si no es como si fisicamente
- * 	hubiera perdido conexion con el hardware.
- *
- * @return
- */
-int main(void){
-
-	/* Inicializar la placa */
-	boardConfig();
-
-	appPonchoConfig(BT_MODULE_HC06, UART_232, BAUD_RATE_BLUETOOTH);
-
-	while(1) {
-		//		TestBluetoothCommands();
-		//		TestGpioWrite();
-		//		TestGpioRead();
-		//		TestGpioToggle();
-		//		TestGpioReadAndToggle();
-//		TestDisplayWriteByte();
-//		TestDisplayWriteString();
-//		TestAdc();
-//		TestDac();
-//		Test7Segments();
-		TestIntegral2();
-	}
-	return 0 ;
-}
-
-/*==================[end of file]============================================*/
+//static void TestIntegral (){
+//
+//	while (gpioRead(TEC2));
+//	vGpioWrite(V_LEDR, TRUE);
+//	gpioWrite(LEDR, TRUE);
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vGpioWrite(V_LED1, TRUE);
+//	gpioWrite(LED1, TRUE);
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	v7SegmentsWrite(V_7SEG, '5');
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vDacWrite(V_DAC_CH1, vAdcRead(V_ADC_CH1));
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vDacWrite(V_DAC_CH1, vAdcRead(V_ADC_CH1));
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vLcdWriteByte(V_LCD1, 'm');
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vLcdWriteString(V_LCD1, "Aqui llego Bala, bala!");
+//	delay (2000);
+//
+//	while (gpioRead(TEC2));
+//	vGpioWrite(V_LED3, !vGpioRead(V_TEC4));
+//	gpioWrite(LED3, vGpioRead(V_TEC4));
+//	delay (2000);
+//}
+//
+//void TestIntegral2 (){
+//	uint8_t adcValue = 0;
+//	static uint8_t counter = '0';
+//
+//	if (!vGpioRead(V_TEC1)){
+//		vGpioToggle(V_LEDB);
+//		gpioToggle(LEDB);
+//	}
+//
+//	if (!vGpioRead(V_TEC2)){
+//			vGpioToggle(V_LED1);
+//			gpioToggle(LED1);
+//		}
+//
+//	if (!vGpioRead(V_TEC3)){
+//			vGpioToggle(V_LED2);
+//			gpioToggle(LED2);
+//		}
+//
+//	if (!vGpioRead(V_TEC4)){
+//			vGpioToggle(V_LED3);
+//			gpioToggle(LED3);
+//		}
+//
+//	adcValue = vAdcRead(V_ADC_CH1);
+//	vDacWrite(V_DAC_CH1, adcValue);
+//	v7SegmentsWrite(V_7SEG, ((adcValue/25) + '0') );
+//
+//	vLcdWriteByte(V_LCD1, counter);
+//
+//	if (++counter > '9'){
+//		counter = '0';
+//		vLcdWriteString(V_LCD1, "Se resetea el contador...");
+//		delay (2000);
+//	}
+//	adcValue = 0;
+//}

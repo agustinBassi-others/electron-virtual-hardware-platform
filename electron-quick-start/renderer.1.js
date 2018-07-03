@@ -78,13 +78,11 @@ const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
 const INTERVAL_REFRESH_APP     = 200;
 const INTERVAL_LIST_PORTS      = 1000;
-// Paths con imagenes de los swtiches
+// Paths con imagenes de la APP
 const IMG_SWITCH_ON            = "images/switch_on.svg"
 const IMG_SWITCH_OFF           = "images/switch_off.svg"
-// Paths con imagenes de teclas
 const IMG_TEC_NO_PRESSED       = "images/button_no_pressed.svg"
 const IMG_TEC_PRESSED          = "images/button_pressed.svg"
-// Paths con imagenes de colores de leds
 const IMG_LED_RED              = "images/led_red.svg"
 const IMG_LED_GREEN            = "images/led_green.svg"
 const IMG_LED_BLUE             = "images/led_blue.svg"
@@ -165,7 +163,7 @@ let LcdText                    = "\\(-)/ Hello CIAA \\(-)/";
 let DebugProcessedText         = "Debug processed text";
 let DebugSendedText            = "Debug sended text";
 
-let   Obj_SerialPort;
+let Obj_SerialPort;
 let LogLevel = Log_t.ERROR; 
 
 /*==================[Objects events and initialization]=========================*/
@@ -174,16 +172,39 @@ Logic_InitializeApp();
 
 /*==================[internal function declaration]==========================*/
 
+/**
+ * Setea el nivel de log global de la APP
+ * @param {Log_t} logLevel 
+ */
 function Log_SetLevel (logLevel){
   LogLevel = logLevel;
 }
 
+/**
+ * Devuelve el nivel de log global de la APP
+ * @returns {Log_t} loglevel
+ */
 function Log_GetLevel(){
   return LogLevel;
 }
 
+/**
+ * Imprime un mensaje de log por consola.
+ * El mensaje se imprimira siempre y cuando el nivel de 
+ * log del mensaje sea menor o igual al nivel de log de la APP.
+ * @param {*} logLevel puede ser desde ERROR a EVENT
+ * @param {*} func nombre de la funcion que llama a esta funcion
+ * @param {*} message mensaje a enviar a la consola.
+ */
 function Log_Print (logLevel, func, message){
-  if (logLevel <= LogLevel){
+  
+  if (Log_GetLevel() < Log_t.ERROR){
+    Log_SetLevel(Log_t.ERROR);
+  } else if (Log_GetLevel() > Log_t.EVENT){
+    Log_SetLevel(Log_t.EVENT);
+  } 
+
+  if (logLevel <= Log_GetLevel()){
 
     if (logLevel == Log_t.ERROR){
       logLevel = "[ERROR] ";
@@ -201,12 +222,23 @@ function Log_Print (logLevel, func, message){
   
 }
 
+/**
+ * Envia data por el puerto serial.
+ * @param {*} data data a enviar.
+ */
 function Serial_SendData (data){
   Log_Print (Log_t.DEBUG, "Serial_SendData", 'Sending data serial: ' + data);
   
   Obj_SerialPort.write(data);
 }
 
+/**
+ * Llena las listas de puertos disponibles y baudrate a partir de la
+ * info recibida del driver de puerto serie que devuelve una lista con
+ * los puertos disponibles del sistema.
+ * Si se pueden listar al menos un puerto, el flag FlagPortsListed se 
+ * pone en true
+ */
 function Serial_FillPortsList(){
   var serialport = require('serialport');
   // list serial ports:
@@ -242,6 +274,11 @@ function Serial_FillPortsList(){
   
 }
 
+/**
+ * Limpia las listas de los puertos disponibles y el baudrate.
+ * Para hacer esta funcion recorre las listas desplegables elemento
+ * a elemento y los va eliminando.
+ */
 function Serial_ClearPortsLists(){
   var i;
   // Limpia las listas desplegables de los puertos disponibles
@@ -258,6 +295,20 @@ function Serial_ClearPortsLists(){
   }
 }
 
+/**
+ * Crea una conexion serial.
+ * Esta funcion tiene vital importancia en la APP ya que establece comunicacion 
+ * con el sistema embebido.
+ * Como la libreria 'serialport' funciona con callbacks segun los diferentes eventos 
+ * que pueden suceder con el puerto serie, esta funcion recibe los callbacks que van 
+ * a manejar cierta logica del programa una vez que sucedan los eventos asociados, tales 
+ * como abrir el puerto, datos en el puerto, cerrar el puerto.
+ * @param {*} port Puerto com seleccionado desde el menu desplegable
+ * @param {*} baudrate baudrate seleccionado desde el menu desplegable
+ * @param {*} openCallback callback que se ejecuta cuando se abre el puerto
+ * @param {*} dataCallback callback que se ejecuta cuando llegan datos por el puerto
+ * @param {*} closeCallback callback que se ejecuta cuando se cierra el puerto
+ */
 function Serial_CreateConnection (port, baudrate, openCallback, dataCallback, closeCallback){
   Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Try open port ' + port + " - at: " + baudrate + " baudios");
   
@@ -278,24 +329,37 @@ function Serial_WriteConnectionLabel (messageToWrite) {
   PortConnectionText = messageToWrite;
 }
 
+/**
+ * Callback llamado automaticamente cuando se abre el puerto serie.
+ * Este callback hace que el flag indicando que el sistema embebido esta 
+ * conectado se ponga en true.
+ * @param {*} flag 
+ */
 function Serial_CallbackOpen(flag){
   Log_Print (Log_t.DEBUG, "Api_SerialCallbackOpen", 'Serial port connected, flag: ' + flag);
   FlagEmbeddedSysConnected = true;
 }
 
+/**
+ * Callback que se ejecuta cuando llegan datos por el puerto serie provenientes del 
+ * sistema embebido. 
+ * Como todos los datos que deben llegar del sistema embebido deberian ser comandos de los 
+ * perifericos virtuales, cada arrivo de datos hace que se llame a la funcion Logic_ParseCommandArrived()
+ * @param {*} data data recibida por el perto serie
+ */
 function Serial_CallbackDataArrived(data){
   Log_Print (Log_t.DEBUG, "Api_SerialCallbackDataArrived", 'Data received from serial: ' + data);
   var SerialBuffer = "";
   SerialBuffer = data.toString().replace(/(\n)/g,"");
   Logic_ParseCommandArrived(SerialBuffer);
-  // todo dataCallback(data);
 }
 
 /**
- * 
- * @param {*} port 
- * @param {*} baudrate 
- * @todo recibir como parametro los callbacks y el conected flag
+ * Cierra la conexion con el puerto serie y ademas realiza las tareas asociadas
+ * al evento.
+ * Por ejemplo pone los flags de sistema embebid conectado y de puertos listados 
+ * en false, elimina el objeto de conexion serial y limpia las listas de puertos 
+ * disponibles y baudrates.
  */
 function Serial_CloseConnection (){
   if (FlagEmbeddedSysConnected){
@@ -328,7 +392,6 @@ function Api_SerialTryToListPorts (){
   }
 }
 
-
 /**
  * Trata de conectase al puerto y baudrate seleccionados por el usuario.
  * Esta funcion se dispara cuando el usuario presiona el boton de conexion/desconexion.
@@ -338,7 +401,7 @@ function Api_SerialTryToListPorts (){
 function Api_SerialManageConnection (){
   if (!FlagEmbeddedSysConnected){
     //TODO Borrar
-    PortSelected = "/dev/pts/13";
+    // PortSelected = "/dev/pts/13";
 
     Serial_CreateConnection(
       PortSelected, 
@@ -761,9 +824,8 @@ function Logic_UpdateAppState () {
 //===============[ Debug Container]===================================
 
 document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
-  // ServerBuffer = document.getElementById("DebugCont_TxtBoxCommand").value;
-  // Api_Serial_ParseCommandArrived(ServerBuffer);
-})
+
+});
 
 
 /*==================[internal function declaration]==========================*/

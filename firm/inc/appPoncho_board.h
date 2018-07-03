@@ -14,98 +14,91 @@ extern "C" {
 
 /*==================[macros]=================================================*/
 
-#define BAUD_RATE_BLUETOOTH		9600
+#define VIRTUAL_BAUDRATE		9600
 
 /** Estados logicos de las teclas y leds de la APP. */
-#define BT_LOW					104//'l'
-#define BT_HIGH					108//'h'
+#define VIRTUAL_GPIO_LOW		'0'
+#define VIRTUAL_GPIO_HIGH		'1'
+#define VIRTUAL_GPIO_INVALID	-1
 
 /** Tiempo maximo de espera por una respuesta. */
 #define BT_MAX_TIMES_TO_WAIT_RESPONSE		30
 
 /*==================[typedef]================================================*/
 
-typedef enum BluetoothCommand {
+typedef enum VirtualCommand {
 	//Comandos asociados a GPIO
-	COMMAND_GPIO_READ 		= 103,//'g',
-	COMMAND_GPIO_WRITE 		= 115,//'s',
+	COMM_SERIAL_GPIO_READ 		= 'a',
+	COMM_SERIAL_GPIO_WRITE 		= 'b',
 
 	//Comandos asociados al ADC/DAC
-	COMMAND_ADC_READ		= 114,//'r',
-	COMMAND_DAC_WRITE		= 100,//'d',
+	COMM_SERIAL_ADC_READ		= 'c',
+	COMM_SERIAL_DAC_WRITE		= 'd',
 
 	// Comandos asociados al display LCD
-	COMMAND_LCD_WRITE_BYTE 	= 109,//'m',
-	COMMAND_LCD_WRITE_STRING= 99,//'c',
+	COMM_SERIAL_LCD_WRITE_BYTE 	= 'e',
+	COMM_SERIAL_LCD_WRITE_STRING= 'f',
 
 	// Comandos asociados al display LCD
-	COMMAND_7SEG_WRITE 		= 55,//'7',
+	COMM_SERIAL_7SEG_WRITE 		= 'g',
 
 	// Comandos asociados al display LCD
-	COMMAND_MOTOR_RIGHT		= 43,//'+',
-	COMMAND_MOTOR_LEFT 		= 45,//'-',
-} BluetoothCommand_t;
+	COMM_SERIAL_MOTOR_RIGHT		= 'h',
+	COMM_SERIAL_MOTOR_LEFT 		= 'i',
+} VirtualCommand_t;
 
-typedef enum BluetoothModule {
-	BT_MODULE_HC05,
-	BT_MODULE_HC06
-} BluetoothModule_t;
+typedef enum VirtualCommandType {
+	COMM_SERIAL_REQUEST = '0',
+	COMM_SERIAL_RESPONSE = '1'
+};
 
-typedef enum BluetoothPeriphericalMap {
+typedef enum VirtualPeriphericalMap {
 
 	// Valores corespondientes a las teclas bluetooth
-	BT_LEDR = 113,//'q',
-	BT_LEDG = 119,//'w',
-	BT_LEDB = 101,//'e',
-	BT_LED1 = 114,//'r',
-	BT_LED2 = 116,//'t',
-	BT_LED3 = 121,//'y',
+	V_LEDR = 'a',
+	V_LEDG = 'b',
+	V_LED1 = 'c',
+	V_LED2 = 'd',
+	V_LED3 = 'e',
+	V_LED4 = 'f',
 
 	// Valores corespondientes a las teclas bluetooth
-	BT_TEC1 = 97,//'1',
-	BT_TEC2 = 115,//'2',
-	BT_TEC3 = 100,//'3',
-	BT_TEC4 = 102,//'4',
+	V_TEC1 = 'g',
+	V_TEC2 = 'h',
+	V_TEC3 = 'i',
+	V_TEC4 = 'j',
 
 	// Valores coorespondientes a los pines ADC
-	BT_CH1 = 122,//'z',
-	BT_CH2 = 120,//'x',
-	BT_CH3 = 99,//'y',
+	V_ADC_CH1 = 'k',
 
 	// Valores coorespondientes a los pines DAC
-	BT_DAC1 = 117,//'v',
+	V_DAC_CH1 = 'n',
 
 	// Valores coorespondientes al periferico LCD
-	BT_LCD1 = 111,//'o',
+	V_LCD1 = 'o',
 
 	// Valores coorespondientes al periferico 7 segmentos
-	BT_7SEG = 70,//'p',
+	V_7SEG = 'p',
 
-	// Valores coorespondientes a los motores
-	BT_MOTOR1 = 106,//'v',
-	BT_MOTOR2 = 107,//'k',
-	BT_MOTOR3 = 108,//'l',
-
-} BluetoothPeriphericalMap_t;
+} VirtualPeriphericalMap_t;
 
 /*==================[external data declaration]==============================*/
 
 /*==================[external functions declaration]=========================*/
 
-bool_t		appPonchoConfig					(BluetoothModule_t bluetoothModule, uartMap_t uartMap, uint32_t baudRate);
+bool_t		vBoardConfig    (uartMap_t uartMap, uint32_t baudRate);
 
-//bool_t		appPonchoGpioRead				(BluetoothPeriphericalMap_t bluetoothPin, bool_t * pinState);
-bool_t		appPonchoGpioRead				(BluetoothPeriphericalMap_t bluetoothPin);
-void		appPonchoGpioWrite				(BluetoothPeriphericalMap_t bluetoothPin, bool_t pinState);
-void		appPonchoGpioToggle				(BluetoothPeriphericalMap_t bluetoothPin);
+bool_t		vGpioRead				(VirtualPeriphericalMap_t bluetoothPin);
+void		vGpioWrite				(VirtualPeriphericalMap_t bluetoothPin, bool_t pinState);
+void		vGpioToggle				(VirtualPeriphericalMap_t bluetoothPin);
 
-void		appPonchoDisplayWriteByte		(BluetoothPeriphericalMap_t display, char byteToWrite);
-void		appPonchoDisplayWriteString		(BluetoothPeriphericalMap_t display, char * stringToWrite);
+void		vLcdWriteByte		(VirtualPeriphericalMap_t display, char byteToWrite);
+void		vLcdWriteString		(VirtualPeriphericalMap_t display, char * stringToWrite);
 
-uint8_t		appPonchoAdcRead				(BluetoothPeriphericalMap_t adcChannel);
-void		appPonchoDacWrite				(BluetoothPeriphericalMap_t dacChannel, uint8_t dacValue);
+uint8_t		vAdcRead				(VirtualPeriphericalMap_t adcChannel);
+void		vDacWrite        (VirtualPeriphericalMap_t dacChannel, uint8_t dacValue);
 
-void		appPoncho7SegmentsWrite			(BluetoothPeriphericalMap_t display, uint8_t valueToShow);
+void		v7SegmentsWrite  (VirtualPeriphericalMap_t display, uint8_t valueToShow);
 
 /*==================[cplusplus]==============================================*/
 
