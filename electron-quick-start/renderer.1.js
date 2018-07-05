@@ -142,6 +142,7 @@ const PeriphMap_t = {
 // Variables asociadas a la conexion de puertos COM
 let PortSelected               = "";
 let BaudRateSelected           = 115200;
+let SerialBuffer               = "";
 // Flags que rigen el comportamiento de la APP
 let FlagPortsListed            = false;
 let FlagEmbeddedSysConnected   = false;
@@ -348,10 +349,27 @@ function Serial_CallbackOpen(flag){
  * @param {*} data data recibida por el perto serie
  */
 function Serial_CallbackDataArrived(data){
+  var receiveBuffer = "";
+
   Log_Print (Log_t.DEBUG, "Api_SerialCallbackDataArrived", 'Data received from serial: ' + data);
-  var SerialBuffer = "";
-  SerialBuffer = data.toString().replace(/(\n)/g,"");
-  Logic_ParseCommandArrived(SerialBuffer);
+  
+  receiveBuffer = data.toString().replace(/(\n)/g,"");
+
+  if (receiveBuffer.includes("{") && receiveBuffer.includes("}")){
+    Logic_ParseCommandArrived(receiveBuffer);
+  } else {
+    if (SerialBuffer == "" && receiveBuffer.includes("{")){
+      // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer first part of command: " + receiveBuffer);
+      SerialBuffer = receiveBuffer;
+    } else if (SerialBuffer.includes("{") && receiveBuffer.includes("}")){
+      // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer las part of command: " + receiveBuffer);
+      SerialBuffer = SerialBuffer + receiveBuffer;
+      Logic_ParseCommandArrived(SerialBuffer);
+      SerialBuffer = "";
+    }
+  }
+
+  
 }
 
 /**

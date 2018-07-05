@@ -14,7 +14,7 @@ extern "C" {
 
 /*==================[macros]=================================================*/
 
-#define VIRTUAL_BAUDRATE		9600
+#define VIRTUAL_BAUDRATE		115200
 
 /** Estados logicos de las teclas y leds de la APP. */
 #define VIRTUAL_GPIO_LOW		'0'
@@ -22,7 +22,7 @@ extern "C" {
 #define VIRTUAL_GPIO_INVALID	-1
 
 /** Tiempo maximo de espera por una respuesta. */
-#define BT_MAX_TIMES_TO_WAIT_RESPONSE		30
+#define MS_TO_WAIT_RESPONSE		30
 
 /*==================[typedef]================================================*/
 
@@ -50,7 +50,7 @@ typedef enum VirtualCommand {
 typedef enum VirtualCommandType {
 	COMM_SERIAL_REQUEST = '0',
 	COMM_SERIAL_RESPONSE = '1'
-};
+} VirtualCommandType_t;
 
 typedef enum VirtualPeriphericalMap {
 
@@ -96,7 +96,7 @@ void		vLcdWriteByte		(VirtualPeriphericalMap_t display, char byteToWrite);
 void		vLcdWriteString		(VirtualPeriphericalMap_t display, char * stringToWrite);
 
 uint8_t		vAdcRead				(VirtualPeriphericalMap_t adcChannel);
-void		vDacWrite        (VirtualPeriphericalMap_t dacChannel, uint8_t dacValue);
+void		vDacWrite        (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue);
 
 void		v7SegmentsWrite  (VirtualPeriphericalMap_t display, uint8_t valueToShow);
 

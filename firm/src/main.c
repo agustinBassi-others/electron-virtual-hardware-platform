@@ -10,6 +10,8 @@
 
 /*==================[internal functions declaration]=========================*/
 
+static void Test (void);
+
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
@@ -20,53 +22,43 @@
 
 int main(void){
 
-	/* Inicializar la placa */
 	boardConfig();
 
 	vBoardConfig(UART_USB, VIRTUAL_BAUDRATE);
 
 	while(1) {
-
-		vGpioWrite(V_LED1, TRUE);
-		gpioWrite(LED1, TRUE);
-		delay(500);
-
-		vGpioWrite(V_LED2, TRUE);
-		gpioWrite(LED2, TRUE);
-		delay(500);
-
-		vGpioWrite(V_LED3, TRUE);
-		gpioWrite(LED3, TRUE);
-		delay(500);
-
-		vGpioWrite(V_LED1, FALSE);
-		gpioWrite(LED1, FALSE);
-		delay(500);
-
-		vGpioWrite(V_LED2, FALSE);
-		gpioWrite(LED2, FALSE);
-		delay(500);
-
-		vGpioWrite(V_LED3, FALSE);
-		gpioWrite(LED3, FALSE);
-		delay(500);
-
-		//		TestBluetoothCommands();
-		//		TestGpioWrite();
-		//		TestGpioRead();
-		//		TestGpioToggle();
-		//		TestGpioReadAndToggle();
-//		TestDisplayWriteByte();
-//		TestDisplayWriteString();
-//		TestAdc();
-//		TestDac();
-//		Test7Segments();
-		//TestIntegral2();
+		Test();
 	}
 	return 0 ;
 }
 
 /*==================[end of file]============================================*/
+
+static void TestGpioWrite	(){
+	vGpioWrite(V_LED1, TRUE);
+	gpioWrite(LED1, TRUE);
+	delay(500);
+
+	vGpioWrite(V_LED2, TRUE);
+	gpioWrite(LED2, TRUE);
+	delay(500);
+
+	vGpioWrite(V_LED3, TRUE);
+	gpioWrite(LED3, TRUE);
+	delay(500);
+
+	vGpioWrite(V_LED1, FALSE);
+	gpioWrite(LED1, FALSE);
+	delay(500);
+
+	vGpioWrite(V_LED2, FALSE);
+	gpioWrite(LED2, FALSE);
+	delay(500);
+
+	vGpioWrite(V_LED3, FALSE);
+	gpioWrite(LED3, FALSE);
+	delay(500);
+}
 
 
 
@@ -158,69 +150,6 @@ int main(void){
 //
 //}
 //
-//static void TestGpioWrite	(){
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDR, BT_HIGH);
-//	gpioWrite(LEDR, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDG, BT_HIGH);
-//	gpioWrite(LEDG, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDB, BT_HIGH);
-//	gpioWrite(LEDB, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED1, BT_HIGH);
-//	gpioWrite(LED1, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED2, BT_HIGH);
-//	gpioWrite(LED2, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED3, BT_HIGH);
-//	gpioWrite(LED3, TRUE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDR, BT_LOW);
-//	gpioWrite(LEDR, FALSE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDG, BT_LOW);
-//	gpioWrite(LEDG, FALSE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LEDB, BT_LOW);
-//	gpioWrite(LEDB, FALSE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED1, BT_LOW);
-//	gpioWrite(LED1, FALSE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED2, BT_LOW);
-//	gpioWrite(LED2, FALSE);
-//	delay(2000);
-//
-//	while (gpioRead(TEC2));
-//	appPonchoGpioWrite(BT_LED3, BT_LOW);
-//	gpioWrite(LED3, FALSE);
-//	delay(2000);
-//
-//
-//}
 //
 //static void TestGpioRead (){
 //	uint8_t state;
@@ -535,3 +464,22 @@ int main(void){
 //	}
 //	adcValue = 0;
 //}
+
+
+
+static void Test (void){
+	TestGpioWrite();
+
+	//		TestBluetoothCommands();
+	//		TestGpioWrite();
+	//		TestGpioRead();
+	//		TestGpioToggle();
+	//		TestGpioReadAndToggle();
+//		TestDisplayWriteByte();
+//		TestDisplayWriteString();
+//		TestAdc();
+//		TestDac();
+//		Test7Segments();
+	//TestIntegral2();
+}
+
