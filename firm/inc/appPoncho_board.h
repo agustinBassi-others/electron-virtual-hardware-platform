@@ -34,10 +34,10 @@ extern "C" {
 /*==================[typedef]================================================*/
 
 typedef enum LcdLine{
-	LCD_MULTI_LINE = '0',
-	LCD_FIRST_LINE = '1',
-	LCD_SECOND_LINE = '2',
-	LCD_THIRD_LINE = '3'
+	LCD_LINE_ALL    = '0',
+	LCD_LINE_FIRST  = '1',
+	LCD_LINE_SECOND = '2',
+	LCD_LINE_THIRD  = '3'
 } LcdLine_t;
 
 typedef enum VirtualCommand {

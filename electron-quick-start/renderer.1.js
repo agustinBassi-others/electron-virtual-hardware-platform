@@ -72,7 +72,7 @@ const LCD_FIRST_LINE           = "1";
 const LCD_SECOND_LINE          = "2";
 const LCD_THIRD_LINE           = "3";
 const LCD_MULTI_LINE_LENGHT    = 55;
-const LCD_LINE_LENGHT          = 55;
+const LCD_LINE_LENGHT          = 18;
 const LCD_LINE_2_PREAMBULE     = "<br>";
 const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
@@ -93,6 +93,13 @@ const IMG_LED_WHITE            = "images/led_white.svg"
 const IMG_LED_OFF              = "images/led_off.svg"
 
 /*==================[typedef]================================================*/
+
+const LcdLine_t = {
+  ALL     : 0,
+  FIRST   : 1,
+  SECOND  : 2,
+  THIRD   : 3
+}
 
 const Log_t = {
   ERROR   : 0,
@@ -543,14 +550,39 @@ function Logic_ParseCommandArrived (commString){
         let lcdLine = commString.charAt(5);
         let lcdStr = commString.slice(7, (commString.length - 1) );
 
-        if (lcdLine == LCD_MULTI_LINE){
+        // if (lcdLine == LCD_MULTI_LINE){
+        //   if (lcdStr != STRING_EMPTY){
+        //     if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
+        //       lcdStr = lcdStr.slice(0, LCD_MULTI_LINE_LENGHT);
+        //     }
+        //     LcdText = lcdStr;
+        //   }
+        // } else if (lcdLine == LCD_FIRST_LINE || lcdLine == LCD_SECOND_LINE || lcdLine == LCD_THIRD_LINE){
+          
+        //   if (lcdStr != STRING_EMPTY){
+            
+        //     if (lcdStr.length > LCD_LINE_LENGHT){
+        //       lcdStr = lcdStr.slice(0, LCD_LINE_LENGHT);
+        //     }
+
+        //     if (lcdLine == LCD_SECOND_LINE){
+        //       LcdText = LCD_LINE_2_PREAMBULE + lcdStr;
+        //     } else if (lcdLine == LCD_THIRD_LINE){
+        //       LcdText = LCD_LINE_3_PREAMBULE + lcdStr;
+        //     } else {
+        //       LcdText = lcdStr;
+        //     }
+        //   }
+
+        // }
+        if (lcdLine == LcdLine_t.ALL){
           if (lcdStr != STRING_EMPTY){
             if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
               lcdStr = lcdStr.slice(0, LCD_MULTI_LINE_LENGHT);
             }
             LcdText = lcdStr;
           }
-        } else if (lcdLine == LCD_FIRST_LINE || lcdLine == LCD_SECOND_LINE || lcdLine == LCD_THIRD_LINE){
+        } else if (lcdLine == LcdLine_t.FIRST || lcdLine == LcdLine_t.SECOND || lcdLine == LcdLine_t.THIRD){
           
           if (lcdStr != STRING_EMPTY){
             
@@ -558,9 +590,9 @@ function Logic_ParseCommandArrived (commString){
               lcdStr = lcdStr.slice(0, LCD_LINE_LENGHT);
             }
 
-            if (lcdLine == LCD_SECOND_LINE){
+            if (lcdLine == LcdLine_t.SECOND){
               LcdText = LCD_LINE_2_PREAMBULE + lcdStr;
-            } else if (lcdLine == LCD_THIRD_LINE){
+            } else if (lcdLine == LcdLine_t.THIRD){
               LcdText = LCD_LINE_3_PREAMBULE + lcdStr;
             } else {
               LcdText = lcdStr;

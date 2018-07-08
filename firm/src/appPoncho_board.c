@@ -5,12 +5,12 @@
 
 /*==================[macros and definitions]=================================*/
 
-#define COMMAND_INIT              '{'
-#define COMMAND_END               '}'
-#define COMMAND_SEPARATOR         ';'
-#define LINE_END                  '\0'
+#define COMMAND_INIT        '{'
+#define COMMAND_END         '}'
+#define COMMAND_SEPARATOR   ';'
+#define LINE_END            '\0'
 
-#define MAX_ANALOG_VALUE 1023
+#define MAX_ANALOG_VALUE    1023
 
 /*==================[internal data declaration]==============================*/
 
@@ -207,14 +207,6 @@ char stringCommand [70];
 		stringCommand[4] = COMMAND_SEPARATOR;
 		stringCommand[5] = lcdLine;
 		stringCommand[6] = COMMAND_SEPARATOR;
-
-//		for (i = 7; stringToWrite[i - 7] != '\0' && i < 60; i++){
-//			if (stringToWrite[i - 7] != '\0'){
-//				stringCommand [i] = stringToWrite[i - 7];
-//			} else {
-//				break;
-//			}
-//		}
 
 		for (i = 0; i < lenght; i++){
 			stringCommand [i + 7] = stringToWrite[i];

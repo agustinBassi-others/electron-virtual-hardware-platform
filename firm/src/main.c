@@ -79,16 +79,16 @@ static void Test7Segments (){
 }
 
 static void TestDisplayWriteString	(){
-	vLcdWriteString(V_LCD1, LCD_MULTI_LINE, "Mensaje multilinea escrito desde la CIAA");
+	vLcdWriteString(V_LCD1, LCD_LINE_ALL, "Mensaje multilinea escrito desde la CIAA");
 	delay(2000);
 
-	vLcdWriteString(V_LCD1, LCD_FIRST_LINE, "Linea 1");
+	vLcdWriteString(V_LCD1, LCD_LINE_FIRST, "Linea 1");
 	delay(2000);
 
-	vLcdWriteString(V_LCD1, LCD_SECOND_LINE, "Linea 2");
+	vLcdWriteString(V_LCD1, LCD_LINE_SECOND, "Linea 2");
 	delay(2000);
 
-	vLcdWriteString(V_LCD1, LCD_THIRD_LINE, "Linea 3");
+	vLcdWriteString(V_LCD1, LCD_LINE_THIRD, "Linea 3");
 	delay(2000);
 
 }
