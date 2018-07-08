@@ -78,7 +78,7 @@ const LCD_FIRST_LINE           = "1";
 const LCD_SECOND_LINE          = "2";
 const LCD_THIRD_LINE           = "3";
 const LCD_MULTI_LINE_LENGHT    = 55;
-const LCD_LINE_LENGHT          = 55;
+const LCD_LINE_LENGHT          = 18;
 const LCD_LINE_2_PREAMBULE     = "<br>";
 const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas

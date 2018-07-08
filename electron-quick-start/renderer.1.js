@@ -361,6 +361,9 @@ function Serial_CallbackDataArrived(data){
     if (SerialBuffer == "" && receiveBuffer.includes("{")){
       // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer first part of command: " + receiveBuffer);
       SerialBuffer = receiveBuffer;
+    } else if (SerialBuffer.includes("{") && !receiveBuffer.includes("}")){
+      // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer las part of command: " + receiveBuffer);
+      SerialBuffer = SerialBuffer + receiveBuffer;
     } else if (SerialBuffer.includes("{") && receiveBuffer.includes("}")){
       // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer las part of command: " + receiveBuffer);
       SerialBuffer = SerialBuffer + receiveBuffer;

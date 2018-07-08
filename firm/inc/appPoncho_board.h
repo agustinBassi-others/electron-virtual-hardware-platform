@@ -21,10 +21,24 @@ extern "C" {
 #define VIRTUAL_GPIO_HIGH		'1'
 #define VIRTUAL_GPIO_INVALID	-1
 
+//#define LCD_MULTI_LINE           '0'
+//#define LCD_FIRST_LINE           '1'
+//#define LCD_SECOND_LINE          '2'
+//#define LCD_THIRD_LINE           '3'
+#define LCD_MULTI_LINE_LENGHT    55
+#define LCD_LINE_LENGHT          18
+
 /** Tiempo maximo de espera por una respuesta. */
 #define MS_TO_WAIT_RESPONSE		30
 
 /*==================[typedef]================================================*/
+
+typedef enum LcdLine{
+	LCD_MULTI_LINE = '0',
+	LCD_FIRST_LINE = '1',
+	LCD_SECOND_LINE = '2',
+	LCD_THIRD_LINE = '3'
+} LcdLine_t;
 
 typedef enum VirtualCommand {
 	//Comandos asociados a GPIO
@@ -92,8 +106,8 @@ bool_t		vGpioRead				(VirtualPeriphericalMap_t bluetoothPin);
 void		vGpioWrite				(VirtualPeriphericalMap_t bluetoothPin, bool_t pinState);
 void		vGpioToggle				(VirtualPeriphericalMap_t bluetoothPin);
 
-void		vLcdWriteByte		(VirtualPeriphericalMap_t display, char byteToWrite);
-void		vLcdWriteString		(VirtualPeriphericalMap_t display, char * stringToWrite);
+void		vLcdWriteByte		(VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char byteToWrite);
+void		vLcdWriteString		(VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char * stringToWrite);
 
 uint8_t		vAdcRead				(VirtualPeriphericalMap_t adcChannel);
 void		vDacWrite        (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue);

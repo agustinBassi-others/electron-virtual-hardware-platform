@@ -60,7 +60,38 @@ static void TestGpioWrite	(){
 	delay(500);
 }
 
+static void TestDac (){
+	uint16_t dacValue = 0;
 
+	for (dacValue = 0; dacValue <= 1000; dacValue += 100){
+		vDacWrite(V_DAC_CH1, dacValue);
+		delay(1000);
+	}
+}
+
+static void Test7Segments (){
+	uint8_t value = 0;
+
+	for (value = '0'; value <= '9'; value++){
+		v7SegmentsWrite(V_7SEG, value);
+		delay (1000);
+	}
+}
+
+static void TestDisplayWriteString	(){
+	vLcdWriteString(V_LCD1, LCD_MULTI_LINE, "Mensaje multilinea escrito desde la CIAA");
+	delay(2000);
+
+	vLcdWriteString(V_LCD1, LCD_FIRST_LINE, "Linea 1");
+	delay(2000);
+
+	vLcdWriteString(V_LCD1, LCD_SECOND_LINE, "Linea 2");
+	delay(2000);
+
+	vLcdWriteString(V_LCD1, LCD_THIRD_LINE, "Linea 3");
+	delay(2000);
+
+}
 
 /* todo: gran BUG de programacion. Resulta que no andaba el delay.
  * Pense que era el codigo, pero lo que paso fue que con freeRTOS en la
@@ -363,31 +394,7 @@ static void TestGpioWrite	(){
 //
 //}
 //
-//static void TestDac (){
-//	uint8_t adcValue = 0;
-//
-////	for (adcValue = 0; adcValue < 250; adcValue+=10){
-////		appPonchoDacWrite(BT_DAC1, adcValue);
-////		appPonchoDisplayWriteByte(BT_LCD1, adcValue);
-////		Vumeter(adcValue);
-////		delay(200);
-////	}
-//	adcValue = appPonchoAdcRead(BT_CH1);
-//	appPonchoDacWrite(BT_DAC1, adcValue);
-//	Vumeter(adcValue);
-//	delay(200);
-//}
-//
-//static void Test7Segments (){
-//	uint8_t value = 0;
-//
-//	for (value = '0'; value < '9'; value++){
-//		appPoncho7SegmentsWrite(BT_7SEG, value);
-//		appPonchoDisplayWriteByte(BT_LCD1, value);
-//		delay (1000);
-//	}
-//
-//}
+
 
 //static void TestIntegral (){
 //
@@ -468,18 +475,21 @@ static void TestGpioWrite	(){
 
 
 static void Test (void){
-	TestGpioWrite();
+	//	TestGpioWrite();
+	//	TestDac();
+//	Test7Segments();
+	TestDisplayWriteString();
 
 	//		TestBluetoothCommands();
 	//		TestGpioWrite();
 	//		TestGpioRead();
 	//		TestGpioToggle();
 	//		TestGpioReadAndToggle();
-//		TestDisplayWriteByte();
-//		TestDisplayWriteString();
-//		TestAdc();
-//		TestDac();
-//		Test7Segments();
+	//		TestDisplayWriteByte();
+	//		TestDisplayWriteString();
+	//		TestAdc();
+	//		TestDac();
+	//		Test7Segments();
 	//TestIntegral2();
 }
 
