@@ -151,7 +151,7 @@ static void TestAdcRead (){
 	uint16_t adcValue = 0;
 
 	while(1){
-		adcValue = vAdcRead2(V_ADC_CH1);
+		adcValue = vAdcRead(V_ADC_CH1);
 		if (adcValue >= 0 && adcValue <= 250){
 			gpioWrite(LEDR, TRUE);
 			gpioWrite(LED1, FALSE);
@@ -180,21 +180,11 @@ static void TestAdcRead (){
 static void Test (void){
 	//	TestGpioWrite();
 	//	TestDac();
-	//		Test7Segments();
+	//	Test7Segments();
 	//	TestDisplayWriteString();
 	//	TestGpioRead();
 	//	TestGpioToggle();
-
-	//		TestBluetoothCommands();
-	//		TestGpioWrite();
-	//		TestGpioRead();
-	//		TestGpioReadAndToggle();
-	//		TestDisplayWriteByte();
-	//		TestDisplayWriteString();
 	TestAdcRead();
-	//		TestDac();
-	//		Test7Segments();
-	//TestIntegral2();
 }
 
 
