@@ -17,9 +17,9 @@ extern "C" {
 #define VIRTUAL_BAUDRATE		115200
 
 /** Estados logicos de las teclas y leds de la APP. */
-#define VIRTUAL_GPIO_LOW		'0'
-#define VIRTUAL_GPIO_HIGH		'1'
-#define VIRTUAL_GPIO_INVALID	-1
+#define V_GPIO_LOW		'0'
+#define V_GPIO_HIGH		'1'
+#define V_GPIO_INVALID	-1
 
 //#define LCD_MULTI_LINE           '0'
 //#define LCD_FIRST_LINE           '1'
@@ -71,6 +71,7 @@ typedef enum VirtualPeriphericalMap {
 	// Valores corespondientes a las teclas bluetooth
 	V_LEDR = 'a',
 	V_LEDG = 'b',
+	V_LEDB = 'z',
 	V_LED1 = 'c',
 	V_LED2 = 'd',
 	V_LED3 = 'e',
@@ -109,7 +110,8 @@ void		vGpioToggle				(VirtualPeriphericalMap_t bluetoothPin);
 void		vLcdWriteByte		(VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char byteToWrite);
 void		vLcdWriteString		(VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char * stringToWrite);
 
-uint8_t		vAdcRead				(VirtualPeriphericalMap_t adcChannel);
+uint16_t		vAdcRead				(VirtualPeriphericalMap_t adcChannel);
+uint16_t		vAdcRead2				(VirtualPeriphericalMap_t adcChannel);
 void		vDacWrite        (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue);
 
 void		v7SegmentsWrite  (VirtualPeriphericalMap_t display, uint8_t valueToShow);

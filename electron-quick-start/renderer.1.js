@@ -76,7 +76,7 @@ const LCD_LINE_LENGHT          = 18;
 const LCD_LINE_2_PREAMBULE     = "<br>";
 const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
-const INTERVAL_REFRESH_APP     = 200;
+const INTERVAL_REFRESH_APP     = 100;
 const INTERVAL_LIST_PORTS      = 1000;
 // Paths con imagenes de la APP
 const IMG_SWITCH_ON            = "images/switch_on.svg"
@@ -129,18 +129,24 @@ const SerialCommandType_t = {
 // Lista con todo el mapa de perifericos virtuales
 const PeriphMap_t = {
 	LEDR                         : 'a',
-	LEDG                         : 'b',
+  LEDG                         : 'b',
+  LEDB                         : 'z',
 	LED1                         : 'c',
 	LED2                         : 'd',
 	LED3                         : 'e',
   LED4                         : 'f',
+
 	TEC1                         : 'g',
 	TEC2                         : 'h',
 	TEC3                         : 'i',
   TEC4                         : 'j',
+
   ADC_CH1                      : 'k',
+
   DAC_CH1                      : 'n',
-	DISPLAY_LCD1                 : 'o',
+
+  DISPLAY_LCD1                 : 'o',
+  
 	DISPLAY__7SEGS               : 'p'
 }
 
@@ -550,31 +556,6 @@ function Logic_ParseCommandArrived (commString){
         let lcdLine = commString.charAt(5);
         let lcdStr = commString.slice(7, (commString.length - 1) );
 
-        // if (lcdLine == LCD_MULTI_LINE){
-        //   if (lcdStr != STRING_EMPTY){
-        //     if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
-        //       lcdStr = lcdStr.slice(0, LCD_MULTI_LINE_LENGHT);
-        //     }
-        //     LcdText = lcdStr;
-        //   }
-        // } else if (lcdLine == LCD_FIRST_LINE || lcdLine == LCD_SECOND_LINE || lcdLine == LCD_THIRD_LINE){
-          
-        //   if (lcdStr != STRING_EMPTY){
-            
-        //     if (lcdStr.length > LCD_LINE_LENGHT){
-        //       lcdStr = lcdStr.slice(0, LCD_LINE_LENGHT);
-        //     }
-
-        //     if (lcdLine == LCD_SECOND_LINE){
-        //       LcdText = LCD_LINE_2_PREAMBULE + lcdStr;
-        //     } else if (lcdLine == LCD_THIRD_LINE){
-        //       LcdText = LCD_LINE_3_PREAMBULE + lcdStr;
-        //     } else {
-        //       LcdText = lcdStr;
-        //     }
-        //   }
-
-        // }
         if (lcdLine == LcdLine_t.ALL){
           if (lcdStr != STRING_EMPTY){
             if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
@@ -679,6 +660,8 @@ function Logic_ParseCommandArrived (commString){
             SerialCommand_t.COMM_SERIAL_ADC_READ + 
             COMMAND_SEPARATOR +
             periphericalMap + 
+            COMMAND_SEPARATOR +
+            SerialCommandType_t.TYPE_SERIAL_RESPONSE + 
             COMMAND_SEPARATOR +
             ("000" + Adc1Value).slice(-4) +
             COMMAND_END;
@@ -859,7 +842,7 @@ function Logic_UpdateAppState () {
   if (!Led4State){
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_OFF;
   } else {
-    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_VIOLET;
+    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_BLUE;
   }
 
   document.getElementById("AnalogCont_RangeDac").value         = Dac1Value;

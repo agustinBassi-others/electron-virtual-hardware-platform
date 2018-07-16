@@ -93,6 +93,115 @@ static void TestDisplayWriteString	(){
 
 }
 
+static void TestGpioRead (){
+	int8_t state;
+
+	if (!vGpioRead(V_TEC1)){
+		gpioWrite(LEDG, TRUE);
+	} else {
+		gpioWrite(LEDG, FALSE);
+	}
+	delay (50);
+
+	if (!vGpioRead(V_TEC2)){
+		gpioWrite(LED1, TRUE);
+	} else {
+		gpioWrite(LED1, FALSE);
+	}
+	delay (50);
+
+	if (!vGpioRead(V_TEC3)){
+		gpioWrite(LED2, TRUE);
+	} else {
+		gpioWrite(LED2, FALSE);
+	}
+	delay (50);
+
+	if (!vGpioRead(V_TEC4)){
+		gpioWrite(LED3, TRUE);
+	} else {
+		gpioWrite(LED3, FALSE);
+	}
+	delay (50);
+}
+
+static void TestGpioToggle (){
+	while (gpioRead(TEC1)){
+		vGpioToggle(V_LED1);
+		delay(500);
+	}
+
+	while (gpioRead(TEC1)){
+		vGpioToggle(V_LED2);
+		delay(500);
+	}
+
+	while (gpioRead(TEC1)){
+		vGpioToggle(V_LED3);
+		delay(500);
+	}
+
+	while (gpioRead(TEC1)){
+		vGpioToggle(V_LED4);
+		delay(500);
+	}
+}
+
+static void TestAdcRead (){
+	uint16_t adcValue = 0;
+
+	while(1){
+		adcValue = vAdcRead2(V_ADC_CH1);
+		if (adcValue >= 0 && adcValue <= 250){
+			gpioWrite(LEDR, TRUE);
+			gpioWrite(LED1, FALSE);
+			gpioWrite(LED2, FALSE);
+			gpioWrite(LED3, FALSE);
+		} else if (adcValue > 250 && adcValue <= 500){
+			gpioWrite(LEDR, TRUE);
+			gpioWrite(LED1, TRUE);
+			gpioWrite(LED2, FALSE);
+			gpioWrite(LED3, FALSE);
+		} else if (adcValue > 500 && adcValue <= 750){
+			gpioWrite(LEDR, TRUE);
+			gpioWrite(LED1, TRUE);
+			gpioWrite(LED2, TRUE);
+			gpioWrite(LED3, FALSE);
+		} else if (adcValue > 750){
+			gpioWrite(LEDR, TRUE);
+			gpioWrite(LED1, TRUE);
+			gpioWrite(LED2, TRUE);
+			gpioWrite(LED3, TRUE);
+		}
+		delay(200);
+	}
+}
+
+static void Test (void){
+	//	TestGpioWrite();
+	//	TestDac();
+	//		Test7Segments();
+	//	TestDisplayWriteString();
+	//	TestGpioRead();
+	//	TestGpioToggle();
+
+	//		TestBluetoothCommands();
+	//		TestGpioWrite();
+	//		TestGpioRead();
+	//		TestGpioReadAndToggle();
+	//		TestDisplayWriteByte();
+	//		TestDisplayWriteString();
+	TestAdcRead();
+	//		TestDac();
+	//		Test7Segments();
+	//TestIntegral2();
+}
+
+
+
+
+
+
 /* todo: gran BUG de programacion. Resulta que no andaba el delay.
  * Pense que era el codigo, pero lo que paso fue que con freeRTOS en la
  * sapi lo comentamos al tick config. Esto fue porque freeRTOS necesita
@@ -182,50 +291,7 @@ static void TestDisplayWriteString	(){
 //}
 //
 //
-//static void TestGpioRead (){
-//	uint8_t state;
-//
-//	appPonchoGpioRead(BT_TEC1, &state);
-//	if (state == BT_LOW){
-//		gpioWrite(LEDB, ON);
-//		appPonchoGpioWrite(BT_LEDB, BT_HIGH);
-//	} else {
-//		gpioWrite(LEDB, OFF);
-//		appPonchoGpioWrite(BT_LEDB, BT_LOW);
-//	}
-//	delay (200);
-//
-//	appPonchoGpioRead(BT_TEC2, &state);
-//	if (state == BT_LOW){
-//		gpioWrite(LED1, ON);
-//		appPonchoGpioWrite(BT_LED1, BT_HIGH);
-//	} else {
-//		gpioWrite(LED1, OFF);
-//		appPonchoGpioWrite(BT_LED1, BT_LOW);
-//	}
-//	delay (200);
-//
-//	appPonchoGpioRead(BT_TEC3, &state);
-//	if (state == BT_LOW){
-//		gpioWrite(LED2, ON);
-//		appPonchoGpioWrite(BT_LED2, BT_HIGH);
-//	} else {
-//		gpioWrite(LED2, OFF);
-//		appPonchoGpioWrite(BT_LED2, BT_LOW);
-//	}
-//	delay (200);
-//
-//	appPonchoGpioRead(BT_TEC4, &state);
-//	if (state == BT_LOW){
-//		gpioWrite(LED3, ON);
-//		appPonchoGpioWrite(BT_LED3, BT_HIGH);
-//	} else {
-//		gpioWrite(LED3, OFF);
-//		appPonchoGpioWrite(BT_LED3, BT_LOW);
-//	}
-//	delay (200);
-//
-//}
+
 //
 //static void TestGpioToggle (){
 //	uint8_t state;
@@ -384,16 +450,7 @@ static void TestDisplayWriteString	(){
 ////	}
 //}
 //
-//static void TestAdc (){
-//	uint8_t adcValue = 0;
-//
-//	adcValue = appPonchoAdcRead(BT_CH1);
-//	appPonchoDisplayWriteString(BT_LCD1, "Valor ADC leido");
-//	Vumeter(adcValue);
-//	delay(200);
-//
-//}
-//
+
 
 
 //static void TestIntegral (){
@@ -471,25 +528,4 @@ static void TestDisplayWriteString	(){
 //	}
 //	adcValue = 0;
 //}
-
-
-
-static void Test (void){
-	//	TestGpioWrite();
-	//	TestDac();
-//	Test7Segments();
-	TestDisplayWriteString();
-
-	//		TestBluetoothCommands();
-	//		TestGpioWrite();
-	//		TestGpioRead();
-	//		TestGpioToggle();
-	//		TestGpioReadAndToggle();
-	//		TestDisplayWriteByte();
-	//		TestDisplayWriteString();
-	//		TestAdc();
-	//		TestDac();
-	//		Test7Segments();
-	//TestIntegral2();
-}
 
