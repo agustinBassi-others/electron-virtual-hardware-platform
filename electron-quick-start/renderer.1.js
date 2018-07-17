@@ -58,7 +58,7 @@ const COMMAND_INIT             = "{";
 const COMMAND_END              = "}";
 const COMMAND_SEPARATOR        = ";";
 // Settings asociados a la conexion con puertos COM
-const BAUD_RATES_LIST          = [9600, 19200, 38400, 57600, 115200];
+const BAUD_RATES_LIST          = [115200, 57600, 38400, 19200, 9600];
 // Posibles estados de los GPIO
 const GPIO_STATE_HIGH          = '1';
 const GPIO_STATE_LOW           = '0';
@@ -67,10 +67,6 @@ const GPIO_STATE_INVALID       = -1;
 const ANALOG_MIN_VALUE         = 0;
 const ANALOG_MAX_VALUE         = 1023;
 // Settings para el display LCD 18x3
-const LCD_MULTI_LINE           = "0";
-const LCD_FIRST_LINE           = "1";
-const LCD_SECOND_LINE          = "2";
-const LCD_THIRD_LINE           = "3";
 const LCD_MULTI_LINE_LENGHT    = 55;
 const LCD_LINE_LENGHT          = 18;
 const LCD_LINE_2_PREAMBULE     = "<br>";
@@ -118,8 +114,6 @@ const SerialCommand_t = {
 	COMM_SERIAL_LCD_WRITE_BYTE   : 'e',
 	COMM_SERIAL_LCD_WRITE_STRING : 'f',
 	COMM_SERIAL_7SEG_WRITE       : 'g',
-	COMM_SERIAL_MOTOR_RIGHT      : 'h',
-	COMM_SERIAL_MOTOR_LEFT       : 'i',
 }
 // Tipo de comando (request o response)
 const SerialCommandType_t = {

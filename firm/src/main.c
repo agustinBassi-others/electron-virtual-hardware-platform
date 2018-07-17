@@ -177,6 +177,50 @@ static void TestAdcRead (){
 	}
 }
 
+static void TestIntegral1(){
+	uint8_t counter7Segs = '0';
+	char lcdMessages[4][50] = {
+			"Hola Pablo y Eric! este es un mensaje multilinea",
+			"Mensaje linea 1",
+			"Mensaje linea 2",
+			"Mensaje linea 3"
+	};
+	uint8_t lcdMessageIndex = 0;
+	uint16_t adcValue = 0;
+	bool_t stateTec1 = TRUE;
+	bool_t stateTec2 = TRUE;
+
+	while(1){
+		// funciona bien
+		v7SegmentsWrite(V_7SEG, counter7Segs);
+		// funciona bien
+		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdMessages[lcdMessageIndex]);
+		// paso a paso funciona bien, el problema es cuando esta corriendo
+		adcValue = vAdcRead(V_ADC_CH1);
+		// funciona bien pasa que hay que pasarle bien el valor
+		vDacWrite(V_DAC_CH1, adcValue);
+
+		stateTec1 = vGpioRead(V_TEC1);
+		vGpioWrite(V_LED1, !stateTec1);
+
+		stateTec2 = vGpioRead(V_TEC2);
+		vGpioWrite(V_LED2, !stateTec2);
+
+		vGpioToggle(V_LED4);
+
+		if (++counter7Segs > '9'){
+			counter7Segs = '0';
+		}
+
+		if (++lcdMessageIndex > 3){
+			lcdMessageIndex = 0;
+		}
+
+//		delay(200);
+
+	}
+}
+
 static void Test (void){
 	//	TestGpioWrite();
 	//	TestDac();
@@ -184,7 +228,8 @@ static void Test (void){
 	//	TestDisplayWriteString();
 	//	TestGpioRead();
 	//	TestGpioToggle();
-	TestAdcRead();
+//	TestAdcRead();
+	TestIntegral1();
 }
 
 

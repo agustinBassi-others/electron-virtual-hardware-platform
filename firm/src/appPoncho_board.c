@@ -10,7 +10,9 @@
 #define COMMAND_SEPARATOR        ';'
 
 #define MAX_ANALOG_VALUE         1023
-#define DELAY_BETWEEN_COMMANDS   50
+#define DELAY_BETWEEN_COMMANDS   30
+
+#define MAX_BYTES_TO_FLUSH       15
 
 #define V_GPIO_LOW		         '0'
 #define V_GPIO_HIGH		         '1'
@@ -37,10 +39,13 @@ static void    myDelay             (uint32_t delayMs);
 static void    myUartWriteByte     (uint8_t byteToWrite);
 static void    myUartWriteString   (char * string);
 static uint8_t myUartReadByte      (void);
+static void    FlushUartBuffer     (void);
 static bool_t  CheckIfValidCommand (VirtualCommand_t command, VirtualPeriphericalMap_t perMap);
 static bool_t  AnalogToString      (uint16_t numberToConver, char * stringNumber);
 
 /*==================[internal data definition]===============================*/
+
+static uint32_t DebugTimeBetweenCommands = DELAY_BETWEEN_COMMANDS;
 
 /*==================[external data definition]===============================*/
 //todo reemplazar bool_t por un tipo mio
@@ -146,6 +151,21 @@ static void myUartWriteString (char * string)
 }
 
 /**
+ * Limpia el buffer de recepcion de la UART.
+ * Para limpiarlo realiza MAX_BYTES_TO_FLUSH lecturas del buffer sin
+ * asignarselo a ninguna variable para comenzar a leer con el buffer limpio.
+ */
+static void FlushUartBuffer     (void){
+	uint32_t i;
+	uint8_t dataSerial = 0;
+
+	for (i = 0; i < MAX_BYTES_TO_FLUSH; i++){
+		dataSerial = myUartReadByte();
+		dataSerial++;
+	}
+}
+
+/**
  * Chequea que el comando a enviar hacia la aplicacion de hardware virtual
  * sea un comando valido. Por ejemplo, no se puede ejecutar el comando de
  * escribrir un GPIO en el periferico LCD o no se puede realizar el comando
@@ -203,6 +223,12 @@ static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeripherical
 			isValidCommand = TRUE;
 		}
 	}
+
+	if(isValidCommand)
+	{
+		myDelay(DebugTimeBetweenCommands);
+	}
+
 	return isValidCommand;
 }
 
@@ -272,22 +298,32 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
+		FlushUartBuffer();
+
 		myUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 10);
 
+		bool_t flagCommandInit = FALSE;
 		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 10)
 		{
 			if( (dataSerial = myUartReadByte()) != 0 )
 			{
-				stringCommand[i] = dataSerial;
-				if (stringCommand[i] == '}')
+				if (dataSerial == COMMAND_INIT)
 				{
-					break;
+					flagCommandInit = TRUE;
 				}
-				i++;
+				if (flagCommandInit)
+				{
+					stringCommand[i] = dataSerial;
+					if (stringCommand[i] == '}')
+					{
+						break;
+					}
+					i++;
+				}
 			}
 			delay(2);
 		}
@@ -308,7 +344,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 			}
 		}
 	}
-	myDelay(DELAY_BETWEEN_COMMANDS);
+	//	myDelay(DELAY_BETWEEN_COMMANDS);
 
 	return pinState;
 }
@@ -340,6 +376,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 	uint8_t i = 0;
 
 	if (CheckIfValidCommand(COMM_SERIAL_ADC_READ, virtualAdcPin)){
+
 		stringCommand[0] = COMMAND_INIT;
 		stringCommand[1] = COMM_SERIAL_ADC_READ;
 		stringCommand[2] = COMMAND_SEPARATOR;
@@ -350,22 +387,33 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
+		FlushUartBuffer();
+
 		myUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 15);
+
+		bool_t flagCommandInit = FALSE;
 
 		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 15)
 		{
 			if( (dataSerial = myUartReadByte()) != 0 )
 			{
-				stringCommand[i] = dataSerial;
-				if (stringCommand[i] == '}')
+				if (dataSerial == COMMAND_INIT)
 				{
-					break;
+					flagCommandInit = TRUE;
 				}
-				i++;
+				if (flagCommandInit)
+				{
+					stringCommand[i] = dataSerial;
+					if (stringCommand[i] == '}')
+					{
+						break;
+					}
+					i++;
+				}
 			}
 			delay(2);
 		}
@@ -404,7 +452,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 			}
 		}
 	}
-	myDelay(DELAY_BETWEEN_COMMANDS);
+	//	myDelay(DELAY_BETWEEN_COMMANDS);
 
 	return adcValue;
 }
