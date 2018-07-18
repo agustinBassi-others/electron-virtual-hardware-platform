@@ -154,7 +154,7 @@ let SerialBuffer               = "";
 let FlagPortsListed            = false;
 let FlagEmbeddedSysConnected   = false;
 // Variables asociadas a los objetos HTML
-let PortConnectionText         = "State: Trying to list ports..."
+//let PortConnectionText         = "State: Trying to list ports..."
 let Led1State                  = false;
 let Led2State                  = false;
 let Led3State                  = false;
@@ -334,7 +334,7 @@ function Serial_CreateConnection (port, baudrate, openCallback, dataCallback, cl
  * @param  {String} messageToWrite mensaje a escribir
  */
 function Serial_WriteConnectionLabel (messageToWrite) {
-  PortConnectionText = messageToWrite;
+  //PortConnectionText = messageToWrite;
 }
 
 /**
@@ -701,7 +701,7 @@ function Logic_InitializeApp (){
     Api_SerialManageConnection();
   })
   
-  document.querySelector(".PortsCont_LblPortState").innerHTML = PortConnectionText;
+  //document.querySelector(".PortsCont_LblPortState").innerHTML = PortConnectionText;
   
   document.getElementById("GpioCont_ImgTec1").addEventListener('mousedown', (e) => {
     Tec1State = false;
@@ -813,7 +813,7 @@ function Logic_UpdateAppState () {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_OFF;
   }
 
-  document.querySelector(".PortsCont_LblPortState").innerHTML  = PortConnectionText;
+  // document.querySelector(".PortsCont_LblPortState").innerHTML  = PortConnectionText;
   
   if (!Led1State){
     document.getElementById("GpioCont_ImgLed1").src = IMG_LED_OFF;

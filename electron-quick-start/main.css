@@ -26,7 +26,7 @@
 }
 
 body{
-    background-color: green;
+    background-color: rgb(89, 175, 40);
     user-select: none;
 }
 
@@ -46,13 +46,14 @@ section{
 .ComponentsCont{
     display: flex;
     flex-direction: row;
+    align-self: center;
+    /*background-color: blueviolet;*/
 }
 
 /*===========[ Titulo ]=======================*/
 
 .Title{
-    color: yellowgreen;
-    background-color: blueviolet;
+    color:black;
     text-align: center;
     font: 40px Font_AppText;
     margin-top: 5px;
@@ -60,6 +61,7 @@ section{
     margin-left: 12px;
     margin-right: 12px;
     height: 40px;
+    /*background-color: blueviolet;*/
 }
 
 /*===========[ Barra navegacion ]=============*/
@@ -68,29 +70,30 @@ section{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color:yellow;
     margin-left: 12px;
     margin-right: 12px;
+    /*background-color:yellow;*/
 }
 
 .NavigationBar{
-    background-color: orange;
     display: flex;
     align-items: center;
     flex-direction: row;
     padding: 5px;
+    /*background-color: orange;*/
 }
 
 .NavigationItem{
-    background-color: cornflowerblue;
-    background-color: green;
     font: 20px Font_AppText;
-    margin-left: 50px;
-    margin-right: 50px; 
+    margin-left: 25px;
+    margin-right: 25px; 
     padding-left: 5px;
     padding-right: 5px;
-    width: 150;
     text-decoration: none;
+    text-align: center;
+    color:black;
+    /*width: 150;*/
+    /*background-color: cornflowerblue;*/
 }
 
 /*===========[ Puertos disponibles ]==========*/
@@ -100,6 +103,7 @@ section{
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    align-self: center;
     margin-left: 12px;
     margin-right: 12px;
     border-top: 2px;
@@ -109,21 +113,22 @@ section{
     border-top-style: dashed;
     border-bottom-style: dashed;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     padding-top: 5px;
+    padding-bottom: 5px;
+    
 }
 
 .PortsCont_LeftContainer{
     display: inherit;
-    align-items: center
+    align-items: center;
 }
-
+/*
 .PortsCont_RightContainer{
     display: inherit;
     align-items: center;
-    background-color: aquamarine; 
 }
-
+*/
 .PortsCont_OptionList{
     width: 100px;
 }
@@ -136,7 +141,7 @@ section{
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
     margin-right: 15px;
-    
+    margin-left: 15px;
 }
 
 .PortsCont_ImgPortSwitch{
@@ -155,8 +160,8 @@ section{
     height: 200px;
     width: 500px;
     flex-direction: row;
-    background-color: brown;
     margin-left: 12px;
+    /*background-color: brown;*/
 }
 
 .GpioCont{
@@ -165,8 +170,8 @@ section{
     height: 190px;
     width: 100px;
     flex-direction: column;
-    background-color: yellowgreen;
     margin: 12.5px;
+    /*background-color: yellowgreen;*/
 }
 
 /*===========[ Analogicos]====================*/
@@ -177,8 +182,8 @@ section{
     flex-direction: row;
     height: 100px;
     width: 500px;
-    background-color: gold;
     margin-left: 12px;
+    /*background-color: gold;*/
 }
 
 .AnalogCont{
@@ -187,8 +192,8 @@ section{
     flex-direction: column;
     height: 100px;
     width: 225px;
-    background-color: royalblue;
     margin: 0px 12.5px;
+    /*background-color: royalblue;*/
 }
 
 .AnalogCont_Slider{
@@ -220,9 +225,9 @@ section{
     align-items: center;
     flex-direction: row;
     margin-left: 12px;
-    background-color: violet;
     height: 200px;
     width: 500px;
+    /*background-color: violet;*/
 }
 
 /*===========[ LCD ]==========================*/
@@ -233,8 +238,8 @@ section{
     flex-direction: column;
     width: 350px;
     height: 200px;
-    background-color: rebeccapurple;
     margin: 12.5px;
+    /*background-color: rebeccapurple;*/
 }
 
 .LcdCont_Lcd {
@@ -268,7 +273,7 @@ section{
     flex-direction: column;
     width: 100px;
     height: 200px;
-    background-color: cadetblue
+    /*background-color: cadetblue*/
 }
 
 .Segments7Cont_Display {
@@ -287,8 +292,8 @@ section{
 .DebugCont{
     width: 470px;
     height: 500px;
-    background-color: papayawhip;
     margin-left: 0px;
+    /*background-color: papayawhip;*/
 }
 
 .DebugCont_LblCommand{
@@ -333,11 +338,11 @@ section{
 }
 
 #DebugCont_SendedText{
-    background-color: black;
     color: greenyellow;
     font: bold 20px Monospace;
     height: 20px;
     margin: 15px;
+    /*background-color: black;*/
 }
 
 /*===========[ Footer ]=======================*/
