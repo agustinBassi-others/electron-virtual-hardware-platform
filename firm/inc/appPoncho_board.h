@@ -13,8 +13,13 @@ extern "C" {
 #endif
 
 /*==================[macros]=================================================*/
-#define VIRTUAL_BAUDRATE		 115200
 
+#define BOARD_EDU_CIAA_NXP
+#define BOARD_CIAA_ZERO
+#define BOARD_PIC_CSS
+#define BOARD_ARDUINO
+
+#define VIRTUAL_BAUDRATE		 115200
 
 /*==================[typedef]================================================*/
 
@@ -78,7 +83,7 @@ typedef enum VirtualPeriphericalMap {
 
 /*==================[external functions declaration]=========================*/
 
-bool_t   vBoardConfig    (uartMap_t uartMap, uint32_t baudRate);
+bool_t   vBoardConfig    (uint32_t baudRate);
 
 bool_t   vGpioRead       (VirtualPeriphericalMap_t bluetoothPin);
 void     vGpioWrite      (VirtualPeriphericalMap_t bluetoothPin, bool_t pinState);

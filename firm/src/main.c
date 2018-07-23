@@ -2,7 +2,7 @@
 /*==================[inclusions]=============================================*/
 
 #include "appPoncho_board.h"
-#include "sapi.h"     // <= sAPI header
+#include "sapi.h"     
 
 /*==================[macros and definitions]=================================*/
 
@@ -24,7 +24,7 @@ int main(void){
 
 	boardConfig();
 
-	vBoardConfig(UART_USB, VIRTUAL_BAUDRATE);
+	vBoardConfig(VIRTUAL_BAUDRATE);
 
 	while(1) {
 		Test();
@@ -179,6 +179,7 @@ static void TestAdcRead (){
 
 static void TestIntegral1(){
 	uint8_t counter7Segs = '0';
+	uint32_t counterLcd = 0;
 	char lcdMessages[4][50] = {
 			"Hola Pablo y Eric! este es un mensaje multilinea",
 			"Mensaje linea 1",
@@ -189,12 +190,16 @@ static void TestIntegral1(){
 	uint16_t adcValue = 0;
 	bool_t stateTec1 = TRUE;
 	bool_t stateTec2 = TRUE;
+	char lcdNumber[10];
 
 	while(1){
+
 		// funciona bien
 		v7SegmentsWrite(V_7SEG, counter7Segs);
 		// funciona bien
-		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdMessages[lcdMessageIndex]);
+//		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdMessages[lcdMessageIndex]);
+		stdioSprintf(lcdNumber, "%d", counterLcd);
+		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdNumber);
 		// paso a paso funciona bien, el problema es cuando esta corriendo
 		adcValue = vAdcRead(V_ADC_CH1);
 		// funciona bien pasa que hay que pasarle bien el valor
@@ -216,8 +221,25 @@ static void TestIntegral1(){
 			lcdMessageIndex = 0;
 		}
 
-//		delay(200);
+		counterLcd++;
 
+		gpioToggle(LED3);
+	}
+}
+
+static void TestDelay	(){
+	uint8_t led = LEDR;
+	uint32_t ledCounter = 0;
+	while(1){
+		if (++ledCounter == 1000){
+			ledCounter = 0;
+			gpioWrite(led, 0);
+			if (++led > LED3){
+				led = LEDR;
+			}
+		}
+		gpioToggle(led);
+		delay(1);
 	}
 }
 
@@ -230,6 +252,7 @@ static void Test (void){
 	//	TestGpioToggle();
 //	TestAdcRead();
 	TestIntegral1();
+//	TestDelay();
 }
 
 

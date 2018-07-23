@@ -45,7 +45,8 @@ static bool_t  AnalogToString      (uint16_t numberToConver, char * stringNumber
 
 /*==================[internal data definition]===============================*/
 
-static uint32_t DebugTimeBetweenCommands = DELAY_BETWEEN_COMMANDS;
+static uint32_t DebugTimeBetweenCommands = 25;
+static uint32_t DebugTimeBetweenReads = 5;
 
 /*==================[external data definition]===============================*/
 //todo reemplazar bool_t por un tipo mio
@@ -129,10 +130,12 @@ static void myUartWriteByte(uint8_t byteToWrite)
  */
 static uint8_t myUartReadByte(void)
 {
-	static uint8_t byteReaded = 0;
+	static uint8_t byteReaded;
 
-	uartReadByte(UartVirtual, &byteReaded);
-	myDelay(5);
+	if (!uartReadByte(UartVirtual, &byteReaded)){
+		byteReaded = 0;
+	}
+	myDelay(DebugTimeBetweenReads);
 
 	return byteReaded;
 }
@@ -147,7 +150,11 @@ static uint8_t myUartReadByte(void)
  */
 static void myUartWriteString (char * string)
 {
-	uartWriteString(UartVirtual, string);
+	while(*string != 0)
+	{
+		myUartWriteByte((uint8_t) *string);
+		string++;
+	}
 }
 
 /**
@@ -241,9 +248,9 @@ static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeripherical
  * @param baudRate velocidad de transmision.
  * @return 1 siempre.
  */
-bool_t vBoardConfig (uartMap_t uartMap, uint32_t baudRate)
+bool_t vBoardConfig (uint32_t baudRate)
 {
-	UartVirtual = uartMap;
+	UartVirtual = UART_USB;
 	uartConfig(UartVirtual, baudRate);
 	return TRUE;
 }
@@ -298,7 +305,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		FlushUartBuffer();
+//		FlushUartBuffer();
 
 		myUartWriteString(stringCommand);
 
@@ -325,7 +332,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 					i++;
 				}
 			}
-			delay(2);
+			myDelay(2);
 		}
 
 		// chequea si salio por timeout
@@ -344,7 +351,6 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 			}
 		}
 	}
-	//	myDelay(DELAY_BETWEEN_COMMANDS);
 
 	return pinState;
 }
@@ -387,7 +393,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		FlushUartBuffer();
+//		FlushUartBuffer();
 
 		myUartWriteString(stringCommand);
 
@@ -415,7 +421,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 					i++;
 				}
 			}
-			delay(2);
+			myDelay(2);
 		}
 
 		// chequea si salio por timeout
@@ -452,7 +458,6 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 			}
 		}
 	}
-	//	myDelay(DELAY_BETWEEN_COMMANDS);
 
 	return adcValue;
 }

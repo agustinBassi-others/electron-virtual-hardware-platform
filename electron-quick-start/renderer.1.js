@@ -72,7 +72,7 @@ const LCD_LINE_LENGHT          = 18;
 const LCD_LINE_2_PREAMBULE     = "<br>";
 const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
-const INTERVAL_REFRESH_APP     = 100;
+const INTERVAL_REFRESH_APP     = 20;
 const INTERVAL_LIST_PORTS      = 1000;
 // Paths con imagenes de la APP
 const IMG_SWITCH_ON            = "images/switch_on.svg"
@@ -845,17 +845,17 @@ function Logic_UpdateAppState () {
   
   document.querySelector(".Segments7Cont_Display").innerHTML   = Segment7Text;
 
-  document.getElementById("DebugCont_ProccesedText").innerHTML = DebugProcessedText;
+  // document.getElementById("DebugCont_ProccesedText").innerHTML = DebugProcessedText;
 
-  document.getElementById("DebugCont_SendedText").innerHTML = DebugSendedText;
+  // document.getElementById("DebugCont_SendedText").innerHTML = DebugSendedText;
 
 }
 
 //===============[ Debug Container]===================================
 
-document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
+// document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
 
-});
+// });
 
 
 /*==================[internal function declaration]==========================*/
