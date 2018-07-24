@@ -190,16 +190,18 @@ static void TestIntegral1(){
 	uint16_t adcValue = 0;
 	bool_t stateTec1 = TRUE;
 	bool_t stateTec2 = TRUE;
-	char lcdNumber[10];
+	char lcdNumber[20];
+
+	cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
 
 	while(1){
+		cyclesCounterReset();
 
 		// funciona bien
 		v7SegmentsWrite(V_7SEG, counter7Segs);
 		// funciona bien
 //		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdMessages[lcdMessageIndex]);
-		stdioSprintf(lcdNumber, "%d", counterLcd);
-		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdNumber);
+
 		// paso a paso funciona bien, el problema es cuando esta corriendo
 		adcValue = vAdcRead(V_ADC_CH1);
 		// funciona bien pasa que hay que pasarle bien el valor
@@ -212,6 +214,9 @@ static void TestIntegral1(){
 		vGpioWrite(V_LED2, !stateTec2);
 
 		vGpioToggle(V_LED4);
+
+		stdioSprintf(lcdNumber, "%d - uS: %d", counterLcd, (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + '0'), lcdNumber);
 
 		if (++counter7Segs > '9'){
 			counter7Segs = '0';

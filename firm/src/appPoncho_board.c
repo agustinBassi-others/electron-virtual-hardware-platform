@@ -35,7 +35,7 @@ static uartMap_t UartVirtual;
 
 /*==================[internal functions declaration]=========================*/
 
-static void    myDelay             (uint32_t delayMs);
+static void    myDelayMs             (uint32_t delayMs);
 static void    myUartWriteByte     (uint8_t byteToWrite);
 static void    myUartWriteString   (char * string);
 static uint8_t myUartReadByte      (void);
@@ -45,8 +45,8 @@ static bool_t  AnalogToString      (uint16_t numberToConver, char * stringNumber
 
 /*==================[internal data definition]===============================*/
 
-static uint32_t DebugTimeBetweenCommands = 25;
-static uint32_t DebugTimeBetweenReads = 5;
+static uint32_t DebugTimeBetweenCommands = 8;
+static uint32_t DebugTimeBetweenReads = 500;
 
 /*==================[external data definition]===============================*/
 //todo reemplazar bool_t por un tipo mio
@@ -105,9 +105,18 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
  * Funcion propia para llamar al delay de la plataforma.
  * @param delayMs
  */
-static void myDelay (uint32_t delayMs)
+static void myDelayMs (uint32_t delayMs)
 {
 	delay(delayMs);
+}
+
+/**
+ * Funcion propia para llamar al delay de la plataforma.
+ * @param delayMs
+ */
+static void myDelayUs (uint32_t delayMs)
+{
+	delayUs(delayMs);
 }
 
 /**
@@ -135,7 +144,7 @@ static uint8_t myUartReadByte(void)
 	if (!uartReadByte(UartVirtual, &byteReaded)){
 		byteReaded = 0;
 	}
-	myDelay(DebugTimeBetweenReads);
+	myDelayUs(DebugTimeBetweenReads);
 
 	return byteReaded;
 }
@@ -233,7 +242,7 @@ static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeripherical
 
 	if(isValidCommand)
 	{
-		myDelay(DebugTimeBetweenCommands);
+		myDelayMs(DebugTimeBetweenCommands);
 	}
 
 	return isValidCommand;
@@ -290,7 +299,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 	char stringCommand [10];
 	bool_t pinState = TRUE;
 	uint8_t dataSerial  = 0;
-	uint8_t counter = 0;
+	uint16_t counter = 0;
 	uint8_t i = 0;
 
 	if (CheckIfValidCommand(COMM_SERIAL_GPIO_READ, virtualGpioPin))
@@ -332,7 +341,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 					i++;
 				}
 			}
-			myDelay(2);
+//			myDelay(2);
 		}
 
 		// chequea si salio por timeout
@@ -378,7 +387,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 	char stringCommand [15];
 	static uint16_t adcValue = 0;
 	uint8_t dataSerial  = 0;
-	uint8_t counter = 0;
+	uint16_t counter = 0;
 	uint8_t i = 0;
 
 	if (CheckIfValidCommand(COMM_SERIAL_ADC_READ, virtualAdcPin)){
@@ -421,7 +430,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 					i++;
 				}
 			}
-			myDelay(2);
+//			myDelay(2);
 		}
 
 		// chequea si salio por timeout
