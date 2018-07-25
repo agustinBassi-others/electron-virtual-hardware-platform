@@ -35,7 +35,8 @@ static uartMap_t UartVirtual;
 
 /*==================[internal functions declaration]=========================*/
 
-static void    myDelayMs             (uint32_t delayMs);
+static void    myDelayMs           (uint32_t delayMs);
+static void    myDelayUs           (uint32_t delayMs)
 static void    myUartWriteByte     (uint8_t byteToWrite);
 static void    myUartWriteString   (char * string);
 static uint8_t myUartReadByte      (void);
@@ -301,6 +302,7 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 	uint8_t dataSerial  = 0;
 	uint16_t counter = 0;
 	uint8_t i = 0;
+	bool_t flagCommandInit = FALSE;
 
 	if (CheckIfValidCommand(COMM_SERIAL_GPIO_READ, virtualGpioPin))
 	{
@@ -314,15 +316,12 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-//		FlushUartBuffer();
-
 		myUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 10);
 
-		bool_t flagCommandInit = FALSE;
-		// Espera a recibir data por un tiempo determinado
+S		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 10)
 		{
 			if( (dataSerial = myUartReadByte()) != 0 )
@@ -341,7 +340,6 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 					i++;
 				}
 			}
-//			myDelay(2);
 		}
 
 		// chequea si salio por timeout
@@ -389,6 +387,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 	uint8_t dataSerial  = 0;
 	uint16_t counter = 0;
 	uint8_t i = 0;
+	bool_t flagCommandInit = FALSE;
 
 	if (CheckIfValidCommand(COMM_SERIAL_ADC_READ, virtualAdcPin)){
 
@@ -402,14 +401,10 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-//		FlushUartBuffer();
-
 		myUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 15);
-
-		bool_t flagCommandInit = FALSE;
 
 		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 15)
@@ -430,7 +425,6 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 					i++;
 				}
 			}
-//			myDelay(2);
 		}
 
 		// chequea si salio por timeout
@@ -587,11 +581,3 @@ void vLcdWriteString (VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char 
 }
 
 /*==================[end of file]============================================*/
-
-//void     vLcdWriteByte   (VirtualPeriphericalMap_t display, char byteToWrite){
-//	if (SendVirtualCommand(COMM_SERIAL_LCD_WRITE_BYTE, display)){
-//		uartWriteByte(UartVirtual, display);
-//		uartWriteByte(UartVirtual, byteToWrite);
-//	}
-//	delay (BETWEEN_COMMANDS_DELAY);
-//}

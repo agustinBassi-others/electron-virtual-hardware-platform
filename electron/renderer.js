@@ -4,11 +4,6 @@
  * @version 1.0
  * @description
  * 
- * Este archivo es el que brinda funcionalidad a la aplicacion.
- * Para funcionar unicamente requiere del modulo node-ipc.
- * Para darle vida a la APP toma los objetos HTML creados en el archivo 
- * index.html mediante el objeto document.get....
- * 
  * Arquitectura:
  * - HTML: Crea los objetos visuales de la APP.
  * - CSS: Brinda estilo a los objetos HTML.
@@ -26,14 +21,15 @@
  * |    DRIVER     |
  * -----------------
  * 
- * - LOGIC: Las funciones que tienen este prefijo se encargan de manejar la logica
- * del programa, es decir de realizar las tareas macro mas importantes. Dentro de estas
- * funciones se realizan llamadas a la capa API, que brinda soporte para realizar estas funciones.
- * - API: En esta capa se realizan las llamadas a las funciones de DRIVERS y a su vez, llamadas 
- * a funciones dentro de la misma capa API.
- * - DRIVER: Se realizan llamadas a los modulos de mas bajo nivel, y que no realizan ninguna logica.
- * 
- * 
+ * - LOGIC: 
+ *   Las funciones que tienen este prefijo se encargan de manejar la logica
+ *   del programa, es decir de realizar las tareas macro mas importantes. Dentro de estas
+ *   funciones se realizan llamadas a la capa API, que brinda soporte para realizar estas funciones.
+ * - API: 
+ *   En esta capa se realizan las llamadas a las funciones de DRIVERS y a su vez, llamadas 
+ *   a funciones dentro de la misma capa API.
+ * - DRIVER: 
+ *   Se realizan llamadas a los modulos de mas bajo nivel, y que no realizan ninguna logica.
  * 
  * La guia de estilo seguida en este archivo para nombrar sus componentes son:
  * 
@@ -41,7 +37,6 @@
  * - Variables globales: UpperCammelCase: Ej: let BaudRateSelected = 0;
  * - Variables locales: lowerCammelCase: Ej: let isConnected = false;
  * - Funciones: Sepa
- * 
  * 
  */
 
@@ -167,9 +162,6 @@ let Adc1Value                  = 512;
 let Dac1Value                  = 512;
 let Segment7Text               = "-";
 let LcdText                    = "\\(-)/ Hello CIAA \\(-)/";
-// Labels asociados al panel de debug.
-let DebugProcessedText         = "Debug processed text";
-let DebugSendedText            = "Debug sended text";
 
 let Obj_SerialPort;
 let LogLevel = Log_t.ERROR; 
@@ -391,7 +383,6 @@ function Serial_CallbackDataArrived(data){
  */
 function Serial_CloseConnection (){
   if (FlagEmbeddedSysConnected){
-    // Serial_ClosePort();
     Log_Print (Log_t.DEBUG, "Serial_CloseConnection", 'Closing serial port...');
 
     Obj_SerialPort.end();
@@ -428,8 +419,6 @@ function Api_SerialTryToListPorts (){
  */
 function Api_SerialManageConnection (){
   if (!FlagEmbeddedSysConnected){
-    //TODO Borrar
-    // PortSelected = "/dev/pts/13";
 
     Serial_CreateConnection(
       PortSelected, 
@@ -782,6 +771,7 @@ function Logic_InitializeApp (){
   }
   
   document.getElementById("AnalogCont_RangeDac").disabled = true;
+
   document.getElementById("AnalogCont_RangeDac").value = Dac1Value;
   
   document.querySelector(".LcdCont_TextContainer p").innerHTML = LcdText;
@@ -845,17 +835,6 @@ function Logic_UpdateAppState () {
   
   document.querySelector(".Segments7Cont_Display").innerHTML   = Segment7Text;
 
-  // document.getElementById("DebugCont_ProccesedText").innerHTML = DebugProcessedText;
-
-  // document.getElementById("DebugCont_SendedText").innerHTML = DebugSendedText;
-
 }
-
-//===============[ Debug Container]===================================
-
-// document.getElementById("DebugCont_BtnSend").addEventListener('click', (e) => {
-
-// });
-
 
 /*==================[internal function declaration]==========================*/
