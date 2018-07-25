@@ -45,8 +45,8 @@ static bool_t  AnalogToString      (uint16_t numberToConver, char * stringNumber
 
 /*==================[internal data definition]===============================*/
 
-static uint32_t DebugTimeBetweenCommands = 8;
-static uint32_t DebugTimeBetweenReads = 500;
+static uint32_t DebugTimeBetweenCommands = 7;
+static uint32_t DebugTimeBetweenReads = 10;
 
 /*==================[external data definition]===============================*/
 //todo reemplazar bool_t por un tipo mio

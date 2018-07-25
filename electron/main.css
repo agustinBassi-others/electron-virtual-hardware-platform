@@ -1,0 +1,354 @@
+/*===========[ Generales ]=======================*/
+
+@font-face {
+    font-family: Font_PcbSkill;
+    src: url("fonts/font_pcbSkill_1.otf");
+}
+
+@font-face {
+    font-family: Font_AppText;
+    src: url("fonts/font_appText_3.ttf");
+}
+
+@font-face {
+    font-family: Font_7Segments;
+    src: url("fonts/font_7segments.ttf");
+}
+
+@font-face {
+    font-family: Font_Lcd;
+    src: url("fonts/font_lcd_2.ttf");
+}
+
+@font-face {
+    font-family: Font_Footer;
+    src: url("fonts/font_footer.TTF");
+}
+
+body{
+    background-color: rgb(89, 175, 40);
+    user-select: none;
+}
+
+.PcbSkillText{
+    font: bold 20px Font_PcbSkill;
+    color: whitesmoke;  
+    user-select: none; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+.ComponentsCont{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    /*background-color: blueviolet;*/
+}
+
+/*===========[ Titulo ]=======================*/
+
+.Title{
+    color:black;
+    text-align: center;
+    font: 40px Font_AppText;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 40px;
+    /*background-color: blueviolet;*/
+}
+
+/*===========[ Barra navegacion ]=============*/
+
+.NavigationCont{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 12px;
+    margin-right: 12px;
+    /*background-color:yellow;*/
+}
+
+.NavigationBar{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px;
+    /*background-color: orange;*/
+}
+
+.NavigationItem{
+    font: 20px Font_AppText;
+    margin-left: 25px;
+    margin-right: 25px; 
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    text-align: center;
+    color:black;
+    /*width: 150;*/
+    /*background-color: cornflowerblue;*/
+}
+
+/*===========[ Puertos disponibles ]==========*/
+
+.PortsCont{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-top: 2px;
+    border-bottom: 2px;
+    border-top-color: aliceblue;
+    border-bottom-color: aliceblue;
+    border-top-style: dashed;
+    border-bottom-style: dashed;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.PortsCont_LeftContainer{
+    display: inherit;
+    align-items: center;
+}
+/*
+.PortsCont_RightContainer{
+    display: inherit;
+    align-items: center;
+}
+*/
+.PortsCont_OptionList{
+    width: 100px;
+}
+
+.PortsCont_LblAviablePorts{
+    font: 15px Font_AppText;
+    margin-right: 15px;
+}
+
+.PortsCont_LblAviableBaudrate{
+    font: 15px Font_AppText;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.PortsCont_ImgPortSwitch{
+    margin-left: 15px;
+}
+
+.PortsCont_LblPortState{
+    font: 15px Font_AppText;
+}
+
+/*===========[ GPIO ]=========================*/
+
+.GpiosCont{
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 500px;
+    flex-direction: row;
+    margin-left: 12px;
+    /*background-color: brown;*/
+}
+
+.GpioCont{
+    display: flex;
+    align-items: center;
+    height: 190px;
+    width: 100px;
+    flex-direction: column;
+    margin: 12.5px;
+    /*background-color: yellowgreen;*/
+}
+
+/*===========[ Analogicos]====================*/
+
+.AnalogsCont{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 100px;
+    width: 500px;
+    margin-left: 12px;
+    /*background-color: gold;*/
+}
+
+.AnalogCont{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+    width: 225px;
+    margin: 0px 12.5px;
+    /*background-color: royalblue;*/
+}
+
+.AnalogCont_Slider{
+    -webkit-appearance: none;
+    width: 225px;
+    height: 50px;
+    background: url('images/potentiometer.svg');
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-bottom: 0px;
+}
+
+.AnalogCont_Slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 60px;
+    border: 0;
+    background: url('images/slider.svg');
+    cursor: pointer;
+}
+
+/*===========[ Displays contaninter ]=========*/
+
+.DisplaysCont{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 12px;
+    height: 200px;
+    width: 500px;
+    /*background-color: violet;*/
+}
+
+/*===========[ LCD ]==========================*/
+
+.LcdCont {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 350px;
+    height: 200px;
+    margin: 12.5px;
+    /*background-color: rebeccapurple;*/
+}
+
+.LcdCont_Lcd {
+    background: url('images/lcd_display.svg');
+    font: 40px Font_Lcd;
+    text-align: center;
+    width: 350px;
+    height: 150px;
+    margin-bottom: 0px;
+}
+
+.LcdCont_Lcd p {
+    padding: 0 20px;
+    text-align: left;
+    user-select: none;
+}
+
+.LcdCont_TextContainer {
+    height: 68px;
+    position: relative;
+    top: 25px;
+    font-size: 20px;
+    padding: 2px 15px;
+}
+
+/*===========[ 7 Segmentos ]==================*/
+
+.Segments7Cont {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    height: 200px;
+    /*background-color: cadetblue*/
+}
+
+.Segments7Cont_Display {
+    background: url('images/display_7segs.svg');
+    font: 120px Font_7Segments;
+    color: red;
+    width: 100px;
+    height: 150px;
+    text-align: center;
+    margin-bottom: 0px;
+    user-select: none;
+}
+
+/*===========[ Debug ]========================*/
+
+.DebugCont{
+    width: 470px;
+    height: 500px;
+    margin-left: 0px;
+    /*background-color: papayawhip;*/
+}
+
+.DebugCont_LblCommand{
+    font: 15px Font_AppText;
+    margin: 15px;
+    padding-top: 15px;
+}
+
+#DebugCont_TxtBoxCommand{
+    font: 15px Font_AppText;
+    margin: 15px;
+    padding-top: 15px;
+    width: 250px;
+}
+
+#DebugCont_BtnSend{
+    font: 15px Font_AppText;
+    margin-top: 15px;
+    margin-left: 150px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.DebugCont_LblProccessed{
+    font: 15px Font_AppText;
+    margin: 15px;
+    padding-top: 15px;
+}
+
+#DebugCont_ProccesedText{
+    background-color: black;
+    color: greenyellow;
+    font: bold 20px Monospace;
+    height: 20px;
+    margin: 15px;
+}
+
+.DebugCont_LblSended{
+    font: 15px Font_AppText;
+    margin: 15px;
+    padding-top: 15px;
+}
+
+#DebugCont_SendedText{
+    color: greenyellow;
+    font: bold 20px Monospace;
+    height: 20px;
+    margin: 15px;
+    /*background-color: black;*/
+}
+
+/*===========[ Footer ]=======================*/
+
+.Footer{
+    margin-top: 10px;
+    font: 15px Font_Footer;
+    text-align: center;
+}

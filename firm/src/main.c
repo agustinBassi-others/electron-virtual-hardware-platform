@@ -232,19 +232,63 @@ static void TestIntegral1(){
 	}
 }
 
-static void TestDelay	(){
-	uint8_t led = LEDR;
-	uint32_t ledCounter = 0;
+static void TestTimming(){
+	char lcdText[50];
+
+	cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
+
 	while(1){
-		if (++ledCounter == 1000){
-			ledCounter = 0;
-			gpioWrite(led, 0);
-			if (++led > LED3){
-				led = LEDR;
-			}
-		}
-		gpioToggle(led);
-		delay(1);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		v7SegmentsWrite(V_7SEG, '1');
+		stdioSprintf(lcdText, "7SegsWrite: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vAdcRead(V_ADC_CH1);
+		stdioSprintf(lcdText, "AdcRead: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vDacWrite(V_DAC_CH1, 145);
+		stdioSprintf(lcdText, "DacWrite: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vGpioRead(V_TEC1);
+		stdioSprintf(lcdText, "GpioRead: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vGpioWrite(V_LED2, 1);
+		stdioSprintf(lcdText, "GpioWrite: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vGpioToggle(V_LED4);
+		stdioSprintf(lcdText, "GpioToggle: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		while (gpioRead(TEC1));
+		delay(1000);
+		cyclesCounterReset();
+		vLcdWriteString(V_LCD1, (LcdLine_t) LCD_LINE_ALL, "Hola Si, una consulta! Me queres mucho o poquito? Sofia");
+		stdioSprintf(lcdText, "LcdWrite: %d us", (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+		vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+
+		gpioToggle(LED3);
 	}
 }
 
@@ -256,7 +300,8 @@ static void Test (void){
 	//	TestGpioRead();
 	//	TestGpioToggle();
 //	TestAdcRead();
-	TestIntegral1();
+//	TestIntegral1();
+	TestTimming();
 //	TestDelay();
 }
 
