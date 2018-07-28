@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="../assets/css/index.css" />
     <title>Document</title>
 </head>
 
@@ -39,7 +40,7 @@
                 <select name="PortsCont_AviablePortsList" id="PortsCont_AviablePortsList" class="PortsCont_OptionList"></select>
                 <label class="PortsCont_LblAviableBaudrate">Baudrate:</label>
                 <select name="PortsCont_AviableBaudrateList" id="PortsCont_AviableBaudrateList" class="PortsCont_OptionList"></select>
-                <img draggable="false" class="PortsCont_ImgPortSwitch" id="PortsCont_ImgPortSwitch" src="images/switch_off.svg" alt="">
+                <img draggable="false" class="PortsCont_ImgPortSwitch" id="PortsCont_ImgPortSwitch" src="../assets/images/switch_off.svg" alt="">
             </div>
             <!--
             <div class="PortsCont_RightContainer">
@@ -55,27 +56,27 @@
 
                 <div class="GpiosCont">
                     <div class="GpioCont">
-                        <img draggable="false" id="GpioCont_ImgLed1" src="images/led_off.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgLed1" src="../assets/images/led_off.svg" alt="">
                         <label class="PcbSkillText">LED 1</label>
-                        <img draggable="false" id="GpioCont_ImgTec1" src="images/button_no_pressed.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgTec1" src="../assets/images/button_no_pressed.svg" alt="">
                         <label class="PcbSkillText">TEC 1</label>
                     </div>
                     <div class="GpioCont">
-                        <img draggable="false" id="GpioCont_ImgLed2" src="images/led_off.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgLed2" src="../assets/images/led_off.svg" alt="">
                         <label class="PcbSkillText">LED 2</label>
-                        <img draggable="false" id="GpioCont_ImgTec2" src="images/button_no_pressed.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgTec2" src="../assets/images/button_no_pressed.svg" alt="">
                         <label class="PcbSkillText">TEC 2</label>
                     </div>
                     <div class="GpioCont">
-                        <img draggable="false" id="GpioCont_ImgLed3" src="images/led_off.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgLed3" src="../assets/images/led_off.svg" alt="">
                         <label class="PcbSkillText">LED 3</label>
-                        <img draggable="false" id="GpioCont_ImgTec3" src="images/button_no_pressed.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgTec3" src="../assets/images/button_no_pressed.svg" alt="">
                         <label class="PcbSkillText">TEC 3</label>
                     </div>
                     <div class="GpioCont">
-                        <img draggable="false" id="GpioCont_ImgLed4" src="images/led_off.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgLed4" src="../assets/images/led_off.svg" alt="">
                         <label class="PcbSkillText">LED 4</label>
-                        <img draggable="false" id="GpioCont_ImgTec4" src="images/button_no_pressed.svg" alt="">
+                        <img draggable="false" id="GpioCont_ImgTec4" src="../assets/images/button_no_pressed.svg" alt="">
                         <label class="PcbSkillText">TEC 4</label>
                     </div>
                 </div>
@@ -115,25 +116,7 @@
                     </div>
                 </div>
             </div>
-        <!-- 
-            <div class="ComponentsCont_Right">
-                <div class="DebugCont">
-                    <label id="DebugCont_LblCommand" class="DebugCont_LblCommand">Comando:</label>
-                    <input type="text" name="DebugCont_TxtBoxCommand" id="DebugCont_TxtBoxCommand">
-                    <br>
-                    <button id="DebugCont_BtnSend">Enviar comando</button>
-                    <br>
-                    <label id="DebugCont_LblProccessed" class="DebugCont_LblProccessed">Procesado:</label>
-                    <div id="DebugCont_ProccesedText">
-                        <p>Bye world!</p>
-                    </div>
-                    <label id="DebugCont_LblSended" class="DebugCont_LblSended">Enviado:</label>
-                    <div id="DebugCont_SendedText">
-                        <p>Hello world!</p>
-                    </div>
-                </div>
-            </div>
-        -->
+
         </div>
 
     </section>
@@ -146,9 +129,8 @@
         <label>jagustinbassi@gmail.com</label>
     </footer>
 
-    <script>
-        require('./renderer.js')
-    </script>
+    <!--<script>require('./renderer.js')</script>-->
+    <script src="index.js"></script>
 </body>
 
 </html>

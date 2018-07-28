@@ -1,0 +1,13 @@
+
+.ContactContainer{
+    height: 200px; 
+    width: 600px; 
+    text-align: center; 
+    align-self: center; 
+    margin-top: 50px; 
+    margin-bottom: 50px;
+    padding: 25px 0px;
+    border: 3px;
+    border-style: dotted;
+    font: bold 20px;
+}

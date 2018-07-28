@@ -1,5 +1,5 @@
 /**
- * @file renderer.js
+ * @file index.js
  * @author Agustin Bassi <jagustinbassi@gmail.com>
  * @version 1.0
  * @description
@@ -70,18 +70,18 @@ const LCD_LINE_3_PREAMBULE     = "<br><br>";
 const INTERVAL_REFRESH_APP     = 20;
 const INTERVAL_LIST_PORTS      = 1000;
 // Paths con imagenes de la APP
-const IMG_SWITCH_ON            = "images/switch_on.svg"
-const IMG_SWITCH_OFF           = "images/switch_off.svg"
-const IMG_TEC_NO_PRESSED       = "images/button_no_pressed.svg"
-const IMG_TEC_PRESSED          = "images/button_pressed.svg"
-const IMG_LED_RED              = "images/led_red.svg"
-const IMG_LED_GREEN            = "images/led_green.svg"
-const IMG_LED_BLUE             = "images/led_blue.svg"
-const IMG_LED_CYAN             = "images/led_cyan.svg"
-const IMG_LED_VIOLET           = "images/led_violet.svg"
-const IMG_LED_YELOW            = "images/led_yellow.svg"
-const IMG_LED_WHITE            = "images/led_white.svg"
-const IMG_LED_OFF              = "images/led_off.svg"
+const IMG_SWITCH_ON            = "../assets/images/switch_on.svg"
+const IMG_SWITCH_OFF           = "../assets/images/switch_off.svg"
+const IMG_TEC_NO_PRESSED       = "../assets/images/button_no_pressed.svg"
+const IMG_TEC_PRESSED          = "../assets/images/button_pressed.svg"
+const IMG_LED_RED              = "../assets/images/led_red.svg"
+const IMG_LED_GREEN            = "../assets/images/led_green.svg"
+const IMG_LED_BLUE             = "../assets/images/led_blue.svg"
+const IMG_LED_CYAN             = "../assets/images/led_cyan.svg"
+const IMG_LED_VIOLET           = "../assets/images/led_violet.svg"
+const IMG_LED_YELOW            = "../assets/images/led_yellow.svg"
+const IMG_LED_WHITE            = "../assets/images/led_white.svg"
+const IMG_LED_OFF              = "../assets/images/led_off.svg"
 
 /*==================[typedef]================================================*/
 
