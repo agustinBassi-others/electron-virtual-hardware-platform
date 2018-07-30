@@ -2,10 +2,10 @@
 fs = require('fs');
 
 // Relative path of project.
-const HTML_CONTACT = __dirname + '/' + 'contact.html';
+const HTML_COMPONENTS = __dirname + '/' + 'components.html';
 
 // Read the content of file and save it in a variable.
-var HtmlContact = fs.readFileSync(HTML_CONTACT, 'utf8');
+var HtmlComponents = fs.readFileSync(HTML_COMPONENTS, 'utf8');
 
 // Write to HTML document the content recently readed.
-document.write(HtmlContact);
+document.write(HtmlComponents);
