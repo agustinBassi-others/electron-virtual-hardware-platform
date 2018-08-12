@@ -860,21 +860,25 @@ function Logic_ManageHtmlToShow(htmlToShow){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'block';
     document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
 
   } else if (htmlToShow == "Contact"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
 
   } else if (htmlToShow == "Source"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
+    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'block';
 
   } else if (htmlToShow == "Manual"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
+    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
 
   } else {
     console.log("Invalid htmlToShow")

@@ -1,13 +1,17 @@
+@font-face {
+    font-family: Font_AppText;
+    src: url("../fonts/font_appText_3.ttf");
+}
 
 .ContactContainer{
-    height: 200px; 
-    width: 600px; 
-    text-align: center; 
-    align-self: center; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 50px; 
     margin-bottom: 50px;
     padding: 25px 0px;
     border: 3px;
-    border-style: dotted;
-    font: bold 20px;
+    /* border-style; */
+    border-style: double;
+    font: 20px Font_AppText;
 }

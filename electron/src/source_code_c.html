@@ -1,0 +1,1168 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em; ">
+    <table><tr><td><pre style="margin: 0; line-height: 125%; font-size: 10px;">  
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+</pre></td><td><pre style="margin: 0; line-height: 125%; font-size: 10px;"><span style="color: #008000">/*==================[inclusions]=============================================*/</span>
+
+<span style="color: #0000ff">#include &quot;appPoncho_board.h&quot;</span>
+
+<span style="color: #008000">/*==================[macros and definitions]=================================*/</span>
+
+<span style="color: #0000ff">#define COMMAND_INIT             &#39;{&#39;</span>
+<span style="color: #0000ff">#define COMMAND_END              &#39;}&#39;</span>
+<span style="color: #0000ff">#define COMMAND_SEPARATOR        &#39;;&#39;</span>
+
+<span style="color: #0000ff">#define MAX_ANALOG_VALUE         1023</span>
+<span style="color: #0000ff">#define DELAY_BETWEEN_COMMANDS   30</span>
+
+<span style="color: #0000ff">#define MAX_BYTES_TO_FLUSH       15</span>
+
+<span style="color: #0000ff">#define V_GPIO_LOW		         &#39;0&#39;</span>
+<span style="color: #0000ff">#define V_GPIO_HIGH		         &#39;1&#39;</span>
+<span style="color: #0000ff">#define V_GPIO_INVALID	         -1</span>
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Posibles tipos de comandos que se pueden realizar. Este enum es utilizado</span>
+<span style="color: #008000"> * unicamente en los comandos de lectura de perifericos virtuales. Cuando el</span>
+<span style="color: #008000"> * sistema embebido quiere leer le enviar un REQUEST y la aplicacion responde</span>
+<span style="color: #008000"> * con un RESPONSE.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">typedef</span> <span style="color: #0000ff">enum</span> VirtualCommandType {
+    COMM_SERIAL_REQUEST  = <span style="color: #a31515">&#39;0&#39;</span>,<span style="color: #008000">//!&lt; COMM_SERIAL_REQUEST</span>
+    COMM_SERIAL_RESPONSE = <span style="color: #a31515">&#39;1&#39;</span> <span style="color: #008000">//!&lt; COMM_SERIAL_RESPONSE</span>
+} VirtualCommandType_t;
+
+<span style="color: #008000">/*==================[internal data declaration]==============================*/</span>
+
+<span style="color: #0000ff">static</span> uartMap_t UartVirtual;
+
+<span style="color: #008000">/*==================[internal functions declaration]=========================*/</span>
+
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span>    myDelayMs           (<span style="color: #2b91af">uint32_t</span> delayMs);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span>    myDelayUs           (<span style="color: #2b91af">uint32_t</span> delayMs)
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span>    myUartWriteByte     (<span style="color: #2b91af">uint8_t</span> byteToWrite);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span>    myUartWriteString   (<span style="color: #2b91af">char</span> * string);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">uint8_t</span> myUartReadByte      (<span style="color: #2b91af">void</span>);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span>    FlushUartBuffer     (<span style="color: #2b91af">void</span>);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">bool_t</span>  CheckIfValidCommand (VirtualCommand_t command, VirtualPeriphericalMap_t perMap);
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">bool_t</span>  AnalogToString      (<span style="color: #2b91af">uint16_t</span> numberToConver, <span style="color: #2b91af">char</span> * stringNumber);
+
+<span style="color: #008000">/*==================[internal data definition]===============================*/</span>
+
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">uint32_t</span> DebugTimeBetweenCommands = 7;
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">uint32_t</span> DebugTimeBetweenReads = 10;
+
+<span style="color: #008000">/*==================[external data definition]===============================*/</span>
+<span style="color: #008000">//todo reemplazar bool_t por un tipo mio</span>
+<span style="color: #008000">/*==================[internal functions definition]==========================*/</span>
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Convierte un numero entero analogico de 10 bits (entre 0 y 1023) en un</span>
+<span style="color: #008000"> * string de 4 elementos. El numero siempre sale en formato 4 digitos.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * Ejemplos:</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * valor int | valor string</span>
+<span style="color: #008000"> * 9         | 0009</span>
+<span style="color: #008000"> * 75        | 0075</span>
+<span style="color: #008000"> * 754       | 0754</span>
+<span style="color: #008000"> * 1015      | 1015</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * @param numberToConver numero entero a convertir.</span>
+<span style="color: #008000"> * @param stringNumber puntero al vector donde se almacenara el string convertido.</span>
+<span style="color: #008000"> * @return 0 si no hubo error, 1 si hubo error.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">bool_t</span> AnalogToString (<span style="color: #2b91af">uint16_t</span> numberToConver, <span style="color: #2b91af">char</span> * stringNumber)
+{
+    <span style="color: #2b91af">bool_t</span> error = FALSE;
+    <span style="color: #2b91af">uint8_t</span> thousands = 0;
+    <span style="color: #2b91af">uint8_t</span> hundreds = 0;
+    <span style="color: #2b91af">uint8_t</span> tens = 0;
+    <span style="color: #2b91af">uint8_t</span> units = 0;
+
+    <span style="color: #0000ff">if</span> (numberToConver &lt;= MAX_ANALOG_VALUE)
+    {
+        thousands = numberToConver / 1000;
+        hundreds = numberToConver / 100;
+        <span style="color: #0000ff">if</span> (hundreds &gt;= 10)
+        {
+            hundreds = 0;
+        }
+        tens = (numberToConver - ( (thousands * 1000) + (hundreds * 100) ) ) / 10 ;
+        units = (numberToConver - ((thousands * 1000) + (hundreds * 100) + (tens * 10)));
+
+        stringNumber[0] = thousands + <span style="color: #a31515">&#39;0&#39;</span>;
+        stringNumber[1] = hundreds + <span style="color: #a31515">&#39;0&#39;</span>;
+        stringNumber[2] = tens + <span style="color: #a31515">&#39;0&#39;</span>;
+        stringNumber[3] = units + <span style="color: #a31515">&#39;0&#39;</span>;
+        stringNumber[4] =<span style="color: #a31515">&#39;\0&#39;</span>;
+    }
+    <span style="color: #0000ff">else</span>
+    {
+        error = TRUE;
+    }
+
+    <span style="color: #0000ff">return</span> !error;
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Funcion propia para llamar al delay de la plataforma.</span>
+<span style="color: #008000"> * @param delayMs</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> myDelayMs (<span style="color: #2b91af">uint32_t</span> delayMs)
+{
+    delay(delayMs);
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Funcion propia para llamar al delay de la plataforma.</span>
+<span style="color: #008000"> * @param delayMs</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> myDelayUs (<span style="color: #2b91af">uint32_t</span> delayMs)
+{
+    delayUs(delayMs);
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Funcion propia para llamar a la funcion de sacar un</span>
+<span style="color: #008000"> * byte por la uart seleccionada cuando se configuro al modulo.</span>
+<span style="color: #008000"> * @param byteToWrite byte a escribir en el puerto serie.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> myUartWriteByte(<span style="color: #2b91af">uint8_t</span> byteToWrite)
+{
+    uartWriteByte(UartVirtual, (<span style="color: #2b91af">uint8_t</span>) byteToWrite);
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Funcion propia para leer un byte del puerto serie.</span>
+<span style="color: #008000"> * Como en funciones anteriores, las funciones de este modulo invocan</span>
+<span style="color: #008000"> * estas funciones en vez de la de una plataforma en particular. Esto</span>
+<span style="color: #008000"> * se realiza de esta manera para darle independencia al codigo para que</span>
+<span style="color: #008000"> * pueda ser multiplataforma.</span>
+<span style="color: #008000"> * @return el byte leido por la uart.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">uint8_t</span> myUartReadByte(<span style="color: #2b91af">void</span>)
+{
+    <span style="color: #0000ff">static</span> <span style="color: #2b91af">uint8_t</span> byteReaded;
+
+    <span style="color: #0000ff">if</span> (!uartReadByte(UartVirtual, &amp;byteReaded)){
+        byteReaded = 0;
+    }
+    myDelayUs(DebugTimeBetweenReads);
+
+    <span style="color: #0000ff">return</span> byteReaded;
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Escribe un string por la uart. En algunas platadormas, esta funcion</span>
+<span style="color: #008000"> * es soportada de manera nativa por el framework que brinda acceso al</span>
+<span style="color: #008000"> * hardware, en otras plataformas, para mandar un string por la uart es</span>
+<span style="color: #008000"> * necesario llamar a la funcion de escribir un byte hasta completar</span>
+<span style="color: #008000"> * todos los bytes del string.</span>
+<span style="color: #008000"> * @param string puntero al string a enviar por la uart.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> myUartWriteString (<span style="color: #2b91af">char</span> * string)
+{
+    <span style="color: #0000ff">while</span>(*string != 0)
+    {
+        myUartWriteByte((<span style="color: #2b91af">uint8_t</span>) *string);
+        string++;
+    }
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Limpia el buffer de recepcion de la UART.</span>
+<span style="color: #008000"> * Para limpiarlo realiza MAX_BYTES_TO_FLUSH lecturas del buffer sin</span>
+<span style="color: #008000"> * asignarselo a ninguna variable para comenzar a leer con el buffer limpio.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> FlushUartBuffer     (<span style="color: #2b91af">void</span>){
+    <span style="color: #2b91af">uint32_t</span> i;
+    <span style="color: #2b91af">uint8_t</span> dataSerial = 0;
+
+    <span style="color: #0000ff">for</span> (i = 0; i &lt; MAX_BYTES_TO_FLUSH; i++){
+        dataSerial = myUartReadByte();
+        dataSerial++;
+    }
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Chequea que el comando a enviar hacia la aplicacion de hardware virtual</span>
+<span style="color: #008000"> * sea un comando valido. Por ejemplo, no se puede ejecutar el comando de</span>
+<span style="color: #008000"> * escribrir un GPIO en el periferico LCD o no se puede realizar el comando</span>
+<span style="color: #008000"> * de leer un analogico de un pin digital.</span>
+<span style="color: #008000"> * Para cada comando, chequea que el periferico sea correcto.</span>
+<span style="color: #008000"> * @param command comando a enviar a la aplicacion.</span>
+<span style="color: #008000"> * @param perMap periferico virtual sobre el cual se ejecutara el comando.</span>
+<span style="color: #008000"> * @return 1 si es una combinacion comando/periferico valida, 0 si no lo es.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">static</span> <span style="color: #2b91af">bool_t</span> CheckIfValidCommand (VirtualCommand_t command, VirtualPeriphericalMap_t perMap)
+{
+    <span style="color: #2b91af">bool_t</span> isValidCommand = FALSE;
+    <span style="color: #0000ff">if</span> (command == COMM_SERIAL_GPIO_READ)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_TEC1 || perMap == V_TEC2 || perMap == V_TEC3 || perMap == V_TEC4)
+        {
+            isValidCommand = TRUE;
+        }
+        <span style="color: #0000ff">if</span> (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 || perMap == V_LED4)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span>	(command == COMM_SERIAL_GPIO_WRITE)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 || perMap == V_LED4)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span>	(command == COMM_SERIAL_ADC_READ)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_ADC_CH1)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span>	(command == COMM_SERIAL_DAC_WRITE)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_DAC_CH1)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span>	(command == COMM_SERIAL_LCD_WRITE_BYTE || command == COMM_SERIAL_LCD_WRITE_STRING)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_LCD1)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span>	(command == COMM_SERIAL_7SEG_WRITE)
+    {
+        <span style="color: #0000ff">if</span> (perMap == V_7SEG){
+            isValidCommand = TRUE;
+        }
+    }
+
+    <span style="color: #0000ff">if</span>(isValidCommand)
+    {
+        myDelayMs(DebugTimeBetweenCommands);
+    }
+
+    <span style="color: #0000ff">return</span> isValidCommand;
+}
+
+<span style="color: #008000">/*==================[external functions definition]==========================*/</span>
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Configura el puerto serie por el que se va a comunicar el sistema embebido</span>
+<span style="color: #008000"> * con la plataforma de hardware virtual.</span>
+<span style="color: #008000"> * @param uartMap uart por la que se transmitiran los datos.</span>
+<span style="color: #008000"> * @param baudRate velocidad de transmision.</span>
+<span style="color: #008000"> * @return 1 siempre.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">bool_t</span> vBoardConfig (<span style="color: #2b91af">uint32_t</span> baudRate)
+{
+    UartVirtual = UART_USB;
+    uartConfig(UartVirtual, baudRate);
+    <span style="color: #0000ff">return</span> TRUE;
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Escribe un estado logico en un pin virtual.</span>
+<span style="color: #008000"> * @param virtualGpioPin pin virtual a escribir.</span>
+<span style="color: #008000"> * @param pinState estado logico a enviar.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">void</span> vGpioWrite (VirtualPeriphericalMap_t virtualGpioPin, <span style="color: #2b91af">bool_t</span> pinState)
+{
+    <span style="color: #2b91af">char</span> stringCommand [10];
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_GPIO_WRITE, virtualGpioPin))
+    {
+        stringCommand[0] = COMMAND_INIT;
+        stringCommand[1] = COMM_SERIAL_GPIO_WRITE;
+        stringCommand[2] = COMMAND_SEPARATOR;
+        stringCommand[3] = virtualGpioPin;
+        stringCommand[4] = COMMAND_SEPARATOR;
+        stringCommand[5] = pinState == TRUE? V_GPIO_HIGH : V_GPIO_LOW;
+        stringCommand[6] = COMMAND_END;
+        stringCommand[7] = <span style="color: #a31515">&#39;\n&#39;</span>;
+        stringCommand[8] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+        myUartWriteString(stringCommand);
+    }
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Lee el estado logico de un pin virtual.</span>
+<span style="color: #008000"> * @param virtualGpioPin pin virtual a leer.</span>
+<span style="color: #008000"> * @return estado logico leido.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">bool_t</span> vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
+{
+    <span style="color: #2b91af">char</span> stringCommand [10];
+    <span style="color: #2b91af">bool_t</span> pinState = TRUE;
+    <span style="color: #2b91af">uint8_t</span> dataSerial  = 0;
+    <span style="color: #2b91af">uint16_t</span> counter = 0;
+    <span style="color: #2b91af">uint8_t</span> i = 0;
+    <span style="color: #2b91af">bool_t</span> flagCommandInit = FALSE;
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_GPIO_READ, virtualGpioPin))
+    {
+        stringCommand[0] = COMMAND_INIT;
+        stringCommand[1] = COMM_SERIAL_GPIO_READ;
+        stringCommand[2] = COMMAND_SEPARATOR;
+        stringCommand[3] = virtualGpioPin;
+        stringCommand[4] = COMMAND_SEPARATOR;
+        stringCommand[5] = COMM_SERIAL_REQUEST;
+        stringCommand[6] = COMMAND_END;
+        stringCommand[7] = <span style="color: #a31515">&#39;\n&#39;</span>;
+        stringCommand[8] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+        myUartWriteString(stringCommand);
+
+        <span style="color: #008000">// limpia el buffer</span>
+        bzero(stringCommand, 10);
+
+S		<span style="color: #008000">// Espera a recibir data por un tiempo determinado</span>
+        <span style="color: #0000ff">while</span> (++counter &lt; 1000 &amp;&amp; i &lt; 10)
+        {
+            <span style="color: #0000ff">if</span>( (dataSerial = myUartReadByte()) != 0 )
+            {
+                <span style="color: #0000ff">if</span> (dataSerial == COMMAND_INIT)
+                {
+                    flagCommandInit = TRUE;
+                }
+                <span style="color: #0000ff">if</span> (flagCommandInit)
+                {
+                    stringCommand[i] = dataSerial;
+                    <span style="color: #0000ff">if</span> (stringCommand[i] == <span style="color: #a31515">&#39;}&#39;</span>)
+                    {
+                        <span style="color: #0000ff">break</span>;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        <span style="color: #008000">// chequea si salio por timeout</span>
+        <span style="color: #0000ff">if</span> (counter &lt; 1000)
+        {
+            <span style="color: #008000">// chequea que todos lo que haya llegado sea una respuesta correcta</span>
+            <span style="color: #0000ff">if</span> (	stringCommand[0] == COMMAND_INIT &amp;&amp;
+                    stringCommand[1] == COMM_SERIAL_GPIO_READ &amp;&amp;
+                    stringCommand[2] == COMMAND_SEPARATOR &amp;&amp;
+                    stringCommand[4] == COMMAND_SEPARATOR &amp;&amp;
+                    stringCommand[5] == COMM_SERIAL_RESPONSE &amp;&amp;
+                    stringCommand[6] == COMMAND_SEPARATOR &amp;&amp;
+                    (stringCommand[7] == V_GPIO_LOW || stringCommand[7] == V_GPIO_HIGH) )
+            {
+                pinState = stringCommand[7] - <span style="color: #a31515">&#39;0&#39;</span>;
+            }
+        }
+    }
+
+    <span style="color: #0000ff">return</span> pinState;
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Invierte el estado logico de un pin.</span>
+<span style="color: #008000"> * Notar que para que esta accion se realice, el pin a invertir su estado</span>
+<span style="color: #008000"> * debe ser un pin de salida.</span>
+<span style="color: #008000"> * @param virtualGpioPin pin a invertir el estado logico.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">void</span> vGpioToggle (VirtualPeriphericalMap_t virtualGpioPin)
+{
+    vGpioWrite(virtualGpioPin, !vGpioRead(virtualGpioPin));
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Realiza una lectura sobre un pin analogico.</span>
+<span style="color: #008000"> * La conversion ADC tiene una resolucion de 10 bits, por lo que, sus</span>
+<span style="color: #008000"> * valores estan comprendidos entre 0 y 1023.</span>
+<span style="color: #008000"> * @param virtualAdcPin pin analogico virtual a leer.</span>
+<span style="color: #008000"> * @return valor analogico leido.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">uint16_t</span> vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
+{
+    <span style="color: #2b91af">char</span> stringCommand [15];
+    <span style="color: #0000ff">static</span> <span style="color: #2b91af">uint16_t</span> adcValue = 0;
+    <span style="color: #2b91af">uint8_t</span> dataSerial  = 0;
+    <span style="color: #2b91af">uint16_t</span> counter = 0;
+    <span style="color: #2b91af">uint8_t</span> i = 0;
+    <span style="color: #2b91af">bool_t</span> flagCommandInit = FALSE;
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_ADC_READ, virtualAdcPin)){
+
+        stringCommand[0] = COMMAND_INIT;
+        stringCommand[1] = COMM_SERIAL_ADC_READ;
+        stringCommand[2] = COMMAND_SEPARATOR;
+        stringCommand[3] = virtualAdcPin;
+        stringCommand[4] = COMMAND_SEPARATOR;
+        stringCommand[5] = COMM_SERIAL_REQUEST;
+        stringCommand[6] = COMMAND_END;
+        stringCommand[7] = <span style="color: #a31515">&#39;\n&#39;</span>;
+        stringCommand[8] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+        myUartWriteString(stringCommand);
+
+        <span style="color: #008000">// limpia el buffer</span>
+        bzero(stringCommand, 15);
+
+        <span style="color: #008000">// Espera a recibir data por un tiempo determinado</span>
+        <span style="color: #0000ff">while</span> (++counter &lt; 1000 &amp;&amp; i &lt; 15)
+        {
+            <span style="color: #0000ff">if</span>( (dataSerial = myUartReadByte()) != 0 )
+            {
+                <span style="color: #0000ff">if</span> (dataSerial == COMMAND_INIT)
+                {
+                    flagCommandInit = TRUE;
+                }
+                <span style="color: #0000ff">if</span> (flagCommandInit)
+                {
+                    stringCommand[i] = dataSerial;
+                    <span style="color: #0000ff">if</span> (stringCommand[i] == <span style="color: #a31515">&#39;}&#39;</span>)
+                    {
+                        <span style="color: #0000ff">break</span>;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        <span style="color: #008000">// chequea si salio por timeout</span>
+        <span style="color: #0000ff">if</span> (i == 11 &amp;&amp; counter &lt; 1000)
+        {
+            <span style="color: #008000">// chequea que todos lo que haya llegado sea una respuesta correcta</span>
+            <span style="color: #0000ff">if</span> (	stringCommand[0] == COMMAND_INIT &amp;&amp;
+                    stringCommand[1] == COMM_SERIAL_ADC_READ &amp;&amp;
+                    stringCommand[2] == COMMAND_SEPARATOR &amp;&amp;
+                    stringCommand[3] == virtualAdcPin &amp;&amp;
+                    stringCommand[4] == COMMAND_SEPARATOR &amp;&amp;
+                    stringCommand[5] == COMM_SERIAL_RESPONSE &amp;&amp;
+                    stringCommand[6] == COMMAND_SEPARATOR &amp;&amp;
+                    stringCommand[11] == COMMAND_END )
+            {
+                adcValue = 0;
+                <span style="color: #008000">// unidades de mil</span>
+                adcValue += (stringCommand[7] - <span style="color: #a31515">&#39;0&#39;</span>) * 1000;
+                <span style="color: #008000">// centenas</span>
+                adcValue += (stringCommand[8] - <span style="color: #a31515">&#39;0&#39;</span>) * 100;
+                <span style="color: #008000">// decenas</span>
+                adcValue += (stringCommand[9] - <span style="color: #a31515">&#39;0&#39;</span>) * 10;
+                <span style="color: #008000">// unidades</span>
+                adcValue += (stringCommand[10] - <span style="color: #a31515">&#39;0&#39;</span>);
+
+                <span style="color: #0000ff">if</span> (adcValue &gt; MAX_ANALOG_VALUE)
+                {
+                    adcValue = MAX_ANALOG_VALUE;
+                }
+                <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (adcValue &lt; 0)
+                {
+                    adcValue = 0;
+                }
+            }
+        }
+    }
+
+    <span style="color: #0000ff">return</span> adcValue;
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Escribe un valor analogico sobre una salida analogica.</span>
+<span style="color: #008000"> * El valor a escribir es de 10 bits, por lo que, sus</span>
+<span style="color: #008000"> * valores estan comprendidos entre 0 y 1023.</span>
+<span style="color: #008000"> * @param dacChannel pin analogico a escribir.</span>
+<span style="color: #008000"> * @param dacValue valor de 10 bits a escribir.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">void</span> vDacWrite (VirtualPeriphericalMap_t dacChannel, <span style="color: #2b91af">uint16_t</span> dacValue)
+{
+    <span style="color: #2b91af">char</span> stringCommand [15];
+    <span style="color: #2b91af">char</span> analogString[5];
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_DAC_WRITE, dacChannel))
+    {
+        <span style="color: #0000ff">if</span> (dacValue &gt; MAX_ANALOG_VALUE)
+        {
+            dacValue = MAX_ANALOG_VALUE;
+        }
+        <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (dacValue &lt; 0)
+        {
+            dacValue = 0;
+        }
+
+        <span style="color: #0000ff">if</span> (AnalogToString(dacValue, analogString))
+        {
+            stringCommand[0] = COMMAND_INIT;
+            stringCommand[1] = COMM_SERIAL_DAC_WRITE;
+            stringCommand[2] = COMMAND_SEPARATOR;
+            stringCommand[3] = dacChannel;
+            stringCommand[4] = COMMAND_SEPARATOR;
+            stringCommand[5] = analogString[0];
+            stringCommand[6] = analogString[1];
+            stringCommand[7] = analogString[2];
+            stringCommand[8] = analogString[3];
+            stringCommand[9] = COMMAND_END;
+            stringCommand[10] = <span style="color: #a31515">&#39;\n&#39;</span>;
+            stringCommand[11] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+            myUartWriteString(stringCommand);
+        }
+    }
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Escribe un caracter ASCII sobre el periferico display 7 segmentos.</span>
+<span style="color: #008000"> * A diferencia de un display 7 segmentos real, este display, por el tipo</span>
+<span style="color: #008000"> * de letra elegido, puede escribir cualquier caracter ASCII sobre el display</span>
+<span style="color: #008000"> * a diferencia de uno tradicional que puede escribir del 0-9 y A-F.</span>
+<span style="color: #008000"> * @param display periferico del display 7 segmentos.</span>
+<span style="color: #008000"> * @param valueToShow caracter ASCII a mostrar sobre el display.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">void</span> v7SegmentsWrite (VirtualPeriphericalMap_t display, <span style="color: #2b91af">uint8_t</span> valueToShow)
+{
+    <span style="color: #2b91af">char</span> stringCommand [10];
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_7SEG_WRITE, display))
+    {
+        stringCommand[0] = COMMAND_INIT;
+        stringCommand[1] = COMM_SERIAL_7SEG_WRITE;
+        stringCommand[2] = COMMAND_SEPARATOR;
+        stringCommand[3] = display;
+        stringCommand[4] = COMMAND_SEPARATOR;
+        stringCommand[5] = valueToShow;
+        stringCommand[6] = COMMAND_END;
+        stringCommand[7] = <span style="color: #a31515">&#39;\n&#39;</span>;
+        stringCommand[8] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+        myUartWriteString(stringCommand);
+    }
+}
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Escribe un texto sobre el periferico display LCD.</span>
+<span style="color: #008000"> * Como en el caso de un display LCD real, se puede seleccionar la linea</span>
+<span style="color: #008000"> * sobre la cual escribir el texto.</span>
+<span style="color: #008000"> * @param display periferico del display lcd sobre el cual escribir.</span>
+<span style="color: #008000"> * @param lcdLine la linea sobre la cual escribir el mensaje, los posibles valores</span>
+<span style="color: #008000"> * de la lineas son:</span>
+<span style="color: #008000"> * --- LCD_LINE_ALL: escribe un mensaje multilinea.</span>
+<span style="color: #008000"> * --- LCD_LINE_FIRST: escribe en la primer linea.</span>
+<span style="color: #008000"> * --- LCD_LINE_SECOND: escribe en la segunda linea.</span>
+<span style="color: #008000"> * --- LCD_LINE_THIRD: escribe en la tercer linea.</span>
+<span style="color: #008000"> * @param stringToWrite cadena a escribir</span>
+<span style="color: #008000"> */</span>
+<span style="color: #2b91af">void</span> vLcdWriteString (VirtualPeriphericalMap_t display, LcdLine_t lcdLine, <span style="color: #2b91af">char</span> * stringToWrite)
+{
+    <span style="color: #2b91af">uint8_t</span> i = 0;
+    <span style="color: #2b91af">uint8_t</span> lenght = 0;
+    <span style="color: #2b91af">char</span> stringCommand [70];
+
+    <span style="color: #0000ff">if</span> (CheckIfValidCommand(COMM_SERIAL_LCD_WRITE_STRING, display))
+    {
+        <span style="color: #0000ff">for</span> (lenght = 0; stringToWrite[lenght] != <span style="color: #a31515">&#39;\0&#39;</span>; lenght++);
+
+        stringCommand[0] = COMMAND_INIT;
+        stringCommand[1] = COMM_SERIAL_LCD_WRITE_STRING;
+        stringCommand[2] = COMMAND_SEPARATOR;
+        stringCommand[3] = display;
+        stringCommand[4] = COMMAND_SEPARATOR;
+        stringCommand[5] = lcdLine;
+        stringCommand[6] = COMMAND_SEPARATOR;
+
+        <span style="color: #0000ff">for</span> (i = 0; i &lt; lenght; i++)
+        {
+            stringCommand [i + 7] = stringToWrite[i];
+        }
+
+        stringCommand[7 + lenght] = COMMAND_END;
+        stringCommand[8 + lenght] = <span style="color: #a31515">&#39;\n&#39;</span>;
+        stringCommand[9 + lenght] = <span style="color: #a31515">&#39;\0&#39;</span>;
+
+        myUartWriteString(stringCommand);
+    }
+}
+
+<span style="color: #008000">/*==================[end of file]============================================*/</span>
+</pre></td></tr></table></div>
+      
