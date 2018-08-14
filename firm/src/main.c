@@ -1,8 +1,8 @@
 
 /*==================[inclusions]=============================================*/
 
-#include "appPoncho_board.h"
-#include "sapi.h"     
+#include "sapi.h"
+#include "virtual_hardware.h"
 
 /*==================[macros and definitions]=================================*/
 

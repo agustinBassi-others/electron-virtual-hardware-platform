@@ -1,7 +1,7 @@
 
 /*==================[inclusions]=============================================*/
 
-#include "appPoncho_board.h"
+#include "virtual_hardware.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -9,10 +9,10 @@
 #define COMMAND_END              '}'
 #define COMMAND_SEPARATOR        ';'
 
-#define MAX_ANALOG_VALUE         1023
-#define DELAY_BETWEEN_COMMANDS   30
+#define MAX_ANALOG_VALUE            1023
 
-#define MAX_BYTES_TO_FLUSH       15
+#define MICROSECS_BETWEEN_COMMANDS  7
+#define MICROSECS_BETWEEN_READS     10
 
 #define V_GPIO_LOW		         '0'
 #define V_GPIO_HIGH		         '1'
@@ -25,9 +25,27 @@
  * con un RESPONSE.
  */
 typedef enum VirtualCommandType {
-	COMM_SERIAL_REQUEST  = '0',//!< COMM_SERIAL_REQUEST
-	COMM_SERIAL_RESPONSE = '1' //!< COMM_SERIAL_RESPONSE
+	VIRTUAL_COMM_REQUEST  = '0',//!< COMM_SERIAL_REQUEST
+	VIRTUAL_COMM_RESPONSE = '1' //!< COMM_SERIAL_RESPONSE
 } VirtualCommandType_t;
+
+
+/**
+ * Posibles llamadas a los perifericos virtuales que se pueden realizar.
+ */
+typedef enum VirtualCommand {
+	//Comandos asociados a GPIO
+	VIRTUAL_GPIO_READ        = 'a',
+	VIRTUAL_GPIO_WRITE       = 'b',
+	//Comandos asociados al ADC/DAC
+	VIRTUAL_ADC_READ         = 'c',
+	VIRTUAL_DAC_WRITE        = 'd',
+	// Comandos asociados al display LCD
+	VIRTUAL_LCD_WRITE_BYTE   = 'e',
+	VIRTUAL_LCD_WRITE_STRING = 'f',
+	// Comandos asociados al display LCD
+	VIRTUAL_7SEG_WRITE       = 'g',
+} VirtualCommand_t;
 
 /*==================[internal data declaration]==============================*/
 
@@ -35,22 +53,20 @@ static uartMap_t UartVirtual;
 
 /*==================[internal functions declaration]=========================*/
 
-static void    myDelayMs           (uint32_t delayMs);
-static void    myDelayUs           (uint32_t delayMs)
-static void    myUartWriteByte     (uint8_t byteToWrite);
-static void    myUartWriteString   (char * string);
-static uint8_t myUartReadByte      (void);
-static void    FlushUartBuffer     (void);
-static bool_t  CheckIfValidCommand (VirtualCommand_t command, VirtualPeriphericalMap_t perMap);
+static void    OwnDelayMs           (uint32_t delayMs);
+static void    OwnDelayUs           (uint32_t delayMs);
+static void    OwnUartWriteByte     (uint8_t byteToWrite);
+static void    OwnUartWriteString   (char * string);
+static uint8_t OwnUartReadByte      (void);
+static bool_t  CheckIfValidCommand (VirtualCommand_t command, VirtualPeriph_t perMap);
 static bool_t  AnalogToString      (uint16_t numberToConver, char * stringNumber);
 
 /*==================[internal data definition]===============================*/
 
-static uint32_t DebugTimeBetweenCommands = 7;
-static uint32_t DebugTimeBetweenReads = 10;
-
 /*==================[external data definition]===============================*/
+
 //todo reemplazar bool_t por un tipo mio
+
 /*==================[internal functions definition]==========================*/
 
 /**
@@ -66,7 +82,8 @@ static uint32_t DebugTimeBetweenReads = 10;
  * 1015      | 1015
  *
  * @param numberToConver numero entero a convertir.
- * @param stringNumber puntero al vector donde se almacenara el string convertido.
+ * @param stringNumber puntero al vector donde se
+ * almacenara el string convertido.
  * @return 0 si no hubo error, 1 si hubo error.
  */
 static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
@@ -85,7 +102,7 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
 		{
 			hundreds = 0;
 		}
-		tens = (numberToConver - ( (thousands * 1000) + (hundreds * 100) ) ) / 10 ;
+		tens = (numberToConver - ( (thousands * 1000) + (hundreds * 100) )) / 10 ;
 		units = (numberToConver - ((thousands * 1000) + (hundreds * 100) + (tens * 10)));
 
 		stringNumber[0] = thousands + '0';
@@ -98,7 +115,6 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
 	{
 		error = TRUE;
 	}
-
 	return !error;
 }
 
@@ -106,16 +122,16 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
  * Funcion propia para llamar al delay de la plataforma.
  * @param delayMs
  */
-static void myDelayMs (uint32_t delayMs)
+static void OwnDelayMs (uint32_t delayMs)
 {
-	delay(delayMs);
+	OwnDelayUs(delayMs * 1000);
 }
 
 /**
  * Funcion propia para llamar al delay de la plataforma.
  * @param delayMs
  */
-static void myDelayUs (uint32_t delayMs)
+static void OwnDelayUs (uint32_t delayMs)
 {
 	delayUs(delayMs);
 }
@@ -125,7 +141,7 @@ static void myDelayUs (uint32_t delayMs)
  * byte por la uart seleccionada cuando se configuro al modulo.
  * @param byteToWrite byte a escribir en el puerto serie.
  */
-static void myUartWriteByte(uint8_t byteToWrite)
+static void OwnUartWriteByte(uint8_t byteToWrite)
 {
 	uartWriteByte(UartVirtual, (uint8_t) byteToWrite);
 }
@@ -138,14 +154,14 @@ static void myUartWriteByte(uint8_t byteToWrite)
  * pueda ser multiplataforma.
  * @return el byte leido por la uart.
  */
-static uint8_t myUartReadByte(void)
+static uint8_t OwnUartReadByte(void)
 {
 	static uint8_t byteReaded;
 
 	if (!uartReadByte(UartVirtual, &byteReaded)){
 		byteReaded = 0;
 	}
-	myDelayUs(DebugTimeBetweenReads);
+	OwnDelayUs(MICROSECS_BETWEEN_READS);
 
 	return byteReaded;
 }
@@ -158,27 +174,12 @@ static uint8_t myUartReadByte(void)
  * todos los bytes del string.
  * @param string puntero al string a enviar por la uart.
  */
-static void myUartWriteString (char * string)
+static void OwnUartWriteString (char * string)
 {
 	while(*string != 0)
 	{
-		myUartWriteByte((uint8_t) *string);
+		OwnUartWriteByte((uint8_t) *string);
 		string++;
-	}
-}
-
-/**
- * Limpia el buffer de recepcion de la UART.
- * Para limpiarlo realiza MAX_BYTES_TO_FLUSH lecturas del buffer sin
- * asignarselo a ninguna variable para comenzar a leer con el buffer limpio.
- */
-static void FlushUartBuffer     (void){
-	uint32_t i;
-	uint8_t dataSerial = 0;
-
-	for (i = 0; i < MAX_BYTES_TO_FLUSH; i++){
-		dataSerial = myUartReadByte();
-		dataSerial++;
 	}
 }
 
@@ -192,49 +193,55 @@ static void FlushUartBuffer     (void){
  * @param perMap periferico virtual sobre el cual se ejecutara el comando.
  * @return 1 si es una combinacion comando/periferico valida, 0 si no lo es.
  */
-static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeriphericalMap_t perMap)
+static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeriph_t perMap)
 {
 	bool_t isValidCommand = FALSE;
-	if (command == COMM_SERIAL_GPIO_READ)
+	if (command == VIRTUAL_GPIO_READ)
 	{
 		if (perMap == V_TEC1 || perMap == V_TEC2 || perMap == V_TEC3 || perMap == V_TEC4)
 		{
 			isValidCommand = TRUE;
 		}
-		if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 || perMap == V_LED4)
+		if (	perMap == V_LEDR ||
+				perMap == V_LEDG ||
+				perMap == V_LEDB ||
+				perMap == V_LED1 ||
+				perMap == V_LED2 ||
+				perMap == V_LED3 ||
+				perMap == V_LED4)
 		{
 			isValidCommand = TRUE;
 		}
 	}
-	else if	(command == COMM_SERIAL_GPIO_WRITE)
+	else if	(command == VIRTUAL_GPIO_WRITE)
 	{
 		if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 || perMap == V_LED4)
 		{
 			isValidCommand = TRUE;
 		}
 	}
-	else if	(command == COMM_SERIAL_ADC_READ)
+	else if	(command == VIRTUAL_ADC_READ)
 	{
 		if (perMap == V_ADC_CH1)
 		{
 			isValidCommand = TRUE;
 		}
 	}
-	else if	(command == COMM_SERIAL_DAC_WRITE)
+	else if	(command == VIRTUAL_DAC_WRITE)
 	{
 		if (perMap == V_DAC_CH1)
 		{
 			isValidCommand = TRUE;
 		}
 	}
-	else if	(command == COMM_SERIAL_LCD_WRITE_BYTE || command == COMM_SERIAL_LCD_WRITE_STRING)
+	else if	(command == VIRTUAL_LCD_WRITE_BYTE || command == VIRTUAL_LCD_WRITE_STRING)
 	{
 		if (perMap == V_LCD1)
 		{
 			isValidCommand = TRUE;
 		}
 	}
-	else if	(command == COMM_SERIAL_7SEG_WRITE)
+	else if	(command == VIRTUAL_7SEG_WRITE)
 	{
 		if (perMap == V_7SEG){
 			isValidCommand = TRUE;
@@ -243,7 +250,7 @@ static bool_t CheckIfValidCommand (VirtualCommand_t command, VirtualPeripherical
 
 	if(isValidCommand)
 	{
-		myDelayMs(DebugTimeBetweenCommands);
+		OwnDelayMs(MICROSECS_BETWEEN_COMMANDS);
 	}
 
 	return isValidCommand;
@@ -270,14 +277,14 @@ bool_t vBoardConfig (uint32_t baudRate)
  * @param virtualGpioPin pin virtual a escribir.
  * @param pinState estado logico a enviar.
  */
-void vGpioWrite (VirtualPeriphericalMap_t virtualGpioPin, bool_t pinState)
+void vGpioWrite (VirtualPeriph_t virtualGpioPin, bool_t pinState)
 {
 	char stringCommand [10];
 
-	if (CheckIfValidCommand(COMM_SERIAL_GPIO_WRITE, virtualGpioPin))
+	if (CheckIfValidCommand(VIRTUAL_GPIO_WRITE, virtualGpioPin))
 	{
 		stringCommand[0] = COMMAND_INIT;
-		stringCommand[1] = COMM_SERIAL_GPIO_WRITE;
+		stringCommand[1] = VIRTUAL_GPIO_WRITE;
 		stringCommand[2] = COMMAND_SEPARATOR;
 		stringCommand[3] = virtualGpioPin;
 		stringCommand[4] = COMMAND_SEPARATOR;
@@ -286,7 +293,7 @@ void vGpioWrite (VirtualPeriphericalMap_t virtualGpioPin, bool_t pinState)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		myUartWriteString(stringCommand);
+		OwnUartWriteString(stringCommand);
 	}
 }
 
@@ -295,7 +302,7 @@ void vGpioWrite (VirtualPeriphericalMap_t virtualGpioPin, bool_t pinState)
  * @param virtualGpioPin pin virtual a leer.
  * @return estado logico leido.
  */
-bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
+bool_t vGpioRead (VirtualPeriph_t virtualGpioPin)
 {
 	char stringCommand [10];
 	bool_t pinState = TRUE;
@@ -304,27 +311,27 @@ bool_t vGpioRead (VirtualPeriphericalMap_t virtualGpioPin)
 	uint8_t i = 0;
 	bool_t flagCommandInit = FALSE;
 
-	if (CheckIfValidCommand(COMM_SERIAL_GPIO_READ, virtualGpioPin))
+	if (CheckIfValidCommand(VIRTUAL_GPIO_READ, virtualGpioPin))
 	{
 		stringCommand[0] = COMMAND_INIT;
-		stringCommand[1] = COMM_SERIAL_GPIO_READ;
+		stringCommand[1] = VIRTUAL_GPIO_READ;
 		stringCommand[2] = COMMAND_SEPARATOR;
 		stringCommand[3] = virtualGpioPin;
 		stringCommand[4] = COMMAND_SEPARATOR;
-		stringCommand[5] = COMM_SERIAL_REQUEST;
+		stringCommand[5] = VIRTUAL_COMM_REQUEST;
 		stringCommand[6] = COMMAND_END;
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		myUartWriteString(stringCommand);
+		OwnUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 10);
 
-S		// Espera a recibir data por un tiempo determinado
+		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 10)
 		{
-			if( (dataSerial = myUartReadByte()) != 0 )
+			if( (dataSerial = OwnUartReadByte()) != 0 )
 			{
 				if (dataSerial == COMMAND_INIT)
 				{
@@ -347,10 +354,10 @@ S		// Espera a recibir data por un tiempo determinado
 		{
 			// chequea que todos lo que haya llegado sea una respuesta correcta
 			if (	stringCommand[0] == COMMAND_INIT &&
-					stringCommand[1] == COMM_SERIAL_GPIO_READ &&
+					stringCommand[1] == VIRTUAL_GPIO_READ &&
 					stringCommand[2] == COMMAND_SEPARATOR &&
 					stringCommand[4] == COMMAND_SEPARATOR &&
-					stringCommand[5] == COMM_SERIAL_RESPONSE &&
+					stringCommand[5] == VIRTUAL_COMM_RESPONSE &&
 					stringCommand[6] == COMMAND_SEPARATOR &&
 					(stringCommand[7] == V_GPIO_LOW || stringCommand[7] == V_GPIO_HIGH) )
 			{
@@ -368,7 +375,7 @@ S		// Espera a recibir data por un tiempo determinado
  * debe ser un pin de salida.
  * @param virtualGpioPin pin a invertir el estado logico.
  */
-void vGpioToggle (VirtualPeriphericalMap_t virtualGpioPin)
+void vGpioToggle (VirtualPeriph_t virtualGpioPin)
 {
 	vGpioWrite(virtualGpioPin, !vGpioRead(virtualGpioPin));
 }
@@ -380,7 +387,7 @@ void vGpioToggle (VirtualPeriphericalMap_t virtualGpioPin)
  * @param virtualAdcPin pin analogico virtual a leer.
  * @return valor analogico leido.
  */
-uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
+uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
 {
 	char stringCommand [15];
 	static uint16_t adcValue = 0;
@@ -389,19 +396,19 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 	uint8_t i = 0;
 	bool_t flagCommandInit = FALSE;
 
-	if (CheckIfValidCommand(COMM_SERIAL_ADC_READ, virtualAdcPin)){
+	if (CheckIfValidCommand(VIRTUAL_ADC_READ, virtualAdcPin)){
 
 		stringCommand[0] = COMMAND_INIT;
-		stringCommand[1] = COMM_SERIAL_ADC_READ;
+		stringCommand[1] = VIRTUAL_ADC_READ;
 		stringCommand[2] = COMMAND_SEPARATOR;
 		stringCommand[3] = virtualAdcPin;
 		stringCommand[4] = COMMAND_SEPARATOR;
-		stringCommand[5] = COMM_SERIAL_REQUEST;
+		stringCommand[5] = VIRTUAL_COMM_REQUEST;
 		stringCommand[6] = COMMAND_END;
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		myUartWriteString(stringCommand);
+		OwnUartWriteString(stringCommand);
 
 		// limpia el buffer
 		bzero(stringCommand, 15);
@@ -409,7 +416,7 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 		// Espera a recibir data por un tiempo determinado
 		while (++counter < 1000 && i < 15)
 		{
-			if( (dataSerial = myUartReadByte()) != 0 )
+			if( (dataSerial = OwnUartReadByte()) != 0 )
 			{
 				if (dataSerial == COMMAND_INIT)
 				{
@@ -432,11 +439,11 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
 		{
 			// chequea que todos lo que haya llegado sea una respuesta correcta
 			if (	stringCommand[0] == COMMAND_INIT &&
-					stringCommand[1] == COMM_SERIAL_ADC_READ &&
+					stringCommand[1] == VIRTUAL_ADC_READ &&
 					stringCommand[2] == COMMAND_SEPARATOR &&
 					stringCommand[3] == virtualAdcPin &&
 					stringCommand[4] == COMMAND_SEPARATOR &&
-					stringCommand[5] == COMM_SERIAL_RESPONSE &&
+					stringCommand[5] == VIRTUAL_COMM_RESPONSE &&
 					stringCommand[6] == COMMAND_SEPARATOR &&
 					stringCommand[11] == COMMAND_END )
 			{
@@ -472,12 +479,12 @@ uint16_t vAdcRead (VirtualPeriphericalMap_t virtualAdcPin)
  * @param dacChannel pin analogico a escribir.
  * @param dacValue valor de 10 bits a escribir.
  */
-void vDacWrite (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue)
+void vDacWrite (VirtualPeriph_t dacChannel, uint16_t dacValue)
 {
 	char stringCommand [15];
 	char analogString[5];
 
-	if (CheckIfValidCommand(COMM_SERIAL_DAC_WRITE, dacChannel))
+	if (CheckIfValidCommand(VIRTUAL_DAC_WRITE, dacChannel))
 	{
 		if (dacValue > MAX_ANALOG_VALUE)
 		{
@@ -491,7 +498,7 @@ void vDacWrite (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue)
 		if (AnalogToString(dacValue, analogString))
 		{
 			stringCommand[0] = COMMAND_INIT;
-			stringCommand[1] = COMM_SERIAL_DAC_WRITE;
+			stringCommand[1] = VIRTUAL_DAC_WRITE;
 			stringCommand[2] = COMMAND_SEPARATOR;
 			stringCommand[3] = dacChannel;
 			stringCommand[4] = COMMAND_SEPARATOR;
@@ -503,7 +510,7 @@ void vDacWrite (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue)
 			stringCommand[10] = '\n';
 			stringCommand[11] = '\0';
 
-			myUartWriteString(stringCommand);
+			OwnUartWriteString(stringCommand);
 		}
 	}
 }
@@ -516,14 +523,14 @@ void vDacWrite (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue)
  * @param display periferico del display 7 segmentos.
  * @param valueToShow caracter ASCII a mostrar sobre el display.
  */
-void v7SegmentsWrite (VirtualPeriphericalMap_t display, uint8_t valueToShow)
+void v7SegmentsWrite (VirtualPeriph_t display, uint8_t valueToShow)
 {
 	char stringCommand [10];
 
-	if (CheckIfValidCommand(COMM_SERIAL_7SEG_WRITE, display))
+	if (CheckIfValidCommand(VIRTUAL_7SEG_WRITE, display))
 	{
 		stringCommand[0] = COMMAND_INIT;
-		stringCommand[1] = COMM_SERIAL_7SEG_WRITE;
+		stringCommand[1] = VIRTUAL_7SEG_WRITE;
 		stringCommand[2] = COMMAND_SEPARATOR;
 		stringCommand[3] = display;
 		stringCommand[4] = COMMAND_SEPARATOR;
@@ -532,7 +539,7 @@ void v7SegmentsWrite (VirtualPeriphericalMap_t display, uint8_t valueToShow)
 		stringCommand[7] = '\n';
 		stringCommand[8] = '\0';
 
-		myUartWriteString(stringCommand);
+		OwnUartWriteString(stringCommand);
 	}
 }
 
@@ -549,18 +556,18 @@ void v7SegmentsWrite (VirtualPeriphericalMap_t display, uint8_t valueToShow)
  * --- LCD_LINE_THIRD: escribe en la tercer linea.
  * @param stringToWrite cadena a escribir
  */
-void vLcdWriteString (VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char * stringToWrite)
+void vLcdWriteString (VirtualPeriph_t display, LcdLine_t lcdLine, char * stringToWrite)
 {
 	uint8_t i = 0;
 	uint8_t lenght = 0;
 	char stringCommand [70];
 
-	if (CheckIfValidCommand(COMM_SERIAL_LCD_WRITE_STRING, display))
+	if (CheckIfValidCommand(VIRTUAL_LCD_WRITE_STRING, display))
 	{
 		for (lenght = 0; stringToWrite[lenght] != '\0'; lenght++);
 
 		stringCommand[0] = COMMAND_INIT;
-		stringCommand[1] = COMM_SERIAL_LCD_WRITE_STRING;
+		stringCommand[1] = VIRTUAL_LCD_WRITE_STRING;
 		stringCommand[2] = COMMAND_SEPARATOR;
 		stringCommand[3] = display;
 		stringCommand[4] = COMMAND_SEPARATOR;
@@ -576,7 +583,7 @@ void vLcdWriteString (VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char 
 		stringCommand[8 + lenght] = '\n';
 		stringCommand[9 + lenght] = '\0';
 
-		myUartWriteString(stringCommand);
+		OwnUartWriteString(stringCommand);
 	}
 }
 

@@ -1,10 +1,43 @@
 
-#ifndef _APP_PONCHO_BOARD_H_
-#define _APP_PONCHO_BOARD_H_
+#ifndef _VIRTUAL_HARDWARE_H_
+#define _VIRTUAL_HARDWARE_H_
+
+#define BOARD_EDU_CIAA_NXP
+#define BOARD_CIAA_ZERO
+#define BOARD_PIC_CSS
+#define BOARD_ARDUINO
+
+//#if defined(BOARD_EDU_CIAA_NXP)
+//
+//#elif defined(BOARD_CIAA_ZERO)
+//
+//#elif defined(BOARD_PIC_CSS)
+//
+//#elif defined(BOARD_ARDUINO)
+//
+//#else
+//    // La plataforma por defecto es EDU_CIAA_NXP
+//	#define BOARD_EDU_CIAA_NXP
+//#endif
+
 
 /*==================[inclusions]=============================================*/
 
-#include "sapi.h"      // <= sAPI header
+#include <stdint.h>
+
+#if defined(BOARD_EDU_CIAA_NXP)
+   #include "sapi.h"      // <= sAPI header
+#elif defined(BOARD_CIAA_ZERO)
+
+#elif defined(BOARD_PIC_CSS)
+
+#elif defined(BOARD_ARDUINO)
+
+#else
+    // La plataforma por defecto es EDU_CIAA_NXP
+	#define BOARD_EDU_CIAA_NXP
+#endif
+
 
 /*==================[cplusplus]==============================================*/
 
@@ -14,12 +47,7 @@ extern "C" {
 
 /*==================[macros]=================================================*/
 
-#define BOARD_EDU_CIAA_NXP
-#define BOARD_CIAA_ZERO
-#define BOARD_PIC_CSS
-#define BOARD_ARDUINO
-
-#define VIRTUAL_BAUDRATE		 115200
+#define VIRTUAL_BAUDRATE   115200
 
 /*==================[typedef]================================================*/
 
@@ -36,26 +64,9 @@ typedef enum LcdLine{
 } LcdLine_t;
 
 /**
- * Posibles llamadas a los perifericos virtuales que se pueden realizar.
- */
-typedef enum VirtualCommand {
-	//Comandos asociados a GPIO
-	COMM_SERIAL_GPIO_READ       = 'a',//!< COMM_SERIAL_GPIO_READ
-	COMM_SERIAL_GPIO_WRITE      = 'b',//!< COMM_SERIAL_GPIO_WRITE
-	//Comandos asociados al ADC/DAC
-	COMM_SERIAL_ADC_READ        = 'c',//!< COMM_SERIAL_ADC_READ
-	COMM_SERIAL_DAC_WRITE       = 'd',//!< COMM_SERIAL_DAC_WRITE
-	// Comandos asociados al display LCD
-	COMM_SERIAL_LCD_WRITE_BYTE  = 'e',//!< COMM_SERIAL_LCD_WRITE_BYTE
-	COMM_SERIAL_LCD_WRITE_STRING= 'f',//!< COMM_SERIAL_LCD_WRITE_STRING
-	// Comandos asociados al display LCD
-	COMM_SERIAL_7SEG_WRITE      = 'g',//!< COMM_SERIAL_7SEG_WRITE
-} VirtualCommand_t;
-
-/**
  * Mapa de perifericos virtuales a los que se puede acceder.
  */
-typedef enum VirtualPeriphericalMap {
+typedef enum VirtualPeriph {
 	// Valores corespondientes a los leds
 	V_LEDR = 'a',   //!< V_LEDR
 	V_LEDG = 'b',   //!< V_LEDG
@@ -77,7 +88,7 @@ typedef enum VirtualPeriphericalMap {
 	V_LCD1 = 'o',   //!< V_LCD1
 	// Valores coorespondientes al periferico 7 segmentos
 	V_7SEG = 'p',   //!< V_7SEG
-} VirtualPeriphericalMap_t;
+} VirtualPeriph_t;
 
 /*==================[external data declaration]==============================*/
 
@@ -85,16 +96,16 @@ typedef enum VirtualPeriphericalMap {
 
 bool_t   vBoardConfig    (uint32_t baudRate);
 
-bool_t   vGpioRead       (VirtualPeriphericalMap_t bluetoothPin);
-void     vGpioWrite      (VirtualPeriphericalMap_t bluetoothPin, bool_t pinState);
-void     vGpioToggle     (VirtualPeriphericalMap_t bluetoothPin);
+bool_t   vGpioRead       (VirtualPeriph_t virtualPin);
+void     vGpioWrite      (VirtualPeriph_t virtualPin, bool_t pinState);
+void     vGpioToggle     (VirtualPeriph_t virtualPin);
 
-void     vLcdWriteString (VirtualPeriphericalMap_t display, LcdLine_t lcdLine, char * stringToWrite);
+void     vLcdWriteString (VirtualPeriph_t display, LcdLine_t line, char * str);
 
-uint16_t vAdcRead        (VirtualPeriphericalMap_t adcChannel);
-void     vDacWrite       (VirtualPeriphericalMap_t dacChannel, uint16_t dacValue);
+uint16_t vAdcRead        (VirtualPeriph_t adcChannel);
+void     vDacWrite       (VirtualPeriph_t dacChannel, uint16_t dacValue);
 
-void     v7SegmentsWrite (VirtualPeriphericalMap_t display, uint8_t valueToShow);
+void     v7SegmentsWrite (VirtualPeriph_t display, uint8_t valueToShow);
 
 /*==================[cplusplus]==============================================*/
 
@@ -103,4 +114,4 @@ void     v7SegmentsWrite (VirtualPeriphericalMap_t display, uint8_t valueToShow)
 #endif
 
 /*==================[end of file]============================================*/
-#endif /* #ifndef _APP_PONCHO_BOARD_H_ */
+#endif /* #ifndef _VIRTUAL_HARDWARE_H_ */
