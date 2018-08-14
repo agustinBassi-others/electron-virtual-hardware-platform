@@ -783,7 +783,7 @@ function Logic_InitializeApp (){
   setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
 
   document.getElementById("LinkHome").addEventListener('click', (e) => {
-    Logic_ManageHtmlToShow("Home");
+    Logic_ManageHtmlToShow("Periphericals");
   });
 
   document.getElementById("LinkSource").addEventListener('click', (e) => {
@@ -791,14 +791,14 @@ function Logic_InitializeApp (){
   });
 
   document.getElementById("LinkManual").addEventListener('click', (e) => {
-    Logic_ManageHtmlToShow("Manual");
+    Logic_ManageHtmlToShow("Documentation");
   });
 
   document.getElementById("LinkContact").addEventListener('click', (e) => {
     Logic_ManageHtmlToShow("Contact");
   });
 
-  Logic_ManageHtmlToShow("Home")
+  Logic_ManageHtmlToShow("Periphericals")
 }
 
 /**
@@ -856,29 +856,34 @@ function Logic_UpdateAppState () {
 
 function Logic_ManageHtmlToShow(htmlToShow){
 
-  if (htmlToShow == "Home"){
+  if (htmlToShow == "Periphericals"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'block';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
-
-  } else if (htmlToShow == "Contact"){
-
-    document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
 
   } else if (htmlToShow == "Source"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
     document.getElementById("InnetHtmlContainer_Source").style.display    = 'block';
+    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
+    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
 
-  } else if (htmlToShow == "Manual"){
+  } else if (htmlToShow == "Documentation"){
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
     document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'block';
+    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+
+  } else if (htmlToShow == "Contact"){
+
+    document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
+    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
+    
 
   } else {
     console.log("Invalid htmlToShow")
