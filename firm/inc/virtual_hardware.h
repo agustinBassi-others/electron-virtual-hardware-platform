@@ -2,40 +2,38 @@
 #ifndef _VIRTUAL_HARDWARE_H_
 #define _VIRTUAL_HARDWARE_H_
 
+// Descomentar algunas de las siguientes lineas dependiendo la placa
 #define BOARD_EDU_CIAA_NXP
 //#define BOARD_CIAA_ZERO
-//#define BOARD_PIC_CSS
 //#define BOARD_ARDUINO
 
-//#if defined(BOARD_EDU_CIAA_NXP)
-//
-//#elif defined(BOARD_CIAA_ZERO)
-//
-//#elif defined(BOARD_PIC_CSS)
-//
-//#elif defined(BOARD_ARDUINO)
-//
-//#else
-//    // La plataforma por defecto es EDU_CIAA_NXP
-//	#define BOARD_EDU_CIAA_NXP
-//#endif
-
+// Si no hay ninguna placa definida muestra un error de compilacion
+#if !defined(BOARD_EDU_CIAA_NXP) && \
+	!defined(BOARD_CIAA_ZERO) && \
+	!defined(BOARD_ARDUINO)
+	#error "Se debe definir un BOARD al inicio del archivo virtual_hardware.h"
+#endif
 
 /*==================[inclusions]=============================================*/
 
 #include <stdint.h>
 
 #if defined(BOARD_EDU_CIAA_NXP)
-   #include "sapi.h"      // <= sAPI header
+
+	#include "sapi.h"      // <= sAPI header
+	#define VIRTUAL_SERIAL_PORT        UART_USB
+	#define VIRTUAL_BAUDRATE_DEFAULT   115200
+
 #elif defined(BOARD_CIAA_ZERO)
 
-#elif defined(BOARD_PIC_CSS)
+	#include "sapi.h"      // <= sAPI header
+	#define VIRTUAL_SERIAL_PORT        UART_USB
+	#define VIRTUAL_BAUDRATE_DEFAULT   115200
 
 #elif defined(BOARD_ARDUINO)
 
-#else
-    // La plataforma por defecto es EDU_CIAA_NXP
-	#define BOARD_EDU_CIAA_NXP
+	#include "Arduino.h"      // <= sAPI header
+
 #endif
 
 
@@ -47,9 +45,21 @@ extern "C" {
 
 /*==================[macros]=================================================*/
 
-#define VIRTUAL_BAUDRATE   115200
+// Si los estados logicos estan definidos los elimina para asegurarse
+// que el valor de true y false sean los deseados
+#ifdef FALSE
+   #undef FALSE
+#endif
+#ifdef TRUE
+   #undef TRUE
+#endif
+
+#define FALSE  0
+#define TRUE   (!FALSE)
 
 /*==================[typedef]================================================*/
+
+typedef uint8_t bool_t;
 
 /**
  * Posibles valores que puede recibir la funcion de escribir un texto
@@ -57,10 +67,10 @@ extern "C" {
  * los demas valores escriben sobre la primer, segunda o tercer linea del LCD.
  */
 typedef enum LcdLine{
-	LCD_LINE_ALL    = '0',//!< LCD_LINE_ALL
-	LCD_LINE_FIRST  = '1',//!< LCD_LINE_FIRST
-	LCD_LINE_SECOND = '2',//!< LCD_LINE_SECOND
-	LCD_LINE_THIRD  = '3' //!< LCD_LINE_THIRD
+	LCD_LINE_ALL    = '0', //!< LCD_LINE_ALL
+	LCD_LINE_FIRST  = '1', //!< LCD_LINE_FIRST
+	LCD_LINE_SECOND = '2', //!< LCD_LINE_SECOND
+	LCD_LINE_THIRD  = '3'  //!< LCD_LINE_THIRD
 } LcdLine_t;
 
 /**
@@ -68,26 +78,26 @@ typedef enum LcdLine{
  */
 typedef enum VirtualPeriph {
 	// Valores corespondientes a los leds
-	V_LEDR = 'a',   //!< V_LEDR
-	V_LEDG = 'b',   //!< V_LEDG
-	V_LEDB = 'z',   //!< V_LEDB
-	V_LED1 = 'c',   //!< V_LED1
-	V_LED2 = 'd',   //!< V_LED2
-	V_LED3 = 'e',   //!< V_LED3
-	V_LED4 = 'f',   //!< V_LED4
+	V_LEDR      = 'a',   //!< V_LEDR
+	V_LEDG      = 'b',   //!< V_LEDG
+	V_LEDB      = 'z',   //!< V_LEDB
+	V_LED1      = 'c',   //!< V_LED1
+	V_LED2      = 'd',   //!< V_LED2
+	V_LED3      = 'e',   //!< V_LED3
+	V_LED4      = 'f',   //!< V_LED4
 	// Valores corespondientes a las teclas
-	V_TEC1 = 'g',   //!< V_TEC1
-	V_TEC2 = 'h',   //!< V_TEC2
-	V_TEC3 = 'i',   //!< V_TEC3
-	V_TEC4 = 'j',   //!< V_TEC4
+	V_TEC1      = 'g',   //!< V_TEC1
+	V_TEC2      = 'h',   //!< V_TEC2
+	V_TEC3      = 'i',   //!< V_TEC3
+	V_TEC4      = 'j',   //!< V_TEC4
 	// Valores coorespondientes a los pines ADC
-	V_ADC_CH1 = 'k',//!< V_ADC_CH1
+	V_ADC_CH1   = 'k',   //!< V_ADC_CH1
 	// Valores coorespondientes a los pines DAC
-	V_DAC_CH1 = 'n',//!< V_DAC_CH1
+	V_DAC_CH1   = 'n',   //!< V_DAC_CH1
 	// Valores coorespondientes al periferico LCD
-	V_LCD1 = 'o',   //!< V_LCD1
+	V_LCD1      = 'o',   //!< V_LCD1
 	// Valores coorespondientes al periferico 7 segmentos
-	V_7SEG = 'p',   //!< V_7SEG
+	V_7SEG      = 'p',   //!< V_7SEG
 } VirtualPeriph_t;
 
 /*==================[external data declaration]==============================*/

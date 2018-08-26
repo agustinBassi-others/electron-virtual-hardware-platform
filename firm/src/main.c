@@ -24,7 +24,7 @@ int main(void){
 
 	boardConfig();
 
-	vBoardConfig(VIRTUAL_BAUDRATE);
+	vBoardConfig(VIRTUAL_BAUDRATE_DEFAULT);
 
 	while(1) {
 		Test();
