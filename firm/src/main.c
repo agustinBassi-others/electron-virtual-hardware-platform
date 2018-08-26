@@ -24,7 +24,7 @@ int main(void){
 
 	boardConfig();
 
-	vBoardConfig(VIRTUAL_BAUDRATE);
+	vBoardConfig(VIRTUAL_BAUDRATE_DEFAULT);
 
 	while(1) {
 		Test();
@@ -300,8 +300,8 @@ static void Test (void){
 	//	TestGpioRead();
 	//	TestGpioToggle();
 //	TestAdcRead();
-//	TestIntegral1();
-	TestTimming();
+	TestIntegral1();
+//	TestTimming();
 //	TestDelay();
 }
 
