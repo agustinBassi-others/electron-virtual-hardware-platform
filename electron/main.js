@@ -5,13 +5,38 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+function GetScreenWidht () {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.width;
+}
+
+
+function GetScreenHeight () {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.height;
+}
+
 function createWindow () {
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 650})
+  mainWindow = new BrowserWindow({
+    width: 1024, 
+    height: 650
+  })
 
   // and load the index.html of the app.
   mainWindow.loadFile('src/index.html')
-
+  
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
@@ -22,7 +47,10 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
 }
+
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
