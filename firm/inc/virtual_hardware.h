@@ -3,9 +3,9 @@
 #define _VIRTUAL_HARDWARE_H_
 
 #define BOARD_EDU_CIAA_NXP
-#define BOARD_CIAA_ZERO
-#define BOARD_PIC_CSS
-#define BOARD_ARDUINO
+//#define BOARD_CIAA_ZERO
+//#define BOARD_PIC_CSS
+//#define BOARD_ARDUINO
 
 //#if defined(BOARD_EDU_CIAA_NXP)
 //
