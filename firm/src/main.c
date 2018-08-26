@@ -300,8 +300,8 @@ static void Test (void){
 	//	TestGpioRead();
 	//	TestGpioToggle();
 //	TestAdcRead();
-//	TestIntegral1();
-	TestTimming();
+	TestIntegral1();
+//	TestTimming();
 //	TestDelay();
 }
 

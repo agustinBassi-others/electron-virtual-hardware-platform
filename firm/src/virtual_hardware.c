@@ -23,41 +23,41 @@
  * sistema embebido quiere leer le enviar un REQUEST y la aplicacion responde
  * con un RESPONSE.
  */
-typedef enum VirtualCommandType {
-    VIRTUAL_COMM_REQUEST  = '0', //!< COMM_SERIAL_REQUEST
-    VIRTUAL_COMM_RESPONSE = '1'  //!< COMM_SERIAL_RESPONSE
+typedef enum _VirtualCommandType {
+    V_COMM_REQUEST  = '0', //!< COMM_SERIAL_REQUEST
+    V_COMM_RESPONSE = '1'  //!< COMM_SERIAL_RESPONSE
 } VirtualCommandType_t;
 
 /**
  * Posibles llamadas a los perifericos virtuales que se pueden realizar.
  */
-typedef enum VirtualCommand {
+typedef enum _VirtualCommand {
     //Comandos asociados a GPIO
-    VIRTUAL_GPIO_READ        = 'a',
-    VIRTUAL_GPIO_WRITE       = 'b',
+    V_GPIO_READ        = 'a',
+    V_GPIO_WRITE       = 'b',
     //Comandos asociados al ADC/DAC
-    VIRTUAL_ADC_READ         = 'c',
-    VIRTUAL_DAC_WRITE        = 'd',
+    V_ADC_READ         = 'c',
+    V_DAC_WRITE        = 'd',
     // Comandos asociados al display LCD
-    VIRTUAL_LCD_WRITE_BYTE   = 'e',
-    VIRTUAL_LCD_WRITE_STRING = 'f',
+    V_LCD_WRITE_BYTE   = 'e',
+    V_LCD_WRITE_STRING = 'f',
     // Comandos asociados al display LCD
-    VIRTUAL_7SEG_WRITE       = 'g',
-} VirtualCommand_t;
+    V_7SEG_WRITE       = 'g',
+} VirtCommand_t;
 
 /*==================[internal data declaration]==============================*/
 
 /*==================[internal functions declaration]=========================*/
 
-// El prefijo Vhp significa Virtual Hardware Platform, y las funciones con
-// este prefijo son las que llaman a diferentes funciones depende la plataforma
+// El prefijo Vhp significa Virtual Hardware Platform. Las funciones con este
+// prefijo son las que llaman a diferentes funciones depende de la plataforma.
 static void     VhpDelayMs          (uint32_t delayMs);
 static void     VhpDelayUs          (uint32_t delayMs);
 static void     VhpUartWriteByte    (uint8_t byteToWrite);
 static void     VhpUartWriteString  (char * string);
 static uint8_t  VhpUartReadByte     (void);
-static bool_t   CheckIfValidCommand (VirtualCommand_t command, VirtualPeriph_t perMap);
-static bool_t   AnalogToString      (uint16_t numberToConver, char * stringNumber);
+static bool_t   CheckIfValidCommand (VirtCommand_t comm, VirtPeriph_t perMap);
+static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
 
 /*==================[internal data definition]===============================*/
 
@@ -167,7 +167,7 @@ static void VhpUartWriteString (char * string)
  * almacenara el string convertido.
  * @return 0 si no hubo error, 1 si hubo error.
  */
-static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
+static bool_t AnalogToString (uint16_t numberToConvert, char * strNumber)
 {
     bool_t error = FALSE;
     uint8_t thousands = 0;
@@ -175,23 +175,25 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
     uint8_t tens = 0;
     uint8_t units = 0;
 
-    if (numberToConver <= MAX_ANALOG_VALUE)
+    if (numberToConvert <= MAX_ANALOG_VALUE)
     {
-        thousands = numberToConver / 1000;
-        hundreds = numberToConver / 100;
+        thousands = numberToConvert / 1000;
+        hundreds = numberToConvert / 100;
         if (hundreds >= 10)
         {
             hundreds = 0;
         }
-        tens = (numberToConver - ((thousands * 1000) + (hundreds * 100))) / 10;
-        units = (numberToConver
-                - ((thousands * 1000) + (hundreds * 100) + (tens * 10)));
+        tens = numberToConvert;
+        tens -= ((thousands * 1000) + (hundreds * 100));
+        tens /= 10;
+        units = numberToConvert;
+        units -= ((thousands * 1000) + (hundreds * 100) + (tens * 10));
 
-        stringNumber[0] = thousands + '0';
-        stringNumber[1] = hundreds + '0';
-        stringNumber[2] = tens + '0';
-        stringNumber[3] = units + '0';
-        stringNumber[4] = '\0';
+        strNumber[0] = thousands + '0';
+        strNumber[1] = hundreds + '0';
+        strNumber[2] = tens + '0';
+        strNumber[3] = units + '0';
+        strNumber[4] = '\0';
     }
     else
     {
@@ -210,51 +212,55 @@ static bool_t AnalogToString (uint16_t numberToConver, char * stringNumber)
  * @param perMap periferico virtual sobre el cual se ejecutara el comando.
  * @return 1 si es una combinacion comando/periferico valida, 0 si no lo es.
  */
-static bool_t CheckIfValidCommand (VirtualCommand_t command,
-        VirtualPeriph_t perMap)
+static bool_t CheckIfValidCommand (VirtCommand_t command,
+        VirtPeriph_t perMap)
 {
     bool_t isValidCommand = FALSE;
-    if (command == VIRTUAL_GPIO_READ)
+    if (command == V_GPIO_READ)
     {
-        if (perMap == V_TEC1 || perMap == V_TEC2 || perMap == V_TEC3
-                || perMap == V_TEC4)
+        if (perMap == V_TEC1 || perMap == V_TEC2 ||
+            perMap == V_TEC3 || perMap == V_TEC4)
         {
             isValidCommand = TRUE;
         }
-        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB
-                || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3
-                || perMap == V_LED4)
+        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB ||
+            perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 ||
+            perMap == V_LED4)
         {
             isValidCommand = TRUE;
         }
-    } else if (command == VIRTUAL_GPIO_WRITE)
+    }
+    else if (command == V_GPIO_WRITE)
     {
-        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB
-                || perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3
-                || perMap == V_LED4)
+        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB ||
+            perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 ||
+            perMap == V_LED4)
         {
             isValidCommand = TRUE;
         }
-    } else if (command == VIRTUAL_ADC_READ)
+    }
+    else if (command == V_ADC_READ)
     {
         if (perMap == V_ADC_CH1)
         {
             isValidCommand = TRUE;
         }
-    } else if (command == VIRTUAL_DAC_WRITE)
+    }
+    else if (command == V_DAC_WRITE)
     {
         if (perMap == V_DAC_CH1)
         {
             isValidCommand = TRUE;
         }
-    } else if (command == VIRTUAL_LCD_WRITE_BYTE
-            || command == VIRTUAL_LCD_WRITE_STRING)
+    }
+    else if (command == V_LCD_WRITE_BYTE || command == V_LCD_WRITE_STRING)
     {
         if (perMap == V_LCD1)
         {
             isValidCommand = TRUE;
         }
-    } else if (command == VIRTUAL_7SEG_WRITE)
+    }
+    else if (command == V_7SEG_WRITE)
     {
         if (perMap == V_7SEG)
         {
@@ -289,16 +295,16 @@ bool_t vBoardConfig (uint32_t baudRate)
  * @param virtualGpioPin pin virtual a escribir.
  * @param pinState estado logico a enviar.
  */
-void vGpioWrite (VirtualPeriph_t virtualGpioPin, bool_t pinState)
+void vGpioWrite (VirtPeriph_t gpioPin, bool_t pinState)
 {
     char stringCommand[10];
 
-    if (CheckIfValidCommand(VIRTUAL_GPIO_WRITE, virtualGpioPin))
+    if (CheckIfValidCommand(V_GPIO_WRITE, gpioPin))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = VIRTUAL_GPIO_WRITE;
+        stringCommand[1] = V_GPIO_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
-        stringCommand[3] = virtualGpioPin;
+        stringCommand[3] = gpioPin;
         stringCommand[4] = COMMAND_SEPARATOR;
         stringCommand[5] = pinState == TRUE ? V_GPIO_HIGH : V_GPIO_LOW;
         stringCommand[6] = COMMAND_END;
@@ -314,7 +320,7 @@ void vGpioWrite (VirtualPeriph_t virtualGpioPin, bool_t pinState)
  * @param virtualGpioPin pin virtual a leer.
  * @return estado logico leido.
  */
-bool_t vGpioRead (VirtualPeriph_t virtualGpioPin)
+bool_t vGpioRead (VirtPeriph_t gpioPin)
 {
     char stringCommand[10];
     bool_t pinState = TRUE;
@@ -323,14 +329,14 @@ bool_t vGpioRead (VirtualPeriph_t virtualGpioPin)
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
 
-    if (CheckIfValidCommand(VIRTUAL_GPIO_READ, virtualGpioPin))
+    if (CheckIfValidCommand(V_GPIO_READ, gpioPin))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = VIRTUAL_GPIO_READ;
+        stringCommand[1] = V_GPIO_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
-        stringCommand[3] = virtualGpioPin;
+        stringCommand[3] = gpioPin;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = VIRTUAL_COMM_REQUEST;
+        stringCommand[5] = V_COMM_REQUEST;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
@@ -368,15 +374,16 @@ bool_t vGpioRead (VirtualPeriph_t virtualGpioPin)
         // chequea si salio por timeout
         if (counter < 1000)
         {
-            // chequea que todos lo que haya llegado sea una respuesta correcta
-            if (stringCommand[0] == COMMAND_INIT
-                    && stringCommand[1] == VIRTUAL_GPIO_READ
-                    && stringCommand[2] == COMMAND_SEPARATOR
-                    && stringCommand[4] == COMMAND_SEPARATOR
-                    && stringCommand[5] == VIRTUAL_COMM_RESPONSE
-                    && stringCommand[6] == COMMAND_SEPARATOR
-                    && (stringCommand[7] == V_GPIO_LOW
-                            || stringCommand[7] == V_GPIO_HIGH))
+            // chequea que todos lo que haya llegado
+            // sea una respuesta correcta
+            if (stringCommand[0] == COMMAND_INIT &&
+                stringCommand[1] == V_GPIO_READ &&
+                stringCommand[2] == COMMAND_SEPARATOR &&
+                stringCommand[4] == COMMAND_SEPARATOR &&
+                stringCommand[5] == V_COMM_RESPONSE &&
+                stringCommand[6] == COMMAND_SEPARATOR &&
+               (stringCommand[7] == V_GPIO_LOW ||
+                stringCommand[7] == V_GPIO_HIGH))
             {
                 pinState = stringCommand[7] - '0';
             }
@@ -392,9 +399,9 @@ bool_t vGpioRead (VirtualPeriph_t virtualGpioPin)
  * debe ser un pin de salida.
  * @param virtualGpioPin pin a invertir el estado logico.
  */
-void vGpioToggle (VirtualPeriph_t virtualGpioPin)
+void vGpioToggle (VirtPeriph_t gpioPin)
 {
-    vGpioWrite(virtualGpioPin, !vGpioRead(virtualGpioPin));
+    vGpioWrite(gpioPin, !vGpioRead(gpioPin));
 }
 
 /**
@@ -404,7 +411,7 @@ void vGpioToggle (VirtualPeriph_t virtualGpioPin)
  * @param virtualAdcPin pin analogico virtual a leer.
  * @return valor analogico leido.
  */
-uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
+uint16_t vAdcRead (VirtPeriph_t adcChannel)
 {
     char stringCommand[15];
     static uint16_t adcValue = 0;
@@ -413,15 +420,15 @@ uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
 
-    if (CheckIfValidCommand(VIRTUAL_ADC_READ, virtualAdcPin))
+    if (CheckIfValidCommand(V_ADC_READ, adcChannel))
     {
 
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = VIRTUAL_ADC_READ;
+        stringCommand[1] = V_ADC_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
-        stringCommand[3] = virtualAdcPin;
+        stringCommand[3] = adcChannel;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = VIRTUAL_COMM_REQUEST;
+        stringCommand[5] = V_COMM_REQUEST;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
@@ -459,13 +466,14 @@ uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
         // chequea si salio por timeout
         if (i == 11 && counter < 1000)
         {
-            // chequea que todos lo que haya llegado sea una respuesta correcta
+            // chequea que todos lo que haya llegado
+            // sea una respuesta correcta
             if (stringCommand[0] == COMMAND_INIT
-                    && stringCommand[1] == VIRTUAL_ADC_READ&&
+                    && stringCommand[1] == V_ADC_READ&&
                     stringCommand[2] == COMMAND_SEPARATOR &&
-                    stringCommand[3] == virtualAdcPin &&
+                    stringCommand[3] == adcChannel &&
                     stringCommand[4] == COMMAND_SEPARATOR &&
-                    stringCommand[5] == VIRTUAL_COMM_RESPONSE &&
+                    stringCommand[5] == V_COMM_RESPONSE &&
                     stringCommand[6] == COMMAND_SEPARATOR &&
                     stringCommand[11] == COMMAND_END)
             {
@@ -482,7 +490,8 @@ uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
                 if (adcValue > MAX_ANALOG_VALUE)
                 {
                     adcValue = MAX_ANALOG_VALUE;
-                } else if (adcValue < 0)
+                }
+                else if (adcValue < 0)
                 {
                     adcValue = 0;
                 }
@@ -500,17 +509,18 @@ uint16_t vAdcRead (VirtualPeriph_t virtualAdcPin)
  * @param dacChannel pin analogico a escribir.
  * @param dacValue valor de 10 bits a escribir.
  */
-void vDacWrite (VirtualPeriph_t dacChannel, uint16_t dacValue)
+void vDacWrite (VirtPeriph_t dacChannel, uint16_t dacValue)
 {
     char stringCommand[15];
     char analogString[5];
 
-    if (CheckIfValidCommand(VIRTUAL_DAC_WRITE, dacChannel))
+    if (CheckIfValidCommand(V_DAC_WRITE, dacChannel))
     {
         if (dacValue > MAX_ANALOG_VALUE)
         {
             dacValue = MAX_ANALOG_VALUE;
-        } else if (dacValue < 0)
+        }
+        else if (dacValue < 0)
         {
             dacValue = 0;
         }
@@ -518,7 +528,7 @@ void vDacWrite (VirtualPeriph_t dacChannel, uint16_t dacValue)
         if (AnalogToString(dacValue, analogString))
         {
             stringCommand[0] = COMMAND_INIT;
-            stringCommand[1] = VIRTUAL_DAC_WRITE;
+            stringCommand[1] = V_DAC_WRITE;
             stringCommand[2] = COMMAND_SEPARATOR;
             stringCommand[3] = dacChannel;
             stringCommand[4] = COMMAND_SEPARATOR;
@@ -543,18 +553,18 @@ void vDacWrite (VirtualPeriph_t dacChannel, uint16_t dacValue)
  * @param display periferico del display 7 segmentos.
  * @param valueToShow caracter ASCII a mostrar sobre el display.
  */
-void v7SegmentsWrite (VirtualPeriph_t display, uint8_t valueToShow)
+void v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow)
 {
     char stringCommand[10];
 
-    if (CheckIfValidCommand(VIRTUAL_7SEG_WRITE, display))
+    if (CheckIfValidCommand(V_7SEG_WRITE, display7Segs))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = VIRTUAL_7SEG_WRITE;
+        stringCommand[1] = V_7SEG_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
-        stringCommand[3] = display;
+        stringCommand[3] = display7Segs;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = valueToShow;
+        stringCommand[5] = asciiToShow;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
@@ -568,37 +578,35 @@ void v7SegmentsWrite (VirtualPeriph_t display, uint8_t valueToShow)
  * Como en el caso de un display LCD real, se puede seleccionar la linea
  * sobre la cual escribir el texto.
  * @param display periferico del display lcd sobre el cual escribir.
- * @param lcdLine la linea sobre la cual escribir el mensaje, los posibles valores
- * de la lineas son:
+ * @param lcdLine la linea sobre la cual escribir el mensaje, los posibles
+ * valores de la lineas son:
  * --- LCD_LINE_ALL: escribe un mensaje multilinea.
  * --- LCD_LINE_FIRST: escribe en la primer linea.
  * --- LCD_LINE_SECOND: escribe en la segunda linea.
  * --- LCD_LINE_THIRD: escribe en la tercer linea.
  * @param stringToWrite cadena a escribir
  */
-void vLcdWriteString (VirtualPeriph_t display, LcdLine_t lcdLine,
-        char * stringToWrite)
+void vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, char * str)
 {
     uint8_t i = 0;
     uint8_t lenght = 0;
     char stringCommand[70];
 
-    if (CheckIfValidCommand(VIRTUAL_LCD_WRITE_STRING, display))
+    if (CheckIfValidCommand(V_LCD_WRITE_STRING, displayLcd))
     {
-        for (lenght = 0; stringToWrite[lenght] != '\0'; lenght++)
-            ;
+        for (lenght = 0; str[lenght] != '\0'; lenght++);
 
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = VIRTUAL_LCD_WRITE_STRING;
+        stringCommand[1] = V_LCD_WRITE_STRING;
         stringCommand[2] = COMMAND_SEPARATOR;
-        stringCommand[3] = display;
+        stringCommand[3] = displayLcd;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = lcdLine;
+        stringCommand[5] = line;
         stringCommand[6] = COMMAND_SEPARATOR;
 
         for (i = 0; i < lenght; i++)
         {
-            stringCommand[i + 7] = stringToWrite[i];
+            stringCommand[i + 7] = str[i];
         }
 
         stringCommand[7 + lenght] = COMMAND_END;

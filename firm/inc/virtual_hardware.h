@@ -26,13 +26,11 @@
 
 #elif defined(BOARD_CIAA_ZERO)
 
-	#include "sapi.h"      // <= sAPI header
-	#define VIRTUAL_SERIAL_PORT        UART_USB
-	#define VIRTUAL_BAUDRATE_DEFAULT   115200
+    // todo poner aca la llamada correcta
 
 #elif defined(BOARD_ARDUINO)
 
-	#include "Arduino.h"      // <= sAPI header
+	// todo poner aca la llamada correcta
 
 #endif
 
@@ -66,7 +64,7 @@ typedef uint8_t bool_t;
  * sobre el display LCD. LCD_LINE_ALL escribe un mensaje multilinea,
  * los demas valores escriben sobre la primer, segunda o tercer linea del LCD.
  */
-typedef enum LcdLine{
+typedef enum _LcdLine{
 	LCD_LINE_ALL    = '0', //!< LCD_LINE_ALL
 	LCD_LINE_FIRST  = '1', //!< LCD_LINE_FIRST
 	LCD_LINE_SECOND = '2', //!< LCD_LINE_SECOND
@@ -76,7 +74,7 @@ typedef enum LcdLine{
 /**
  * Mapa de perifericos virtuales a los que se puede acceder.
  */
-typedef enum VirtualPeriph {
+typedef enum _VirtPeriph {
 	// Valores corespondientes a los leds
 	V_LEDR      = 'a',   //!< V_LEDR
 	V_LEDG      = 'b',   //!< V_LEDG
@@ -98,7 +96,7 @@ typedef enum VirtualPeriph {
 	V_LCD1      = 'o',   //!< V_LCD1
 	// Valores coorespondientes al periferico 7 segmentos
 	V_7SEG      = 'p',   //!< V_7SEG
-} VirtualPeriph_t;
+} VirtPeriph_t;
 
 /*==================[external data declaration]==============================*/
 
@@ -106,16 +104,16 @@ typedef enum VirtualPeriph {
 
 bool_t   vBoardConfig    (uint32_t baudRate);
 
-bool_t   vGpioRead       (VirtualPeriph_t virtualPin);
-void     vGpioWrite      (VirtualPeriph_t virtualPin, bool_t pinState);
-void     vGpioToggle     (VirtualPeriph_t virtualPin);
+bool_t   vGpioRead       (VirtPeriph_t gpioPin);
+void     vGpioWrite      (VirtPeriph_t gpioPin, bool_t pinState);
+void     vGpioToggle     (VirtPeriph_t gpioPin);
 
-void     vLcdWriteString (VirtualPeriph_t display, LcdLine_t line, char * str);
+uint16_t vAdcRead        (VirtPeriph_t adcChannel);
+void     vDacWrite       (VirtPeriph_t dacChannel, uint16_t dacValue);
 
-uint16_t vAdcRead        (VirtualPeriph_t adcChannel);
-void     vDacWrite       (VirtualPeriph_t dacChannel, uint16_t dacValue);
+void     v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow);
 
-void     v7SegmentsWrite (VirtualPeriph_t display, uint8_t valueToShow);
+void     vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, char * str);
 
 /*==================[cplusplus]==============================================*/
 
