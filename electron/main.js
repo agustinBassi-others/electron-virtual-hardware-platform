@@ -5,34 +5,17 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function GetScreenWidht () {
-  const screen = require('electron').screen;
-  const display = screen.getPrimaryDisplay();
-  const area = display.workArea;
-  var dimensions = display.size;
-
-  // console.log(dimensions.width + "x" + dimensions.height);
-  return dimensions.width;
-}
-
-
-function GetScreenHeight () {
-  const screen = require('electron').screen;
-  const display = screen.getPrimaryDisplay();
-  const area = display.workArea;
-  var dimensions = display.size;
-
-  // console.log(dimensions.width + "x" + dimensions.height);
-  return dimensions.height;
-}
-
 function createWindow () {
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1024, 
-    height: 650
+    height: 600
   })
+  // Setea el tamano minimo que puede tener la APP
+  mainWindow.setMinimumSize (580, 350);
+  // Oculta la barra de menu
+  mainWindow.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
   mainWindow.loadFile('src/index.html')

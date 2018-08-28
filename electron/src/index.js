@@ -46,6 +46,8 @@ const Required_SerialPort = require('serialport');
 
 /*==================[macros]=================================================*/
 
+const VIEW_DEFAUL_ZOOM_FACTOR  = 0.85
+
 const STRING_EMPTY             = "";
 
 // Settings asociados al formato de los comandos
@@ -69,6 +71,7 @@ const LCD_LINE_3_PREAMBULE     = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
 const INTERVAL_REFRESH_APP     = 20;
 const INTERVAL_LIST_PORTS      = 1000;
+const INTERVAL_ADJUST_ZOOM     = 1000;
 // Paths con imagenes de la APP
 const IMG_SWITCH_ON            = "../assets/images/switch_on.svg"
 const IMG_SWITCH_OFF           = "../assets/images/switch_off.svg"
@@ -396,6 +399,128 @@ function Serial_CloseConnection (){
 
     delete Obj_SerialPort;
   }
+}
+
+/**
+ * Obtiene el ancho del display primario de la PC
+ */
+function View_GetScreenWidht () {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.width;
+}
+
+/**
+ * Obtiene el alto del display primario de la PC
+ */
+function View_GetScreenHeight () {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.height;
+}
+
+/**
+ * Obtiene el alto actual de la ventana
+ */
+function View_GetCurrentHeight () {
+  const electron = require('electron')
+  const remote = electron.remote
+
+  var height = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().height;
+
+  return height;
+}
+
+/**
+ * Obtiene el ancho actual de la ventana
+ */
+function View_GetCurrentWidth () {
+  const electron = require('electron')
+  const remote = electron.remote
+
+  var width = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().width;
+
+  return width;
+}
+
+/**
+ * Setea el zoom de la aplicacion.
+ */
+function View_SetZoomFactor (scaleFactor) {
+  const {webFrame} = require('electron');
+  webFrame.setZoomFactor(scaleFactor);
+}
+
+function View_CalculateZoomFactor () {
+  let currentWidth = View_GetCurrentWidth();
+  let currentHeight = View_GetCurrentHeight();
+  let ratio = currentHeight / currentWidth;
+  let scaleFactor = VIEW_DEFAUL_ZOOM_FACTOR;
+
+  const LIMIT_RATIO = 0.62;
+  const STEP = 50;
+
+  let heightMin = 400;
+  let heightMax = 1100;
+
+  let tempHeight = heightMin;
+  let tempScaleFactor = 0.5;
+
+  for (tempHeight = heightMin, tempScaleFactor = 0.5; tempHeight < heightMax; tempHeight += STEP, tempScaleFactor += 0.05){
+    
+    if (currentHeight < tempHeight){
+      if (ratio > 0.625) {
+        scaleFactor = tempScaleFactor;
+      } else if (ratio > 0.6) {
+        scaleFactor = tempScaleFactor + 0.025;
+      } else {
+        scaleFactor = tempScaleFactor + 0.05;
+      }
+      break;
+    }
+
+  }
+  Log_Print (Log_t.DEBUG, "View_AdjustAppZoom", "Zoom calculado: " + scaleFactor);
+  return scaleFactor;
+}
+
+/**
+ * Chequea el tamaño de la ventana y en funcion del tamaño ajusta el zoom.
+ * Esta funcion es llamada de manera periodica desde un timer creado en la 
+ * funcion Logic_InitializaApp()
+ * Debido a que los componentes de la APP tienen un tamaño fijo, en vez de 
+ * estar ajustando escalas de componentes, lo que se hace es darle mas o 
+ * menos zoom dependiendo del tamaño de la ventana. De esta manera siempre 
+ * se mantiene constante la relacion de aspecto.
+ * La APP por defecto va a lanzarse en pantalla completa, pero el usuario 
+ * puede elegir el tamaño de la misma. 
+ */
+function View_AdjustAppZoom () {
+  
+  // let scaleFactor = Adc1Value / 1024;
+
+  // if (scaleFactor < 0.5) {
+  //   scaleFactor = 1.0 - (0.5 - scaleFactor);
+  // } else {
+  //   scaleFactor = 1.0 + (scaleFactor - 0.5);
+  // }
+
+  // LcdText = "ADC: " + Adc1Value + " - Scl: " + scaleFactor;
+  
+  let scaleFactor = View_CalculateZoomFactor();
+
+  View_SetZoomFactor(scaleFactor);
+  
+  Log_Print (Log_t.DEBUG, "View_AdjustAppZoom",  (View_GetCurrentWidth() + " x " + View_GetCurrentHeight() + " - Ratio: " + View_GetCurrentHeight()/View_GetCurrentWidth()) );
+  
 }
 
 /**
@@ -782,6 +907,8 @@ function Logic_InitializeApp (){
 
   setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
 
+  setInterval(View_AdjustAppZoom, INTERVAL_ADJUST_ZOOM);
+
   document.getElementById("LinkHome").addEventListener('click', (e) => {
     Logic_ManageHtmlToShow("Periphericals");
   });
@@ -799,6 +926,7 @@ function Logic_InitializeApp (){
   });
 
   Logic_ManageHtmlToShow("Periphericals")
+
 }
 
 /**
