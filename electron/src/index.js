@@ -46,125 +46,128 @@ const Required_SerialPort = require('serialport');
 
 /*==================[macros]=================================================*/
 
-const STRING_EMPTY             = "";
+const VIEW_DEFAUL_ZOOM_FACTOR = 0.85
+
+const STRING_EMPTY = "";
 
 // Settings asociados al formato de los comandos
-const COMMAND_INIT             = "{";
-const COMMAND_END              = "}";
-const COMMAND_SEPARATOR        = ";";
+const COMMAND_INIT = "{";
+const COMMAND_END = "}";
+const COMMAND_SEPARATOR = ";";
 // Settings asociados a la conexion con puertos COM
-const BAUD_RATES_LIST          = [115200, 57600, 38400, 19200, 9600];
+const BAUD_RATES_LIST = [115200, 57600, 38400, 19200, 9600];
 // Posibles estados de los GPIO
-const GPIO_STATE_HIGH          = '1';
-const GPIO_STATE_LOW           = '0';
-const GPIO_STATE_INVALID       = -1;
+const GPIO_STATE_HIGH = '1';
+const GPIO_STATE_LOW = '0';
+const GPIO_STATE_INVALID = -1;
 // Valores maximos y minimos de los adc y dac
-const ANALOG_MIN_VALUE         = 0;
-const ANALOG_MAX_VALUE         = 1023;
+const ANALOG_MIN_VALUE = 0;
+const ANALOG_MAX_VALUE = 1023;
 // Settings para el display LCD 18x3
-const LCD_MULTI_LINE_LENGHT    = 55;
-const LCD_LINE_LENGHT          = 18;
-const LCD_LINE_2_PREAMBULE     = "<br>";
-const LCD_LINE_3_PREAMBULE     = "<br><br>";
+const LCD_MULTI_LINE_LENGHT = 55;
+const LCD_LINE_LENGHT = 18;
+const LCD_LINE_2_PREAMBULE = "<br>";
+const LCD_LINE_3_PREAMBULE = "<br><br>";
 // Intervalos con los que se dispararan las funciones periodicas
-const INTERVAL_REFRESH_APP     = 20;
-const INTERVAL_LIST_PORTS      = 1000;
+const INTERVAL_REFRESH_APP = 20;
+const INTERVAL_LIST_PORTS = 1000;
+const INTERVAL_ADJUST_ZOOM = 1000;
 // Paths con imagenes de la APP
-const IMG_SWITCH_ON            = "../assets/images/switch_on.svg"
-const IMG_SWITCH_OFF           = "../assets/images/switch_off.svg"
-const IMG_TEC_NO_PRESSED       = "../assets/images/button_no_pressed.svg"
-const IMG_TEC_PRESSED          = "../assets/images/button_pressed.svg"
-const IMG_LED_RED              = "../assets/images/led_red.svg"
-const IMG_LED_GREEN            = "../assets/images/led_green.svg"
-const IMG_LED_BLUE             = "../assets/images/led_blue.svg"
-const IMG_LED_CYAN             = "../assets/images/led_cyan.svg"
-const IMG_LED_VIOLET           = "../assets/images/led_violet.svg"
-const IMG_LED_YELOW            = "../assets/images/led_yellow.svg"
-const IMG_LED_WHITE            = "../assets/images/led_white.svg"
-const IMG_LED_OFF              = "../assets/images/led_off.svg"
+const IMG_SWITCH_ON = "../assets/images/switch_on.svg"
+const IMG_SWITCH_OFF = "../assets/images/switch_off.svg"
+const IMG_TEC_NO_PRESSED = "../assets/images/button_no_pressed.svg"
+const IMG_TEC_PRESSED = "../assets/images/button_pressed.svg"
+const IMG_LED_RED = "../assets/images/led_red.svg"
+const IMG_LED_GREEN = "../assets/images/led_green.svg"
+const IMG_LED_BLUE = "../assets/images/led_blue.svg"
+const IMG_LED_CYAN = "../assets/images/led_cyan.svg"
+const IMG_LED_VIOLET = "../assets/images/led_violet.svg"
+const IMG_LED_YELOW = "../assets/images/led_yellow.svg"
+const IMG_LED_WHITE = "../assets/images/led_white.svg"
+const IMG_LED_OFF = "../assets/images/led_off.svg"
 
 /*==================[typedef]================================================*/
 
 const LcdLine_t = {
-  ALL     : 0,
-  FIRST   : 1,
-  SECOND  : 2,
-  THIRD   : 3
+  ALL: 0,
+  FIRST: 1,
+  SECOND: 2,
+  THIRD: 3
 }
 
 const Log_t = {
-  ERROR   : 0,
-  WARN    : 1,
-  NORMAL  : 2,
-  DEBUG   : 3,
-  EVENT   : 4
+  ERROR: 0,
+  WARN: 1,
+  NORMAL: 2,
+  DEBUG: 3,
+  EVENT: 4
 }
 
 // Posibles comandos que puede enviar el sistema embebido
 const SerialCommand_t = {
-	COMM_SERIAL_GPIO_READ        : 'a',
-	COMM_SERIAL_GPIO_WRITE       : 'b',
-	COMM_SERIAL_ADC_READ         : 'c',
-	COMM_SERIAL_DAC_WRITE        : 'd',
-	COMM_SERIAL_LCD_WRITE_BYTE   : 'e',
-	COMM_SERIAL_LCD_WRITE_STRING : 'f',
-	COMM_SERIAL_7SEG_WRITE       : 'g',
+  COMM_SERIAL_GPIO_READ: 'a',
+  COMM_SERIAL_GPIO_WRITE: 'b',
+  COMM_SERIAL_ADC_READ: 'c',
+  COMM_SERIAL_DAC_WRITE: 'd',
+  COMM_SERIAL_LCD_WRITE_BYTE: 'e',
+  COMM_SERIAL_LCD_WRITE_STRING: 'f',
+  COMM_SERIAL_7SEG_WRITE: 'g',
 }
 // Tipo de comando (request o response)
 const SerialCommandType_t = {
-	TYPE_SERIAL_REQUEST          : '0',
-	TYPE_SERIAL_RESPONSE         : '1',
+  TYPE_SERIAL_REQUEST: '0',
+  TYPE_SERIAL_RESPONSE: '1',
 }
 // Lista con todo el mapa de perifericos virtuales
 const PeriphMap_t = {
-	LEDR                         : 'a',
-  LEDG                         : 'b',
-  LEDB                         : 'z',
-	LED1                         : 'c',
-	LED2                         : 'd',
-	LED3                         : 'e',
-  LED4                         : 'f',
+  LEDR: 'a',
+  LEDG: 'b',
+  LEDB: 'z',
+  LED1: 'c',
+  LED2: 'd',
+  LED3: 'e',
+  LED4: 'f',
 
-	TEC1                         : 'g',
-	TEC2                         : 'h',
-	TEC3                         : 'i',
-  TEC4                         : 'j',
+  TEC1: 'g',
+  TEC2: 'h',
+  TEC3: 'i',
+  TEC4: 'j',
 
-  ADC_CH1                      : 'k',
+  ADC_CH1: 'k',
 
-  DAC_CH1                      : 'n',
+  DAC_CH1: 'n',
 
-  DISPLAY_LCD1                 : 'o',
-  
-	DISPLAY__7SEGS               : 'p'
+  DISPLAY_LCD1: 'o',
+
+  DISPLAY__7SEGS: 'p'
 }
 
 /*==================[internal data declaration]==============================*/
 
 // Variables asociadas a la conexion de puertos COM
-let PortSelected               = "";
-let BaudRateSelected           = 115200;
-let SerialBuffer               = "";
+let PortSelected = "";
+let BaudRateSelected = 115200;
+let SerialBuffer = "";
 // Flags que rigen el comportamiento de la APP
-let FlagPortsListed            = false;
-let FlagEmbeddedSysConnected   = false;
+let FlagPortsListed = false;
+let FlagEmbeddedSysConnected = false;
 // Variables asociadas a los objetos HTML
 //let PortConnectionText         = "State: Trying to list ports..."
-let Led1State                  = false;
-let Led2State                  = false;
-let Led3State                  = false;
-let Led4State                  = false;
-let Tec1State                  = true;
-let Tec2State                  = true;
-let Tec3State                  = true;
-let Tec4State                  = true;
-let Adc1Value                  = 512;
-let Dac1Value                  = 512;
-let Segment7Text               = "-";
-let LcdText                    = "\\(-)/ Hello CIAA \\(-)/";
+let Led1State = false;
+let Led2State = false;
+let Led3State = false;
+let Led4State = false;
+let Tec1State = true;
+let Tec2State = true;
+let Tec3State = true;
+let Tec4State = true;
+let Adc1Value = 512;
+let Dac1Value = 512;
+let Segment7Text = "-";
+let LcdText = "\\(-)/ Hello CIAA \\(-)/";
 
 let Obj_SerialPort;
-let LogLevel = Log_t.ERROR; 
+let LogLevel = Log_t.ERROR;
 
 /*==================[Objects events and initialization]=========================*/
 
@@ -176,7 +179,7 @@ Logic_InitializeApp();
  * Setea el nivel de log global de la APP
  * @param {Log_t} logLevel 
  */
-function Log_SetLevel (logLevel){
+function Log_SetLevel(logLevel) {
   LogLevel = logLevel;
 }
 
@@ -184,7 +187,7 @@ function Log_SetLevel (logLevel){
  * Devuelve el nivel de log global de la APP
  * @returns {Log_t} loglevel
  */
-function Log_GetLevel(){
+function Log_GetLevel() {
   return LogLevel;
 }
 
@@ -196,39 +199,39 @@ function Log_GetLevel(){
  * @param {*} func nombre de la funcion que llama a esta funcion
  * @param {*} message mensaje a enviar a la consola.
  */
-function Log_Print (logLevel, func, message){
-  
-  if (Log_GetLevel() < Log_t.ERROR){
+function Log_Print(logLevel, func, message) {
+
+  if (Log_GetLevel() < Log_t.ERROR) {
     Log_SetLevel(Log_t.ERROR);
-  } else if (Log_GetLevel() > Log_t.EVENT){
+  } else if (Log_GetLevel() > Log_t.EVENT) {
     Log_SetLevel(Log_t.EVENT);
-  } 
-
-  if (logLevel <= Log_GetLevel()){
-
-    if (logLevel == Log_t.ERROR){
-      logLevel = "[ERROR] ";
-    } else if (logLevel == Log_t.WARN){
-      logLevel = "[WARN]  ";
-    } else if (logLevel == Log_t.NORMAL){
-      logLevel = "[NORMAL]";
-    } else if (logLevel == Log_t.DEBUG){
-      logLevel = "[DEBUG] ";
-    } else if (logLevel == Log_t.EVENT){
-      logLevel = "[EVENT] ";
-    } 
-    console.log (logLevel + " - " + func + ": " + message);
   }
-  
+
+  if (logLevel <= Log_GetLevel()) {
+
+    if (logLevel == Log_t.ERROR) {
+      logLevel = "[ERROR] ";
+    } else if (logLevel == Log_t.WARN) {
+      logLevel = "[WARN]  ";
+    } else if (logLevel == Log_t.NORMAL) {
+      logLevel = "[NORMAL]";
+    } else if (logLevel == Log_t.DEBUG) {
+      logLevel = "[DEBUG] ";
+    } else if (logLevel == Log_t.EVENT) {
+      logLevel = "[EVENT] ";
+    }
+    console.log(logLevel + " - " + func + ": " + message);
+  }
+
 }
 
 /**
  * Envia data por el puerto serial.
  * @param {*} data data a enviar.
  */
-function Serial_SendData (data){
-  Log_Print (Log_t.DEBUG, "Serial_SendData", 'Sending data serial: ' + data);
-  
+function Serial_SendData(data) {
+  Log_Print(Log_t.DEBUG, "Serial_SendData", 'Sending data serial: ' + data);
+
   Obj_SerialPort.write(data);
 }
 
@@ -239,39 +242,39 @@ function Serial_SendData (data){
  * Si se pueden listar al menos un puerto, el flag FlagPortsListed se 
  * pone en true
  */
-function Serial_FillPortsList(){
+function Serial_FillPortsList() {
   var serialport = require('serialport');
   // list serial ports:
   serialport.list(function (err, ports) {
-      var isSomePortSelected = false;
-      ports.forEach(function(port) {
-        // todo pensar si hay que meter un if para filtrar nombres
-        
-        if (!isSomePortSelected){
-          PortSelected = port.comName;
-          isSomePortSelected = true;
-        }
+    var isSomePortSelected = false;
+    ports.forEach(function (port) {
+      // todo pensar si hay que meter un if para filtrar nombres
 
-        Log_Print (Log_t.DEBUG, "Serial_FillPortsList", "Port detected" + port.comName);
+      if (!isSomePortSelected) {
+        PortSelected = port.comName;
+        isSomePortSelected = true;
+      }
 
-        let portListObj = document.getElementById("PortsCont_AviablePortsList");
-        let portOption = document.createElement("option");
-        portOption.text = port.comName;
-        portListObj.add(portOption);
-        //todo agregar portselected aca con alguna logica
-      });
-      // Actualiza la lista desplegable de baudrate con las posibles velocidades de conexion
-      BAUD_RATES_LIST.forEach(element => {
-        let baudRateListObj = document.getElementById("PortsCont_AviableBaudrateList");
-        let baudRateOption = document.createElement("option");
-        baudRateOption.text = element;
-        baudRateListObj.add(baudRateOption);
-      });
-      BaudRateSelected = BAUD_RATES_LIST[0];
+      Log_Print(Log_t.DEBUG, "Serial_FillPortsList", "Port detected" + port.comName);
 
-      FlagPortsListed = true;
+      let portListObj = document.getElementById("PortsCont_AviablePortsList");
+      let portOption = document.createElement("option");
+      portOption.text = port.comName;
+      portListObj.add(portOption);
+      //todo agregar portselected aca con alguna logica
+    });
+    // Actualiza la lista desplegable de baudrate con las posibles velocidades de conexion
+    BAUD_RATES_LIST.forEach(element => {
+      let baudRateListObj = document.getElementById("PortsCont_AviableBaudrateList");
+      let baudRateOption = document.createElement("option");
+      baudRateOption.text = element;
+      baudRateListObj.add(baudRateOption);
+    });
+    BaudRateSelected = BAUD_RATES_LIST[0];
+
+    FlagPortsListed = true;
   });
-  
+
 }
 
 /**
@@ -279,7 +282,7 @@ function Serial_FillPortsList(){
  * Para hacer esta funcion recorre las listas desplegables elemento
  * a elemento y los va eliminando.
  */
-function Serial_ClearPortsLists(){
+function Serial_ClearPortsLists() {
   var i;
   // Limpia las listas desplegables de los puertos disponibles
   let portListObj = document.getElementById("PortsCont_AviablePortsList");//var select = document.getElementById("PortsCont_AviablePortsList");
@@ -309,23 +312,23 @@ function Serial_ClearPortsLists(){
  * @param {*} dataCallback callback que se ejecuta cuando llegan datos por el puerto
  * @param {*} closeCallback callback que se ejecuta cuando se cierra el puerto
  */
-function Serial_CreateConnection (port, baudrate, openCallback, dataCallback, closeCallback){
-  Log_Print (Log_t.DEBUG, "Serial_CreateConnection", 'Try open port ' + port + " - at: " + baudrate + " baudios");
-  
+function Serial_CreateConnection(port, baudrate, openCallback, dataCallback, closeCallback) {
+  Log_Print(Log_t.DEBUG, "Serial_CreateConnection", 'Try open port ' + port + " - at: " + baudrate + " baudios");
+
   Obj_SerialPort = new Required_SerialPort(PortSelected, { baudRate: parseInt(BaudRateSelected) });
 
-  Obj_SerialPort.on    ('open', () => openCallback(true) );
+  Obj_SerialPort.on('open', () => openCallback(true));
 
-  Obj_SerialPort.on    ('data', data => dataCallback(data));
-  
-  Obj_SerialPort.on    ('close', () => closeCallback() );
+  Obj_SerialPort.on('data', data => dataCallback(data));
+
+  Obj_SerialPort.on('close', () => closeCallback());
 }
 
 /**
  * Escribe un mensaje en label del panel de conexion (arriba a la izquierda)
  * @param  {String} messageToWrite mensaje a escribir
  */
-function Serial_WriteConnectionLabel (messageToWrite) {
+function Serial_WriteConnectionLabel(messageToWrite) {
   //PortConnectionText = messageToWrite;
 }
 
@@ -335,8 +338,8 @@ function Serial_WriteConnectionLabel (messageToWrite) {
  * conectado se ponga en true.
  * @param {*} flag 
  */
-function Serial_CallbackOpen(flag){
-  Log_Print (Log_t.DEBUG, "Api_SerialCallbackOpen", 'Serial port connected, flag: ' + flag);
+function Serial_CallbackOpen(flag) {
+  Log_Print(Log_t.DEBUG, "Api_SerialCallbackOpen", 'Serial port connected, flag: ' + flag);
   FlagEmbeddedSysConnected = true;
 }
 
@@ -347,31 +350,29 @@ function Serial_CallbackOpen(flag){
  * perifericos virtuales, cada arrivo de datos hace que se llame a la funcion Logic_ParseCommandArrived()
  * @param {*} data data recibida por el perto serie
  */
-function Serial_CallbackDataArrived(data){
+function Serial_CallbackDataArrived(data) {
   var receiveBuffer = "";
 
-  Log_Print (Log_t.DEBUG, "Api_SerialCallbackDataArrived", 'Data received from serial: ' + data);
-  
-  receiveBuffer = data.toString().replace(/(\n)/g,"");
+  Log_Print(Log_t.DEBUG, "Api_SerialCallbackDataArrived", 'Data received from serial: ' + data);
 
-  if (receiveBuffer.includes("{") && receiveBuffer.includes("}")){
+  receiveBuffer = data.toString().replace(/(\n)/g, "");
+
+  if (receiveBuffer.includes("{") && receiveBuffer.includes("}")) {
     Logic_ParseCommandArrived(receiveBuffer);
   } else {
-    if (SerialBuffer == "" && receiveBuffer.includes("{")){
+    if (SerialBuffer == "" && receiveBuffer.includes("{")) {
       // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer first part of command: " + receiveBuffer);
       SerialBuffer = receiveBuffer;
-    } else if (SerialBuffer.includes("{") && !receiveBuffer.includes("}")){
+    } else if (SerialBuffer.includes("{") && !receiveBuffer.includes("}")) {
       // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer las part of command: " + receiveBuffer);
       SerialBuffer = SerialBuffer + receiveBuffer;
-    } else if (SerialBuffer.includes("{") && receiveBuffer.includes("}")){
+    } else if (SerialBuffer.includes("{") && receiveBuffer.includes("}")) {
       // Log_Print(Log_t.DEBUG, "Serial_CallbackDataArrived", "Assigning to Serial buffer las part of command: " + receiveBuffer);
       SerialBuffer = SerialBuffer + receiveBuffer;
       Logic_ParseCommandArrived(SerialBuffer);
       SerialBuffer = "";
     }
   }
-
-  
 }
 
 /**
@@ -381,9 +382,9 @@ function Serial_CallbackDataArrived(data){
  * en false, elimina el objeto de conexion serial y limpia las listas de puertos 
  * disponibles y baudrates.
  */
-function Serial_CloseConnection (){
-  if (FlagEmbeddedSysConnected){
-    Log_Print (Log_t.DEBUG, "Serial_CloseConnection", 'Closing serial port...');
+function Serial_CloseConnection() {
+  if (FlagEmbeddedSysConnected) {
+    Log_Print(Log_t.DEBUG, "Serial_CloseConnection", 'Closing serial port...');
 
     Obj_SerialPort.end();
 
@@ -399,14 +400,91 @@ function Serial_CloseConnection (){
 }
 
 /**
+ * Chequea el tamaño de la pantalla y en funcion del tamaño ajusta el zoom.
+ * Esta funcion es llamada desde Logic_InitializaApp()
+ * Debido a que los componentes de la APP tienen un tamaño fijo, en vez de 
+ * estar ajustando escalas de componentes, lo que se hace es darle mas o 
+ * menos zoom dependiendo del tamaño de la ventana. De esta manera siempre 
+ * se mantiene constante la relacion de aspecto.
+ */
+function View_AdjustAppZoom() {
+
+  /////////////////////////////////////////
+  // DEBUG PARA AJUSTAR ZOOM CON EL ADC
+  //
+  // let zoomFactor = Adc1Value / 1024;
+  // if (zoomFactor < 0.5) {
+  //   zoomFactor = 1.0 - (0.5 - zoomFactor);
+  // } else {
+  //   zoomFactor = 1.0 + (zoomFactor - 0.5);
+  // }
+  // LcdText = "ADC: " + Adc1Value + " - Scl: " + zoomFactor;
+  // View_SetZoomFactor(zoomFactor);
+  //
+  /////////////////////////////////////////
+
+  // Tamanos de resoluciones indexadas
+  const AVIABLE_RESOLUTIONS = 7;
+  // Posible desvio de tamanos de resoluciones
+  const RESOLUTION_BIAS = 0.08;
+  // Resoluciones indexadas
+  const absoluteResolutions = [
+    614400,  //1024 x 650
+    786432,  //1024 x 768
+    921600,  //1280 x 720
+    1049088, //1366 x 768
+    1440000, //1600 x 900
+    2073600, //1920 x 1080
+    3686400  //2560 x 1440
+  ];
+  // Factores de zoom indexados dependiendo la resolucion de pantalla
+  const absoluteZooms = [
+    0.85,
+    0.85,
+    1.0,
+    1.05,
+    1.23,
+    1.43,
+    1.8
+  ];
+
+  // Obtiene el tamano de la pantalla, su producto y la
+  // posible desviacion de los tamanos indexados
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  var dimensions = display.size;
+  let width = dimensions.width;
+  let height = dimensions.height;
+  let resolutionProduct = width * height;
+  let sizeBias = resolutionProduct * RESOLUTION_BIAS;
+
+  // En funcion del tamano de la pantalla calcula el posible zoom
+  for (i = 0; i < AVIABLE_RESOLUTIONS; i++){
+    // Si el tamano de pantalla encaja con los indexados +- una desviacion
+    if (resolutionProduct > (absoluteResolutions[i] - sizeBias) && resolutionProduct < (absoluteResolutions[i] + sizeBias)){
+      // Ajusta el zoom al tamano de pantalla apropiado
+      const { webFrame } = require('electron');
+      webFrame.setZoomFactor(absoluteZooms[i]);
+      break;
+    }
+  }
+
+  // Muestra por consola la informacion procesada
+  Log_Print(Log_t.DEBUG, "View_AdjustAppZoom", "Resolution: " + width + " x " + height);
+  Log_Print(Log_t.DEBUG, "View_AdjustAppZoom", "Resolution product: " + resolutionProduct + ", posible bias: " + sizeBias);
+  Log_Print(Log_t.DEBUG, "View_AdjustAppZoom", "Zoom calculated " + absoluteZooms[i]);
+  
+}
+
+/**
  * Trata de listar los puertos disponibles.
  * Esta funcion se dispara periodicamente.
  * Para que se ejecuten sus acciones, primero es necesario que exista conexion
  * con el servidor, y ademas, el cliente este dado de alta.
  */
-function Api_SerialTryToListPorts (){
-  if (!FlagPortsListed){
-    Log_Print (Log_t.DEBUG, "Logic_TryToListPorts", "Trying to list ports...");
+function Api_SerialTryToListPorts() {
+  if (!FlagPortsListed) {
+    Log_Print(Log_t.DEBUG, "Logic_TryToListPorts", "Trying to list ports...");
     Serial_FillPortsList();
   }
 }
@@ -417,23 +495,23 @@ function Api_SerialTryToListPorts (){
  * Para que se ejecuten sus acciones, es necesario que exista conexion con el 
  * servidor, el cliente este dado de alta y los puertos esten listados.
  */
-function Api_SerialManageConnection (){
-  if (!FlagEmbeddedSysConnected){
+function Api_SerialManageConnection() {
+  if (!FlagEmbeddedSysConnected) {
 
     Serial_CreateConnection(
-      PortSelected, 
-      BaudRateSelected, 
-      Serial_CallbackOpen, 
+      PortSelected,
+      BaudRateSelected,
+      Serial_CallbackOpen,
       Serial_CallbackDataArrived,
       Serial_CloseConnection
     );
 
-    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System connected");
-    Serial_WriteConnectionLabel ("State: Embedded System connected");
+    Log_Print(Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System connected");
+    Serial_WriteConnectionLabel("State: Embedded System connected");
   } else {
     Serial_CloseConnection();
-    Log_Print (Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
-    Serial_WriteConnectionLabel ("State: Embedded System disconnected");
+    Log_Print(Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
+    Serial_WriteConnectionLabel("State: Embedded System disconnected");
   }
 }
 
@@ -467,16 +545,16 @@ function Api_SerialManageConnection (){
  * 
  * @returns {Boolean} isValidCommand true si es un comando valido, false caso contrario.
  */
-function Logic_ParseCommandArrived (commString){
+function Logic_ParseCommandArrived(commString) {
   var isValidCommand = false;
-  
+
   // Chequea que la respuesta del servidor tenga formato correcto.
   if (
-    commString.charAt(0) == COMMAND_INIT && 
-    commString.charAt(2) == COMMAND_SEPARATOR && 
-    commString.charAt(4) == COMMAND_SEPARATOR && 
-    commString.charAt(commString.length -1) == COMMAND_END
-  ){
+    commString.charAt(0) == COMMAND_INIT &&
+    commString.charAt(2) == COMMAND_SEPARATOR &&
+    commString.charAt(4) == COMMAND_SEPARATOR &&
+    commString.charAt(commString.length - 1) == COMMAND_END
+  ) {
     // Activa el flag si es un comando valido.
     isValidCommand = true;
     // Guarda en la variable "command" el comando recibido.
@@ -484,50 +562,50 @@ function Logic_ParseCommandArrived (commString){
     // Guarda en la variable "periphericalMap" el periferico recibido.
     let periphericalMap = commString.charAt(3);
     // Realiza un switch del comando recibido.
-    switch(command){
+    switch (command) {
 
       case SerialCommand_t.COMM_SERIAL_GPIO_WRITE:
         DebugProcessedText = "COMMAND_GPIO_WRITE";
-        
+
         let gpioState;
 
-        if (commString.charAt(5) == GPIO_STATE_LOW){
+        if (commString.charAt(5) == GPIO_STATE_LOW) {
           gpioState = false;
-        } else if (commString.charAt(5) == GPIO_STATE_HIGH){
+        } else if (commString.charAt(5) == GPIO_STATE_HIGH) {
           gpioState = true;
         } else {
           gpioState = GPIO_STATE_INVALID;
           DebugProcessedText = "COMMAND_GPIO_WRITE - Invalid state received!";
         }
 
-        if (gpioState != GPIO_STATE_INVALID){
-          if (periphericalMap == PeriphMap_t.LED1){
+        if (gpioState != GPIO_STATE_INVALID) {
+          if (periphericalMap == PeriphMap_t.LED1) {
             Led1State = gpioState;
-          } else if (periphericalMap == PeriphMap_t.LED2){
+          } else if (periphericalMap == PeriphMap_t.LED2) {
             Led2State = gpioState;
-          } else if (periphericalMap == PeriphMap_t.LED3){
+          } else if (periphericalMap == PeriphMap_t.LED3) {
             Led3State = gpioState;
-          } else if (periphericalMap == PeriphMap_t.LED4){
+          } else if (periphericalMap == PeriphMap_t.LED4) {
             Led4State = gpioState;
           } else {
             DebugProcessedText = "COMMAND_GPIO_WRITE - Invalid peripherical received!";
           }
         }
-        
+
         break;
 
       case SerialCommand_t.COMM_SERIAL_DAC_WRITE:
         DebugProcessedText = "COMMAND_DAC_WRITE";
 
-        let dacStringValue = commString.slice(5, (commString.length - 1) );
+        let dacStringValue = commString.slice(5, (commString.length - 1));
         let dacIntValue = parseInt(dacStringValue);
-        
-        if (!isNaN(dacIntValue)){
-          if (dacIntValue < ANALOG_MIN_VALUE){
+
+        if (!isNaN(dacIntValue)) {
+          if (dacIntValue < ANALOG_MIN_VALUE) {
             dacIntValue = ANALOG_MIN_VALUE;
-          } else if (dacIntValue > ANALOG_MAX_VALUE){
+          } else if (dacIntValue > ANALOG_MAX_VALUE) {
             dacIntValue = ANALOG_MAX_VALUE;
-          } 
+          }
           Dac1Value = dacIntValue;
         }
 
@@ -535,28 +613,28 @@ function Logic_ParseCommandArrived (commString){
 
       case SerialCommand_t.COMM_SERIAL_LCD_WRITE_STRING:
         DebugProcessedText = "COMMAND_LCD_WRITE_STRING";
-        
-        let lcdLine = commString.charAt(5);
-        let lcdStr = commString.slice(7, (commString.length - 1) );
 
-        if (lcdLine == LcdLine_t.ALL){
-          if (lcdStr != STRING_EMPTY){
-            if (lcdStr.length > LCD_MULTI_LINE_LENGHT){
+        let lcdLine = commString.charAt(5);
+        let lcdStr = commString.slice(7, (commString.length - 1));
+
+        if (lcdLine == LcdLine_t.ALL) {
+          if (lcdStr != STRING_EMPTY) {
+            if (lcdStr.length > LCD_MULTI_LINE_LENGHT) {
               lcdStr = lcdStr.slice(0, LCD_MULTI_LINE_LENGHT);
             }
             LcdText = lcdStr;
           }
-        } else if (lcdLine == LcdLine_t.FIRST || lcdLine == LcdLine_t.SECOND || lcdLine == LcdLine_t.THIRD){
-          
-          if (lcdStr != STRING_EMPTY){
-            
-            if (lcdStr.length > LCD_LINE_LENGHT){
+        } else if (lcdLine == LcdLine_t.FIRST || lcdLine == LcdLine_t.SECOND || lcdLine == LcdLine_t.THIRD) {
+
+          if (lcdStr != STRING_EMPTY) {
+
+            if (lcdStr.length > LCD_LINE_LENGHT) {
               lcdStr = lcdStr.slice(0, LCD_LINE_LENGHT);
             }
 
-            if (lcdLine == LcdLine_t.SECOND){
+            if (lcdLine == LcdLine_t.SECOND) {
               LcdText = LCD_LINE_2_PREAMBULE + lcdStr;
-            } else if (lcdLine == LcdLine_t.THIRD){
+            } else if (lcdLine == LcdLine_t.THIRD) {
               LcdText = LCD_LINE_3_PREAMBULE + lcdStr;
             } else {
               LcdText = lcdStr;
@@ -564,15 +642,15 @@ function Logic_ParseCommandArrived (commString){
           }
 
         }
-        
+
         break;
 
       case SerialCommand_t.COMM_SERIAL_7SEG_WRITE:
-        DebugProcessedText = "COMMAND_7SEG_WRITE"; 
+        DebugProcessedText = "COMMAND_7SEG_WRITE";
 
-        if (periphericalMap == PeriphMap_t.DISPLAY__7SEGS){
+        if (periphericalMap == PeriphMap_t.DISPLAY__7SEGS) {
 
-          if ( (commString.charAt(5) != STRING_EMPTY) && (commString.charAt(5) != COMMAND_END) ){
+          if ((commString.charAt(5) != STRING_EMPTY) && (commString.charAt(5) != COMMAND_END)) {
             Segment7Text = commString.charAt(5);
           }
 
@@ -582,51 +660,51 @@ function Logic_ParseCommandArrived (commString){
 
       case SerialCommand_t.COMM_SERIAL_GPIO_READ:
         DebugProcessedText = "COMMAND_GPIO_READ";
-        
+
         let commandType = commString.charAt(5);
 
-        if (commandType == SerialCommandType_t.TYPE_SERIAL_REQUEST){
+        if (commandType == SerialCommandType_t.TYPE_SERIAL_REQUEST) {
 
           let gpioReadState = GPIO_STATE_INVALID;
 
-          if (periphericalMap == PeriphMap_t.LED1){
+          if (periphericalMap == PeriphMap_t.LED1) {
             gpioReadState = Led1State;
-          } else if (periphericalMap == PeriphMap_t.LED2){
+          } else if (periphericalMap == PeriphMap_t.LED2) {
             gpioReadState = Led2State;
-          } else if (periphericalMap == PeriphMap_t.LED3){
+          } else if (periphericalMap == PeriphMap_t.LED3) {
             gpioReadState = Led3State;
-          } else if (periphericalMap == PeriphMap_t.LED4){
+          } else if (periphericalMap == PeriphMap_t.LED4) {
             gpioReadState = Led4State;
-          } else if (periphericalMap == PeriphMap_t.TEC1){
+          } else if (periphericalMap == PeriphMap_t.TEC1) {
             gpioReadState = Tec1State;
-          } else if (periphericalMap == PeriphMap_t.TEC2){
+          } else if (periphericalMap == PeriphMap_t.TEC2) {
             gpioReadState = Tec2State;
-          } else if (periphericalMap == PeriphMap_t.TEC3){
+          } else if (periphericalMap == PeriphMap_t.TEC3) {
             gpioReadState = Tec3State;
-          } else if (periphericalMap == PeriphMap_t.TEC4){
+          } else if (periphericalMap == PeriphMap_t.TEC4) {
             gpioReadState = Tec4State;
           }
 
-          if (gpioReadState != GPIO_STATE_INVALID){
-            
-            if (!gpioReadState){
+          if (gpioReadState != GPIO_STATE_INVALID) {
+
+            if (!gpioReadState) {
               gpioReadState = GPIO_STATE_LOW;
             } else {
               gpioReadState = GPIO_STATE_HIGH;
             }
 
-            let commandResponse = 
+            let commandResponse =
               COMMAND_INIT +
-              SerialCommand_t.COMM_SERIAL_GPIO_READ + 
+              SerialCommand_t.COMM_SERIAL_GPIO_READ +
               COMMAND_SEPARATOR +
-              periphericalMap + 
+              periphericalMap +
               COMMAND_SEPARATOR +
-              SerialCommandType_t.TYPE_SERIAL_RESPONSE + 
+              SerialCommandType_t.TYPE_SERIAL_RESPONSE +
               COMMAND_SEPARATOR +
               gpioReadState +
               COMMAND_END;
-            
-              Serial_SendData(commandResponse);
+
+            Serial_SendData(commandResponse);
           }
 
         }
@@ -634,22 +712,22 @@ function Logic_ParseCommandArrived (commString){
         break;
 
       case SerialCommand_t.COMM_SERIAL_ADC_READ:
-        DebugProcessedText = "COMMAND_ADC_READ"; 
+        DebugProcessedText = "COMMAND_ADC_READ";
 
-        if (periphericalMap == PeriphMap_t.ADC_CH1){
-          
-          let commandResponse = 
+        if (periphericalMap == PeriphMap_t.ADC_CH1) {
+
+          let commandResponse =
             COMMAND_INIT +
-            SerialCommand_t.COMM_SERIAL_ADC_READ + 
+            SerialCommand_t.COMM_SERIAL_ADC_READ +
             COMMAND_SEPARATOR +
-            periphericalMap + 
+            periphericalMap +
             COMMAND_SEPARATOR +
-            SerialCommandType_t.TYPE_SERIAL_RESPONSE + 
+            SerialCommandType_t.TYPE_SERIAL_RESPONSE +
             COMMAND_SEPARATOR +
             ("000" + Adc1Value).slice(-4) +
             COMMAND_END;
 
-            Serial_SendData(commandResponse);
+          Serial_SendData(commandResponse);
         }
 
         break;
@@ -672,115 +750,117 @@ function Logic_ParseCommandArrived (commString){
  * Por otro lado, setea los timers para disparar las acciones periodicas requeridas 
  * por la aplicacion.
  */
-function Logic_InitializeApp (){
+function Logic_InitializeApp() {
 
   Log_SetLevel(Log_t.EVENT);
 
   document.getElementById("PortsCont_AviablePortsList").addEventListener('click', (e) => {
-    Log_Print (Log_t.EVENT, "PortsCont_AviablePortsList", "Selected port: " + e.target.value);
+    Log_Print(Log_t.EVENT, "PortsCont_AviablePortsList", "Selected port: " + e.target.value);
     PortSelected = e.target.value;
   })
-  
+
   document.getElementById("PortsCont_AviableBaudrateList").addEventListener('click', (e) => {
-    Log_Print (Log_t.EVENT, "PortsCont_AviableBaudrateList", "Selected baudrate: " + e.target.value);
+    Log_Print(Log_t.EVENT, "PortsCont_AviableBaudrateList", "Selected baudrate: " + e.target.value);
     BaudRateSelected = e.target.value;
   })
-  
+
   document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e) => {
     Api_SerialManageConnection();
   })
-  
+
   //document.querySelector(".PortsCont_LblPortState").innerHTML = PortConnectionText;
-  
+
   document.getElementById("GpioCont_ImgTec1").addEventListener('mousedown', (e) => {
     Tec1State = false;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 pressed");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec1").addEventListener('mouseup', (e) => {
     Tec1State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec1").addEventListener('mouseout', (e) => {
     Tec1State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 1 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec2").addEventListener('mousedown', (e) => {
     Tec2State = false;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 pressed");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec2").addEventListener('mouseup', (e) => {
     Tec2State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec2").addEventListener('mouseout', (e) => {
     Tec2State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 2 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec3").addEventListener('mousedown', (e) => {
     Tec3State = false;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 pressed");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec3").addEventListener('mouseup', (e) => {
     Tec3State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec3").addEventListener('mouseout', (e) => {
     Tec3State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 3 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec4").addEventListener('mousedown', (e) => {
     Tec4State = false;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 pressed");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 pressed");
     e.target.src = IMG_TEC_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec4").addEventListener('mouseup', (e) => {
     Tec4State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   document.getElementById("GpioCont_ImgTec4").addEventListener('mouseout', (e) => {
     Tec4State = true;
-    Log_Print (Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
+    Log_Print(Log_t.EVENT, "GpioCont_ImgTec", "Tec 4 released");
     e.target.src = IMG_TEC_NO_PRESSED;
   })
-  
+
   var RangeAdc = document.getElementById("AnalogCont_RangeAdc");
-  RangeAdc.oninput = function() {
+  RangeAdc.oninput = function () {
     Adc1Value = this.value;
-    Log_Print (Log_t.EVENT, "AnalogCont_RangeAdc", "ADC Value changed to: " + Adc1Value);
+    Log_Print(Log_t.EVENT, "AnalogCont_RangeAdc", "ADC Value changed to: " + Adc1Value);
   }
-  
+
   document.getElementById("AnalogCont_RangeDac").disabled = true;
 
   document.getElementById("AnalogCont_RangeDac").value = Dac1Value;
-  
+
   document.querySelector(".LcdCont_TextContainer p").innerHTML = LcdText;
-  
+
   document.querySelector(".Segments7Cont_Display").innerHTML = Segment7Text;
 
   setInterval(Logic_UpdateAppState, INTERVAL_REFRESH_APP);
 
   setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
+
+  View_AdjustAppZoom();
 
   document.getElementById("LinkHome").addEventListener('click', (e) => {
     Logic_ManageHtmlToShow("Periphericals");
@@ -799,6 +879,7 @@ function Logic_InitializeApp (){
   });
 
   Logic_ManageHtmlToShow("Periphericals")
+
 }
 
 /**
@@ -812,83 +893,83 @@ function Logic_InitializeApp (){
  * Entonces, para acceder a los objetos HTML de manera centralizada y organizada
  * esta funcion asigna a los objetos html el estado de las variables.
  */
-function Logic_UpdateAppState () {
+function Logic_UpdateAppState() {
 
-  if (FlagEmbeddedSysConnected){
+  if (FlagEmbeddedSysConnected) {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_ON;
   } else {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_OFF;
   }
 
   // document.querySelector(".PortsCont_LblPortState").innerHTML  = PortConnectionText;
-  
-  if (!Led1State){
+
+  if (!Led1State) {
     document.getElementById("GpioCont_ImgLed1").src = IMG_LED_OFF;
   } else {
     document.getElementById("GpioCont_ImgLed1").src = IMG_LED_RED;
   }
 
-  if (!Led2State){
+  if (!Led2State) {
     document.getElementById("GpioCont_ImgLed2").src = IMG_LED_OFF;
   } else {
     document.getElementById("GpioCont_ImgLed2").src = IMG_LED_GREEN;
   }
 
-  if (!Led3State){
+  if (!Led3State) {
     document.getElementById("GpioCont_ImgLed3").src = IMG_LED_OFF;
   } else {
     document.getElementById("GpioCont_ImgLed3").src = IMG_LED_BLUE;
   }
 
-  if (!Led4State){
+  if (!Led4State) {
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_OFF;
   } else {
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_BLUE;
   }
 
-  document.getElementById("AnalogCont_RangeDac").value         = Dac1Value;
+  document.getElementById("AnalogCont_RangeDac").value = Dac1Value;
 
   document.querySelector(".LcdCont_TextContainer p").innerHTML = LcdText;
-  
-  document.querySelector(".Segments7Cont_Display").innerHTML   = Segment7Text;
+
+  document.querySelector(".Segments7Cont_Display").innerHTML = Segment7Text;
 
 }
 
-function Logic_ManageHtmlToShow(htmlToShow){
+function Logic_ManageHtmlToShow(htmlToShow) {
 
-  if (htmlToShow == "Periphericals"){
+  if (htmlToShow == "Periphericals") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'block';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
 
-  } else if (htmlToShow == "Source"){
+  } else if (htmlToShow == "Source") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'block';
+    document.getElementById("InnetHtmlContainer_Source").style.display = 'block';
     document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
 
-  } else if (htmlToShow == "Documentation"){
+  } else if (htmlToShow == "Documentation") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Documentation").style.display = 'block';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
 
-  } else if (htmlToShow == "Contact"){
+  } else if (htmlToShow == "Contact") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Source").style.display    = 'none';
+    document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display    = 'block';
-    
+    document.getElementById("InnetHtmlContainer_Contact").style.display = 'block';
+
 
   } else {
     console.log("Invalid htmlToShow")
   }
-  
+
 }
 
 /*==================[internal function declaration]==========================*/

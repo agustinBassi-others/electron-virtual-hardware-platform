@@ -20,7 +20,7 @@
   "author": "Agustin Bassi",
   "license": "Copyright 2018, Agustin Bassi",
   "devDependencies": {
-    "electron": "^2.0.2",
+    "electron": "^2.0.8",
     "electron-rebuild": "^1.7.3"
   },
   "dependencies": {

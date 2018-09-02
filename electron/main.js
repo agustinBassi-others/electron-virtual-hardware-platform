@@ -5,15 +5,124 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+/**
+ * Obtiene el ancho del display primario de la PC
+ */
+function View_GetScreenWidht() {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.width;
+}
+
+/**
+ * Obtiene el alto del display primario de la PC
+ */
+function View_GetScreenHeight() {
+  const screen = require('electron').screen;
+  const display = screen.getPrimaryDisplay();
+  const area = display.workArea;
+  var dimensions = display.size;
+
+  // console.log(dimensions.width + "x" + dimensions.height);
+  return dimensions.height;
+}
+
+/**
+ * Obtiene el alto actual de la ventana
+ */
+function View_GetCurrentHeight() {
+  const electron = require('electron')
+  const remote = electron.remote
+
+  var height = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().height;
+
+  return height;
+}
+
+/**
+ * Obtiene el ancho actual de la ventana
+ */
+function View_GetCurrentWidth() {
+  const electron = require('electron')
+  const remote = electron.remote
+
+  var width = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().width;
+
+  return width;
+}
+
+/**
+ * Setea el zoom de la aplicacion.
+ */
+function View_SetZoomFactor(scaleFactor) {
+  const { webFrame } = require('electron');
+  webFrame.setZoomFactor(scaleFactor);
+}
+
+function View_ResizeAppDinamically () {
+  let currentWidth = View_GetCurrentWidth();
+  let currentHeight = View_GetCurrentHeight();
+  let ratio = currentHeight / currentWidth;
+
+  if (ratio < 0.52 || ratio > 0.6){
+    let newWidth = currentHeight / 0.5625;
+    const { webFrame } = require('electron');
+    webFrame.setSize(newWidth, currentHeight);  
+  }
+}
+
+function View_CalculateZoomFactor() {
+  let currentWidth = View_GetCurrentWidth();
+  let currentHeight = View_GetCurrentHeight();
+  let ratio = currentHeight / currentWidth;
+  let zoomFactor = VIEW_DEFAUL_ZOOM_FACTOR;
+
+  const LIMIT_RATIO = 0.62;
+  const STEP = 50;
+
+  let heightMin = 400;
+  let heightMax = 1100;
+
+  let tempHeight = heightMin;
+  let tempZoomFactor = 0.5;
+
+  for (tempHeight = heightMin, tempZoomFactor = 0.5; tempHeight < heightMax; tempHeight += STEP, tempZoomFactor += 0.067) {
+
+    if (currentHeight < tempHeight) {
+      if (ratio > 0.52 && ratio < 0.61) {
+        zoomFactor = tempZoomFactor;
+        break;
+      } 
+    }
+
+  }
+  Log_Print(Log_t.DEBUG, "View_AdjustAppZoom", "Zoom calculado: " + zoomFactor);
+  return zoomFactor;
+}
+
 function createWindow () {
+
+  const windowWidth = View_GetScreenWidht() - 100;
+  const windowHeight = View_GetScreenHeight() - 100;
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 650})
-
+  mainWindow = new BrowserWindow({
+    width: windowWidth, 
+    height: windowHeight
+  })
+  // Oculta la barra de menu
+  mainWindow.setMenuBarVisibility(false);
+  // maximiza la ventana
+  mainWindow.maximize();
+  // no se puede cambiar el tamaño
+  mainWindow.setResizable(false);
   // and load the index.html of the app.
-  mainWindow.loadFile('src/index.html')
-
+  mainWindow.loadFile('src/index.html');
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -22,6 +131,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
 }
 
 // This method will be called when Electron has finished
