@@ -32,7 +32,7 @@ section{
 #InnetHtmlContainer_Components{
     display: flex;
     flex-direction: column;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .ComponentsCont{

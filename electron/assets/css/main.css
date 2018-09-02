@@ -62,20 +62,19 @@ body{
 }
 
 /*===========[ Footer ]=======================*/
+
 /*
 .Footer{
     margin-top: 10px;
     font: 15px Font_Footer;
     text-align: center;
-
     height: 100px;
-    
 }
 */
+
 .Footer {
-    background-color: orange;
+    /* background-color: orange; */
     position: absolute;
-    
     left: 0;
     bottom: 0;
     width: 100%;
