@@ -33,6 +33,17 @@ section{
     display: flex;
     flex-direction: column;
     /* background-color: blueviolet; */
+
+    height: 560px; 
+    /* width: 1320px;  */
+    width: 98%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 1%;
+    margin-left: 1%;
+    border: 3px;
+    /* border-style; */
+    border-style: double;
 }
 
 .ComponentsCont{
@@ -59,7 +70,7 @@ section{
     border-top-style: dashed;
     border-bottom-style: dashed;
     margin-top: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
     
@@ -103,11 +114,11 @@ section{
 .GpiosCont{
     display: flex;
     align-items: center;
-    height: 200px;
+    height: 190px;
     width: 500px;
     flex-direction: row;
     margin-left: 12px;
-    /*background-color: brown;*/
+    /* background-color: brown; */
 }
 
 .GpioCont{
@@ -194,13 +205,7 @@ section{
     text-align: center;
     width: 350px;
     height: 150px;
-    margin-bottom: 0px;
-}
-
-.LcdCont_Lcd p {
-    padding: 0 20px;
-    text-align: left;
-    user-select: none;
+    margin-bottom: 17px;
 }
 
 .LcdCont_TextContainer {
@@ -209,6 +214,12 @@ section{
     top: 25px;
     font-size: 20px;
     padding: 2px 15px;
+}
+
+.LcdCont_Lcd p {
+    padding: 0 20px;
+    text-align: left;
+    user-select: none;
 }
 
 /*===========[ 7 Segmentos ]==================*/

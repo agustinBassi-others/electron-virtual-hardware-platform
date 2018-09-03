@@ -429,7 +429,7 @@ function View_AdjustAppZoom() {
   const RESOLUTION_BIAS = 0.08;
   // Resoluciones indexadas
   const absoluteResolutions = [
-    614400,  //1024 x 650
+    614400,  //1024 x 600
     786432,  //1024 x 768
     921600,  //1280 x 720
     1049088, //1366 x 768
@@ -439,9 +439,9 @@ function View_AdjustAppZoom() {
   ];
   // Factores de zoom indexados dependiendo la resolucion de pantalla
   const absoluteZooms = [
-    0.85,
-    0.85,
-    1.0,
+    0.80,
+    0.80,
+    0.96,
     1.05,
     1.23,
     1.43,
@@ -450,11 +450,15 @@ function View_AdjustAppZoom() {
 
   // Obtiene el tamano de la pantalla, su producto y la
   // posible desviacion de los tamanos indexados
-  const screen = require('electron').screen;
-  const display = screen.getPrimaryDisplay();
-  var dimensions = display.size;
-  let width = dimensions.width;
-  let height = dimensions.height;
+  // const screen = require('electron').screen;
+  // const display = screen.getPrimaryDisplay();
+  // var dimensions = display.size;
+  // let width = dimensions.width;
+  // let height = dimensions.height;
+  const electron = require('electron')
+  const remote = electron.remote;
+  let height = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().height;
+  let width = remote.getCurrentWindow().webContents.getOwnerBrowserWindow().getBounds().width;
   let resolutionProduct = width * height;
   let sizeBias = resolutionProduct * RESOLUTION_BIAS;
 

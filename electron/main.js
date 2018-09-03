@@ -106,8 +106,8 @@ function View_CalculateZoomFactor() {
 
 function createWindow () {
 
-  const windowWidth = View_GetScreenWidht() - 100;
-  const windowHeight = View_GetScreenHeight() - 100;
+  const windowWidth = 1366;//View_GetScreenWidht() - 100;
+  const windowHeight = 670;//View_GetScreenHeight() - 100;
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: windowWidth, 
@@ -116,7 +116,7 @@ function createWindow () {
   // Oculta la barra de menu
   mainWindow.setMenuBarVisibility(false);
   // maximiza la ventana
-  mainWindow.maximize();
+  // mainWindow.maximize();
   // no se puede cambiar el tamaño
   mainWindow.setResizable(false);
   // and load the index.html of the app.
