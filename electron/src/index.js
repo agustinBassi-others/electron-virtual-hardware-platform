@@ -426,24 +426,24 @@ function View_AdjustAppZoom() {
   // Tamanos de resoluciones indexadas
   const AVIABLE_RESOLUTIONS = 7;
   // Posible desvio de tamanos de resoluciones
-  const RESOLUTION_BIAS = 0.08;
+  const RESOLUTION_BIAS = 0.05;
   // Resoluciones indexadas
   const absoluteResolutions = [
-    614400,  //1024 x 600
-    786432,  //1024 x 768
-    921600,  //1280 x 720
-    1049088, //1366 x 768
-    1440000, //1600 x 900
-    2073600, //1920 x 1080
-    3686400  //2560 x 1440
+    573340,  //(1024 x 600)  - 60 (barra inicio) 
+    724992,  //(1024 x 768)  - 60 (barra inicio)
+    884800,  //(1280 x 720)  - 60 (barra inicio)
+    967128,  //(1366 x 768)  - 60 (barra inicio)
+    1344000, //(1600 x 900)  - 60 (barra inicio)
+    1958400, //(1920 x 1080) - 60 (barra inicio)
+    3532800  //(2560 x 1440) - 60 (barra inicio)
   ];
   // Factores de zoom indexados dependiendo la resolucion de pantalla
   const absoluteZooms = [
+    0.77,
     0.80,
-    0.80,
-    0.96,
-    1.05,
-    1.23,
+    0.93,
+    1.01,
+    1.2,
     1.43,
     1.8
   ];

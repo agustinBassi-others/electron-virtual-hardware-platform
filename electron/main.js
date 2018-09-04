@@ -106,8 +106,8 @@ function View_CalculateZoomFactor() {
 
 function createWindow () {
 
-  const windowWidth = 1366;//View_GetScreenWidht() - 100;
-  const windowHeight = 670;//View_GetScreenHeight() - 100;
+  const windowWidth = 1920;//View_GetScreenWidht() - 100;
+  const windowHeight = 1020;//View_GetScreenHeight() - 100;
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: windowWidth, 
