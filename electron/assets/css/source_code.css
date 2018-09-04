@@ -20,12 +20,12 @@
     border-style: double;
 }
 
-.SourceContainer_FilesTabs {
+.FilesTabs {
     margin: 5px 10px;
     overflow: hidden;
 }
 
-.SourceContainer_FilesTabs button {
+.FilesTabs button {
     background-color: inherit;
     float: left;
     border: none;
@@ -33,18 +33,18 @@
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
-    font: 15px Font_AppText;
+    font: 12px Font_AppText;
 }
 
-.SourceContainer_FilesTabs button:hover {
+.FilesTabs button:hover {
     background-color: #ddd;
 }
 
-.SourceContainer_FilesTabs button.active {
-    background-color: #ccc;
+.FilesTabs button.active {
+    background-color: gray;
 }
 
-.SourceContainer_Tabcontent {
+.TabContent {
     animation: fadeEffect 1s;
     width: 99%;
     height: 100%;
@@ -61,5 +61,5 @@
     background-color: gray;
     padding: 5px;
     font: 15px Font_AppText;
-    margin: 5px 10px;
+    margin: 10px;
 }

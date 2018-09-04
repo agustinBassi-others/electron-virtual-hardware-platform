@@ -10,21 +10,18 @@ var HtmlSourceCode = fs.readFileSync(HTML_SOURCE_CODE, 'utf8');
 // Write to HTML document the content recently readed.
 document.write(HtmlSourceCode);
 
-// Inicia la visualizacion con algun archivo
-openSourceFile('event', 'virtual_hardware.h');
-
-function openSourceFile(event, sourceFileName) {
+function ShowSourceFile(event, sourceFileName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("SourceContainer_Tabcontent");
+    tabcontent = document.getElementsByClassName("TabContent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("SourceContainer_FilesTabsLinks");
+    tablinks = document.getElementsByClassName("TabLink");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
@@ -33,6 +30,10 @@ function openSourceFile(event, sourceFileName) {
     document.getElementById(sourceFileName).style.display = "block";
     event.currentTarget.className += " active";
 }
+
+// Inicia la visualizacion con algun archivo
+ShowSourceFile('MouseEvent', 'virtual_hardware.h');
+
 
 // document.getElementById("Button_SourceH").addEventListener('click', (e) => {
 //     CopyToClipboard("h");
