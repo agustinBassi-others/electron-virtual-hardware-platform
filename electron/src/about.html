@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="../assets/css/contact.css"/>
+
+<script>
+    function OpenDefaultBrowser(link) {
+        console.log ("Abriendo: " + link)
+        require("electron").shell.openExternal(link);
+    }
+</script>
+
+<div id="InnetHtmlContainer_Contact">
+    <div class="ContactContainer">
+        <b>Juan Agustin Bassi</b></br>
+        <b>Master en Sistemas Embebidos - FIUBA</b></br>
+        <b>jagustinbassi@gmail.com</b></br>
+        <b>Version software: 0.0.1</b></br>
+        <b>Version firmware: 0.0.3</b></br>
+        <b><a href="#" onClick="OpenDefaultBrowser('http://www.github.com/agustinBassi/virtual_hard_platform')">Repositorio oficial</a></b></br>
+        <b><a href="#" onClick="OpenDefaultBrowser('https://groups.google.com/forum/#!forum/embebidos32')">Foro oficial</a></b>
+    </div>
+</div>
