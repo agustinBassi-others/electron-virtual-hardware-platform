@@ -2,7 +2,7 @@
 fs = require('fs');
 
 // Relative path of project.
-const COMPONENTS_HTML    = __dirname + '/' + 'components.html';
+const COMPONENTS_HTML    = __dirname + '/' + 'periphericals.html';
 const CONTACT_HTML       = __dirname + '/' + 'contact.html';
 const DOCUMENTATION_HTML = __dirname + '/' + 'documentation.html';
 const SOURCE_CODE_HTML   = __dirname + '/' + 'source_code.html';
