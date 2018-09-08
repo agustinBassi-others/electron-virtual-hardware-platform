@@ -171,7 +171,7 @@ let LogLevel = Log_t.ERROR;
 
 /*==================[Objects events and initialization]=========================*/
 
-Logic_InitializeApp();
+Logic_InitPeriphericals();
 
 /*==================[internal function declaration]==========================*/
 
@@ -754,7 +754,7 @@ function Logic_ParseCommandArrived(commString) {
  * Por otro lado, setea los timers para disparar las acciones periodicas requeridas 
  * por la aplicacion.
  */
-function Logic_InitializeApp() {
+function Logic_InitPeriphericals() {
 
   Log_SetLevel(Log_t.EVENT);
 
@@ -860,7 +860,7 @@ function Logic_InitializeApp() {
 
   document.querySelector(".Segments7Cont_Display").innerHTML = Segment7Text;
 
-  setInterval(Logic_UpdateAppState, INTERVAL_REFRESH_APP);
+  setInterval(Logic_UpdatePeriphericalsState, INTERVAL_REFRESH_APP);
 
   setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
 
@@ -897,7 +897,7 @@ function Logic_InitializeApp() {
  * Entonces, para acceder a los objetos HTML de manera centralizada y organizada
  * esta funcion asigna a los objetos html el estado de las variables.
  */
-function Logic_UpdateAppState() {
+function Logic_UpdatePeriphericalsState() {
 
   if (FlagEmbeddedSysConnected) {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_ON;
