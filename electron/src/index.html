@@ -34,7 +34,24 @@
     <!-- /*===========[ Puertos disponibles ]==========*/ -->
 
     <section>
-        <script src="print_web_pages.js"></script>
+
+        <script>
+            // Library required for read files.
+            fs = require('fs');
+            // Nombre de los html que se deben mostrar en la APP
+            var WebPages = [
+                'periphericals.html', 
+                'contact.html', 
+                'documentation.html', 
+                'source_code.html'
+            ]
+            // Abre cada uno de los archivo y los imprime en este documento HTML
+            let fileContent = "";
+            for (i = 0; i < WebPages.length; i++){
+                document.write(fs.readFileSync(__dirname + '/' + WebPages[i], 'utf8'));
+            }
+        </script>
+        
     </section>
 
     <!-- /*===========[ Footer ]=======================*/ -->
