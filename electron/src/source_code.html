@@ -1,16 +1,25 @@
 <link rel="stylesheet" href="../assets/css/source_code.css" />
-<div id="InnetHtmlContainer_Source">
-    <div class="SourceContainer">
-        
-        <div class="SourceContainerH">
-            <button id="Button_SourceH" class="Button_Source">Copiar al portapapeles virtual_hardware.h</button>
-            <iframe class="Iframe_SourceH" src="source_code_h.html"></iframe>
-        </div>
 
-        <div class="SourceContainerC">
-            <button id="Button_SourceC" class="Button_Source">Copiar al portapapeles virtual_hardware.c</button>
-            <iframe class="Iframe_SourceC" src="source_code_c.html"></iframe>
-        </div>
-        
+<div id="InnetHtmlContainer_Source">
+
+    <div class="FilesTabs">
+        <button class="TabLink" onclick="ShowSourceFile(event, 'virtual_hardware.h')">virtual_hardware.h</button>
+        <button class="TabLink" onclick="ShowSourceFile(event, 'virtual_hardware.c')">virtual_hardware.c</button>
+        <button class="TabLink" onclick="ShowSourceFile(event, 'ejemplo1.c')">ejemplo1.c</button>
+    </div>
+
+    <div id="virtual_hardware.h" class="TabContent">
+        <iframe class="Iframe_Source" src="source_code_h.html"></iframe>
+        <button class="Button_Source" id="Button_SourceH">Copiar al portapapeles virtual_hardware.h</button>
+    </div>
+    
+    <div id="virtual_hardware.c" class="TabContent">
+        <iframe class="Iframe_Source" src="source_code_c.html"></iframe> 
+        <button class="Button_Source" id="Button_SourceC">Copiar al portapapeles virtual_hardware.c</button>
+    </div>
+    
+    <div id="ejemplo1.c" class="TabContent">
+        <iframe class="Iframe_Source" src="source_code_c.html"></iframe> 
+        <button class="Button_Source" id="Button_SourceC">Copiar al portapapeles ejemplo1.c</button>
     </div>
 </div>
