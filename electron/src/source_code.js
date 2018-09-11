@@ -1,3 +1,4 @@
+var fs = require('fs');
 
 function ShowSourceFile(event, sourceFileName) {
     // Declare all variables
@@ -19,3 +20,29 @@ function ShowSourceFile(event, sourceFileName) {
     document.getElementById(sourceFileName).style.display = "block";
     event.currentTarget.className += " active";
 }
+
+
+function CopyToClipboard (fileToCopyToClipboard){
+    const {clipboard} = require('electron')
+
+    console.log("El path a copiar es: " + fileToCopyToClipboard)
+
+    let fileContent = fs.readFileSync(fileToCopyToClipboard, 'utf8')
+    
+    console.log("El contenido es: " + fileContent)
+
+    clipboard.writeText(fileContent)
+
+    // clipboard.writeText(fileContent, 'selección')
+
+    
+    // // Si se quiere copiar el .h copa al portapapeles el contenido del header
+    // if (button == "h"){
+    //     clipboard.writeText(HEADER_CONTENT, 'selección')
+    // } 
+    // // Si se quiere copiar el .h copa al portapapeles el contenido del header
+    // else if (button == "c"){
+    //     clipboard.writeText(SOURCE_CONTENT, 'selección')
+    // }
+}
+
