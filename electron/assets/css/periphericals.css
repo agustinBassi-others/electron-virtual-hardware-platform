@@ -94,23 +94,22 @@ section{
 */
 .PortsCont_OptionList{
     width: 100px;
-    margin: 0px;
 }
 
 .PortsCont_LblAviablePorts{
     font: 15px Font_AppText;
-    margin-right: 44px;
-    margin-left: 44px;
+    margin-right: 10px;
+    margin-left: 195px;
 }
 
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
-    margin-right: 133px;
-    margin-left: 148px;
+    margin-right: 30px;
+    margin-left: 25px;
 }
 
 .PortsCont_ImgPortSwitch{
-    margin-left: 140px;
+    margin-left: 248px;
 }
 
 .PortsCont_LblPortState{
