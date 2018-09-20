@@ -113,7 +113,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: windowWidth, 
     height: windowHeight,
-    icon: path.join(__dirname, 'assets/icons/png/icon_app.png_96x96.png')
+    icon: path.join(__dirname, 'assets/icons/png/icon.png')
   })
   // Oculta la barra de menu
   mainWindow.setMenuBarVisibility(false);

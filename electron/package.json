@@ -1,10 +1,14 @@
 {
   "name": "virtual-hardware-platform",
   "version": "1.0.0",
+  "productName": "Virtual Hardware Platform",
   "description": "Platform to emulate hardware periphericals for Embedded Systems",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Virtual Hardware Platform\"",    
+    "package-linux": "electron-packager .  virtual-hardware-platform-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
   },
   "repository": "https://github.com/agustinBassi/virtual_hard_platform",
   "keywords": [
@@ -20,7 +24,8 @@
   "author": "Agustin Bassi",
   "license": "Copyright 2018, Agustin Bassi",
   "devDependencies": {
-    "electron": "^2.0.8",
+    "electron": "^2.0.10",
+    "electron-packager": "^12.1.2",
     "electron-rebuild": "^1.7.3"
   },
   "dependencies": {
