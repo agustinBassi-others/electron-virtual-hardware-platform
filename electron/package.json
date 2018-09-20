@@ -1,6 +1,6 @@
 {
   "name": "virtual-hardware-platform",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Platform to emulate hardware periphericals for Embedded Systems",
   "main": "main.js",
   "scripts": {

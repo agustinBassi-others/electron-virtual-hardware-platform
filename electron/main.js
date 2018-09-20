@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+var path = require('path')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -111,7 +112,8 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: windowWidth, 
-    height: windowHeight
+    height: windowHeight,
+    icon: path.join(__dirname, 'assets/icons/png/icon_app.png_96x96.png')
   })
   // Oculta la barra de menu
   mainWindow.setMenuBarVisibility(false);
