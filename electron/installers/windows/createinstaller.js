@@ -14,11 +14,14 @@ function getInstallerConfig () {
   const rootPath = path.join('./')
   const outPath = path.join(rootPath, 'release-builds')
 
+  console.log ("App dir: " + path.join(outPath, 'virtual-hardware-platform-app-win32-ia32/'))
+  console.log ("Out dir: " + path.join(rootPath, 'installers/windows/'))
+
   return Promise.resolve({
     appDirectory: path.join(outPath, 'virtual-hardware-platform-app-win32-ia32/'),
     authors: 'Agustin Bassi',
     noMsi: true,
-    outputDirectory: path.join(outPath, 'windows-installer'),
+    outputDirectory: path.join(rootPath, 'installers/windows/'),
     exe: 'virtual-hardware-platform.exe',
     setupExe: 'VirtualHardwarePlatformAppInstaller.exe',
     setupIcon: path.join(rootPath, 'assets', 'icons', 'win', 'icon.ico')

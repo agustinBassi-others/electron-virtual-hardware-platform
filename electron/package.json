@@ -6,9 +6,10 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "package-mac"  : "electron-packager . virtual-hardware-platform-app --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win"  : "electron-packager . virtual-hardware-platform-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Virtual Hardware Platform\"",
+    "package-mac": "electron-packager . virtual-hardware-platform-app --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . virtual-hardware-platform-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Virtual Hardware Platform\"",
     "package-linux": "electron-packager . virtual-hardware-platform-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/virtual-hardware-platform-app-darwin-x64/virtual-hardware-platform-app.app virtual-hardware-platform-app --out=./installers/mac --overwrite icon=assets/icons/mac/icon.icns",
     "create-installer-win": "node installers/windows/createinstaller.js",
     "create-installer-debian": "electron-installer-debian --src release-builds/virtual-hardware-platform-app-linux-x64/ --arch amd64 --config installers/debian/debian.json"
   },
@@ -27,6 +28,7 @@
   "license": "Copyright 2018, Agustin Bassi",
   "devDependencies": {
     "electron": "^2.0.10",
+    "electron-installer-dmg": "^2.0.0",
     "electron-packager": "^12.1.2",
     "electron-rebuild": "^1.7.3",
     "electron-winstaller": "^2.6.4"
