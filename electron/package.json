@@ -1,7 +1,7 @@
 {
-  "name": "Hard-V",
-  "productName": "Hard-V",
-  "description": "Platform of virtual hardware to emulate periphericals for Embedded Systems",
+  "name": "ViHard",
+  "productName": "ViHard",
+  "description": "Virtual Hardware Platform to emulate periphericals for Embedded Systems",
   "author": "Agustin Bassi <jagustinbassi@gmail.com>",
   "license": "MIT",
   "version": "0.1.4",
@@ -17,7 +17,7 @@
     "dist-win": "build --win"
   },
   "build": {
-    "appId": "Hard-V",
+    "appId": "ViHard",
     "dmg": {
       "contents": [
         {
