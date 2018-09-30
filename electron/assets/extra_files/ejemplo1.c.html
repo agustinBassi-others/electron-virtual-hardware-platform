@@ -1,0 +1,685 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+   11
+   12
+   13
+   14
+   15
+   16
+   17
+   18
+   19
+   20
+   21
+   22
+   23
+   24
+   25
+   26
+   27
+   28
+   29
+   30
+   31
+   32
+   33
+   34
+   35
+   36
+   37
+   38
+   39
+   40
+   41
+   42
+   43
+   44
+   45
+   46
+   47
+   48
+   49
+   50
+   51
+   52
+   53
+   54
+   55
+   56
+   57
+   58
+   59
+   60
+   61
+   62
+   63
+   64
+   65
+   66
+   67
+   68
+   69
+   70
+   71
+   72
+   73
+   74
+   75
+   76
+   77
+   78
+   79
+   80
+   81
+   82
+   83
+   84
+   85
+   86
+   87
+   88
+   89
+   90
+   91
+   92
+   93
+   94
+   95
+   96
+   97
+   98
+   99
+  100
+  101
+  102
+  103
+  104
+  105
+  106
+  107
+  108
+  109
+  110
+  111
+  112
+  113
+  114
+  115
+  116
+  117
+  118
+  119
+  120
+  121
+  122
+  123
+  124
+  125
+  126
+  127
+  128
+  129
+  130
+  131
+  132
+  133
+  134
+  135
+  136
+  137
+  138
+  139
+  140
+  141
+  142
+  143
+  144
+  145
+  146
+  147
+  148
+  149
+  150
+  151
+  152
+  153
+  154
+  155
+  156
+  157
+  158
+  159
+  160
+  161
+  162
+  163
+  164
+  165
+  166
+  167
+  168
+  169
+  170
+  171
+  172
+  173
+  174
+  175
+  176
+  177
+  178
+  179
+  180
+  181
+  182
+  183
+  184
+  185
+  186
+  187
+  188
+  189
+  190
+  191
+  192
+  193
+  194
+  195
+  196
+  197
+  198
+  199
+  200
+  201
+  202
+  203
+  204
+  205
+  206
+  207
+  208
+  209
+  210
+  211
+  212
+  213
+  214
+  215
+  216
+  217
+  218
+  219
+  220
+  221
+  222
+  223
+  224
+  225
+  226
+  227
+  228
+  229
+  230
+  231
+  232
+  233
+  234
+  235
+  236
+  237
+  238
+  239
+  240
+  241
+  242
+  243
+  244
+  245
+  246
+  247
+  248
+  249
+  250
+  251
+  252
+  253
+  254
+  255
+  256
+  257
+  258
+  259
+  260
+  261
+  262
+  263
+  264
+  265
+  266
+  267
+  268
+  269
+  270
+  271
+  272
+  273
+  274
+  275
+  276
+  277
+  278
+  279
+  280
+  281
+  282
+  283
+  284
+  285
+  286
+  287
+  288
+  289
+  290
+  291
+  292
+  293
+  294
+  295
+  296
+  297
+  298
+  299
+  300
+  301
+  302
+  303
+  304
+  305
+  306
+  307
+  308
+  309
+  310
+  311
+  312
+  313
+  314
+  315
+  316
+  317
+  318
+  319
+  320
+  321
+  322
+  323
+  324
+  325
+  326
+  327
+  328
+  329
+  330
+  331
+  332
+  333
+  334
+  335
+  336
+  337
+  338
+  339
+  340
+  341
+  342</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008000">/* Copyright 2018, Agustin Bassi.</span>
+  <span style="color: #008000"> * All rights reserved.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * This file is part sAPI library for microcontrollers.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * Redistribution and use in source and binary forms, with or without</span>
+  <span style="color: #008000"> * modification, are permitted provided that the following conditions are met:</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * 1. Redistributions of source code must retain the above copyright notice,</span>
+  <span style="color: #008000"> *    this list of conditions and the following disclaimer.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+  <span style="color: #008000"> *    this list of conditions and the following disclaimer in the documentation</span>
+  <span style="color: #008000"> *    and/or other materials provided with the distribution.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * 3. Neither the name of the copyright holder nor the names of its</span>
+  <span style="color: #008000"> *    contributors may be used to endorse or promote products derived from this</span>
+  <span style="color: #008000"> *    software without specific prior written permission.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+  <span style="color: #008000"> * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+  <span style="color: #008000"> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+  <span style="color: #008000"> * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+  <span style="color: #008000"> * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+  <span style="color: #008000"> * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+  <span style="color: #008000"> * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+  <span style="color: #008000"> * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+  <span style="color: #008000"> * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+  <span style="color: #008000"> * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+  <span style="color: #008000"> * POSSIBILITY OF SUCH DAMAGE.</span>
+  <span style="color: #008000"> *</span>
+  <span style="color: #008000"> */</span>
+  
+  <span style="color: #008000">/*</span>
+  <span style="color: #008000"> * Date: 2018-09-30</span>
+  <span style="color: #008000"> */</span>
+  
+  <span style="color: #008000">/*==================[inclusions]=============================================*/</span>
+  
+  <span style="color: #0000ff">#include &quot;sapi.h&quot;</span>
+  <span style="color: #0000ff">#include &quot;virtual_hardware.h&quot;</span>
+  
+  <span style="color: #008000">/*==================[macros and definitions]=================================*/</span>
+  
+  <span style="color: #008000">/*==================[internal data declaration]==============================*/</span>
+  
+  <span style="color: #008000">/*==================[internal functions declaration]=========================*/</span>
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> Test (<span style="color: #2b91af">void</span>);
+  
+  <span style="color: #008000">/*==================[internal data definition]===============================*/</span>
+  
+  <span style="color: #008000">/*==================[external data definition]===============================*/</span>
+  
+  <span style="color: #008000">/*==================[internal functions definition]==========================*/</span>
+  
+  <span style="color: #008000">/*==================[external functions definition]==========================*/</span>
+  
+  <span style="color: #2b91af">int</span> main(<span style="color: #2b91af">void</span>){
+  
+      boardConfig();
+  
+      vBoardConfig(VIRTUAL_BAUDRATE_DEFAULT);
+  
+      <span style="color: #0000ff">while</span>(1) {
+          Test();
+      }
+      <span style="color: #0000ff">return</span> 0 ;
+  }
+  
+  <span style="color: #008000">/*==================[end of file]============================================*/</span>
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestGpioWrite	(){
+      vGpioWrite(V_LED1, TRUE);
+      gpioWrite(LED1, TRUE);
+      delay(500);
+  
+      vGpioWrite(V_LED2, TRUE);
+      gpioWrite(LED2, TRUE);
+      delay(500);
+  
+      vGpioWrite(V_LED3, TRUE);
+      gpioWrite(LED3, TRUE);
+      delay(500);
+  
+      vGpioWrite(V_LED1, FALSE);
+      gpioWrite(LED1, FALSE);
+      delay(500);
+  
+      vGpioWrite(V_LED2, FALSE);
+      gpioWrite(LED2, FALSE);
+      delay(500);
+  
+      vGpioWrite(V_LED3, FALSE);
+      gpioWrite(LED3, FALSE);
+      delay(500);
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestDac (){
+      <span style="color: #2b91af">uint16_t</span> dacValue = 0;
+  
+      <span style="color: #0000ff">for</span> (dacValue = 0; dacValue &lt;= 1000; dacValue += 100){
+          vDacWrite(V_DAC_CH1, dacValue);
+          delay(1000);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> Test7Segments (){
+      <span style="color: #2b91af">uint8_t</span> value = 0;
+  
+      <span style="color: #0000ff">for</span> (value = <span style="color: #a31515">&#39;0&#39;</span>; value &lt;= <span style="color: #a31515">&#39;9&#39;</span>; value++){
+          v7SegmentsWrite(V_7SEG, value);
+          delay (1000);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestDisplayWriteString	(){
+      vLcdWriteString(V_LCD1, LCD_LINE_ALL, <span style="color: #a31515">&quot;Mensaje multilinea escrito desde la CIAA&quot;</span>);
+      delay(2000);
+  
+      vLcdWriteString(V_LCD1, LCD_LINE_FIRST, <span style="color: #a31515">&quot;Linea 1&quot;</span>);
+      delay(2000);
+  
+      vLcdWriteString(V_LCD1, LCD_LINE_SECOND, <span style="color: #a31515">&quot;Linea 2&quot;</span>);
+      delay(2000);
+  
+      vLcdWriteString(V_LCD1, LCD_LINE_THIRD, <span style="color: #a31515">&quot;Linea 3&quot;</span>);
+      delay(2000);
+  
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestGpioRead (){
+      <span style="color: #2b91af">int8_t</span> state;
+  
+      <span style="color: #0000ff">if</span> (!vGpioRead(V_TEC1)){
+          gpioWrite(LEDG, TRUE);
+      } <span style="color: #0000ff">else</span> {
+          gpioWrite(LEDG, FALSE);
+      }
+      delay (50);
+  
+      <span style="color: #0000ff">if</span> (!vGpioRead(V_TEC2)){
+          gpioWrite(LED1, TRUE);
+      } <span style="color: #0000ff">else</span> {
+          gpioWrite(LED1, FALSE);
+      }
+      delay (50);
+  
+      <span style="color: #0000ff">if</span> (!vGpioRead(V_TEC3)){
+          gpioWrite(LED2, TRUE);
+      } <span style="color: #0000ff">else</span> {
+          gpioWrite(LED2, FALSE);
+      }
+      delay (50);
+  
+      <span style="color: #0000ff">if</span> (!vGpioRead(V_TEC4)){
+          gpioWrite(LED3, TRUE);
+      } <span style="color: #0000ff">else</span> {
+          gpioWrite(LED3, FALSE);
+      }
+      delay (50);
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestGpioToggle (){
+      <span style="color: #0000ff">while</span> (gpioRead(TEC1)){
+          vGpioToggle(V_LED1);
+          delay(500);
+      }
+  
+      <span style="color: #0000ff">while</span> (gpioRead(TEC1)){
+          vGpioToggle(V_LED2);
+          delay(500);
+      }
+  
+      <span style="color: #0000ff">while</span> (gpioRead(TEC1)){
+          vGpioToggle(V_LED3);
+          delay(500);
+      }
+  
+      <span style="color: #0000ff">while</span> (gpioRead(TEC1)){
+          vGpioToggle(V_LED4);
+          delay(500);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestAdcRead (){
+      <span style="color: #2b91af">uint16_t</span> adcValue = 0;
+  
+      <span style="color: #0000ff">while</span>(1){
+          adcValue = vAdcRead(V_ADC_CH1);
+          <span style="color: #0000ff">if</span> (adcValue &gt;= 0 &amp;&amp; adcValue &lt;= 250){
+              gpioWrite(LEDR, TRUE);
+              gpioWrite(LED1, FALSE);
+              gpioWrite(LED2, FALSE);
+              gpioWrite(LED3, FALSE);
+          } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (adcValue &gt; 250 &amp;&amp; adcValue &lt;= 500){
+              gpioWrite(LEDR, TRUE);
+              gpioWrite(LED1, TRUE);
+              gpioWrite(LED2, FALSE);
+              gpioWrite(LED3, FALSE);
+          } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (adcValue &gt; 500 &amp;&amp; adcValue &lt;= 750){
+              gpioWrite(LEDR, TRUE);
+              gpioWrite(LED1, TRUE);
+              gpioWrite(LED2, TRUE);
+              gpioWrite(LED3, FALSE);
+          } <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (adcValue &gt; 750){
+              gpioWrite(LEDR, TRUE);
+              gpioWrite(LED1, TRUE);
+              gpioWrite(LED2, TRUE);
+              gpioWrite(LED3, TRUE);
+          }
+          delay(200);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestIntegral1(){
+      <span style="color: #2b91af">uint8_t</span> counter7Segs = <span style="color: #a31515">&#39;0&#39;</span>;
+      <span style="color: #2b91af">uint32_t</span> counterLcd = 0;
+      <span style="color: #2b91af">char</span> lcdMessages[4][50] = {
+              <span style="color: #a31515">&quot;Hola Pablo y Eric! este es un mensaje multilinea&quot;</span>,
+              <span style="color: #a31515">&quot;Mensaje linea 1&quot;</span>,
+              <span style="color: #a31515">&quot;Mensaje linea 2&quot;</span>,
+              <span style="color: #a31515">&quot;Mensaje linea 3&quot;</span>
+      };
+      <span style="color: #2b91af">uint8_t</span> lcdMessageIndex = 0;
+      <span style="color: #2b91af">uint16_t</span> adcValue = 0;
+      <span style="color: #2b91af">bool_t</span> stateTec1 = TRUE;
+      <span style="color: #2b91af">bool_t</span> stateTec2 = TRUE;
+      <span style="color: #2b91af">char</span> lcdNumber[20];
+  
+      cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
+  
+      <span style="color: #0000ff">while</span>(1){
+          cyclesCounterReset();
+  
+          <span style="color: #008000">// funciona bien</span>
+          v7SegmentsWrite(V_7SEG, counter7Segs);
+          <span style="color: #008000">// funciona bien</span>
+  <span style="color: #008000">//		vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + &#39;0&#39;), lcdMessages[lcdMessageIndex]);</span>
+  
+          <span style="color: #008000">// paso a paso funciona bien, el problema es cuando esta corriendo</span>
+          adcValue = vAdcRead(V_ADC_CH1);
+          <span style="color: #008000">// funciona bien pasa que hay que pasarle bien el valor</span>
+          vDacWrite(V_DAC_CH1, adcValue);
+  
+          stateTec1 = vGpioRead(V_TEC1);
+          vGpioWrite(V_LED1, !stateTec1);
+  
+          stateTec2 = vGpioRead(V_TEC2);
+          vGpioWrite(V_LED2, !stateTec2);
+  
+          vGpioToggle(V_LED4);
+  
+          stdioSprintf(lcdNumber, <span style="color: #a31515">&quot;%d - uS: %d&quot;</span>, counterLcd, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, (LcdLine_t) (lcdMessageIndex + <span style="color: #a31515">&#39;0&#39;</span>), lcdNumber);
+  
+          <span style="color: #0000ff">if</span> (++counter7Segs &gt; <span style="color: #a31515">&#39;9&#39;</span>){
+              counter7Segs = <span style="color: #a31515">&#39;0&#39;</span>;
+          }
+  
+          <span style="color: #0000ff">if</span> (++lcdMessageIndex &gt; 3){
+              lcdMessageIndex = 0;
+          }
+  
+          counterLcd++;
+  
+          gpioToggle(LED3);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> TestTimming(){
+      <span style="color: #2b91af">char</span> lcdText[50];
+  
+      cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
+  
+      <span style="color: #0000ff">while</span>(1){
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          v7SegmentsWrite(V_7SEG, <span style="color: #a31515">&#39;1&#39;</span>);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;7SegsWrite: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vAdcRead(V_ADC_CH1);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;AdcRead: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vDacWrite(V_DAC_CH1, 145);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;DacWrite: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vGpioRead(V_TEC1);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;GpioRead: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vGpioWrite(V_LED2, 1);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;GpioWrite: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vGpioToggle(V_LED4);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;GpioToggle: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          <span style="color: #0000ff">while</span> (gpioRead(TEC1));
+          delay(1000);
+          cyclesCounterReset();
+          vLcdWriteString(V_LCD1, (LcdLine_t) LCD_LINE_ALL, <span style="color: #a31515">&quot;Hola Si, una consulta! Me queres mucho o poquito? Sofia&quot;</span>);
+          stdioSprintf(lcdText, <span style="color: #a31515">&quot;LcdWrite: %d us&quot;</span>, (<span style="color: #2b91af">uint32_t</span>)cyclesCounterToUs(cyclesCounterRead()));
+          vLcdWriteString(V_LCD1, LCD_LINE_ALL, lcdText);
+  
+          gpioToggle(LED3);
+      }
+  }
+  
+  <span style="color: #0000ff">static</span> <span style="color: #2b91af">void</span> Test (<span style="color: #2b91af">void</span>){
+      <span style="color: #008000">//	TestGpioWrite();</span>
+      <span style="color: #008000">//	TestDac();</span>
+      <span style="color: #008000">//	Test7Segments();</span>
+      <span style="color: #008000">//	TestDisplayWriteString();</span>
+      <span style="color: #008000">//	TestGpioRead();</span>
+      <span style="color: #008000">//	TestGpioToggle();</span>
+  <span style="color: #008000">//	TestAdcRead();</span>
+      TestIntegral1();
+  <span style="color: #008000">//	TestTimming();</span>
+  <span style="color: #008000">//	TestDelay();</span>
+  }
+  </pre></td></tr></table></div>
+  
