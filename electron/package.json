@@ -1,19 +1,48 @@
 {
-  "name": "virtual-hardware-platform",
-  "version": "1.0.0",
-  "productName": "Virtual Hardware Platform",
-  "description": "Platform to emulate hardware periphericals for Embedded Systems",
+  "name": "Hard-V",
+  "productName": "Hard-V",
+  "description": "Platform of virtual hardware to emulate periphericals for Embedded Systems",
+  "author": "Agustin Bassi <jagustinbassi@gmail.com>",
+  "license": "MIT",
+  "version": "0.1.4",
+  "repository": "https://github.com/agustinBassi/virtual_hard_platform",
   "main": "main.js",
   "scripts": {
+    "postinstall": "install-app-deps",
     "start": "electron .",
-    "package-mac": "electron-packager . virtual-hardware-platform-app --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . virtual-hardware-platform-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Virtual Hardware Platform\"",
-    "package-linux": "electron-packager . virtual-hardware-platform-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "create-installer-mac": "electron-installer-dmg ./release-builds/virtual-hardware-platform-app-darwin-x64/virtual-hardware-platform-app.app virtual-hardware-platform-app --out=./installers/mac --overwrite icon=assets/icons/mac/icon.icns",
-    "create-installer-win": "node installers/windows/createinstaller.js",
-    "create-installer-debian": "electron-installer-debian --src release-builds/virtual-hardware-platform-app-linux-x64/ --arch amd64 --config installers/debian/debian.json"
+    "start-full": "npm install && electron ./app",
+    "pack": "build --dir",
+    "dist": "build",
+    "pack-win": "build --dir --win",
+    "dist-win": "build --win"
   },
-  "repository": "https://github.com/agustinBassi/virtual_hard_platform",
+  "build": {
+    "appId": "Hard-V",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "assets/icon/win/icon.ico"
+    }
+  },
   "keywords": [
     "Electron",
     "Hardware",
@@ -24,17 +53,12 @@
     "Arduino",
     "Raspberry"
   ],
-  "author": "Agustin Bassi",
-  "license": "Copyright 2018, Agustin Bassi",
   "devDependencies": {
     "electron": "^2.0.10",
-    "electron-installer-dmg": "^2.0.0",
-    "electron-packager": "^12.1.2",
-    "electron-rebuild": "^1.7.3",
-    "electron-winstaller": "^2.6.4"
+    "electron-builder": "^20.28.4",
+    "electron-installer-debian": "^0.8.1"
   },
   "dependencies": {
-    "electron-open-link-in-browser": "^1.0.2",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "readline": "^1.3.0",

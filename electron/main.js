@@ -1,9 +1,9 @@
- //handle setupevents as quickly as possible
- const setupEvents = require('./installers/setupEvents')
- if (setupEvents.handleSquirrelEvent()) {
-    // squirrel event handled and app will exit in 1000ms, so don't do anything else
-    return;
- }
+//  //handle setupevents as quickly as possible
+//  const setupEvents = require('./installers/setupEvents')
+//  if (setupEvents.handleSquirrelEvent()) {
+//     // squirrel event handled and app will exit in 1000ms, so don't do anything else
+//     return;
+//  }
  
  // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
@@ -131,7 +131,7 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('src/index.html');
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
