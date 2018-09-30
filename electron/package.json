@@ -12,7 +12,9 @@
     "start": "electron .",
     "start-full": "npm install && electron ./app",
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build",
+    "pack-win": "build --dir --win",
+    "dist-win": "build --win"
   },
   "build": {
     "appId": "Hard-V",
