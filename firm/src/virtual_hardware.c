@@ -6,18 +6,17 @@
 
 /*==================[macros and definitions]=================================*/
 
-#define COMMAND_INIT                '{'
-#define COMMAND_END                 '}'
-#define COMMAND_SEPARATOR           ';'
+#define COMMAND_INIT            '{'
+#define COMMAND_END             '}'
+#define COMMAND_SEPARATOR       ';'
 
-#define MAX_ANALOG_VALUE            1023
+#define MAX_ANALOG_VALUE        1023
 
-#define MILLISECS_BETWEEN_COMMANDS  7
-//#define MICROSECS_BETWEEN_READS     10//(int)((1/VIRTUAL_BAUDRATE_DEFAULT)*1000000)+1
+#define MS_BETWEEN_COMMANDS     7
 
-#define V_GPIO_LOW		            '0'
-#define V_GPIO_HIGH		            '1'
-#define V_GPIO_INVALID	            -1
+#define VH_GPIO_LOW		        '0'
+#define VH_GPIO_HIGH            '1'
+#define VH_GPIO_INVALID	        -1
 
 /**
  * Posibles tipos de comandos que se pueden realizar. Este enum es utilizado
@@ -25,40 +24,40 @@
  * sistema embebido quiere leer le enviar un REQUEST y la aplicacion responde
  * con un RESPONSE.
  */
-typedef enum _VirtualCommandType {
-    V_COMM_REQUEST  = '0', //!< COMM_SERIAL_REQUEST
-    V_COMM_RESPONSE = '1'  //!< COMM_SERIAL_RESPONSE
-} VirtualCommandType_t;
+typedef enum _ViHardCommandType {
+    VH_COMM_REQUEST  = '0', //!< COMM_SERIAL_REQUEST
+    VH_COMM_RESPONSE = '1'  //!< COMM_SERIAL_RESPONSE
+} ViHardCommandType_t;
 
 /**
  * Posibles llamadas a los perifericos virtuales que se pueden realizar.
  */
-typedef enum _VirtualCommand {
+typedef enum _ViHardCommand {
     //Comandos asociados a GPIO
-    V_GPIO_READ        = 'a',
-    V_GPIO_WRITE       = 'b',
+    VH_GPIO_READ        = 'a',
+    VH_GPIO_WRITE       = 'b',
     //Comandos asociados al ADC/DAC
-    V_ADC_READ         = 'c',
-    V_DAC_WRITE        = 'd',
+    VH_ADC_READ         = 'c',
+    VH_DAC_WRITE        = 'd',
     // Comandos asociados al display LCD
-    V_LCD_WRITE_BYTE   = 'e',
-    V_LCD_WRITE_STRING = 'f',
+    VH_LCD_WRITE_BYTE   = 'e',
+    VH_LCD_WRITE_STRING = 'f',
     // Comandos asociados al display LCD
-    V_7SEG_WRITE       = 'g',
-} VirtCommand_t;
+    VH_7SEG_WRITE       = 'g',
+} ViHardCommand_t;
 
 /*==================[internal data declaration]==============================*/
 
 /*==================[internal functions declaration]=========================*/
 
-// El prefijo Vhp significa Virtual Hardware Platform. Las funciones con este
+// El prefijo Vh significa ViHard. Las funciones con este
 // prefijo son las que llaman a diferentes funciones depende de la plataforma.
-static void     VhpDelayMs          (uint32_t delayMs);
-static void     VhpDelayUs          (uint32_t delayMs);
-static void     VhpUartWriteByte    (uint8_t byteToWrite);
-static void     VhpUartWriteString  (char * string);
-static uint8_t  VhpUartReadByte     (void);
-static bool_t   CheckIfValidCommand (VirtCommand_t comm, VirtPeriph_t perMap);
+static void     VhUartWriteByte     (uint8_t byteToWrite);
+static uint8_t  VhUartReadByte      (void);
+static void     UartWriteString     (char * string);
+static void     DelayMs             (uint32_t delayMs);
+static void     DelayUs             (uint32_t delayMs);
+static bool_t   CheckIfValidCommand (ViHardCommand_t comm, ViHardPeriph_t perMap);
 static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
 
 /*==================[internal data definition]===============================*/
@@ -66,48 +65,18 @@ static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
 // Cuando se quieren leer datos del puerto serie se debe esperar
 // un tiempo proporcional al baudrate seleccionado. Esta variable
 // estatica se utiliza para este proposito.
-static uint32_t MicrosecsBetweenReads = round(1000000/VIHARD_BAUDRATE);
+static uint32_t UsBetweenReads = 1000000 / VIHARD_BAUDRATE;
 
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
 
 /**
- * Funcion propia para llamar al delay de la plataforma.
- * @param delayMs
- */
-static void VhpDelayUs (volatile uint32_t microSecs)
-{
-#if defined(BOARD_EDU_CIAA_NXP)
-    volatile uint64_t i;
-    volatile uint64_t delay;
-
-    delay = (CLOCK_SPEED_MHZ * microSecs) / 10;
-
-    for(i = delay; i > 0; i--);
-
-#elif defined(BOARD_CIAA_ZERO)
-    // todo poner aca la llamada correcta
-#elif defined(BOARD_ARDUINO)
-    // todo poner aca la llamada de arduino
-#endif
-}
-
-/**
- * Funcion propia para llamar al delay de la plataforma.
- * @param delayMs
- */
-static void VhpDelayMs (uint32_t delayMs)
-{
-    VhpDelayUs(delayMs * 1000);
-}
-
-/**
  * Funcion propia para llamar a la funcion de sacar un
  * byte por la uart seleccionada cuando se configuro al modulo.
  * @param byteToWrite byte a escribir en el puerto serie.
  */
-static void VhpUartWriteByte (uint8_t byteToWrite)
+static void VhUartWriteByte (uint8_t byteToWrite)
 {
 #if defined(BOARD_EDU_CIAA_NXP)
     uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite);
@@ -126,7 +95,7 @@ static void VhpUartWriteByte (uint8_t byteToWrite)
  * pueda ser multiplataforma.
  * @return el byte leido por la uart.
  */
-static uint8_t VhpUartReadByte (void)
+static uint8_t VhUartReadByte (void)
 {
     static uint8_t byteReaded;
 
@@ -141,8 +110,7 @@ static uint8_t VhpUartReadByte (void)
     // todo poner aca la llamada correcta
 #endif
 
-//    VhpDelayUs(MICROSECS_BETWEEN_READS);
-    VhpDelayUs(MicrosecsBetweenReads);
+    DelayUs(UsBetweenReads);
 
     return byteReaded;
 }
@@ -155,13 +123,36 @@ static uint8_t VhpUartReadByte (void)
  * todos los bytes del string.
  * @param string puntero al string a enviar por la uart.
  */
-static void VhpUartWriteString (char * string)
+static void UartWriteString (char * string)
 {
     while (*string != 0)
     {
-        VhpUartWriteByte((uint8_t) * string);
+        VhUartWriteByte((uint8_t) * string);
         string++;
     }
+}
+
+/**
+ * Funcion propia para llamar al delay de la plataforma.
+ * @param delayMs
+ */
+static void DelayUs (volatile uint32_t microSecs)
+{
+    volatile uint64_t i;
+    volatile uint64_t calculatedDelay;
+
+    calculatedDelay = (CLOCK_SPEED_MHZ * microSecs) / 10;
+
+    for(i = calculatedDelay; i > 0; i--);
+}
+
+/**
+ * Funcion propia para llamar al delay de la plataforma.
+ * @param delayMs
+ */
+static void DelayMs (uint32_t delayMs)
+{
+    DelayUs(delayMs * 1000);
 }
 
 /**
@@ -226,57 +217,57 @@ static bool_t AnalogToString (uint16_t numberToConvert, char * strNumber)
  * @param perMap periferico virtual sobre el cual se ejecutara el comando.
  * @return 1 si es una combinacion comando/periferico valida, 0 si no lo es.
  */
-static bool_t CheckIfValidCommand (VirtCommand_t command,
-        VirtPeriph_t perMap)
+static bool_t CheckIfValidCommand (ViHardCommand_t command,
+        ViHardPeriph_t perMap)
 {
     bool_t isValidCommand = FALSE;
-    if (command == V_GPIO_READ)
+    if (command == VH_GPIO_READ)
     {
-        if (perMap == V_TEC1 || perMap == V_TEC2 ||
-            perMap == V_TEC3 || perMap == V_TEC4)
+        if (perMap == VH_TEC1 || perMap == VH_TEC2 ||
+            perMap == VH_TEC3 || perMap == VH_TEC4)
         {
             isValidCommand = TRUE;
         }
-        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB ||
-            perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 ||
-            perMap == V_LED4)
-        {
-            isValidCommand = TRUE;
-        }
-    }
-    else if (command == V_GPIO_WRITE)
-    {
-        if (perMap == V_LEDR || perMap == V_LEDG || perMap == V_LEDB ||
-            perMap == V_LED1 || perMap == V_LED2 || perMap == V_LED3 ||
-            perMap == V_LED4)
+        if (perMap == VH_LEDR || perMap == VH_LEDG || perMap == VH_LEDB ||
+            perMap == VH_LED1 || perMap == VH_LED2 || perMap == VH_LED3 ||
+            perMap == VH_LED4)
         {
             isValidCommand = TRUE;
         }
     }
-    else if (command == V_ADC_READ)
+    else if (command == VH_GPIO_WRITE)
     {
-        if (perMap == V_ADC_CH1)
+        if (perMap == VH_LEDR || perMap == VH_LEDG || perMap == VH_LEDB ||
+            perMap == VH_LED1 || perMap == VH_LED2 || perMap == VH_LED3 ||
+            perMap == VH_LED4)
         {
             isValidCommand = TRUE;
         }
     }
-    else if (command == V_DAC_WRITE)
+    else if (command == VH_ADC_READ)
     {
-        if (perMap == V_DAC_CH1)
+        if (perMap == VH_ADC_CH1)
         {
             isValidCommand = TRUE;
         }
     }
-    else if (command == V_LCD_WRITE_BYTE || command == V_LCD_WRITE_STRING)
+    else if (command == VH_DAC_WRITE)
     {
-        if (perMap == V_LCD1)
+        if (perMap == VH_DAC_CH1)
         {
             isValidCommand = TRUE;
         }
     }
-    else if (command == V_7SEG_WRITE)
+    else if (command == VH_LCD_WRITE_BYTE || command == VH_LCD_WRITE_STRING)
     {
-        if (perMap == V_7SEG)
+        if (perMap == VH_LCD1)
+        {
+            isValidCommand = TRUE;
+        }
+    }
+    else if (command == VH_7SEG_WRITE)
+    {
+        if (perMap == VH_7SEG)
         {
             isValidCommand = TRUE;
         }
@@ -284,7 +275,7 @@ static bool_t CheckIfValidCommand (VirtCommand_t command,
 
     if (isValidCommand)
     {
-        VhpDelayMs(MILLISECS_BETWEEN_COMMANDS);
+        DelayMs(MS_BETWEEN_COMMANDS);
     }
 
     return isValidCommand;
@@ -298,10 +289,11 @@ static bool_t CheckIfValidCommand (VirtCommand_t command,
  * @param baudRate velocidad de transmision.
  * @return 1 siempre.
  */
-bool_t vBoardConfig (uint32_t baudRate)
+bool_t Vh_BoardConfig (uint32_t baudRate)
 {
-    // Se calcula el tiempo entre lecturas dependiendo baudrate y se le agrega un 10%
-    MicrosecsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
+    // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
+    UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
+
 #if defined(BOARD_EDU_CIAA_NXP)
     uartConfig(VIHARD_SERIAL_PORT, baudRate);
 #elif defined(BOARD_CIAA_ZERO)
@@ -317,23 +309,23 @@ bool_t vBoardConfig (uint32_t baudRate)
  * @param virtualGpioPin pin virtual a escribir.
  * @param pinState estado logico a enviar.
  */
-void vGpioWrite (VirtPeriph_t gpioPin, bool_t pinState)
+void Vh_GpioWrite (ViHardPeriph_t gpioPin, bool_t pinState)
 {
     char stringCommand[10];
 
-    if (CheckIfValidCommand(V_GPIO_WRITE, gpioPin))
+    if (CheckIfValidCommand(VH_GPIO_WRITE, gpioPin))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = V_GPIO_WRITE;
+        stringCommand[1] = VH_GPIO_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
         stringCommand[3] = gpioPin;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = pinState == TRUE ? V_GPIO_HIGH : V_GPIO_LOW;
+        stringCommand[5] = pinState == TRUE ? VH_GPIO_HIGH : VH_GPIO_LOW;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
 
-        VhpUartWriteString(stringCommand);
+        UartWriteString(stringCommand);
     }
 }
 
@@ -342,7 +334,7 @@ void vGpioWrite (VirtPeriph_t gpioPin, bool_t pinState)
  * @param virtualGpioPin pin virtual a leer.
  * @return estado logico leido.
  */
-bool_t vGpioRead (VirtPeriph_t gpioPin)
+bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
 {
     char stringCommand[10];
     bool_t pinState = TRUE;
@@ -351,19 +343,19 @@ bool_t vGpioRead (VirtPeriph_t gpioPin)
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
 
-    if (CheckIfValidCommand(V_GPIO_READ, gpioPin))
+    if (CheckIfValidCommand(VH_GPIO_READ, gpioPin))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = V_GPIO_READ;
+        stringCommand[1] = VH_GPIO_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
         stringCommand[3] = gpioPin;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = V_COMM_REQUEST;
+        stringCommand[5] = VH_COMM_REQUEST;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
 
-        VhpUartWriteString(stringCommand);
+        UartWriteString(stringCommand);
 
         // limpia el buffer
         for (i = 0; i < 10; i++)
@@ -375,7 +367,7 @@ bool_t vGpioRead (VirtPeriph_t gpioPin)
         // Espera a recibir data por un tiempo determinado
         while (++counter < 1000 && i < 10)
         {
-            if ((dataSerial = VhpUartReadByte()) != 0)
+            if ((dataSerial = VhUartReadByte()) != 0)
             {
                 if (dataSerial == COMMAND_INIT)
                 {
@@ -399,13 +391,13 @@ bool_t vGpioRead (VirtPeriph_t gpioPin)
             // chequea que todos lo que haya llegado
             // sea una respuesta correcta
             if (stringCommand[0] == COMMAND_INIT &&
-                stringCommand[1] == V_GPIO_READ &&
+                stringCommand[1] == VH_GPIO_READ &&
                 stringCommand[2] == COMMAND_SEPARATOR &&
                 stringCommand[4] == COMMAND_SEPARATOR &&
-                stringCommand[5] == V_COMM_RESPONSE &&
+                stringCommand[5] == VH_COMM_RESPONSE &&
                 stringCommand[6] == COMMAND_SEPARATOR &&
-               (stringCommand[7] == V_GPIO_LOW ||
-                stringCommand[7] == V_GPIO_HIGH))
+               (stringCommand[7] == VH_GPIO_LOW ||
+                stringCommand[7] == VH_GPIO_HIGH))
             {
                 pinState = stringCommand[7] - '0';
             }
@@ -421,9 +413,9 @@ bool_t vGpioRead (VirtPeriph_t gpioPin)
  * debe ser un pin de salida.
  * @param virtualGpioPin pin a invertir el estado logico.
  */
-void vGpioToggle (VirtPeriph_t gpioPin)
+void Vh_GpioToggle (ViHardPeriph_t gpioPin)
 {
-    vGpioWrite(gpioPin, !vGpioRead(gpioPin));
+    Vh_GpioWrite(gpioPin, !Vh_GpioRead(gpioPin));
 }
 
 /**
@@ -433,7 +425,7 @@ void vGpioToggle (VirtPeriph_t gpioPin)
  * @param virtualAdcPin pin analogico virtual a leer.
  * @return valor analogico leido.
  */
-uint16_t vAdcRead (VirtPeriph_t adcChannel)
+uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
 {
     char stringCommand[15];
     static uint16_t adcValue = 0;
@@ -442,20 +434,20 @@ uint16_t vAdcRead (VirtPeriph_t adcChannel)
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
 
-    if (CheckIfValidCommand(V_ADC_READ, adcChannel))
+    if (CheckIfValidCommand(VH_ADC_READ, adcChannel))
     {
 
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = V_ADC_READ;
+        stringCommand[1] = VH_ADC_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
         stringCommand[3] = adcChannel;
         stringCommand[4] = COMMAND_SEPARATOR;
-        stringCommand[5] = V_COMM_REQUEST;
+        stringCommand[5] = VH_COMM_REQUEST;
         stringCommand[6] = COMMAND_END;
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
 
-        VhpUartWriteString(stringCommand);
+        UartWriteString(stringCommand);
 
         // limpia el buffer
         for (i = 0; i < 15; i++)
@@ -467,7 +459,7 @@ uint16_t vAdcRead (VirtPeriph_t adcChannel)
         // Espera a recibir data por un tiempo determinado
         while (++counter < 1000 && i < 15)
         {
-            if ((dataSerial = VhpUartReadByte()) != 0)
+            if ((dataSerial = VhUartReadByte()) != 0)
             {
                 if (dataSerial == COMMAND_INIT)
                 {
@@ -491,11 +483,11 @@ uint16_t vAdcRead (VirtPeriph_t adcChannel)
             // chequea que todos lo que haya llegado
             // sea una respuesta correcta
             if (stringCommand[0] == COMMAND_INIT
-                    && stringCommand[1] == V_ADC_READ&&
+                    && stringCommand[1] == VH_ADC_READ&&
                     stringCommand[2] == COMMAND_SEPARATOR &&
                     stringCommand[3] == adcChannel &&
                     stringCommand[4] == COMMAND_SEPARATOR &&
-                    stringCommand[5] == V_COMM_RESPONSE &&
+                    stringCommand[5] == VH_COMM_RESPONSE &&
                     stringCommand[6] == COMMAND_SEPARATOR &&
                     stringCommand[11] == COMMAND_END)
             {
@@ -531,12 +523,12 @@ uint16_t vAdcRead (VirtPeriph_t adcChannel)
  * @param dacChannel pin analogico a escribir.
  * @param dacValue valor de 10 bits a escribir.
  */
-void vDacWrite (VirtPeriph_t dacChannel, uint16_t dacValue)
+void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
 {
     char stringCommand[15];
     char analogString[5];
 
-    if (CheckIfValidCommand(V_DAC_WRITE, dacChannel))
+    if (CheckIfValidCommand(VH_DAC_WRITE, dacChannel))
     {
         if (dacValue > MAX_ANALOG_VALUE)
         {
@@ -550,7 +542,7 @@ void vDacWrite (VirtPeriph_t dacChannel, uint16_t dacValue)
         if (AnalogToString(dacValue, analogString))
         {
             stringCommand[0] = COMMAND_INIT;
-            stringCommand[1] = V_DAC_WRITE;
+            stringCommand[1] = VH_DAC_WRITE;
             stringCommand[2] = COMMAND_SEPARATOR;
             stringCommand[3] = dacChannel;
             stringCommand[4] = COMMAND_SEPARATOR;
@@ -562,7 +554,7 @@ void vDacWrite (VirtPeriph_t dacChannel, uint16_t dacValue)
             stringCommand[10] = '\n';
             stringCommand[11] = '\0';
 
-            VhpUartWriteString(stringCommand);
+            UartWriteString(stringCommand);
         }
     }
 }
@@ -575,14 +567,14 @@ void vDacWrite (VirtPeriph_t dacChannel, uint16_t dacValue)
  * @param display periferico del display 7 segmentos.
  * @param valueToShow caracter ASCII a mostrar sobre el display.
  */
-void v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow)
+void Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow)
 {
     char stringCommand[10];
 
-    if (CheckIfValidCommand(V_7SEG_WRITE, display7Segs))
+    if (CheckIfValidCommand(VH_7SEG_WRITE, display7Segs))
     {
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = V_7SEG_WRITE;
+        stringCommand[1] = VH_7SEG_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
         stringCommand[3] = display7Segs;
         stringCommand[4] = COMMAND_SEPARATOR;
@@ -591,7 +583,7 @@ void v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow)
         stringCommand[7] = '\n';
         stringCommand[8] = '\0';
 
-        VhpUartWriteString(stringCommand);
+        UartWriteString(stringCommand);
     }
 }
 
@@ -608,18 +600,18 @@ void v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow)
  * --- LCD_LINE_THIRD: escribe en la tercer linea.
  * @param stringToWrite cadena a escribir
  */
-void vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, char * str)
+void Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str)
 {
     uint8_t i = 0;
     uint8_t lenght = 0;
     char stringCommand[70];
 
-    if (CheckIfValidCommand(V_LCD_WRITE_STRING, displayLcd))
+    if (CheckIfValidCommand(VH_LCD_WRITE_STRING, displayLcd))
     {
         for (lenght = 0; str[lenght] != '\0'; lenght++);
 
         stringCommand[0] = COMMAND_INIT;
-        stringCommand[1] = V_LCD_WRITE_STRING;
+        stringCommand[1] = VH_LCD_WRITE_STRING;
         stringCommand[2] = COMMAND_SEPARATOR;
         stringCommand[3] = displayLcd;
         stringCommand[4] = COMMAND_SEPARATOR;
@@ -635,7 +627,7 @@ void vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, char * str)
         stringCommand[8 + lenght] = '\n';
         stringCommand[9 + lenght] = '\0';
 
-        VhpUartWriteString(stringCommand);
+        UartWriteString(stringCommand);
     }
 }
 

@@ -75,46 +75,46 @@ typedef enum _LcdLine{
 /**
  * Mapa de perifericos virtuales a los que se puede acceder.
  */
-typedef enum _VirtPeriph {
+typedef enum _ViHardPeriph {
 	// Valores corespondientes a los leds
-	V_LEDR      = 'a',   //!< V_LEDR
-	V_LEDG      = 'b',   //!< V_LEDG
-	V_LEDB      = 'z',   //!< V_LEDB
-	V_LED1      = 'c',   //!< V_LED1
-	V_LED2      = 'd',   //!< V_LED2
-	V_LED3      = 'e',   //!< V_LED3
-	V_LED4      = 'f',   //!< V_LED4
+	VH_LEDR      = 'a',   //!< VH_LEDR
+	VH_LEDG      = 'b',   //!< VH_LEDG
+	VH_LEDB      = 'z',   //!< VH_LEDB
+	VH_LED1      = 'c',   //!< VH_LED1
+	VH_LED2      = 'd',   //!< VH_LED2
+	VH_LED3      = 'e',   //!< VH_LED3
+	VH_LED4      = 'f',   //!< VH_LED4
 	// Valores corespondientes a las teclas
-	V_TEC1      = 'g',   //!< V_TEC1
-	V_TEC2      = 'h',   //!< V_TEC2
-	V_TEC3      = 'i',   //!< V_TEC3
-	V_TEC4      = 'j',   //!< V_TEC4
+	VH_TEC1      = 'g',   //!< VH_TEC1
+	VH_TEC2      = 'h',   //!< VH_TEC2
+	VH_TEC3      = 'i',   //!< VH_TEC3
+	VH_TEC4      = 'j',   //!< VH_TEC4
 	// Valores coorespondientes a los pines ADC
-	V_ADC_CH1   = 'k',   //!< V_ADC_CH1
+	VH_ADC_CH1   = 'k',   //!< VH_ADC_CH1
 	// Valores coorespondientes a los pines DAC
-	V_DAC_CH1   = 'n',   //!< V_DAC_CH1
+	VH_DAC_CH1   = 'n',   //!< VH_DAC_CH1
 	// Valores coorespondientes al periferico LCD
-	V_LCD1      = 'o',   //!< V_LCD1
+	VH_LCD1      = 'o',   //!< VH_LCD1
 	// Valores coorespondientes al periferico 7 segmentos
-	V_7SEG      = 'p',   //!< V_7SEG
-} VirtPeriph_t;
+	VH_7SEG      = 'p',   //!< VH_7SEG
+} ViHardPeriph_t;
 
 /*==================[external data declaration]==============================*/
 
 /*==================[external functions declaration]=========================*/
 
-bool_t   vBoardConfig    (uint32_t baudRate);
+bool_t   Vh_BoardConfig    (uint32_t baudRate);
 
-bool_t   vGpioRead       (VirtPeriph_t gpioPin);
-void     vGpioWrite      (VirtPeriph_t gpioPin, bool_t pinState);
-void     vGpioToggle     (VirtPeriph_t gpioPin);
+bool_t   Vh_GpioRead       (ViHardPeriph_t gpioPin);
+void     Vh_GpioWrite      (ViHardPeriph_t gpioPin, bool_t pinState);
+void     Vh_GpioToggle     (ViHardPeriph_t gpioPin);
 
-uint16_t vAdcRead        (VirtPeriph_t adcChannel);
-void     vDacWrite       (VirtPeriph_t dacChannel, uint16_t dacValue);
+uint16_t Vh_AdcRead        (ViHardPeriph_t adcChannel);
+void     Vh_DacWrite       (ViHardPeriph_t dacChannel, uint16_t dacValue);
 
-void     v7SegmentsWrite (VirtPeriph_t display7Segs, uint8_t asciiToShow);
+void     Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow);
 
-void     vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, char * str);
+void     Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str);
 
 /*==================[cplusplus]==============================================*/
 
