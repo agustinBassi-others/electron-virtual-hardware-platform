@@ -1,5 +1,7 @@
 /*==================[inclusions]=============================================*/
 
+#include <math.h>
+
 #include "virtual_hardware.h"
 
 /*==================[macros and definitions]=================================*/
@@ -11,7 +13,7 @@
 #define MAX_ANALOG_VALUE            1023
 
 #define MILLISECS_BETWEEN_COMMANDS  7
-#define MICROSECS_BETWEEN_READS     10
+//#define MICROSECS_BETWEEN_READS     10//(int)((1/VIRTUAL_BAUDRATE_DEFAULT)*1000000)+1
 
 #define V_GPIO_LOW		            '0'
 #define V_GPIO_HIGH		            '1'
@@ -61,6 +63,11 @@ static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
 
 /*==================[internal data definition]===============================*/
 
+// Cuando se quieren leer datos del puerto serie se debe esperar
+// un tiempo proporcional al baudrate seleccionado. Esta variable
+// estatica se utiliza para este proposito.
+static uint32_t MicrosecsBetweenReads = round(1000000/VIHARD_BAUDRATE);
+
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
@@ -69,10 +76,16 @@ static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
  * Funcion propia para llamar al delay de la plataforma.
  * @param delayMs
  */
-static void VhpDelayUs (uint32_t delayMs)
+static void VhpDelayUs (volatile uint32_t microSecs)
 {
 #if defined(BOARD_EDU_CIAA_NXP)
-    delayUs(delayMs);
+    volatile uint64_t i;
+    volatile uint64_t delay;
+
+    delay = (CLOCK_SPEED_MHZ * microSecs) / 10;
+
+    for(i = delay; i > 0; i--);
+
 #elif defined(BOARD_CIAA_ZERO)
     // todo poner aca la llamada correcta
 #elif defined(BOARD_ARDUINO)
@@ -97,7 +110,7 @@ static void VhpDelayMs (uint32_t delayMs)
 static void VhpUartWriteByte (uint8_t byteToWrite)
 {
 #if defined(BOARD_EDU_CIAA_NXP)
-    uartWriteByte(VIRTUAL_SERIAL_PORT, (uint8_t) byteToWrite);
+    uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite);
 #elif defined(BOARD_CIAA_ZERO)
     // todo poner aca la llamada correcta
 #elif defined(BOARD_ARDUINO)
@@ -118,7 +131,7 @@ static uint8_t VhpUartReadByte (void)
     static uint8_t byteReaded;
 
 #if defined(BOARD_EDU_CIAA_NXP)
-    if (!uartReadByte(VIRTUAL_SERIAL_PORT, &byteReaded))
+    if (!uartReadByte(VIHARD_SERIAL_PORT, &byteReaded))
     {
         byteReaded = 0;
     }
@@ -128,7 +141,8 @@ static uint8_t VhpUartReadByte (void)
     // todo poner aca la llamada correcta
 #endif
 
-    VhpDelayUs(MICROSECS_BETWEEN_READS);
+//    VhpDelayUs(MICROSECS_BETWEEN_READS);
+    VhpDelayUs(MicrosecsBetweenReads);
 
     return byteReaded;
 }
@@ -286,7 +300,15 @@ static bool_t CheckIfValidCommand (VirtCommand_t command,
  */
 bool_t vBoardConfig (uint32_t baudRate)
 {
-    uartConfig(VIRTUAL_SERIAL_PORT, baudRate);
+    // Se calcula el tiempo entre lecturas dependiendo baudrate y se le agrega un 10%
+    MicrosecsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
+#if defined(BOARD_EDU_CIAA_NXP)
+    uartConfig(VIHARD_SERIAL_PORT, baudRate);
+#elif defined(BOARD_CIAA_ZERO)
+    // todo poner aca la llamada correcta
+#elif defined(BOARD_ARDUINO)
+    // todo poner aca la llamada correcta
+#endif
     return TRUE;
 }
 

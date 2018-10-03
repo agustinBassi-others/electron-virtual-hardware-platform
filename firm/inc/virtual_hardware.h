@@ -20,9 +20,10 @@
 
 #if defined(BOARD_EDU_CIAA_NXP)
 
-	#include "sapi.h"      // <= sAPI header
-	#define VIRTUAL_SERIAL_PORT        UART_USB
-	#define VIRTUAL_BAUDRATE_DEFAULT   115200
+	#include "sapi.h"
+	#define VIHARD_SERIAL_PORT        UART_USB
+	#define VIHARD_BAUDRATE           115200
+    #define CLOCK_SPEED_MHZ           204
 
 #elif defined(BOARD_CIAA_ZERO)
 
