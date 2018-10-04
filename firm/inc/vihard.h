@@ -56,9 +56,13 @@
 #if defined(BOARD_EDU_CIAA_NXP)
 
 	#include "sapi.h"
-	#define VIHARD_SERIAL_PORT        UART_USB
-	#define VIHARD_BAUDRATE           115200
-    #define CLOCK_SPEED_MHZ           204
+	#define VIHARD_SERIAL_PORT  UART_USB
+	#define VIHARD_BAUDRATE     115200
+    #define CLOCK_SPEED_MHZ     204
+
+    #define UART_CONFIG(baudrate)        uartConfig(VIHARD_SERIAL_PORT,baudrate)
+    #define UART_READ_BYTE(byteToRead)   uartReadByte(VIHARD_SERIAL_PORT,&byteToRead)
+    #define UART_WRITE_BYTE(byteToWrite) uartWriteByte(VIHARD_SERIAL_PORT,(uint8_t)byteToWrite)
 
 #elif defined(BOARD_CIAA_ZERO)
 

@@ -114,13 +114,16 @@ static uint32_t UsBetweenReads = 1000000 / VIHARD_BAUDRATE;
  */
 static void VhUartWriteByte (uint8_t byteToWrite)
 {
-#if defined(BOARD_EDU_CIAA_NXP)
-    uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite);
-#elif defined(BOARD_CIAA_ZERO)
-    // todo poner aca la llamada correcta
-#elif defined(BOARD_ARDUINO)
-    // todo poner aca la llamada correcta
-#endif
+    UART_WRITE_BYTE(byteToWrite);
+    /*
+    #if defined(BOARD_EDU_CIAA_NXP)
+        uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite);
+    #elif defined(BOARD_CIAA_ZERO)
+        // todo poner aca la llamada correcta
+    #elif defined(BOARD_ARDUINO)
+        // todo poner aca la llamada correcta
+    #endif
+    */
 }
 
 /**
@@ -133,6 +136,15 @@ static void VhUartWriteByte (uint8_t byteToWrite)
  */
 static uint8_t VhUartReadByte (void)
 {
+    static uint8_t byteReaded;
+    if (!UART_READ_BYTE(byteReaded))
+    {
+        byteReaded = 0;
+    }
+    DelayUs(UsBetweenReads);
+
+    return byteReaded;
+    /*
     static uint8_t byteReaded;
 
 #if defined(BOARD_EDU_CIAA_NXP)
@@ -149,6 +161,7 @@ static uint8_t VhUartReadByte (void)
     DelayUs(UsBetweenReads);
 
     return byteReaded;
+    */
 }
 
 /**
@@ -322,6 +335,9 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
 /**
  * Configura el puerto serie por el que se va a comunicar el sistema embebido
  * con la plataforma de hardware virtual.
+ * Se elige que solo se reciba la velocidad de la uart y no a que uart se va
+ * a conectar ya que el framework de Arduino unicamente recibe como parametro
+ * la velocidad de conexion.
  * @param baudRate velocidad de transmision.
  * @return 1 siempre.
  */
@@ -329,15 +345,16 @@ bool_t Vh_BoardConfig (uint32_t baudRate)
 {
     // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
     UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
-
-#if defined(BOARD_EDU_CIAA_NXP)
-    uartConfig(VIHARD_SERIAL_PORT, baudRate);
-#elif defined(BOARD_CIAA_ZERO)
-    // todo poner aca la llamada correcta
-#elif defined(BOARD_ARDUINO)
-    // todo poner aca la llamada correcta
-#endif
-    return TRUE;
+    UART_CONFIG(baudRate);
+    /*
+    #if defined(BOARD_EDU_CIAA_NXP)
+        uartConfig(VIHARD_SERIAL_PORT, baudRate);
+    #elif defined(BOARD_CIAA_ZERO)
+        // todo poner aca la llamada correcta
+    #elif defined(BOARD_ARDUINO)
+        // todo poner aca la llamada correcta
+    #endif
+        */
 }
 
 /**
