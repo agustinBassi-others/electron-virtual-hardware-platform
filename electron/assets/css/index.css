@@ -11,14 +11,14 @@
 }
 
 body{
-    background-color: rgb(89, 175, 40);
+    background-color: rgba(51, 50, 53, 0.92);
     user-select: none;
 }
 
 /*===========[ Titulo ]=======================*/
 
 .Title{
-    color:black;
+    color:darkgoldenrod;
     text-align: center;
     font: 40px Font_AppText;
     margin-top: 5px;
@@ -56,7 +56,7 @@ body{
     padding-right: 5px;
     text-decoration: none;
     text-align: center;
-    color:black;
+    color:whitesmoke;
     /*width: 150;*/
     /*background-color: cornflowerblue;*/
 }
@@ -79,7 +79,9 @@ body{
     bottom: 0;
     width: 100%;
     overflow: hidden;
-    margin-top: 10px;
-    font: 15px Font_Footer;
+    margin-top: 5px;
+    margin-bottom: 9px;
+    font: 10px Font_Footer;
     text-align: center;
+    color:whitesmoke;
 }

@@ -44,6 +44,7 @@ section{
     border: 3px;
     /* border-style; */
     border-style: double;
+    border-color: darkolivegreen;
 }
 
 .ComponentsCont{
@@ -98,12 +99,14 @@ section{
 
 .PortsCont_LblAviablePorts{
     font: 15px Font_AppText;
+    color: darkgoldenrod;
     margin-right: 10px;
     margin-left: 195px;
 }
 
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
+    color: darkgoldenrod;
     margin-right: 30px;
     margin-left: 25px;
 }
