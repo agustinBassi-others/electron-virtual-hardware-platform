@@ -86,15 +86,13 @@ typedef enum _ViHardCommand {
 
 /*==================[internal functions declaration]=========================*/
 
-// El prefijo Vh significa ViHard. Las funciones con este
-// prefijo son las que llaman a diferentes funciones depende de la plataforma.
-static void     VhUartWriteByte     (uint8_t byteToWrite);
-static uint8_t  VhUartReadByte      (void);
+static void     UartWriteByte       (uint8_t byteToWrite);
+static uint8_t  UartReadByte        (void);
 static void     UartWriteString     (char * string);
 static void     DelayMs             (uint32_t delayMs);
 static void     DelayUs             (uint32_t delayMs);
 static bool_t   CheckIfValidCommand (ViHardCommand_t comm, ViHardPeriph_t perMap);
-static bool_t   AnalogToString      (uint16_t numToConvert, char * strNumber);
+static bool_t   AnalogValueToString (uint16_t numToConvert, char * strNumber);
 
 /*==================[internal data definition]===============================*/
 
@@ -112,18 +110,9 @@ static uint32_t UsBetweenReads = 1000000 / VIHARD_BAUDRATE;
  * byte por la uart seleccionada cuando se configuro al modulo.
  * @param byteToWrite byte a escribir en el puerto serie.
  */
-static void VhUartWriteByte (uint8_t byteToWrite)
+static void UartWriteByte (uint8_t byteToWrite)
 {
     UART_WRITE_BYTE(byteToWrite);
-    /*
-    #if defined(BOARD_EDU_CIAA_NXP)
-        uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite);
-    #elif defined(BOARD_CIAA_ZERO)
-        // todo poner aca la llamada correcta
-    #elif defined(BOARD_ARDUINO)
-        // todo poner aca la llamada correcta
-    #endif
-    */
 }
 
 /**
@@ -134,9 +123,10 @@ static void VhUartWriteByte (uint8_t byteToWrite)
  * pueda ser multiplataforma.
  * @return el byte leido por la uart.
  */
-static uint8_t VhUartReadByte (void)
+static uint8_t UartReadByte (void)
 {
     static uint8_t byteReaded;
+
     if (!UART_READ_BYTE(byteReaded))
     {
         byteReaded = 0;
@@ -144,24 +134,6 @@ static uint8_t VhUartReadByte (void)
     DelayUs(UsBetweenReads);
 
     return byteReaded;
-    /*
-    static uint8_t byteReaded;
-
-#if defined(BOARD_EDU_CIAA_NXP)
-    if (!uartReadByte(VIHARD_SERIAL_PORT, &byteReaded))
-    {
-        byteReaded = 0;
-    }
-#elif defined(BOARD_CIAA_ZERO)
-    // todo poner aca la llamada correcta
-#elif defined(BOARD_ARDUINO)
-    // todo poner aca la llamada correcta
-#endif
-
-    DelayUs(UsBetweenReads);
-
-    return byteReaded;
-    */
 }
 
 /**
@@ -176,7 +148,7 @@ static void UartWriteString (char * string)
 {
     while (*string != 0)
     {
-        VhUartWriteByte((uint8_t) * string);
+        UartWriteByte((uint8_t) * string);
         string++;
     }
 }
@@ -221,7 +193,7 @@ static void DelayMs (uint32_t delayMs)
  * almacenara el string convertido.
  * @return 0 si no hubo error, 1 si hubo error.
  */
-static bool_t AnalogToString (uint16_t numberToConvert, char * strNumber)
+static bool_t AnalogValueToString (uint16_t numberToConvert, char * strNumber)
 {
     bool_t error = FALSE;
     uint8_t thousands = 0;
@@ -346,15 +318,8 @@ bool_t Vh_BoardConfig (uint32_t baudRate)
     // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
     UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
     UART_CONFIG(baudRate);
-    /*
-    #if defined(BOARD_EDU_CIAA_NXP)
-        uartConfig(VIHARD_SERIAL_PORT, baudRate);
-    #elif defined(BOARD_CIAA_ZERO)
-        // todo poner aca la llamada correcta
-    #elif defined(BOARD_ARDUINO)
-        // todo poner aca la llamada correcta
-    #endif
-        */
+
+    return TRUE;
 }
 
 /**
@@ -420,7 +385,7 @@ bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
         // Espera a recibir data por un tiempo determinado
         while (++counter < 1000 && i < 10)
         {
-            if ((dataSerial = VhUartReadByte()) != 0)
+            if ((dataSerial = UartReadByte()) != 0)
             {
                 if (dataSerial == COMMAND_INIT)
                 {
@@ -512,7 +477,7 @@ uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
         // Espera a recibir data por un tiempo determinado
         while (++counter < 1000 && i < 15)
         {
-            if ((dataSerial = VhUartReadByte()) != 0)
+            if ((dataSerial = UartReadByte()) != 0)
             {
                 if (dataSerial == COMMAND_INIT)
                 {
@@ -592,18 +557,18 @@ void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
             dacValue = 0;
         }
 
-        if (AnalogToString(dacValue, analogString))
+        if (AnalogValueToString(dacValue, analogString))
         {
-            stringCommand[0] = COMMAND_INIT;
-            stringCommand[1] = VH_DAC_WRITE;
-            stringCommand[2] = COMMAND_SEPARATOR;
-            stringCommand[3] = dacChannel;
-            stringCommand[4] = COMMAND_SEPARATOR;
-            stringCommand[5] = analogString[0];
-            stringCommand[6] = analogString[1];
-            stringCommand[7] = analogString[2];
-            stringCommand[8] = analogString[3];
-            stringCommand[9] = COMMAND_END;
+            stringCommand[0]  = COMMAND_INIT;
+            stringCommand[1]  = VH_DAC_WRITE;
+            stringCommand[2]  = COMMAND_SEPARATOR;
+            stringCommand[3]  = dacChannel;
+            stringCommand[4]  = COMMAND_SEPARATOR;
+            stringCommand[5]  = analogString[0];
+            stringCommand[6]  = analogString[1];
+            stringCommand[7]  = analogString[2];
+            stringCommand[8]  = analogString[3];
+            stringCommand[9]  = COMMAND_END;
             stringCommand[10] = '\n';
             stringCommand[11] = '\0';
 
