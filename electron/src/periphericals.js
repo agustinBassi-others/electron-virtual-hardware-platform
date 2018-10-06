@@ -161,7 +161,7 @@ let Tec4State = true;
 let Adc1Value = 512;
 let Dac1Value = 512;
 let Segment7Text = "-";
-let LcdText = "\\(-)/ Hello CIAA \\(-)/";
+let LcdText = "Hello ViHard \\(-)/";
 
 let Obj_SerialPort;
 let LogLevel = Log_t.ERROR;
@@ -682,6 +682,12 @@ function Logic_InitPeriphericals() {
   document.getElementById("PortsCont_AviableBaudrateList").addEventListener('click', (e) => {
     Log_Print(Log_t.EVENT, "PortsCont_AviableBaudrateList", "Selected baudrate: " + e.target.value);
     BaudRateSelected = e.target.value;
+  })
+
+  document.getElementById("PortsCont_ImgReloadPorts").addEventListener('click', (e) => {
+    Log_Print(Log_t.EVENT, "PortsCont_AviableBaudrateList", "Reload serial ports.");
+    Serial_ClearPortsLists();
+    FlagPortsListed = false;
   })
 
   document.getElementById("PortsCont_ImgPortSwitch").addEventListener('click', (e) => {
