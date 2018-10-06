@@ -1,325 +1,366 @@
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-   10
-   11
-   12
-   13
-   14
-   15
-   16
-   17
-   18
-   19
-   20
-   21
-   22
-   23
-   24
-   25
-   26
-   27
-   28
-   29
-   30
-   31
-   32
-   33
-   34
-   35
-   36
-   37
-   38
-   39
-   40
-   41
-   42
-   43
-   44
-   45
-   46
-   47
-   48
-   49
-   50
-   51
-   52
-   53
-   54
-   55
-   56
-   57
-   58
-   59
-   60
-   61
-   62
-   63
-   64
-   65
-   66
-   67
-   68
-   69
-   70
-   71
-   72
-   73
-   74
-   75
-   76
-   77
-   78
-   79
-   80
-   81
-   82
-   83
-   84
-   85
-   86
-   87
-   88
-   89
-   90
-   91
-   92
-   93
-   94
-   95
-   96
-   97
-   98
-   99
-  100
-  101
-  102
-  103
-  104
-  105
-  106
-  107
-  108
-  109
-  110
-  111
-  112
-  113
-  114
-  115
-  116
-  117
-  118
-  119
-  120
-  121
-  122
-  123
-  124
-  125
-  126
-  127
-  128
-  129
-  130
-  131
-  132
-  133
-  134
-  135
-  136
-  137
-  138
-  139
-  140
-  141
-  142
-  143
-  144
-  145
-  146
-  147
-  148
-  149
-  150
-  151
-  152
-  153
-  154
-  155
-  156
-  157
-  158
-  159
-  160
-  161
-  162</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008000">/* Copyright 2018, Agustin Bassi.</span>
-  <span style="color: #008000"> * All rights reserved.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * This file is part sAPI library for microcontrollers.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * Redistribution and use in source and binary forms, with or without</span>
-  <span style="color: #008000"> * modification, are permitted provided that the following conditions are met:</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * 1. Redistributions of source code must retain the above copyright notice,</span>
-  <span style="color: #008000"> *    this list of conditions and the following disclaimer.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * 2. Redistributions in binary form must reproduce the above copyright notice,</span>
-  <span style="color: #008000"> *    this list of conditions and the following disclaimer in the documentation</span>
-  <span style="color: #008000"> *    and/or other materials provided with the distribution.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * 3. Neither the name of the copyright holder nor the names of its</span>
-  <span style="color: #008000"> *    contributors may be used to endorse or promote products derived from this</span>
-  <span style="color: #008000"> *    software without specific prior written permission.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
-  <span style="color: #008000"> * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
-  <span style="color: #008000"> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
-  <span style="color: #008000"> * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
-  <span style="color: #008000"> * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
-  <span style="color: #008000"> * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
-  <span style="color: #008000"> * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
-  <span style="color: #008000"> * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
-  <span style="color: #008000"> * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
-  <span style="color: #008000"> * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
-  <span style="color: #008000"> * POSSIBILITY OF SUCH DAMAGE.</span>
-  <span style="color: #008000"> *</span>
-  <span style="color: #008000"> */</span>
-  
-  <span style="color: #008000">/*</span>
-  <span style="color: #008000"> * Date: 2018-09-30</span>
-  <span style="color: #008000"> */</span>
-  
-  
-  <span style="color: #0000ff">#ifndef _VIRTUAL_HARDWARE_H_</span>
-  <span style="color: #0000ff">#define _VIRTUAL_HARDWARE_H_</span>
-  
-  <span style="color: #008000">// Descomentar algunas de las siguientes lineas dependiendo la placa</span>
-  <span style="color: #0000ff">#define BOARD_EDU_CIAA_NXP</span>
-  <span style="color: #008000">//#define BOARD_CIAA_ZERO</span>
-  <span style="color: #008000">//#define BOARD_ARDUINO</span>
-  
-  <span style="color: #008000">// Si no hay ninguna placa definida muestra un error de compilacion</span>
-  <span style="color: #0000ff">#if !defined(BOARD_EDU_CIAA_NXP) &amp;&amp; \</span>
-  <span style="color: #0000ff">	!defined(BOARD_CIAA_ZERO) &amp;&amp; \</span>
-  <span style="color: #0000ff">	!defined(BOARD_ARDUINO)</span>
-      <span style="border: 1px solid #FF0000">#</span>error <span style="color: #a31515">&quot;Se debe definir un BOARD al inicio del archivo virtual_hardware.h&quot;</span>
-  <span style="color: #0000ff">#endif</span>
-  
-  <span style="color: #008000">/*==================[inclusions]=============================================*/</span>
-  
-  <span style="color: #0000ff">#include &lt;stdint.h&gt;</span>
-  
-  <span style="color: #0000ff">#if defined(BOARD_EDU_CIAA_NXP)</span>
-  
-      <span style="border: 1px solid #FF0000">#</span>include <span style="color: #a31515">&quot;sapi.h&quot;</span>      <span style="color: #008000">// &lt;= sAPI header</span>
-      <span style="border: 1px solid #FF0000">#</span>define VIRTUAL_SERIAL_PORT        UART_USB
-      <span style="border: 1px solid #FF0000">#</span>define VIRTUAL_BAUDRATE_DEFAULT   115200
-  
-  <span style="color: #0000ff">#elif defined(BOARD_CIAA_ZERO)</span>
-  
-      <span style="color: #008000">// todo poner aca la llamada correcta</span>
-  
-  <span style="color: #0000ff">#elif defined(BOARD_ARDUINO)</span>
-  
-      <span style="color: #008000">// todo poner aca la llamada correcta</span>
-  
-  <span style="color: #0000ff">#endif</span>
-  
-  
-  <span style="color: #008000">/*==================[cplusplus]==============================================*/</span>
-  
-  <span style="color: #0000ff">#ifdef __cplusplus</span>
-  <span style="color: #0000ff">extern</span> <span style="color: #a31515">&quot;C&quot;</span> {
-  <span style="color: #0000ff">#endif</span>
-  
-  <span style="color: #008000">/*==================[macros]=================================================*/</span>
-  
-  <span style="color: #008000">// Si los estados logicos estan definidos los elimina para asegurarse</span>
-  <span style="color: #008000">// que el valor de true y false sean los deseados</span>
-  <span style="color: #0000ff">#ifdef FALSE</span>
-     <span style="border: 1px solid #FF0000">#</span>undef FALSE
-  <span style="color: #0000ff">#endif</span>
-  <span style="color: #0000ff">#ifdef TRUE</span>
-     <span style="border: 1px solid #FF0000">#</span>undef TRUE
-  <span style="color: #0000ff">#endif</span>
-  
-  <span style="color: #0000ff">#define FALSE  0</span>
-  <span style="color: #0000ff">#define TRUE   (!FALSE)</span>
-  
-  <span style="color: #008000">/*==================[typedef]================================================*/</span>
-  
-  <span style="color: #0000ff">typedef</span> <span style="color: #2b91af">uint8_t</span> <span style="color: #2b91af">bool_t</span>;
-  
-  <span style="color: #008000">/**</span>
-  <span style="color: #008000"> * Posibles valores que puede recibir la funcion de escribir un texto</span>
-  <span style="color: #008000"> * sobre el display LCD. LCD_LINE_ALL escribe un mensaje multilinea,</span>
-  <span style="color: #008000"> * los demas valores escriben sobre la primer, segunda o tercer linea del LCD.</span>
-  <span style="color: #008000"> */</span>
-  <span style="color: #0000ff">typedef</span> <span style="color: #0000ff">enum</span> _LcdLine{
-      LCD_LINE_ALL    = <span style="color: #a31515">&#39;0&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_ALL</span>
-      LCD_LINE_FIRST  = <span style="color: #a31515">&#39;1&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_FIRST</span>
-      LCD_LINE_SECOND = <span style="color: #a31515">&#39;2&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_SECOND</span>
-      LCD_LINE_THIRD  = <span style="color: #a31515">&#39;3&#39;</span>  <span style="color: #008000">//!&lt; LCD_LINE_THIRD</span>
-  } LcdLine_t;
-  
-  <span style="color: #008000">/**</span>
-  <span style="color: #008000"> * Mapa de perifericos virtuales a los que se puede acceder.</span>
-  <span style="color: #008000"> */</span>
-  <span style="color: #0000ff">typedef</span> <span style="color: #0000ff">enum</span> _VirtPeriph {
-      <span style="color: #008000">// Valores corespondientes a los leds</span>
-      V_LEDR      = <span style="color: #a31515">&#39;a&#39;</span>,   <span style="color: #008000">//!&lt; V_LEDR</span>
-      V_LEDG      = <span style="color: #a31515">&#39;b&#39;</span>,   <span style="color: #008000">//!&lt; V_LEDG</span>
-      V_LEDB      = <span style="color: #a31515">&#39;z&#39;</span>,   <span style="color: #008000">//!&lt; V_LEDB</span>
-      V_LED1      = <span style="color: #a31515">&#39;c&#39;</span>,   <span style="color: #008000">//!&lt; V_LED1</span>
-      V_LED2      = <span style="color: #a31515">&#39;d&#39;</span>,   <span style="color: #008000">//!&lt; V_LED2</span>
-      V_LED3      = <span style="color: #a31515">&#39;e&#39;</span>,   <span style="color: #008000">//!&lt; V_LED3</span>
-      V_LED4      = <span style="color: #a31515">&#39;f&#39;</span>,   <span style="color: #008000">//!&lt; V_LED4</span>
-      <span style="color: #008000">// Valores corespondientes a las teclas</span>
-      V_TEC1      = <span style="color: #a31515">&#39;g&#39;</span>,   <span style="color: #008000">//!&lt; V_TEC1</span>
-      V_TEC2      = <span style="color: #a31515">&#39;h&#39;</span>,   <span style="color: #008000">//!&lt; V_TEC2</span>
-      V_TEC3      = <span style="color: #a31515">&#39;i&#39;</span>,   <span style="color: #008000">//!&lt; V_TEC3</span>
-      V_TEC4      = <span style="color: #a31515">&#39;j&#39;</span>,   <span style="color: #008000">//!&lt; V_TEC4</span>
-      <span style="color: #008000">// Valores coorespondientes a los pines ADC</span>
-      V_ADC_CH1   = <span style="color: #a31515">&#39;k&#39;</span>,   <span style="color: #008000">//!&lt; V_ADC_CH1</span>
-      <span style="color: #008000">// Valores coorespondientes a los pines DAC</span>
-      V_DAC_CH1   = <span style="color: #a31515">&#39;n&#39;</span>,   <span style="color: #008000">//!&lt; V_DAC_CH1</span>
-      <span style="color: #008000">// Valores coorespondientes al periferico LCD</span>
-      V_LCD1      = <span style="color: #a31515">&#39;o&#39;</span>,   <span style="color: #008000">//!&lt; V_LCD1</span>
-      <span style="color: #008000">// Valores coorespondientes al periferico 7 segmentos</span>
-      V_7SEG      = <span style="color: #a31515">&#39;p&#39;</span>,   <span style="color: #008000">//!&lt; V_7SEG</span>
-  } VirtPeriph_t;
-  
-  <span style="color: #008000">/*==================[external data declaration]==============================*/</span>
-  
-  <span style="color: #008000">/*==================[external functions declaration]=========================*/</span>
-  
-  <span style="color: #2b91af">bool_t</span>   vBoardConfig    (<span style="color: #2b91af">uint32_t</span> baudRate);
-  
-  <span style="color: #2b91af">bool_t</span>   vGpioRead       (VirtPeriph_t gpioPin);
-  <span style="color: #2b91af">void</span>     vGpioWrite      (VirtPeriph_t gpioPin, <span style="color: #2b91af">bool_t</span> pinState);
-  <span style="color: #2b91af">void</span>     vGpioToggle     (VirtPeriph_t gpioPin);
-  
-  <span style="color: #2b91af">uint16_t</span> vAdcRead        (VirtPeriph_t adcChannel);
-  <span style="color: #2b91af">void</span>     vDacWrite       (VirtPeriph_t dacChannel, <span style="color: #2b91af">uint16_t</span> dacValue);
-  
-  <span style="color: #2b91af">void</span>     v7SegmentsWrite (VirtPeriph_t display7Segs, <span style="color: #2b91af">uint8_t</span> asciiToShow);
-  
-  <span style="color: #2b91af">void</span>     vLcdWriteString (VirtPeriph_t displayLcd, LcdLine_t line, <span style="color: #2b91af">char</span> * str);
-  
-  <span style="color: #008000">/*==================[cplusplus]==============================================*/</span>
-  
-  <span style="color: #0000ff">#ifdef __cplusplus</span>
-  }
-  <span style="color: #0000ff">#endif</span>
-  
-  <span style="color: #008000">/*==================[end of file]============================================*/</span>
-  <span style="color: #0000ff">#endif </span><span style="color: #008000">/* #ifndef _VIRTUAL_HARDWARE_H_ */</span><span style="color: #0000ff"></span>
-  </pre></td></tr></table></div>
-  
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181 
+</pre></td><td><pre style="margin: 0; line-height: 125%">
+<span style="color: #008000">/* Copyright 2018, Agustin Bassi.</span>
+<span style="color: #008000"> * All rights reserved.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * This file is part ViHard library, a library of virtual hardware</span>
+<span style="color: #008000"> * for Embedded Systems.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * Redistribution and use in source and binary forms, with or without</span>
+<span style="color: #008000"> * modification, are permitted provided that the following conditions are met:</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * 1. Redistributions of source code must retain the above copyright notice,</span>
+<span style="color: #008000"> *    this list of conditions and the following disclaimer.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span style="color: #008000"> *    this list of conditions and the following disclaimer in the documentation</span>
+<span style="color: #008000"> *    and/or other materials provided with the distribution.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * 3. Neither the name of the copyright holder nor the names of its</span>
+<span style="color: #008000"> *    contributors may be used to endorse or promote products derived from this</span>
+<span style="color: #008000"> *    software without specific prior written permission.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span style="color: #008000"> * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span style="color: #008000"> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span style="color: #008000"> * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+<span style="color: #008000"> * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span style="color: #008000"> * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span style="color: #008000"> * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span style="color: #008000"> * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span style="color: #008000"> * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span style="color: #008000"> * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span style="color: #008000"> * POSSIBILITY OF SUCH DAMAGE.</span>
+<span style="color: #008000"> *</span>
+<span style="color: #008000"> */</span>
+
+<span style="color: #008000">/* Date: 2018-10-02 */</span>
+
+<span style="color: #0000ff">#ifndef _VIHARD_H_</span>
+<span style="color: #0000ff">#define _VIHARD_H_</span>
+
+<span style="color: #008000">// Descomentar algunas de las siguientes lineas dependiendo la placa</span>
+<span style="color: #0000ff">#define BOARD_EDU_CIAA_NXP</span>
+<span style="color: #008000">//#define BOARD_CIAA_ZERO</span>
+<span style="color: #008000">//#define BOARD_ARDUINO</span>
+
+<span style="color: #008000">// Si no hay ninguna placa definida muestra un error de compilacion</span>
+<span style="color: #0000ff">#if !defined(BOARD_EDU_CIAA_NXP) &amp;&amp; \</span>
+<span style="color: #0000ff">	!defined(BOARD_CIAA_ZERO) &amp;&amp; \</span>
+<span style="color: #0000ff">	!defined(BOARD_ARDUINO)</span>
+    <span style="border: 1px solid #FF0000">#</span>error <span style="color: #a31515">&quot;Se debe definir un BOARD al inicio del archivo virtual_hardware.h&quot;</span>
+<span style="color: #0000ff">#endif</span>
+
+<span style="color: #008000">/*==================[inclusions]=============================================*/</span>
+
+<span style="color: #0000ff">#include &lt;stdint.h&gt;</span>
+
+<span style="color: #0000ff">#if defined(BOARD_EDU_CIAA_NXP)</span>
+
+    <span style="border: 1px solid #FF0000">#</span>include <span style="color: #a31515">&quot;sapi.h&quot;</span>
+
+<span style="color: #0000ff">#elif defined(BOARD_CIAA_ZERO)</span>
+
+    <span style="color: #008000">// todo poner aca la llamada correcta</span>
+
+<span style="color: #0000ff">#elif defined(BOARD_ARDUINO)</span>
+
+    <span style="color: #008000">// todo poner aca la llamada correcta</span>
+
+<span style="color: #0000ff">#endif</span>
+
+
+<span style="color: #008000">/*==================[cplusplus]==============================================*/</span>
+
+<span style="color: #0000ff">#ifdef __cplusplus</span>
+<span style="color: #0000ff">extern</span> <span style="color: #a31515">&quot;C&quot;</span> {
+<span style="color: #0000ff">#endif</span>
+
+<span style="color: #008000">/*==================[macros]=================================================*/</span>
+
+<span style="color: #0000ff">#if defined(BOARD_EDU_CIAA_NXP)</span>
+
+    <span style="border: 1px solid #FF0000">#</span>define VIHARD_SERIAL_PORT           UART_USB
+    <span style="border: 1px solid #FF0000">#</span>define VIHARD_BAUDRATE              115200
+    <span style="border: 1px solid #FF0000">#</span>define CLOCK_SPEED_MHZ              204
+
+    <span style="border: 1px solid #FF0000">#</span>define UART_CONFIG(baudrate)        uartConfig(VIHARD_SERIAL_PORT, baudrate)
+    <span style="border: 1px solid #FF0000">#</span>define UART_READ_BYTE(byteToRead)   uartReadByte(VIHARD_SERIAL_PORT, &amp;byteToRead)
+    <span style="border: 1px solid #FF0000">#</span>define UART_WRITE_BYTE(byteToWrite) uartWriteByte(VIHARD_SERIAL_PORT, (<span style="color: #2b91af">uint8_t</span>) byteToWrite)
+
+<span style="color: #0000ff">#elif defined(BOARD_CIAA_ZERO)</span>
+
+    <span style="color: #008000">// todo poner aca la llamada correcta</span>
+
+<span style="color: #0000ff">#elif defined(BOARD_ARDUINO)</span>
+
+    <span style="color: #008000">// todo poner aca la llamada correcta</span>
+
+<span style="color: #0000ff">#endif</span>
+
+
+
+<span style="color: #008000">// Si los estados logicos estan definidos los elimina para asegurarse</span>
+<span style="color: #008000">// que el valor de true y false sean los deseados</span>
+<span style="color: #0000ff">#ifdef FALSE</span>
+   <span style="border: 1px solid #FF0000">#</span>undef FALSE
+<span style="color: #0000ff">#endif</span>
+
+<span style="color: #0000ff">#ifdef TRUE</span>
+   <span style="border: 1px solid #FF0000">#</span>undef TRUE
+<span style="color: #0000ff">#endif</span>
+
+<span style="color: #0000ff">#define FALSE  0</span>
+<span style="color: #0000ff">#define TRUE   (!FALSE)</span>
+
+<span style="color: #008000">/*==================[typedef]================================================*/</span>
+
+<span style="color: #0000ff">typedef</span> <span style="color: #2b91af">uint8_t</span> <span style="color: #2b91af">bool_t</span>;
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Posibles valores que puede recibir la funcion de escribir un texto</span>
+<span style="color: #008000"> * sobre el display LCD. LCD_LINE_ALL escribe un mensaje multilinea,</span>
+<span style="color: #008000"> * los demas valores escriben sobre la primer, segunda o tercer linea del LCD.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">typedef</span> <span style="color: #0000ff">enum</span> _LcdLine{
+    LCD_LINE_ALL    = <span style="color: #a31515">&#39;0&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_ALL</span>
+    LCD_LINE_FIRST  = <span style="color: #a31515">&#39;1&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_FIRST</span>
+    LCD_LINE_SECOND = <span style="color: #a31515">&#39;2&#39;</span>, <span style="color: #008000">//!&lt; LCD_LINE_SECOND</span>
+    LCD_LINE_THIRD  = <span style="color: #a31515">&#39;3&#39;</span>  <span style="color: #008000">//!&lt; LCD_LINE_THIRD</span>
+} LcdLine_t;
+
+<span style="color: #008000">/**</span>
+<span style="color: #008000"> * Mapa de perifericos virtuales a los que se puede acceder.</span>
+<span style="color: #008000"> */</span>
+<span style="color: #0000ff">typedef</span> <span style="color: #0000ff">enum</span> _ViHardPeriph {
+    <span style="color: #008000">// Valores corespondientes a los leds</span>
+    VH_LEDR      = <span style="color: #a31515">&#39;a&#39;</span>,   <span style="color: #008000">//!&lt; VH_LEDR</span>
+    VH_LEDG      = <span style="color: #a31515">&#39;b&#39;</span>,   <span style="color: #008000">//!&lt; VH_LEDG</span>
+    VH_LEDB      = <span style="color: #a31515">&#39;z&#39;</span>,   <span style="color: #008000">//!&lt; VH_LEDB</span>
+    VH_LED1      = <span style="color: #a31515">&#39;c&#39;</span>,   <span style="color: #008000">//!&lt; VH_LED1</span>
+    VH_LED2      = <span style="color: #a31515">&#39;d&#39;</span>,   <span style="color: #008000">//!&lt; VH_LED2</span>
+    VH_LED3      = <span style="color: #a31515">&#39;e&#39;</span>,   <span style="color: #008000">//!&lt; VH_LED3</span>
+    VH_LED4      = <span style="color: #a31515">&#39;f&#39;</span>,   <span style="color: #008000">//!&lt; VH_LED4</span>
+    <span style="color: #008000">// Valores corespondientes a las teclas</span>
+    VH_TEC1      = <span style="color: #a31515">&#39;g&#39;</span>,   <span style="color: #008000">//!&lt; VH_TEC1</span>
+    VH_TEC2      = <span style="color: #a31515">&#39;h&#39;</span>,   <span style="color: #008000">//!&lt; VH_TEC2</span>
+    VH_TEC3      = <span style="color: #a31515">&#39;i&#39;</span>,   <span style="color: #008000">//!&lt; VH_TEC3</span>
+    VH_TEC4      = <span style="color: #a31515">&#39;j&#39;</span>,   <span style="color: #008000">//!&lt; VH_TEC4</span>
+    <span style="color: #008000">// Valores coorespondientes a los pines ADC</span>
+    VH_ADC_CH1   = <span style="color: #a31515">&#39;k&#39;</span>,   <span style="color: #008000">//!&lt; VH_ADC_CH1</span>
+    <span style="color: #008000">// Valores coorespondientes a los pines DAC</span>
+    VH_DAC_CH1   = <span style="color: #a31515">&#39;n&#39;</span>,   <span style="color: #008000">//!&lt; VH_DAC_CH1</span>
+    <span style="color: #008000">// Valores coorespondientes al periferico LCD</span>
+    VH_LCD1      = <span style="color: #a31515">&#39;o&#39;</span>,   <span style="color: #008000">//!&lt; VH_LCD1</span>
+    <span style="color: #008000">// Valores coorespondientes al periferico 7 segmentos</span>
+    VH_7SEG      = <span style="color: #a31515">&#39;p&#39;</span>,   <span style="color: #008000">//!&lt; VH_7SEG</span>
+} ViHardPeriph_t;
+
+<span style="color: #008000">/*==================[external data declaration]==============================*/</span>
+
+<span style="color: #008000">/*==================[external functions declaration]=========================*/</span>
+
+<span style="color: #2b91af">bool_t</span>   Vh_BoardConfig    (<span style="color: #2b91af">uint32_t</span> baudRate);
+
+<span style="color: #2b91af">bool_t</span>   Vh_GpioRead       (ViHardPeriph_t gpioPin);
+<span style="color: #2b91af">void</span>     Vh_GpioWrite      (ViHardPeriph_t gpioPin, <span style="color: #2b91af">bool_t</span> pinState);
+<span style="color: #2b91af">void</span>     Vh_GpioToggle     (ViHardPeriph_t gpioPin);
+
+<span style="color: #2b91af">uint16_t</span> Vh_AdcRead        (ViHardPeriph_t adcChannel);
+<span style="color: #2b91af">void</span>     Vh_DacWrite       (ViHardPeriph_t dacChannel, <span style="color: #2b91af">uint16_t</span> dacValue);
+
+<span style="color: #2b91af">void</span>     Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, <span style="color: #2b91af">uint8_t</span> asciiToShow);
+
+<span style="color: #2b91af">void</span>     Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, <span style="color: #2b91af">char</span> * str);
+
+<span style="color: #008000">/*==================[cplusplus]==============================================*/</span>
+
+<span style="color: #0000ff">#ifdef __cplusplus</span>
+}
+<span style="color: #0000ff">#endif</span>
+
+<span style="color: #008000">/*==================[end of file]============================================*/</span>
+<span style="color: #0000ff">#endif </span><span style="color: #008000">/* #ifndef _VIHARD_H_ */</span><span style="color: #0000ff"></span>
+</pre></td></tr></table></div>
