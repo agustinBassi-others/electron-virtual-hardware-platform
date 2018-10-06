@@ -108,8 +108,14 @@ section{
     margin-left: 25px;
 }
 
+.PortsCont_ImgReloadPorts{
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+}
+
 .PortsCont_ImgPortSwitch{
-    margin-left: 248px;
+    margin-left: 220px;
 }
 
 .PortsCont_LblPortState{
