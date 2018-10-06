@@ -32,17 +32,19 @@ function CopyToClipboard (fileToCopyToClipboard){
     console.log("El contenido es: " + fileContent)
 
     clipboard.writeText(fileContent)
-
-    // clipboard.writeText(fileContent, 'selección')
-
-    
-    // // Si se quiere copiar el .h copa al portapapeles el contenido del header
-    // if (button == "h"){
-    //     clipboard.writeText(HEADER_CONTENT, 'selección')
-    // } 
-    // // Si se quiere copiar el .h copa al portapapeles el contenido del header
-    // else if (button == "c"){
-    //     clipboard.writeText(SOURCE_CONTENT, 'selección')
-    // }
 }
 
+// Genera un evento programaticamente sobre un elemento del documento
+function EventFire(element, eventType){
+    if (element.fireEvent) {
+        element.fireEvent('on' + eventType);
+    } else {
+        var evObj = document.createEvent('Events');
+        evObj.initEvent(eventType, true, false);
+        element.dispatchEvent(evObj);
+    }
+}
+
+// Realiza el evento click sobre el TabLink_1 para que desde el inicio haya un tab
+// de codigo seleccionado.
+EventFire(document.getElementById('TabLink_1'), 'click');
