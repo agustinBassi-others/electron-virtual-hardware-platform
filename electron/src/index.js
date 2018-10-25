@@ -88,28 +88,18 @@ function ManageHtmlToShow(htmlToShow) {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'block';
     document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
 
   } else if (htmlToShow == "Source") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Source").style.display = 'block';
-    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
-
-  } else if (htmlToShow == "Documentation") {
-
-    document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'block';
     document.getElementById("InnetHtmlContainer_Contact").style.display = 'none';
 
   } else if (htmlToShow == "Contact") {
 
     document.getElementById("InnetHtmlContainer_Components").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Source").style.display = 'none';
-    document.getElementById("InnetHtmlContainer_Documentation").style.display = 'none';
     document.getElementById("InnetHtmlContainer_Contact").style.display = 'block';
 
 
@@ -128,10 +118,6 @@ function InitApplication () {
 
   document.getElementById("LinkSource").addEventListener('click', (e) => {
     ManageHtmlToShow("Source");
-  });
-
-  document.getElementById("LinkManual").addEventListener('click', (e) => {
-    ManageHtmlToShow("Documentation");
   });
 
   document.getElementById("LinkContact").addEventListener('click', (e) => {
