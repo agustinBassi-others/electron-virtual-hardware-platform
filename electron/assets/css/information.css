@@ -30,11 +30,12 @@
     box-align: center;
 
     font: 20px Font_AppText;
+    color: goldenrod;
 
     width: 98%;
     height: 96%;
 
     margin: 1%;
 
-    background: whitesmoke;
+    /* background: whitesmoke; */
 }
