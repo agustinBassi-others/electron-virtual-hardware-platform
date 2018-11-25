@@ -7,19 +7,30 @@
         <button class="TabLink" id="TabLink_2" onclick="ShowSourceFile(event, 'vihard.c')">vihard.c</button>
         <button class="TabLink" id="TabLink_3" onclick="ShowSourceFile(event, 'test_vihard.c')">test_vihard.c</button>
     </div>
-
-    <div id="vihard.h" class="TabContent">
-        <iframe class="Iframe_Source" src="../assets/extra_files/vihard.h.html"></iframe>
-        <button class="Button_Source" onclick="CopyToClipboard('vihard.h')">Copiar al portapapeles 'vihard.h'</button>
-    </div>
-    
-    <div id="vihard.c" class="TabContent">
-        <iframe class="Iframe_Source" src="../assets/extra_files/vihard.c.html"></iframe> 
-        <button class="Button_Source" onclick="CopyToClipboard('vihard.c')">Copiar al portapapeles 'vihard.c'</button>
-    </div>
-    
-    <div id="test_vihard.c" class="TabContent">
-        <iframe class="Iframe_Source" src="../assets/extra_files/test_vihard.c.html"></iframe> 
-        <button class="Button_Source" onclick="CopyToClipboard('test_vihard.c')">Copiar al portapapeles 'test_vihard.c'</button>
+    <div class="sourceContainer" style="display: flex; flex-direction: row;">
+        <div class="leftPanel" style=" width: 70%">
+            <div id="vihard.h" class="TabContent">
+                <iframe class="Iframe_Source" src="../assets/extra_files/vihard.h.html"></iframe>
+                <button class="Button_Source" onclick="CopyToClipboard('vihard.h')">Copiar al portapapeles 'vihard.h'</button>
+            </div>
+            
+            <div id="vihard.c" class="TabContent">
+                <iframe class="Iframe_Source" src="../assets/extra_files/vihard.c.html"></iframe> 
+                <button class="Button_Source" onclick="CopyToClipboard('vihard.c')">Copiar al portapapeles 'vihard.c'</button>
+            </div>
+            
+            <div id="test_vihard.c" class="TabContent">
+                <iframe class="Iframe_Source" src="../assets/extra_files/test_vihard.c.html"></iframe> 
+                <button class="Button_Source" onclick="CopyToClipboard('test_vihard.c')">Copiar al portapapeles 'test_vihard.c'</button>
+            </div>
+        </div>
+        <div class="rigthPanel">
+            <h1>
+                Instrucciones
+            </h1>
+            <p>
+aaaaaaaaaaaaaaaaaa
+            </p>
+        </div>
     </div>
 </div>
