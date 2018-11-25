@@ -313,7 +313,7 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
  * @param baudRate velocidad de transmision.
  * @return 1 siempre.
  */
-bool_t Vh_BoardConfig (uint32_t baudRate)
+ViHardError_t Vh_BoardConfig (uint32_t baudRate)
 {
     // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
     UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
@@ -327,12 +327,15 @@ bool_t Vh_BoardConfig (uint32_t baudRate)
  * @param virtualGpioPin pin virtual a escribir.
  * @param pinState estado logico a enviar.
  */
-void Vh_GpioWrite (ViHardPeriph_t gpioPin, bool_t pinState)
+ViHardError_t Vh_GpioWrite (ViHardPeriph_t gpioPin, bool_t pinState)
 {
+	ViHardError_t errorState = VH_EXEC_ERROR;
     char stringCommand[10];
 
     if (CheckIfValidCommand(VH_GPIO_WRITE, gpioPin))
     {
+    	errorState = VH_EXEC_OK;
+
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_GPIO_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
@@ -345,6 +348,7 @@ void Vh_GpioWrite (ViHardPeriph_t gpioPin, bool_t pinState)
 
         UartWriteString(stringCommand);
     }
+    return errorState;
 }
 
 /**
@@ -352,17 +356,21 @@ void Vh_GpioWrite (ViHardPeriph_t gpioPin, bool_t pinState)
  * @param virtualGpioPin pin virtual a leer.
  * @return estado logico leido.
  */
-bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
+ViHardError_t Vh_GpioRead (ViHardPeriph_t gpioPin, bool_t * pinState)
 {
+	ViHardError_t errorState = VH_EXEC_ERROR;
     char stringCommand[10];
-    bool_t pinState = TRUE;
     uint8_t dataSerial = 0;
     uint16_t counter = 0;
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
 
+    *pinState = TRUE;
+
     if (CheckIfValidCommand(VH_GPIO_READ, gpioPin))
     {
+    	errorState = VH_EXEC_OK;
+
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_GPIO_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
@@ -417,12 +425,12 @@ bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
                (stringCommand[7] == VH_GPIO_LOW ||
                 stringCommand[7] == VH_GPIO_HIGH))
             {
-                pinState = stringCommand[7] - '0';
+                *pinState = stringCommand[7] - '0';
             }
         }
     }
 
-    return pinState;
+    return errorState;;
 }
 
 /**
@@ -431,9 +439,18 @@ bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
  * debe ser un pin de salida.
  * @param virtualGpioPin pin a invertir el estado logico.
  */
-void Vh_GpioToggle (ViHardPeriph_t gpioPin)
+ViHardError_t Vh_GpioToggle (ViHardPeriph_t gpioPin)
 {
-    Vh_GpioWrite(gpioPin, !Vh_GpioRead(gpioPin));
+	ViHardError_t errorState = VH_EXEC_ERROR;
+	bool_t pinState = TRUE;
+
+	errorState = Vh_GpioRead(gpioPin, &pinState);
+
+	if (errorState == VH_EXEC_OK)
+	{
+		errorState = Vh_GpioWrite(gpioPin, !pinState);
+	}
+    return errorState;
 }
 
 /**
@@ -443,17 +460,21 @@ void Vh_GpioToggle (ViHardPeriph_t gpioPin)
  * @param virtualAdcPin pin analogico virtual a leer.
  * @return valor analogico leido.
  */
-uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
+ViHardError_t Vh_AdcRead (ViHardPeriph_t adcChannel, uint16_t * adcValue)
 {
     char stringCommand[15];
-    static uint16_t adcValue = 0;
     uint8_t dataSerial = 0;
     uint16_t counter = 0;
     uint8_t i = 0;
     bool_t flagCommandInit = FALSE;
+    ViHardError_t errorState = VH_EXEC_ERROR;
+
+    *adcValue = 0;
+
 
     if (CheckIfValidCommand(VH_ADC_READ, adcChannel))
     {
+    	errorState = VH_EXEC_OK;
 
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_ADC_READ;
@@ -509,29 +530,29 @@ uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
                     stringCommand[6] == COMMAND_SEPARATOR &&
                     stringCommand[11] == COMMAND_END)
             {
-                adcValue = 0;
+                *adcValue = 0;
                 // unidades de mil
-                adcValue += (stringCommand[7] - '0') * 1000;
+                *adcValue += (stringCommand[7] - '0') * 1000;
                 // centenas
-                adcValue += (stringCommand[8] - '0') * 100;
+                *adcValue += (stringCommand[8] - '0') * 100;
                 // decenas
-                adcValue += (stringCommand[9] - '0') * 10;
+                *adcValue += (stringCommand[9] - '0') * 10;
                 // unidades
-                adcValue += (stringCommand[10] - '0');
+                *adcValue += (stringCommand[10] - '0');
 
-                if (adcValue > MAX_ANALOG_VALUE)
+                if (*adcValue > MAX_ANALOG_VALUE)
                 {
-                    adcValue = MAX_ANALOG_VALUE;
+                    *adcValue = MAX_ANALOG_VALUE;
                 }
-                else if (adcValue < 0)
+                else if (*adcValue < 0)
                 {
-                    adcValue = 0;
+                    *adcValue = 0;
                 }
             }
         }
     }
 
-    return adcValue;
+    return errorState;
 }
 
 /**
@@ -541,13 +562,16 @@ uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
  * @param dacChannel pin analogico a escribir.
  * @param dacValue valor de 10 bits a escribir.
  */
-void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
+ViHardError_t Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
 {
+	ViHardError_t errorState = VH_EXEC_ERROR;
     char stringCommand[15];
     char analogString[5];
 
     if (CheckIfValidCommand(VH_DAC_WRITE, dacChannel))
     {
+    	errorState = VH_EXEC_OK;
+
         if (dacValue > MAX_ANALOG_VALUE)
         {
             dacValue = MAX_ANALOG_VALUE;
@@ -575,6 +599,8 @@ void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
             UartWriteString(stringCommand);
         }
     }
+
+    return errorState;
 }
 
 /**
@@ -585,12 +611,15 @@ void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
  * @param display periferico del display 7 segmentos.
  * @param valueToShow caracter ASCII a mostrar sobre el display.
  */
-void Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow)
+ViHardError_t Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow)
 {
+	ViHardError_t errorState = VH_EXEC_ERROR;
     char stringCommand[10];
 
     if (CheckIfValidCommand(VH_7SEG_WRITE, display7Segs))
     {
+    	errorState = VH_EXEC_OK;
+
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_7SEG_WRITE;
         stringCommand[2] = COMMAND_SEPARATOR;
@@ -603,6 +632,7 @@ void Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow)
 
         UartWriteString(stringCommand);
     }
+    return errorState;
 }
 
 /**
@@ -618,14 +648,17 @@ void Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow)
  * --- LCD_LINE_THIRD: escribe en la tercer linea.
  * @param stringToWrite cadena a escribir
  */
-void Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str)
+ViHardError_t Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str)
 {
+	ViHardError_t errorState = VH_EXEC_ERROR;
     uint8_t i = 0;
     uint8_t lenght = 0;
     char stringCommand[70];
 
     if (CheckIfValidCommand(VH_LCD_WRITE_STRING, displayLcd))
     {
+    	errorState = VH_EXEC_OK;
+
         for (lenght = 0; str[lenght] != '\0'; lenght++);
 
         stringCommand[0] = COMMAND_INIT;
@@ -647,6 +680,7 @@ void Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str)
 
         UartWriteString(stringCommand);
     }
+    return errorState;
 }
 
 /*==================[end of file]============================================*/

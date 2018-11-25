@@ -115,6 +115,11 @@ extern "C" {
 
 typedef uint8_t bool_t;
 
+typedef enum _ViHardError {
+	VH_EXEC_ERROR = 0,
+	VH_EXEC_OK = 1
+} ViHardError_t;
+
 /**
  * Posibles valores que puede recibir la funcion de escribir un texto
  * sobre el display LCD. LCD_LINE_ALL escribe un mensaje multilinea,
@@ -158,18 +163,18 @@ typedef enum _ViHardPeriph {
 
 /*==================[external functions declaration]=========================*/
 
-bool_t   Vh_BoardConfig    (uint32_t baudRate);
+ViHardError_t Vh_BoardConfig    (uint32_t baudRate);
 
-bool_t   Vh_GpioRead       (ViHardPeriph_t gpioPin);
-void     Vh_GpioWrite      (ViHardPeriph_t gpioPin, bool_t pinState);
-void     Vh_GpioToggle     (ViHardPeriph_t gpioPin);
+ViHardError_t Vh_GpioRead       (ViHardPeriph_t gpioPin, bool_t * pinValueReturned);
+ViHardError_t Vh_GpioWrite      (ViHardPeriph_t gpioPin, bool_t pinState);
+ViHardError_t Vh_GpioToggle     (ViHardPeriph_t gpioPin);
 
-uint16_t Vh_AdcRead        (ViHardPeriph_t adcChannel);
-void     Vh_DacWrite       (ViHardPeriph_t dacChannel, uint16_t dacValue);
+ViHardError_t Vh_AdcRead        (ViHardPeriph_t adcChannel, uint16_t * adcValueReturned);
+ViHardError_t Vh_DacWrite       (ViHardPeriph_t dacChannel, uint16_t dacValue);
 
-void     Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow);
+ViHardError_t Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow);
 
-void     Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str);
+ViHardError_t Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str);
 
 /*==================[cplusplus]==============================================*/
 

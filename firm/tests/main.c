@@ -126,32 +126,26 @@ static void TestVhDisplayWriteString    (){
 }
 
 static void TestVhGpioRead (){
-    if (!Vh_GpioRead(VH_TEC1)){
-        gpioWrite(LEDG, TRUE);
-    } else {
-        gpioWrite(LEDG, FALSE);
+	bool_t pinState;
+
+    if (Vh_GpioRead(VH_TEC1, &pinState) != VH_EXEC_ERROR){
+        gpioWrite(LEDG, !pinState);
     }
     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC2)){
-        gpioWrite(LED1, TRUE);
-    } else {
-        gpioWrite(LED1, FALSE);
-    }
+    if (Vh_GpioRead(VH_TEC2, &pinState) != VH_EXEC_ERROR){
+            gpioWrite(LEDG, !pinState);
+        }
     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC3)){
-        gpioWrite(LED2, TRUE);
-    } else {
-        gpioWrite(LED2, FALSE);
-    }
+    if (Vh_GpioRead(VH_TEC3, &pinState) != VH_EXEC_ERROR){
+            gpioWrite(LEDG, !pinState);
+        }
     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC4)){
-        gpioWrite(LED3, TRUE);
-    } else {
-        gpioWrite(LED3, FALSE);
-    }
+    if (Vh_GpioRead(VH_TEC4, &pinState) != VH_EXEC_ERROR){
+            gpioWrite(LEDG, !pinState);
+        }
     delay (50);
 }
 
@@ -181,27 +175,29 @@ static void TestVhAdcRead (){
     uint16_t adcValue = 0;
 
     while(1){
-        adcValue = Vh_AdcRead(VH_ADC_CH1);
-        if (adcValue >= 0 && adcValue <= 250){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, FALSE);
-            gpioWrite(LED2, FALSE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 250 && adcValue <= 500){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, FALSE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 500 && adcValue <= 750){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, TRUE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 750){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, TRUE);
-            gpioWrite(LED3, TRUE);
+        if (Vh_AdcRead(VH_ADC_CH1, &adcValue) != VH_EXEC_ERROR)
+        {
+        	if (adcValue >= 0 && adcValue <= 250){
+        	            gpioWrite(LEDR, TRUE);
+        	            gpioWrite(LED1, FALSE);
+        	            gpioWrite(LED2, FALSE);
+        	            gpioWrite(LED3, FALSE);
+        	        } else if (adcValue > 250 && adcValue <= 500){
+        	            gpioWrite(LEDR, TRUE);
+        	            gpioWrite(LED1, TRUE);
+        	            gpioWrite(LED2, FALSE);
+        	            gpioWrite(LED3, FALSE);
+        	        } else if (adcValue > 500 && adcValue <= 750){
+        	            gpioWrite(LEDR, TRUE);
+        	            gpioWrite(LED1, TRUE);
+        	            gpioWrite(LED2, TRUE);
+        	            gpioWrite(LED3, FALSE);
+        	        } else if (adcValue > 750){
+        	            gpioWrite(LEDR, TRUE);
+        	            gpioWrite(LED1, TRUE);
+        	            gpioWrite(LED2, TRUE);
+        	            gpioWrite(LED3, TRUE);
+        	        }
         }
         delay(200);
     }
@@ -303,13 +299,13 @@ static void TestVhIntegral(){
 
     while(1){
         // Lee el ADC virtual y envia el valor al DAC virtual
-        adcValue = Vh_AdcRead(VH_ADC_CH1);
+        Vh_AdcRead(VH_ADC_CH1, &adcValue);
         Vh_DacWrite(VH_DAC_CH1, adcValue);
         // Enciende VH_LED1 si VHTEC1 esta pulsada, sino lo apaga
-        stateTec1 = Vh_GpioRead(VH_TEC1);
+        Vh_GpioRead(VH_TEC1, &stateTec1);
         Vh_GpioWrite(VH_LED1, !stateTec1);
         // Enciende VH_LED2 si VHTEC2 esta pulsada, sino lo apaga
-        stateTec2 = Vh_GpioRead(VH_TEC2);
+        Vh_GpioRead(VH_TEC2, &stateTec2);
         Vh_GpioWrite(VH_LED2, !stateTec2);
         // Pasado un tiempo togglea led virtual y led fisico de la EDU CIAA
         if (++counterToggleLed >= timeToToggleLed){
