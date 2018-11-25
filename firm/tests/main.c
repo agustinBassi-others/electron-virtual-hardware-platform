@@ -37,7 +37,7 @@
 /*==================[inclusions]=============================================*/
 
 #include "sapi.h"
-#include "vihard.h"
+#include "../modules/vihard.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -316,7 +316,7 @@ static void TestVhIntegral(){
             // Toggle del pin virtual VH_LED3
             Vh_GpioToggle(VH_LED4);
             // Toggle del led fisico de la EDU CIAA
-            gpioToggle(LED3);
+//            gpioToggle(LED3);
             counterToggleLed = 0;
         }
         // Pasado un tiempo actualiza el valor del display 7 segmentos
