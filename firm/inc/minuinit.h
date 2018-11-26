@@ -1,10 +1,14 @@
 #ifndef _MIN_UNIT_H_
 #define _MIN_UNIT_H_
 
-#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+#define MINUNIT_ASSERT(errorMessage, conditionToEvaluate) do { if (!(conditionToEvaluate)) return errorMessage; } while (0)
 
-#define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+#define MINUNIT_RUN_TEST(functionToTest) do { char *errorMessage = functionToTest(); AmountTestsRun++; if (errorMessage) return errorMessage; } while (0)
 
-extern int tests_run;
+int MinUnit_AmountTestsRun (void);
+
+static int AmountTestsRun = 0;
+
+int MinUnit_AmountTestsRun (void) { return AmountTestsRun; };
 
 #endif

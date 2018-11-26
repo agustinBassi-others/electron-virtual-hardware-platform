@@ -43,7 +43,7 @@
 
 /*==================[internal data declaration]==============================*/
 
-int tests_run = 0;
+//extern int MinUnit_TestsRun;
 
 int foo = 7;
 int bar = 4;
@@ -57,18 +57,18 @@ int bar = 4;
 /*==================[internal functions definition]==========================*/
 
 static char * test_foo() {
-	mu_assert("error, foo != 7", foo == 7);
+	MINUNIT_ASSERT("ERROR: foo != 7", foo == 7);
 	return 0;
 }
 
 static char * test_bar() {
-	mu_assert("error, bar != 5", bar == 5);
+	MINUNIT_ASSERT("ERROR: bar != 5", bar == 5);
 	return 0;
 }
 
 static char * all_tests() {
-	mu_run_test(test_foo);
-	mu_run_test(test_bar);
+	MINUNIT_RUN_TEST(test_foo);
+	MINUNIT_RUN_TEST(test_bar);
 	return 0;
 }
 
@@ -77,22 +77,22 @@ static char * all_tests() {
 int main(void) {
 
 	boardConfig();
+
 	uartConfig( UART_USB, 115200 );
+
+	uartWriteString(UART_USB, "Init UNIT testing with minunit tool!\n\r");
 
 	char *result = all_tests();
 
 	if (result != 0) {
 		uartWriteString(UART_USB, result);
-		//         printf("%s\n", result);
 	}
 	else {
-		//         printf("ALL TESTS PASSED\n");
-		uartWriteString(UART_USB, "ALL TESTS PASSED\n");
-
+		uartWriteString(UART_USB, "\n\rALL TESTS PASSED OK!\n\r");
 	}
 
-	uartWriteString(UART_USB, "Tests run: ");//%d\n", tests_run);
-	uartWriteByte(UART_USB, tests_run + '0');
+	uartWriteString(UART_USB, "\n\rAmount of tests run: ");
+	uartWriteByte(UART_USB, MinUnit_AmountTestsRun() + '0');
 	uartWriteString(UART_USB, "\n\r");
 
 	return result != 0;
