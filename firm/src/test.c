@@ -37,7 +37,7 @@
 /*==================[inclusions]=============================================*/
 
 #include "sapi.h"
-//#include "minuinit.h"
+#include "minuinit.h"
 #include "vihard.h"
 
 /*==================[macros and definitions]=================================*/
@@ -46,45 +46,6 @@
 #define PRINT_NEWLINES()   uartWriteString(UART_USB, "\n\n\r")
 
 /*==================[internal data declaration]==============================*/
-
-//#include <stdio.h>
-#include "minunit.h"
-
-int tests_run = 0;
-
-int foo = 7;
-int bar = 4;
-
-static char * test_foo() {
-	mu_assert("error, foo != 7", foo == 7);
-	return 0;
-}
-
-static char * test_bar() {
-	mu_assert("error, bar != 5", bar == 5);
-	return 0;
-}
-
-static char * all_tests() {
-	mu_run_test(test_foo);
-	mu_run_test(test_bar);
-	return 0;
-}
-
-int main(int argc, char **argv) {
-	char *result = all_tests();
-	if (result != 0) {
-		printf("%s\n", result);
-	}
-	else {
-		printf("ALL TESTS PASSED\n");
-	}
-	printf("Tests run: %d\n", tests_run);
-
-	return result != 0;
-}
-
-
 
 /*==================[internal functions declaration]=========================*/
 
@@ -304,19 +265,19 @@ static char * Test_DacWriteMaxValue (){
 	return 0;
 }
 
-static char * Test_DacWriteMaxValue (){
-	ViHardError_t error;
-	bool_t pinState = 0;
-	uint16_t adcValue = 0;
-
-	PRINT_SEPARATOR();
-
-	uartWriteString(UART_USB, "Executing test function: Test_DacWriteMaxValue ()");
-
-	uartWriteString(UART_USB, "DacWrite - Limit max value - TEST PASSED OK!");
-
-	return 0;
-}
+//static char * Test_DacWriteMaxValue (){
+//	ViHardError_t error;
+//	bool_t pinState = 0;
+//	uint16_t adcValue = 0;
+//
+//	PRINT_SEPARATOR();
+//
+//	uartWriteString(UART_USB, "Executing test function: Test_DacWriteMaxValue ()");
+//
+//	uartWriteString(UART_USB, "DacWrite - Limit max value - TEST PASSED OK!");
+//
+//	return 0;
+//}
 
 
 
