@@ -320,7 +320,7 @@ ViHardError_t Vh_BoardConfig (uint32_t baudRate)
     UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
     UART_CONFIG(baudRate);
 
-    return TRUE;
+    return VH_EXEC_OK;
 }
 
 /**

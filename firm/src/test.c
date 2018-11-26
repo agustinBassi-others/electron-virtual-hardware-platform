@@ -37,16 +37,54 @@
 /*==================[inclusions]=============================================*/
 
 #include "sapi.h"
-#include "minuinit.h"
+//#include "minuinit.h"
+#include "vihard.h"
 
 /*==================[macros and definitions]=================================*/
 
+#define PRINT_SEPARATOR() uartWriteString(UART_USB, "\n\n\r-----------------\n\n\r")
+#define PRINT_NEWLINES()   uartWriteString(UART_USB, "\n\n\r")
+
 /*==================[internal data declaration]==============================*/
 
-//extern int MinUnit_TestsRun;
+//#include <stdio.h>
+#include "minunit.h"
+
+int tests_run = 0;
 
 int foo = 7;
 int bar = 4;
+
+static char * test_foo() {
+	mu_assert("error, foo != 7", foo == 7);
+	return 0;
+}
+
+static char * test_bar() {
+	mu_assert("error, bar != 5", bar == 5);
+	return 0;
+}
+
+static char * all_tests() {
+	mu_run_test(test_foo);
+	mu_run_test(test_bar);
+	return 0;
+}
+
+int main(int argc, char **argv) {
+	char *result = all_tests();
+	if (result != 0) {
+		printf("%s\n", result);
+	}
+	else {
+		printf("ALL TESTS PASSED\n");
+	}
+	printf("Tests run: %d\n", tests_run);
+
+	return result != 0;
+}
+
+
 
 /*==================[internal functions declaration]=========================*/
 
@@ -56,21 +94,240 @@ int bar = 4;
 
 /*==================[internal functions definition]==========================*/
 
-static char * test_foo() {
-	MINUNIT_ASSERT("ERROR: foo != 7", foo == 7);
+static void ShowTestsResume (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Amount of tests run: ");
+	uartWriteByte(UART_USB, MinUnit_AmountTestsRun() + '0');
+	PRINT_SEPARATOR();
+}
+
+static void ShowAllTestsPassedMessage (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Congratulations!!!All tests executed passed OK.");
+}
+
+/**
+ * Esta funcion de test le envia a la plataforma ViHard comandos con perifericos
+ * invalidos, para chequear que la funcion devuelva error si son invalidos.
+ * @return el mensaje de error si el test falla, 0 si no falla el test.
+ */
+static char * Test_InvalidPeriphericals (){
+	ViHardError_t error;
+	bool_t pinState = 0;
+	uint16_t adcValue = 0;
+
+	PRINT_SEPARATOR();
+
+	uartWriteString(UART_USB, "Executing test function: Test_InvalidPeriphericals ()");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioWrite(VH_DAC_CH1, FALSE);
+	MINUNIT_ASSERT(
+			"Vh_GpioWrite(VH_DAC_CH1, FALSE);"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_GpioWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioRead(VH_LCD1, &pinState);
+	MINUNIT_ASSERT(
+			"Vh_GpioRead(VH_LCD1, 0);"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_GpioRead - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioToggle(VH_ADC_CH1);
+	MINUNIT_ASSERT(
+			"Vh_GpioToggle(VH_ADC_CH1);"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_GpioToggle - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_AdcRead(VH_TEC1, &adcValue);
+	MINUNIT_ASSERT(
+			"Vh_AdcRead(VH_TEC1, 0);"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_AdcRead - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_DacWrite(VH_LED2, 400);
+	MINUNIT_ASSERT(
+			"Vh_DacWrite(VH_LED2, 400);"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_DacWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_7SegmentsWrite(VH_TEC4, '+');
+	MINUNIT_ASSERT(
+			"Vh_7SegmentsWrite(VH_TEC4, '+');"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_7SegmentsWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_LcdWriteString(VH_DAC_CH1, LCD_LINE_FIRST, "");
+	MINUNIT_ASSERT(
+			"Vh_LcdWriteString(VH_DAC_CH1, LCD_LINE_FIRST, \"\");"
+			"\n\r\t Expected: VH_EXEC_ERROR"
+			"\n\r\t Received: VH_EXEC_OK",
+			error == VH_EXEC_ERROR
+	);
+	uartWriteString(UART_USB, "Vh_LcdWriteString - TEST PASSED OK!");
+
 	return 0;
 }
 
-static char * test_bar() {
-	MINUNIT_ASSERT("ERROR: bar != 5", bar == 5);
+/**
+ * Esta funcion de test le envia a la plataforma ViHard comandos con perifericos
+ * validos, para chequear que la funcion devuelva ok si ejecuta correctamente los comandos.
+ * @return el mensaje de error si el test falla, 0 si no falla el test.
+ */
+static char * Test_ValidPeriphericals (){
+	ViHardError_t error;
+	bool_t pinState = 0;
+	uint16_t adcValue = 0;
+
+	PRINT_SEPARATOR();
+
+	uartWriteString(UART_USB, "Executing test function: Test_ValidPeriphericals ()");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioWrite(VH_LED1, FALSE);
+	MINUNIT_ASSERT(
+			"Vh_GpioWrite(VH_LED1, FALSE);"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_GpioWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioRead(VH_TEC1, &pinState);
+	MINUNIT_ASSERT(
+			"Vh_GpioRead(VH_TEC1, &pinState);"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_GpioRead- TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_GpioToggle(VH_LED3);
+	MINUNIT_ASSERT(
+			"Vh_GpioToggle(VH_LED3);"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_GpioToggle - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_AdcRead(VH_ADC_CH1, &adcValue);
+	MINUNIT_ASSERT(
+			"Vh_AdcRead(VH_ADC_CH1, 0);"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_AdcRead - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_DacWrite(VH_DAC_CH1, 400);
+	MINUNIT_ASSERT(
+			"Vh_DacWrite(VH_DAC_CH1, 400);"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_DacWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_7SegmentsWrite(VH_7SEG, '+');
+	MINUNIT_ASSERT(
+			"Vh_7SegmentsWrite(VH_7SEG, '+');"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_7SegmentsWrite - TEST PASSED OK!");
+
+	PRINT_NEWLINES();
+	error = Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "");
+	MINUNIT_ASSERT(
+			"Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, \"\");"
+			"\n\r\t Expected: VH_EXEC_OK"
+			"\n\r\t Received: VH_EXEC_ERROR",
+			error == VH_EXEC_OK
+	);
+	uartWriteString(UART_USB, "Vh_LcdWriteString - TEST PASSED OK!");
+
 	return 0;
 }
 
-static char * all_tests() {
-	MINUNIT_RUN_TEST(test_foo);
-	MINUNIT_RUN_TEST(test_bar);
+/**
+ * Esta funcion de test le envia a la plataforma ViHard el comando DacWrite con
+ * el valor del DAC superior al maximo permitido (1023). Si la funcion realiza el
+ * trabajo correctamente, por mas que el valor supere 1023, esta deberia limitarlo
+ * a este valor maximo.
+ * @return el mensaje de error si el test falla, 0 si no falla el test.
+ */
+static char * Test_DacWriteMaxValue (){
+	ViHardError_t error;
+	bool_t pinState = 0;
+	uint16_t adcValue = 0;
+
+	PRINT_SEPARATOR();
+
+	uartWriteString(UART_USB, "Executing test function: Test_DacWriteMaxValue ()\n\r");
+	uartWriteString(UART_USB, "To test this function do this:\n\r");
+	uartWriteString(UART_USB, "\t1. Open serial terminal at 115200 baudios\n\r");
+	uartWriteString(UART_USB, "\t2. Execute function DacWrite(2500);\n\r");
+
+	uartWriteString(UART_USB, "DacWrite - Limit max value - TEST PASSED OK!");
+
 	return 0;
 }
+
+static char * Test_DacWriteMaxValue (){
+	ViHardError_t error;
+	bool_t pinState = 0;
+	uint16_t adcValue = 0;
+
+	PRINT_SEPARATOR();
+
+	uartWriteString(UART_USB, "Executing test function: Test_DacWriteMaxValue ()");
+
+	uartWriteString(UART_USB, "DacWrite - Limit max value - TEST PASSED OK!");
+
+	return 0;
+}
+
+
+
+static char * ExecuteAllTests() {
+
+	MINUNIT_RUN_TEST(Test_InvalidPeriphericals);
+	MINUNIT_RUN_TEST(Test_ValidPeriphericals);
+
+	return 0;
+}
+
 
 /*==================[external functions definition]==========================*/
 
@@ -78,25 +335,26 @@ int main(void) {
 
 	boardConfig();
 
-	uartConfig( UART_USB, 115200 );
+	Vh_BoardConfig(VIHARD_BAUDRATE);
 
-	uartWriteString(UART_USB, "Init UNIT testing with minunit tool!\n\r");
+	uartWriteString(UART_USB, "\n\rViHard Unit Testing\n\r");
 
-	char *result = all_tests();
+	char * testsResult = ExecuteAllTests();
 
-	if (result != 0) {
-		uartWriteString(UART_USB, result);
+	if (testsResult != 0) {
+		uartWriteString(UART_USB, testsResult);
 	}
 	else {
-		uartWriteString(UART_USB, "\n\rALL TESTS PASSED OK!\n\r");
+		ShowAllTestsPassedMessage();
 	}
 
-	uartWriteString(UART_USB, "\n\rAmount of tests run: ");
-	uartWriteByte(UART_USB, MinUnit_AmountTestsRun() + '0');
-	uartWriteString(UART_USB, "\n\r");
+	ShowTestsResume ();
 
-	return result != 0;
+	return 0;
 }
 
 /*==================[end of file]============================================*/
+
+
+
 
