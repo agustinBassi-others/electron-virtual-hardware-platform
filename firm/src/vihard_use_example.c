@@ -36,8 +36,8 @@
 
 /*==================[inclusions]=============================================*/
 
+#include "vihard.h"
 #include "sapi.h"
-#include "../modules/vihard.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -340,7 +340,7 @@ static void TestVhIntegral(){
 
 /*==================[external functions definition]==========================*/
 
-int main(void){
+int maina(void){
 
 	boardConfig();
 

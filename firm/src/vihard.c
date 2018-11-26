@@ -36,9 +36,10 @@
 
 /*==================[inclusions]=============================================*/
 
+#include "vihard.h"
+
 #include <math.h>
 
-#include "vihard.h"
 
 /*==================[macros and definitions]=================================*/
 
