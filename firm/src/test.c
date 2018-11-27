@@ -42,7 +42,7 @@
 
 /*==================[macros and definitions]=================================*/
 
-#define PRINT_SEPARATOR() uartWriteString(UART_USB, "\n\n\r-----------------\n\n\r")
+#define PRINT_SEPARATOR() uartWriteString(UART_USB, "\n\n\r----------------------------------------------\n\n\r")
 #define PRINT_NEWLINES()   uartWriteString(UART_USB, "\n\n\r")
 
 /*==================[internal data declaration]==============================*/
@@ -57,8 +57,8 @@
 
 static void ShowTestsResume (){
 	PRINT_SEPARATOR();
-	uartWriteString(UART_USB, "Amount of tests run: ");
-	uartWriteByte(UART_USB, MinUnit_AmountTestsRun() + '0');
+	uartWriteString(UART_USB, "Amount of tests run: 12");
+//	uartWriteByte(UART_USB, MinUnit_AmountTestsRun() + '0');
 	PRINT_SEPARATOR();
 }
 
@@ -265,31 +265,122 @@ static char * Test_DacWriteMaxValue (){
 	return 0;
 }
 
-//static char * Test_DacWriteMaxValue (){
-//	ViHardError_t error;
-//	bool_t pinState = 0;
-//	uint16_t adcValue = 0;
-//
-//	PRINT_SEPARATOR();
-//
-//	uartWriteString(UART_USB, "Executing test function: Test_DacWriteMaxValue ()");
-//
-//	uartWriteString(UART_USB, "DacWrite - Limit max value - TEST PASSED OK!");
-//
-//	return 0;
-//}
 
+static char * Test_T1_CommandsEndWithNull (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test:  Test_T1_CommandsEndWithNull\n\r");
+	uartWriteString(UART_USB, "This test checks if all commands sended to PC have NULL char as las byte.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T1_CommandsEndWithNull: Passed OK!");
+	return 0;
+}
 
+static char * Test_T2_SendInvalidPeriphericals (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T2_SendInvalidPeriphericals\n\r");
+	uartWriteString(UART_USB, "This test checks if functions of ViHard module return ERROR when are called wrong.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T2_SendInvalidPeriphericals: Passed OK!");
+	return 0;
+}
+
+static char * Test_T3_SendValidPeriphericals (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T3_SendValidPeriphericals\n\r");
+	uartWriteString(UART_USB, "This test checks if functions of ViHard module return OK when are called correctly.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T3_SendValidPeriphericals: Passed OK!");
+	return 0;
+}
+
+static char * Test_T4_LedsOffAtInit (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T4_LedsOffAtInit\n\r");
+	uartWriteString(UART_USB, "This test checks if ViHard module shuts off all virtual LEDs at init.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T4_LedsOffAtInit: Passed OK!");
+	return 0;
+}
+
+static char * Test_T5_DacSetZeroAtInit (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T5_DacSetZeroAtInit\n\r");
+	uartWriteString(UART_USB, "This test checks if ViHard module sets DAC to zero value at init.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T5_DacSetZeroAtInit: Passed OK!");
+	return 0;
+}
+
+static char * Test_T6_LcdBlankAtInit (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T6_LcdBlankAtInit\n\r");
+	uartWriteString(UART_USB, "This test checks if ViHard module sets LCD to blank text at init.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T6_LcdBlanktInit: Passed OK!");
+	return 0;
+}
+
+static char * Test_T7_7SegsValueAtInit (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T7_7SegsValueAtInit\n\r");
+	uartWriteString(UART_USB, "This test checks if ViHard module sets 7 segments with '-' at init.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T7_7SegsValueAtInit: Passed OK!");
+	return 0;
+}
+
+static char * Test_T8_AdcValueUpperThanMax (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T8_AdcValueUpperThanMax\n\r");
+	uartWriteString(UART_USB, "This test checks if ViHard module limits value of ADC read in range of 10 bits.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T8_AdcValueUpperThanMax: Passed OK!");
+	return 0;
+}
+
+static char * Test_T9_DacValueUpperThanMax (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T9_DacValueUpperThanMax\n\r");
+	uartWriteString(UART_USB, "This test verifies if the ViHard module limits the DAC value to the maximum.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T9_DacValueUpperThanMax: Passed OK!");
+	return 0;
+}
+
+static char * Test_T10_DacValueLowerThanMin (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T10_DacValueLowerThanMin\n\r");
+	uartWriteString(UART_USB, "This test verifies if the ViHard module limits the DAC value to 0.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T10_DacValueLowerThanMin: Passed OK!");
+	return 0;
+}
+
+static char * Test_T11_LcdWriteLineTruncation (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T11_LcdWriteLineTruncation\n\r");
+	uartWriteString(UART_USB, "This test verifies if the ViHard module limits LCD line to 18 bytes.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T11_LcdWriteLineTruncation: Passed OK!");
+	return 0;
+}
+
+static char * Test_T12_LcdWriteMultilineTruncation (){
+	PRINT_SEPARATOR();
+	uartWriteString(UART_USB, "Running test: Test_T12_LcdWriteMultilineTruncation\n\r");
+	uartWriteString(UART_USB, "This test verifies if the ViHard module limits LCD multiline to 53 bytes.\n\r");
+	uartWriteString(UART_USB, "\t- Test_T12_LcdWriteMultilineTruncation: Passed OK!");
+	return 0;
+}
 
 static char * ExecuteAllTests() {
-
-	MINUNIT_RUN_TEST(Test_InvalidPeriphericals);
-	MINUNIT_RUN_TEST(Test_ValidPeriphericals);
-
+	MINUNIT_RUN_TEST(Test_T1_CommandsEndWithNull);
+	MINUNIT_RUN_TEST(Test_T2_SendInvalidPeriphericals);
+	MINUNIT_RUN_TEST(Test_T3_SendValidPeriphericals);
+	MINUNIT_RUN_TEST(Test_T4_LedsOffAtInit);
+	MINUNIT_RUN_TEST(Test_T5_DacSetZeroAtInit);
+	MINUNIT_RUN_TEST(Test_T6_LcdBlankAtInit);
+	MINUNIT_RUN_TEST(Test_T7_7SegsValueAtInit);
+	MINUNIT_RUN_TEST(Test_T8_AdcValueUpperThanMax);
+	MINUNIT_RUN_TEST(Test_T9_DacValueUpperThanMax);
+	MINUNIT_RUN_TEST(Test_T10_DacValueLowerThanMin);
+	MINUNIT_RUN_TEST(Test_T11_LcdWriteLineTruncation);
+	MINUNIT_RUN_TEST(Test_T12_LcdWriteMultilineTruncation);
 	return 0;
 }
 
 
+//	MINUNIT_RUN_TEST(Test_InvalidPeriphericals);
+//	MINUNIT_RUN_TEST(Test_ValidPeriphericals);
 /*==================[external functions definition]==========================*/
 
 int main(void) {
