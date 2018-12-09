@@ -1,0 +1,1027 @@
+Sun Dec 09 17:15:09 2018: build-wrapper, version 5.1 (linux-x86)
+Sun Dec 09 17:15:09 2018: System name: Linux Nodename: mint-pc Release: 3.19.0-32-generic Version: #37~14.04.1-Ubuntu SMP Thu Oct 22 09:41:40 UTC 2015 Machine: x86_64
+Sun Dec 09 17:15:09 2018: socket path: /tmp/build-wrapper-socket.GPTPMt
+Sun Dec 09 17:15:09 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-i686.so
+Sun Dec 09 17:15:09 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-x86_64.so
+Sun Dec 09 17:15:09 2018: command executed as: <build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:09 2018: command line received: <make clean all>
+Sun Dec 09 17:15:09 2018: env 0: <XDG_VTNR=8>
+Sun Dec 09 17:15:09 2018: env 1: <SSH_AGENT_PID=2067>
+Sun Dec 09 17:15:09 2018: env 2: <XDG_SESSION_ID=c1>
+Sun Dec 09 17:15:09 2018: env 3: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 09 17:15:09 2018: env 4: <GPG_AGENT_INFO=/run/user/1000/keyring-UrUjrt/gpg:0:1>
+Sun Dec 09 17:15:09 2018: env 5: <TERM=xterm>
+Sun Dec 09 17:15:09 2018: env 6: <SHELL=/bin/bash>
+Sun Dec 09 17:15:09 2018: env 7: <VTE_VERSION=3409>
+Sun Dec 09 17:15:09 2018: env 8: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1542841320.426222-1155048962>
+Sun Dec 09 17:15:09 2018: env 9: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 09 17:15:09 2018: env 10: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 09 17:15:09 2018: env 11: <WINDOWID=117441189>
+Sun Dec 09 17:15:09 2018: env 12: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-UrUjrt>
+Sun Dec 09 17:15:09 2018: env 13: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 09 17:15:09 2018: env 14: <USER=mint>
+Sun Dec 09 17:15:09 2018: env 15: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 09 17:15:09 2018: env 16: <QT_ACCESSIBILITY=1>
+Sun Dec 09 17:15:09 2018: env 17: <CLUTTER_BACKEND=x11>
+Sun Dec 09 17:15:09 2018: env 18: <INSIDE_NEMO_PYTHON=>
+Sun Dec 09 17:15:09 2018: env 19: <SSH_AUTH_SOCK=/run/user/1000/keyring-UrUjrt/ssh>
+Sun Dec 09 17:15:09 2018: env 20: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 09 17:15:09 2018: env 21: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002>
+Sun Dec 09 17:15:09 2018: env 22: <USERNAME=mint>
+Sun Dec 09 17:15:09 2018: env 23: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 09 17:15:09 2018: env 24: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 09 17:15:09 2018: env 25: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 09 17:15:09 2018: env 26: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 09 17:15:09 2018: env 27: <DESKTOP_SESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: env 28: <GDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:09 2018: env 29: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: env 30: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:09 2018: env 31: <GNOME_KEYRING_PID=1926>
+Sun Dec 09 17:15:09 2018: env 32: <LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:09 2018: env 33: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 09 17:15:09 2018: env 34: <MDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:09 2018: env 35: <GDMSESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: env 36: <CINNAMON_VERSION=2.8.8>
+Sun Dec 09 17:15:09 2018: env 37: <SHLVL=1>
+Sun Dec 09 17:15:09 2018: env 38: <XDG_SEAT=seat0>
+Sun Dec 09 17:15:09 2018: env 39: <HOME=/home/mint>
+Sun Dec 09 17:15:09 2018: env 40: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 09 17:15:09 2018: env 41: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 09 17:15:09 2018: env 42: <LOGNAME=mint>
+Sun Dec 09 17:15:09 2018: env 43: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 09 17:15:09 2018: env 44: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3rOvFkEtXL,guid=48c44c66d5020fc17d9d5e3e5bf5e3e8>
+Sun Dec 09 17:15:09 2018: env 45: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:09 2018: env 46: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 09 17:15:09 2018: env 47: <MDMSESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: env 48: <TEXTDOMAIN=im-config>
+Sun Dec 09 17:15:09 2018: env 49: <WINDOWPATH=8>
+Sun Dec 09 17:15:09 2018: env 50: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 09 17:15:09 2018: env 51: <DISPLAY=:0>
+Sun Dec 09 17:15:09 2018: env 52: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:09 2018: env 53: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 09 17:15:09 2018: env 54: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 09 17:15:09 2018: env 55: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 09 17:15:09 2018: env 56: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 09 17:15:09 2018: env 57: <COLORTERM=gnome-terminal>
+Sun Dec 09 17:15:09 2018: env 58: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 09 17:15:09 2018: env 59: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:09 2018: executing: <make clean all>
+Sun Dec 09 17:15:09 2018: initializing json file
+Sun Dec 09 17:15:09 2018: process created with pid: 26032
+Sun Dec 09 17:15:09 2018: parent pid: 26031
+Sun Dec 09 17:15:09 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: executable: </home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:09 2018: argv[0]: <build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:09 2018: argv[1]: <-c>
+Sun Dec 09 17:15:09 2018: argv[2]: <>
+Sun Dec 09 17:15:09 2018: argv[3]: <make>
+Sun Dec 09 17:15:09 2018: argv[4]: <clean>
+Sun Dec 09 17:15:09 2018: argv[5]: <all>
+Sun Dec 09 17:15:09 2018: skipping process with pid: 26032
+Sun Dec 09 17:15:09 2018: process created with pid: 26033
+Sun Dec 09 17:15:09 2018: parent pid: 26032
+Sun Dec 09 17:15:09 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: executable: </usr/bin/make>
+Sun Dec 09 17:15:09 2018: argv[0]: <make>
+Sun Dec 09 17:15:09 2018: argv[1]: <clean>
+Sun Dec 09 17:15:09 2018: argv[2]: <all>
+Sun Dec 09 17:15:09 2018: skipping process with pid: 26033
+Sun Dec 09 17:15:09 2018: process created with pid: 26034
+Sun Dec 09 17:15:09 2018: parent pid: 26033
+Sun Dec 09 17:15:09 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: executable: </bin/rm>
+Sun Dec 09 17:15:09 2018: argv[0]: <rm>
+Sun Dec 09 17:15:09 2018: argv[1]: <-f>
+Sun Dec 09 17:15:09 2018: argv[2]: <main.o>
+Sun Dec 09 17:15:09 2018: argv[3]: <vihard.o>
+Sun Dec 09 17:15:09 2018: argv[4]: <main>
+Sun Dec 09 17:15:09 2018: skipping process with pid: 26034
+Sun Dec 09 17:15:09 2018: process created with pid: 26035
+Sun Dec 09 17:15:09 2018: parent pid: 26033
+Sun Dec 09 17:15:09 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 09 17:15:09 2018: argv[0]: <gcc>
+Sun Dec 09 17:15:09 2018: argv[1]: <-c>
+Sun Dec 09 17:15:09 2018: argv[2]: <-g>
+Sun Dec 09 17:15:09 2018: argv[3]: <-Wall>
+Sun Dec 09 17:15:09 2018: argv[4]: <-O2>
+Sun Dec 09 17:15:09 2018: argv[5]: <main.c>
+Sun Dec 09 17:15:09 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt>
+Sun Dec 09 17:15:09 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 09 17:15:09 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 09 17:15:09 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 09 17:15:09 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 09 17:15:09 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:09 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 09 17:15:09 2018: envp[9]: <USERNAME=mint>
+Sun Dec 09 17:15:09 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 09 17:15:09 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 09 17:15:09 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 09 17:15:09 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:09 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 09 17:15:09 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 09 17:15:09 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 09 17:15:09 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-UrUjrt/gpg:0:1>
+Sun Dec 09 17:15:09 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002>
+Sun Dec 09 17:15:09 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 09 17:15:09 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 09 17:15:09 2018: envp[21]: <WINDOWID=117441189>
+Sun Dec 09 17:15:09 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:09 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 09 17:15:09 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 09 17:15:09 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 09 17:15:09 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-UrUjrt/ssh>
+Sun Dec 09 17:15:09 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 09 17:15:09 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 09 17:15:09 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:09 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 09 17:15:09 2018: envp[31]: <SSH_AGENT_PID=2067>
+Sun Dec 09 17:15:09 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3rOvFkEtXL,guid=48c44c66d5020fc17d9d5e3e5bf5e3e8>
+Sun Dec 09 17:15:09 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1542841320.426222-1155048962>
+Sun Dec 09 17:15:09 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 09 17:15:09 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 09 17:15:09 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:09 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 09 17:15:09 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 09 17:15:09 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 09 17:15:09 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 09 17:15:09 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 09 17:15:09 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 09 17:15:09 2018: envp[43]: <SHLVL=1>
+Sun Dec 09 17:15:09 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:09 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 09 17:15:09 2018: envp[46]: <USER=mint>
+Sun Dec 09 17:15:09 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 09 17:15:09 2018: envp[48]: <GNOME_KEYRING_PID=1926>
+Sun Dec 09 17:15:09 2018: envp[49]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-UrUjrt>
+Sun Dec 09 17:15:09 2018: envp[50]: <MAKEFLAGS=>
+Sun Dec 09 17:15:09 2018: envp[51]: <MFLAGS=>
+Sun Dec 09 17:15:09 2018: envp[52]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 09 17:15:09 2018: envp[53]: <QT_ACCESSIBILITY=1>
+Sun Dec 09 17:15:09 2018: envp[54]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 09 17:15:09 2018: envp[55]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 09 17:15:09 2018: envp[56]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:09 2018: envp[57]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 09 17:15:09 2018: envp[58]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 09 17:15:09 2018: envp[59]: <WINDOWPATH=8>
+Sun Dec 09 17:15:09 2018: envp[60]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 09 17:15:09 2018: envp[61]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 09 17:15:09 2018: envp[62]: <LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:09 2018: envp[63]: <TERM=xterm>
+Sun Dec 09 17:15:09 2018: envp[64]: <MAKELEVEL=1>
+Sun Dec 09 17:15:09 2018: envp[65]: <LD_PRELOAD=>
+Sun Dec 09 17:15:09 2018: Probing C compiler: /usr/bin/gcc-4.8 
+Sun Dec 09 17:15:09 2018: exit code: 0
+Sun Dec 09 17:15:09 2018: stdout:
+#define __DBL_MIN_EXP__ (-1021)
+#define __UINT_LEAST16_MAX__ 65535
+#define __ATOMIC_ACQUIRE 2
+#define __FLT_MIN__ 1.17549435082228750797e-38F
+#define __UINT_LEAST8_TYPE__ unsigned char
+#define __INTMAX_C(c) c ## L
+#define __CHAR_BIT__ 8
+#define __UINT8_MAX__ 255
+#define __WINT_MAX__ 4294967295U
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZE_MAX__ 18446744073709551615UL
+#define __WCHAR_MAX__ 2147483647
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1
+#define __DBL_DENORM_MIN__ ((double)4.94065645841246544177e-324L)
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8 1
+#define __GCC_ATOMIC_CHAR_LOCK_FREE 2
+#define __FLT_EVAL_METHOD__ 0
+#define __unix__ 1
+#define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 2
+#define __x86_64 1
+#define __UINT_FAST64_MAX__ 18446744073709551615UL
+#define __SIG_ATOMIC_TYPE__ int
+#define __DBL_MIN_10_EXP__ (-307)
+#define __FINITE_MATH_ONLY__ 0
+#define __GNUC_PATCHLEVEL__ 4
+#define __UINT_FAST8_MAX__ 255
+#define __DEC64_MAX_EXP__ 385
+#define __INT8_C(c) c
+#define __UINT_LEAST64_MAX__ 18446744073709551615UL
+#define __SHRT_MAX__ 32767
+#define __LDBL_MAX__ 1.18973149535723176502e+4932L
+#define __UINT_LEAST8_MAX__ 255
+#define __GCC_ATOMIC_BOOL_LOCK_FREE 2
+#define __UINTMAX_TYPE__ long unsigned int
+#define __linux 1
+#define __DEC32_EPSILON__ 1E-6DF
+#define __unix 1
+#define __UINT32_MAX__ 4294967295U
+#define __LDBL_MAX_EXP__ 16384
+#define __WINT_MIN__ 0U
+#define __linux__ 1
+#define __SCHAR_MAX__ 127
+#define __WCHAR_MIN__ (-__WCHAR_MAX__ - 1)
+#define __INT64_C(c) c ## L
+#define __DBL_DIG__ 15
+#define __GCC_ATOMIC_POINTER_LOCK_FREE 2
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_POINTER__ 8
+#define __USER_LABEL_PREFIX__ 
+#define __STDC_HOSTED__ 1
+#define __LDBL_HAS_INFINITY__ 1
+#define __FLT_EPSILON__ 1.19209289550781250000e-7F
+#define __LDBL_MIN__ 3.36210314311209350626e-4932L
+#define __DEC32_MAX__ 9.999999E96DF
+#define __INT32_MAX__ 2147483647
+#define __SIZEOF_LONG__ 8
+#define __STDC_IEC_559__ 1
+#define __STDC_ISO_10646__ 201103L
+#define __UINT16_C(c) c
+#define __DECIMAL_DIG__ 21
+#define __gnu_linux__ 1
+#define __LDBL_HAS_QUIET_NAN__ 1
+#define __GNUC__ 4
+#define __MMX__ 1
+#define __FLT_HAS_DENORM__ 1
+#define __SIZEOF_LONG_DOUBLE__ 16
+#define __BIGGEST_ALIGNMENT__ 16
+#define __DBL_MAX__ ((double)1.79769313486231570815e+308L)
+#define __INT_FAST32_MAX__ 9223372036854775807L
+#define __DBL_HAS_INFINITY__ 1
+#define __DEC32_MIN_EXP__ (-94)
+#define __INT_FAST16_TYPE__ long int
+#define __LDBL_HAS_DENORM__ 1
+#define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
+#define __INT_LEAST32_MAX__ 2147483647
+#define __DEC32_MIN__ 1E-95DF
+#define __DBL_MAX_EXP__ 1024
+#define __DEC128_EPSILON__ 1E-33DL
+#define __SSE2_MATH__ 1
+#define __ATOMIC_HLE_RELEASE 131072
+#define __PTRDIFF_MAX__ 9223372036854775807L
+#define __amd64 1
+#define __STDC_NO_THREADS__ 1
+#define __ATOMIC_HLE_ACQUIRE 65536
+#define __LONG_LONG_MAX__ 9223372036854775807LL
+#define __SIZEOF_SIZE_T__ 8
+#define __SIZEOF_WINT_T__ 4
+#define __GCC_HAVE_DWARF2_CFI_ASM 1
+#define __GXX_ABI_VERSION 1002
+#define __FLT_MIN_EXP__ (-125)
+#define __INT_FAST64_TYPE__ long int
+#define __DBL_MIN__ ((double)2.22507385850720138309e-308L)
+#define __LP64__ 1
+#define __DECIMAL_BID_FORMAT__ 1
+#define __DEC128_MIN__ 1E-6143DL
+#define __REGISTER_PREFIX__ 
+#define __UINT16_MAX__ 65535
+#define __DBL_HAS_DENORM__ 1
+#define __UINT8_TYPE__ unsigned char
+#define __NO_INLINE__ 1
+#define __FLT_MANT_DIG__ 24
+#define __VERSION__ "4.8.4"
+#define __UINT64_C(c) c ## UL
+#define _STDC_PREDEF_H 1
+#define __GCC_ATOMIC_INT_LOCK_FREE 2
+#define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __STDC_IEC_559_COMPLEX__ 1
+#define __INT32_C(c) c
+#define __DEC64_EPSILON__ 1E-15DD
+#define __ORDER_PDP_ENDIAN__ 3412
+#define __DEC128_MIN_EXP__ (-6142)
+#define __INT_FAST32_TYPE__ long int
+#define __UINT_LEAST16_TYPE__ short unsigned int
+#define unix 1
+#define __INT16_MAX__ 32767
+#define __SIZE_TYPE__ long unsigned int
+#define __UINT64_MAX__ 18446744073709551615UL
+#define __INT8_TYPE__ signed char
+#define __ELF__ 1
+#define __FLT_RADIX__ 2
+#define __INT_LEAST16_TYPE__ short int
+#define __LDBL_EPSILON__ 1.08420217248550443401e-19L
+#define __UINTMAX_C(c) c ## UL
+#define __SSE_MATH__ 1
+#define __k8 1
+#define __SIG_ATOMIC_MAX__ 2147483647
+#define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
+#define __SIZEOF_PTRDIFF_T__ 8
+#define __x86_64__ 1
+#define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
+#define __INT_FAST16_MAX__ 9223372036854775807L
+#define __UINT_FAST32_MAX__ 18446744073709551615UL
+#define __UINT_LEAST64_TYPE__ long unsigned int
+#define __FLT_HAS_QUIET_NAN__ 1
+#define __FLT_MAX_10_EXP__ 38
+#define __LONG_MAX__ 9223372036854775807L
+#define __DEC128_SUBNORMAL_MIN__ 0.000000000000000000000000000000001E-6143DL
+#define __FLT_HAS_INFINITY__ 1
+#define __UINT_FAST16_TYPE__ long unsigned int
+#define __DEC64_MAX__ 9.999999999999999E384DD
+#define __CHAR16_TYPE__ short unsigned int
+#define __PRAGMA_REDEFINE_EXTNAME 1
+#define __INT_LEAST16_MAX__ 32767
+#define __DEC64_MANT_DIG__ 16
+#define __INT64_MAX__ 9223372036854775807L
+#define __UINT_LEAST32_MAX__ 4294967295U
+#define __GCC_ATOMIC_LONG_LOCK_FREE 2
+#define __INT_LEAST64_TYPE__ long int
+#define __INT16_TYPE__ short int
+#define __INT_LEAST8_TYPE__ signed char
+#define __DEC32_MAX_EXP__ 97
+#define __INT_FAST8_MAX__ 127
+#define __INTPTR_MAX__ 9223372036854775807L
+#define linux 1
+#define __SSE2__ 1
+#define __LDBL_MANT_DIG__ 64
+#define __DBL_HAS_QUIET_NAN__ 1
+#define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
+#define __code_model_small__ 1
+#define __k8__ 1
+#define __INTPTR_TYPE__ long int
+#define __UINT16_TYPE__ short unsigned int
+#define __WCHAR_TYPE__ int
+#define __SIZEOF_FLOAT__ 4
+#define __UINTPTR_MAX__ 18446744073709551615UL
+#define __DEC64_MIN_EXP__ (-382)
+#define __INT_FAST64_MAX__ 9223372036854775807L
+#define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
+#define __FLT_DIG__ 6
+#define __UINT_FAST64_TYPE__ long unsigned int
+#define __INT_MAX__ 2147483647
+#define __amd64__ 1
+#define __INT64_TYPE__ long int
+#define __FLT_MAX_EXP__ 128
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __DBL_MANT_DIG__ 53
+#define __INT_LEAST64_MAX__ 9223372036854775807L
+#define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
+#define __DEC64_MIN__ 1E-383DD
+#define __WINT_TYPE__ unsigned int
+#define __UINT_LEAST32_TYPE__ unsigned int
+#define __SIZEOF_SHORT__ 2
+#define __SSE__ 1
+#define __LDBL_MIN_EXP__ (-16381)
+#define __INT_LEAST8_MAX__ 127
+#define __SSP__ 1
+#define __SIZEOF_INT128__ 16
+#define __LDBL_MAX_10_EXP__ 4932
+#define __ATOMIC_RELAXED 0
+#define __DBL_EPSILON__ ((double)2.22044604925031308085e-16L)
+#define _LP64 1
+#define __UINT8_C(c) c
+#define __INT_LEAST32_TYPE__ int
+#define __SIZEOF_WCHAR_T__ 4
+#define __UINT64_TYPE__ long unsigned int
+#define __INT_FAST8_TYPE__ signed char
+#define __DBL_DECIMAL_DIG__ 17
+#define __FXSR__ 1
+#define __DEC_EVAL_METHOD__ 2
+#define __UINT32_C(c) c ## U
+#define __INTMAX_MAX__ 9223372036854775807L
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __FLT_DENORM_MIN__ 1.40129846432481707092e-45F
+#define __INT8_MAX__ 127
+#define __UINT_FAST32_TYPE__ long unsigned int
+#define __CHAR32_TYPE__ unsigned int
+#define __FLT_MAX__ 3.40282346638528859812e+38F
+#define __INT32_TYPE__ int
+#define __SIZEOF_DOUBLE__ 8
+#define __FLT_MIN_10_EXP__ (-37)
+#define __INTMAX_TYPE__ long int
+#define __DEC128_MAX_EXP__ 6145
+#define __ATOMIC_CONSUME 1
+#define __GNUC_MINOR__ 8
+#define __UINTMAX_MAX__ 18446744073709551615UL
+#define __DEC32_MANT_DIG__ 7
+#define __DBL_MAX_10_EXP__ 308
+#define __LDBL_DENORM_MIN__ 3.64519953188247460253e-4951L
+#define __INT16_C(c) c
+#define __STDC__ 1
+#define __PTRDIFF_TYPE__ long int
+#define __ATOMIC_SEQ_CST 5
+#define __UINT32_TYPE__ unsigned int
+#define __UINTPTR_TYPE__ long unsigned int
+#define __DEC64_SUBNORMAL_MIN__ 0.000000000000001E-383DD
+#define __DEC128_MANT_DIG__ 34
+#define __LDBL_MIN_10_EXP__ (-4931)
+#define __SIZEOF_LONG_LONG__ 8
+#define __GCC_ATOMIC_LLONG_LOCK_FREE 2
+#define __LDBL_DIG__ 18
+#define __FLT_DECIMAL_DIG__ 9
+#define __UINT_FAST16_MAX__ 18446744073709551615UL
+#define __GNUC_GNU_INLINE__ 1
+#define __GCC_ATOMIC_SHORT_LOCK_FREE 2
+#define __UINT_FAST8_TYPE__ unsigned char
+#define __ATOMIC_ACQ_REL 4
+#define __ATOMIC_RELEASE 3
+
+Sun Dec 09 17:15:09 2018: stderr:
+Using built-in specs.
+COLLECT_GCC=gcc
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 4.8.4-2ubuntu1~14.04.3' --with-bugurl=file:///usr/share/doc/gcc-4.8/README.Bugs --enable-languages=c,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.8 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.8 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --disable-libmudflap --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-4.8-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) 
+COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 -E -quiet -v -imultiarch x86_64-linux-gnu - -mtune=generic -march=x86-64 -fstack-protector -Wformat -Wformat-security -dM
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
+
+Sun Dec 09 17:15:09 2018: Probing C++ compiler: /usr/bin/gcc-4.8 
+Sun Dec 09 17:15:10 2018: exit code: 0
+Sun Dec 09 17:15:10 2018: stdout:
+#define __DBL_MIN_EXP__ (-1021)
+#define __UINT_LEAST16_MAX__ 65535
+#define __ATOMIC_ACQUIRE 2
+#define __FLT_MIN__ 1.17549435082228750797e-38F
+#define __UINT_LEAST8_TYPE__ unsigned char
+#define __INTMAX_C(c) c ## L
+#define __CHAR_BIT__ 8
+#define __UINT8_MAX__ 255
+#define __WINT_MAX__ 4294967295U
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZE_MAX__ 18446744073709551615UL
+#define __WCHAR_MAX__ 2147483647
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1
+#define __DBL_DENORM_MIN__ double(4.94065645841246544177e-324L)
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8 1
+#define __GCC_ATOMIC_CHAR_LOCK_FREE 2
+#define __FLT_EVAL_METHOD__ 0
+#define __unix__ 1
+#define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 2
+#define __x86_64 1
+#define __UINT_FAST64_MAX__ 18446744073709551615UL
+#define __SIG_ATOMIC_TYPE__ int
+#define __DBL_MIN_10_EXP__ (-307)
+#define __FINITE_MATH_ONLY__ 0
+#define __GNUC_PATCHLEVEL__ 4
+#define __UINT_FAST8_MAX__ 255
+#define __DEC64_MAX_EXP__ 385
+#define __INT8_C(c) c
+#define __UINT_LEAST64_MAX__ 18446744073709551615UL
+#define __SHRT_MAX__ 32767
+#define __LDBL_MAX__ 1.18973149535723176502e+4932L
+#define __UINT_LEAST8_MAX__ 255
+#define __GCC_ATOMIC_BOOL_LOCK_FREE 2
+#define __UINTMAX_TYPE__ long unsigned int
+#define __linux 1
+#define __DEC32_EPSILON__ 1E-6DF
+#define __unix 1
+#define __UINT32_MAX__ 4294967295U
+#define __LDBL_MAX_EXP__ 16384
+#define __WINT_MIN__ 0U
+#define __linux__ 1
+#define __SCHAR_MAX__ 127
+#define __WCHAR_MIN__ (-__WCHAR_MAX__ - 1)
+#define __INT64_C(c) c ## L
+#define __DBL_DIG__ 15
+#define __GCC_ATOMIC_POINTER_LOCK_FREE 2
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_POINTER__ 8
+#define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
+#define __USER_LABEL_PREFIX__ 
+#define __STDC_HOSTED__ 1
+#define __LDBL_HAS_INFINITY__ 1
+#define __FLT_EPSILON__ 1.19209289550781250000e-7F
+#define __GXX_WEAK__ 1
+#define __LDBL_MIN__ 3.36210314311209350626e-4932L
+#define __DEC32_MAX__ 9.999999E96DF
+#define __INT32_MAX__ 2147483647
+#define __SIZEOF_LONG__ 8
+#define __STDC_IEC_559__ 1
+#define __STDC_ISO_10646__ 201103L
+#define __UINT16_C(c) c
+#define __DECIMAL_DIG__ 21
+#define __gnu_linux__ 1
+#define __LDBL_HAS_QUIET_NAN__ 1
+#define __GNUC__ 4
+#define __GXX_RTTI 1
+#define __MMX__ 1
+#define __FLT_HAS_DENORM__ 1
+#define __SIZEOF_LONG_DOUBLE__ 16
+#define __BIGGEST_ALIGNMENT__ 16
+#define __DBL_MAX__ double(1.79769313486231570815e+308L)
+#define __INT_FAST32_MAX__ 9223372036854775807L
+#define __DBL_HAS_INFINITY__ 1
+#define __INT64_MAX__ 9223372036854775807L
+#define __DEC32_MIN_EXP__ (-94)
+#define __INT_FAST16_TYPE__ long int
+#define __LDBL_HAS_DENORM__ 1
+#define __cplusplus 199711L
+#define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
+#define __INT_LEAST32_MAX__ 2147483647
+#define __DEC32_MIN__ 1E-95DF
+#define __DEPRECATED 1
+#define __DBL_MAX_EXP__ 1024
+#define __DEC128_EPSILON__ 1E-33DL
+#define __SSE2_MATH__ 1
+#define __ATOMIC_HLE_RELEASE 131072
+#define __PTRDIFF_MAX__ 9223372036854775807L
+#define __amd64 1
+#define __STDC_NO_THREADS__ 1
+#define __ATOMIC_HLE_ACQUIRE 65536
+#define __GNUG__ 4
+#define __LONG_LONG_MAX__ 9223372036854775807LL
+#define __SIZEOF_SIZE_T__ 8
+#define __SIZEOF_WINT_T__ 4
+#define __GCC_HAVE_DWARF2_CFI_ASM 1
+#define __GXX_ABI_VERSION 1002
+#define __FLT_MIN_EXP__ (-125)
+#define __INT_FAST64_TYPE__ long int
+#define __DBL_MIN__ double(2.22507385850720138309e-308L)
+#define __LP64__ 1
+#define __DECIMAL_BID_FORMAT__ 1
+#define __DEC128_MIN__ 1E-6143DL
+#define __REGISTER_PREFIX__ 
+#define __UINT16_MAX__ 65535
+#define __DBL_HAS_DENORM__ 1
+#define __UINT8_TYPE__ unsigned char
+#define __NO_INLINE__ 1
+#define __FLT_MANT_DIG__ 24
+#define __VERSION__ "4.8.4"
+#define __UINT64_C(c) c ## UL
+#define _STDC_PREDEF_H 1
+#define __GCC_ATOMIC_INT_LOCK_FREE 2
+#define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __STDC_IEC_559_COMPLEX__ 1
+#define __INT32_C(c) c
+#define __DEC64_EPSILON__ 1E-15DD
+#define __ORDER_PDP_ENDIAN__ 3412
+#define __DEC128_MIN_EXP__ (-6142)
+#define __INT_FAST32_TYPE__ long int
+#define __UINT_LEAST16_TYPE__ short unsigned int
+#define unix 1
+#define __INT16_MAX__ 32767
+#define __SIZE_TYPE__ long unsigned int
+#define __UINT64_MAX__ 18446744073709551615UL
+#define __INT8_TYPE__ signed char
+#define __ELF__ 1
+#define __FLT_RADIX__ 2
+#define __INT_LEAST16_TYPE__ short int
+#define __LDBL_EPSILON__ 1.08420217248550443401e-19L
+#define __UINTMAX_C(c) c ## UL
+#define __k8 1
+#define __SIG_ATOMIC_MAX__ 2147483647
+#define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
+#define __SIZEOF_PTRDIFF_T__ 8
+#define __x86_64__ 1
+#define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
+#define __INT_FAST16_MAX__ 9223372036854775807L
+#define __UINT_FAST32_MAX__ 18446744073709551615UL
+#define __UINT_LEAST64_TYPE__ long unsigned int
+#define __FLT_HAS_QUIET_NAN__ 1
+#define __FLT_MAX_10_EXP__ 38
+#define __LONG_MAX__ 9223372036854775807L
+#define __DEC128_SUBNORMAL_MIN__ 0.000000000000000000000000000000001E-6143DL
+#define __FLT_HAS_INFINITY__ 1
+#define __UINT_FAST16_TYPE__ long unsigned int
+#define __DEC64_MAX__ 9.999999999999999E384DD
+#define __CHAR16_TYPE__ short unsigned int
+#define __PRAGMA_REDEFINE_EXTNAME 1
+#define __INT_LEAST16_MAX__ 32767
+#define __DEC64_MANT_DIG__ 16
+#define __UINT_LEAST32_MAX__ 4294967295U
+#define __GCC_ATOMIC_LONG_LOCK_FREE 2
+#define __INT_LEAST64_TYPE__ long int
+#define __INT16_TYPE__ short int
+#define __INT_LEAST8_TYPE__ signed char
+#define __DEC32_MAX_EXP__ 97
+#define __INT_FAST8_MAX__ 127
+#define __INTPTR_MAX__ 9223372036854775807L
+#define linux 1
+#define __SSE2__ 1
+#define __EXCEPTIONS 1
+#define __LDBL_MANT_DIG__ 64
+#define __DBL_HAS_QUIET_NAN__ 1
+#define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
+#define __code_model_small__ 1
+#define __k8__ 1
+#define __INTPTR_TYPE__ long int
+#define __UINT16_TYPE__ short unsigned int
+#define __WCHAR_TYPE__ int
+#define __SIZEOF_FLOAT__ 4
+#define __UINTPTR_MAX__ 18446744073709551615UL
+#define __DEC64_MIN_EXP__ (-382)
+#define __INT_FAST64_MAX__ 9223372036854775807L
+#define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
+#define __FLT_DIG__ 6
+#define __UINT_FAST64_TYPE__ long unsigned int
+#define __INT_MAX__ 2147483647
+#define __amd64__ 1
+#define __INT64_TYPE__ long int
+#define __FLT_MAX_EXP__ 128
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __DBL_MANT_DIG__ 53
+#define __INT_LEAST64_MAX__ 9223372036854775807L
+#define __DEC64_MIN__ 1E-383DD
+#define __WINT_TYPE__ unsigned int
+#define __UINT_LEAST32_TYPE__ unsigned int
+#define __SIZEOF_SHORT__ 2
+#define __SSE__ 1
+#define __LDBL_MIN_EXP__ (-16381)
+#define __INT_LEAST8_MAX__ 127
+#define __SSP__ 1
+#define __SIZEOF_INT128__ 16
+#define __LDBL_MAX_10_EXP__ 4932
+#define __ATOMIC_RELAXED 0
+#define __DBL_EPSILON__ double(2.22044604925031308085e-16L)
+#define _LP64 1
+#define __UINT8_C(c) c
+#define __INT_LEAST32_TYPE__ int
+#define __SIZEOF_WCHAR_T__ 4
+#define __UINT64_TYPE__ long unsigned int
+#define __INT_FAST8_TYPE__ signed char
+#define __DBL_DECIMAL_DIG__ 17
+#define __FXSR__ 1
+#define __DEC_EVAL_METHOD__ 2
+#define __UINT32_C(c) c ## U
+#define __INTMAX_MAX__ 9223372036854775807L
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __FLT_DENORM_MIN__ 1.40129846432481707092e-45F
+#define __INT8_MAX__ 127
+#define __UINT_FAST32_TYPE__ long unsigned int
+#define __CHAR32_TYPE__ unsigned int
+#define __FLT_MAX__ 3.40282346638528859812e+38F
+#define __INT32_TYPE__ int
+#define __SIZEOF_DOUBLE__ 8
+#define __INTMAX_TYPE__ long int
+#define __DEC128_MAX_EXP__ 6145
+#define __ATOMIC_CONSUME 1
+#define __GNUC_MINOR__ 8
+#define __UINTMAX_MAX__ 18446744073709551615UL
+#define __DEC32_MANT_DIG__ 7
+#define __DBL_MAX_10_EXP__ 308
+#define __LDBL_DENORM_MIN__ 3.64519953188247460253e-4951L
+#define __INT16_C(c) c
+#define __STDC__ 1
+#define __PTRDIFF_TYPE__ long int
+#define __ATOMIC_SEQ_CST 5
+#define __UINT32_TYPE__ unsigned int
+#define __UINTPTR_TYPE__ long unsigned int
+#define __DEC64_SUBNORMAL_MIN__ 0.000000000000001E-383DD
+#define __DEC128_MANT_DIG__ 34
+#define __LDBL_MIN_10_EXP__ (-4931)
+#define __SSE_MATH__ 1
+#define __SIZEOF_LONG_LONG__ 8
+#define __GCC_ATOMIC_LLONG_LOCK_FREE 2
+#define __LDBL_DIG__ 18
+#define __FLT_DECIMAL_DIG__ 9
+#define __UINT_FAST16_MAX__ 18446744073709551615UL
+#define __GNUC_GNU_INLINE__ 1
+#define __FLT_MIN_10_EXP__ (-37)
+#define __GCC_ATOMIC_SHORT_LOCK_FREE 2
+#define __UINT_FAST8_TYPE__ unsigned char
+#define _GNU_SOURCE 1
+#define __ATOMIC_ACQ_REL 4
+#define __ATOMIC_RELEASE 3
+
+Sun Dec 09 17:15:10 2018: stderr:
+Using built-in specs.
+COLLECT_GCC=gcc
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 4.8.4-2ubuntu1~14.04.3' --with-bugurl=file:///usr/share/doc/gcc-4.8/README.Bugs --enable-languages=c,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.8 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.8 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --disable-libmudflap --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-4.8-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) 
+COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/cc1plus -E -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE - -mtune=generic -march=x86-64 -fstack-protector -Wformat -Wformat-security -dM
+ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/4.8"
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/include/c++/4.8
+ /usr/include/x86_64-linux-gnu/c++/4.8
+ /usr/include/c++/4.8/backward
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
+
+Sun Dec 09 17:15:10 2018: process created with pid: 26038
+Sun Dec 09 17:15:10 2018: parent pid: 26035
+Sun Dec 09 17:15:10 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:10 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 09 17:15:10 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 09 17:15:10 2018: argv[1]: <-quiet>
+Sun Dec 09 17:15:10 2018: argv[2]: <-imultiarch>
+Sun Dec 09 17:15:10 2018: argv[3]: <x86_64-linux-gnu>
+Sun Dec 09 17:15:10 2018: argv[4]: <main.c>
+Sun Dec 09 17:15:10 2018: argv[5]: <-quiet>
+Sun Dec 09 17:15:10 2018: argv[6]: <-dumpbase>
+Sun Dec 09 17:15:10 2018: argv[7]: <main.c>
+Sun Dec 09 17:15:10 2018: argv[8]: <-mtune=generic>
+Sun Dec 09 17:15:10 2018: argv[9]: <-march=x86-64>
+Sun Dec 09 17:15:10 2018: argv[10]: <-auxbase>
+Sun Dec 09 17:15:10 2018: argv[11]: <main>
+Sun Dec 09 17:15:10 2018: argv[12]: <-g>
+Sun Dec 09 17:15:10 2018: argv[13]: <-O2>
+Sun Dec 09 17:15:10 2018: argv[14]: <-Wall>
+Sun Dec 09 17:15:10 2018: argv[15]: <-fstack-protector>
+Sun Dec 09 17:15:10 2018: argv[16]: <-Wformat-security>
+Sun Dec 09 17:15:10 2018: argv[17]: <-o>
+Sun Dec 09 17:15:10 2018: argv[18]: </tmp/ccQ7I2gz.s>
+Sun Dec 09 17:15:10 2018: skipping process with pid: 26038
+Sun Dec 09 17:15:10 2018: process created with pid: 26042
+Sun Dec 09 17:15:10 2018: parent pid: 26035
+Sun Dec 09 17:15:10 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:10 2018: executable: </usr/bin/as>
+Sun Dec 09 17:15:10 2018: argv[0]: <as>
+Sun Dec 09 17:15:10 2018: argv[1]: <--64>
+Sun Dec 09 17:15:10 2018: argv[2]: <-o>
+Sun Dec 09 17:15:10 2018: argv[3]: <main.o>
+Sun Dec 09 17:15:10 2018: argv[4]: </tmp/ccQ7I2gz.s>
+Sun Dec 09 17:15:10 2018: skipping process with pid: 26042
+Sun Dec 09 17:15:10 2018: process created with pid: 26043
+Sun Dec 09 17:15:10 2018: parent pid: 26033
+Sun Dec 09 17:15:10 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:10 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 09 17:15:10 2018: argv[0]: <gcc>
+Sun Dec 09 17:15:10 2018: argv[1]: <-c>
+Sun Dec 09 17:15:10 2018: argv[2]: <-g>
+Sun Dec 09 17:15:10 2018: argv[3]: <-Wall>
+Sun Dec 09 17:15:10 2018: argv[4]: <-O2>
+Sun Dec 09 17:15:10 2018: argv[5]: <vihard.c>
+Sun Dec 09 17:15:10 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt>
+Sun Dec 09 17:15:10 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 09 17:15:10 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 09 17:15:10 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 09 17:15:10 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 09 17:15:10 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 09 17:15:10 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 09 17:15:10 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:10 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 09 17:15:10 2018: envp[9]: <USERNAME=mint>
+Sun Dec 09 17:15:10 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 09 17:15:10 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 09 17:15:10 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 09 17:15:10 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:10 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 09 17:15:10 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 09 17:15:10 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 09 17:15:10 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-UrUjrt/gpg:0:1>
+Sun Dec 09 17:15:10 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002>
+Sun Dec 09 17:15:10 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 09 17:15:10 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 09 17:15:10 2018: envp[21]: <WINDOWID=117441189>
+Sun Dec 09 17:15:10 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:10 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 09 17:15:10 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 09 17:15:10 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 09 17:15:10 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-UrUjrt/ssh>
+Sun Dec 09 17:15:10 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 09 17:15:10 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 09 17:15:10 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:10 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 09 17:15:10 2018: envp[31]: <SSH_AGENT_PID=2067>
+Sun Dec 09 17:15:10 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3rOvFkEtXL,guid=48c44c66d5020fc17d9d5e3e5bf5e3e8>
+Sun Dec 09 17:15:10 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1542841320.426222-1155048962>
+Sun Dec 09 17:15:10 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 09 17:15:10 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 09 17:15:10 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:10 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 09 17:15:10 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 09 17:15:10 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 09 17:15:10 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 09 17:15:10 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 09 17:15:10 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 09 17:15:10 2018: envp[43]: <SHLVL=1>
+Sun Dec 09 17:15:10 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:10 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 09 17:15:10 2018: envp[46]: <USER=mint>
+Sun Dec 09 17:15:10 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 09 17:15:10 2018: envp[48]: <GNOME_KEYRING_PID=1926>
+Sun Dec 09 17:15:10 2018: envp[49]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-UrUjrt>
+Sun Dec 09 17:15:10 2018: envp[50]: <MAKEFLAGS=>
+Sun Dec 09 17:15:10 2018: envp[51]: <MFLAGS=>
+Sun Dec 09 17:15:10 2018: envp[52]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 09 17:15:10 2018: envp[53]: <QT_ACCESSIBILITY=1>
+Sun Dec 09 17:15:10 2018: envp[54]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 09 17:15:10 2018: envp[55]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 09 17:15:10 2018: envp[56]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:10 2018: envp[57]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 09 17:15:10 2018: envp[58]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 09 17:15:10 2018: envp[59]: <WINDOWPATH=8>
+Sun Dec 09 17:15:10 2018: envp[60]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 09 17:15:10 2018: envp[61]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 09 17:15:10 2018: envp[62]: <LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:10 2018: envp[63]: <TERM=xterm>
+Sun Dec 09 17:15:10 2018: envp[64]: <MAKELEVEL=1>
+Sun Dec 09 17:15:10 2018: envp[65]: <LD_PRELOAD=>
+Sun Dec 09 17:15:10 2018: process created with pid: 26044
+Sun Dec 09 17:15:10 2018: parent pid: 26043
+Sun Dec 09 17:15:10 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:10 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 09 17:15:10 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 09 17:15:10 2018: argv[1]: <-quiet>
+Sun Dec 09 17:15:10 2018: argv[2]: <-imultiarch>
+Sun Dec 09 17:15:10 2018: argv[3]: <x86_64-linux-gnu>
+Sun Dec 09 17:15:10 2018: argv[4]: <vihard.c>
+Sun Dec 09 17:15:10 2018: argv[5]: <-quiet>
+Sun Dec 09 17:15:10 2018: argv[6]: <-dumpbase>
+Sun Dec 09 17:15:10 2018: argv[7]: <vihard.c>
+Sun Dec 09 17:15:10 2018: argv[8]: <-mtune=generic>
+Sun Dec 09 17:15:10 2018: argv[9]: <-march=x86-64>
+Sun Dec 09 17:15:10 2018: argv[10]: <-auxbase>
+Sun Dec 09 17:15:10 2018: argv[11]: <vihard>
+Sun Dec 09 17:15:10 2018: argv[12]: <-g>
+Sun Dec 09 17:15:10 2018: argv[13]: <-O2>
+Sun Dec 09 17:15:10 2018: argv[14]: <-Wall>
+Sun Dec 09 17:15:10 2018: argv[15]: <-fstack-protector>
+Sun Dec 09 17:15:10 2018: argv[16]: <-Wformat-security>
+Sun Dec 09 17:15:10 2018: argv[17]: <-o>
+Sun Dec 09 17:15:10 2018: argv[18]: </tmp/cclTEllg.s>
+Sun Dec 09 17:15:10 2018: skipping process with pid: 26044
+Sun Dec 09 17:15:11 2018: process created with pid: 26045
+Sun Dec 09 17:15:11 2018: parent pid: 26043
+Sun Dec 09 17:15:11 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:11 2018: executable: </usr/bin/as>
+Sun Dec 09 17:15:11 2018: argv[0]: <as>
+Sun Dec 09 17:15:11 2018: argv[1]: <--64>
+Sun Dec 09 17:15:11 2018: argv[2]: <-o>
+Sun Dec 09 17:15:11 2018: argv[3]: <vihard.o>
+Sun Dec 09 17:15:11 2018: argv[4]: </tmp/cclTEllg.s>
+Sun Dec 09 17:15:11 2018: skipping process with pid: 26045
+Sun Dec 09 17:15:11 2018: process created with pid: 26046
+Sun Dec 09 17:15:11 2018: parent pid: 26033
+Sun Dec 09 17:15:11 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:11 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 09 17:15:11 2018: argv[0]: <gcc>
+Sun Dec 09 17:15:11 2018: argv[1]: <-g>
+Sun Dec 09 17:15:11 2018: argv[2]: <-Wall>
+Sun Dec 09 17:15:11 2018: argv[3]: <-O2>
+Sun Dec 09 17:15:11 2018: argv[4]: <-o>
+Sun Dec 09 17:15:11 2018: argv[5]: <main>
+Sun Dec 09 17:15:11 2018: argv[6]: <main.o>
+Sun Dec 09 17:15:11 2018: argv[7]: <vihard.o>
+Sun Dec 09 17:15:11 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt>
+Sun Dec 09 17:15:11 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 09 17:15:11 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 09 17:15:11 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 09 17:15:11 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 09 17:15:11 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 09 17:15:11 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 09 17:15:11 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 09 17:15:11 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 09 17:15:11 2018: envp[9]: <USERNAME=mint>
+Sun Dec 09 17:15:11 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 09 17:15:11 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 09 17:15:11 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 09 17:15:11 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:11 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 09 17:15:11 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 09 17:15:11 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 09 17:15:11 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-UrUjrt/gpg:0:1>
+Sun Dec 09 17:15:11 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002>
+Sun Dec 09 17:15:11 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 09 17:15:11 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 09 17:15:11 2018: envp[21]: <WINDOWID=117441189>
+Sun Dec 09 17:15:11 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:11 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 09 17:15:11 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 09 17:15:11 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 09 17:15:11 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-UrUjrt/ssh>
+Sun Dec 09 17:15:11 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 09 17:15:11 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 09 17:15:11 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 09 17:15:11 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 09 17:15:11 2018: envp[31]: <SSH_AGENT_PID=2067>
+Sun Dec 09 17:15:11 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3rOvFkEtXL,guid=48c44c66d5020fc17d9d5e3e5bf5e3e8>
+Sun Dec 09 17:15:11 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1542841320.426222-1155048962>
+Sun Dec 09 17:15:11 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 09 17:15:11 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 09 17:15:11 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:11 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 09 17:15:11 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 09 17:15:11 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 09 17:15:11 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 09 17:15:11 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 09 17:15:11 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 09 17:15:11 2018: envp[43]: <SHLVL=1>
+Sun Dec 09 17:15:11 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 09 17:15:11 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 09 17:15:11 2018: envp[46]: <USER=mint>
+Sun Dec 09 17:15:11 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 09 17:15:11 2018: envp[48]: <GNOME_KEYRING_PID=1926>
+Sun Dec 09 17:15:11 2018: envp[49]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-UrUjrt>
+Sun Dec 09 17:15:11 2018: envp[50]: <MAKEFLAGS=>
+Sun Dec 09 17:15:11 2018: envp[51]: <MFLAGS=>
+Sun Dec 09 17:15:11 2018: envp[52]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 09 17:15:11 2018: envp[53]: <QT_ACCESSIBILITY=1>
+Sun Dec 09 17:15:11 2018: envp[54]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 09 17:15:11 2018: envp[55]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 09 17:15:11 2018: envp[56]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:11 2018: envp[57]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 09 17:15:11 2018: envp[58]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 09 17:15:11 2018: envp[59]: <WINDOWPATH=8>
+Sun Dec 09 17:15:11 2018: envp[60]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 09 17:15:11 2018: envp[61]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 09 17:15:11 2018: envp[62]: <LANG=es_AR.UTF-8>
+Sun Dec 09 17:15:11 2018: envp[63]: <TERM=xterm>
+Sun Dec 09 17:15:11 2018: envp[64]: <MAKELEVEL=1>
+Sun Dec 09 17:15:11 2018: envp[65]: <LD_PRELOAD=>
+Sun Dec 09 17:15:11 2018: process created with pid: 26047
+Sun Dec 09 17:15:11 2018: parent pid: 26046
+Sun Dec 09 17:15:11 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:11 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
+Sun Dec 09 17:15:11 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
+Sun Dec 09 17:15:11 2018: argv[1]: <--sysroot=/>
+Sun Dec 09 17:15:11 2018: argv[2]: <--build-id>
+Sun Dec 09 17:15:11 2018: argv[3]: <--eh-frame-hdr>
+Sun Dec 09 17:15:11 2018: argv[4]: <-m>
+Sun Dec 09 17:15:11 2018: argv[5]: <elf_x86_64>
+Sun Dec 09 17:15:11 2018: argv[6]: <--hash-style=gnu>
+Sun Dec 09 17:15:11 2018: argv[7]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[8]: <-dynamic-linker>
+Sun Dec 09 17:15:11 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
+Sun Dec 09 17:15:11 2018: argv[10]: <-z>
+Sun Dec 09 17:15:11 2018: argv[11]: <relro>
+Sun Dec 09 17:15:11 2018: argv[12]: <-o>
+Sun Dec 09 17:15:11 2018: argv[13]: <main>
+Sun Dec 09 17:15:11 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
+Sun Dec 09 17:15:11 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
+Sun Dec 09 17:15:11 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
+Sun Dec 09 17:15:11 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
+Sun Dec 09 17:15:11 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
+Sun Dec 09 17:15:11 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[21]: <-L/lib/../lib>
+Sun Dec 09 17:15:11 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[23]: <-L/usr/lib/../lib>
+Sun Dec 09 17:15:11 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
+Sun Dec 09 17:15:11 2018: argv[25]: <main.o>
+Sun Dec 09 17:15:11 2018: argv[26]: <vihard.o>
+Sun Dec 09 17:15:11 2018: argv[27]: <-lgcc>
+Sun Dec 09 17:15:11 2018: argv[28]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[29]: <-lgcc_s>
+Sun Dec 09 17:15:11 2018: argv[30]: <--no-as-needed>
+Sun Dec 09 17:15:11 2018: argv[31]: <-lc>
+Sun Dec 09 17:15:11 2018: argv[32]: <-lgcc>
+Sun Dec 09 17:15:11 2018: argv[33]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[34]: <-lgcc_s>
+Sun Dec 09 17:15:11 2018: argv[35]: <--no-as-needed>
+Sun Dec 09 17:15:11 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
+Sun Dec 09 17:15:11 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
+Sun Dec 09 17:15:11 2018: skipping process with pid: 26047
+Sun Dec 09 17:15:11 2018: process created with pid: 26048
+Sun Dec 09 17:15:11 2018: parent pid: 26047
+Sun Dec 09 17:15:11 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis>
+Sun Dec 09 17:15:11 2018: executable: </usr/bin/ld.bfd>
+Sun Dec 09 17:15:11 2018: argv[0]: </usr/bin/ld>
+Sun Dec 09 17:15:11 2018: argv[1]: <--sysroot=/>
+Sun Dec 09 17:15:11 2018: argv[2]: <--build-id>
+Sun Dec 09 17:15:11 2018: argv[3]: <--eh-frame-hdr>
+Sun Dec 09 17:15:11 2018: argv[4]: <-m>
+Sun Dec 09 17:15:11 2018: argv[5]: <elf_x86_64>
+Sun Dec 09 17:15:11 2018: argv[6]: <--hash-style=gnu>
+Sun Dec 09 17:15:11 2018: argv[7]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[8]: <-dynamic-linker>
+Sun Dec 09 17:15:11 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
+Sun Dec 09 17:15:11 2018: argv[10]: <-z>
+Sun Dec 09 17:15:11 2018: argv[11]: <relro>
+Sun Dec 09 17:15:11 2018: argv[12]: <-o>
+Sun Dec 09 17:15:11 2018: argv[13]: <main>
+Sun Dec 09 17:15:11 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
+Sun Dec 09 17:15:11 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
+Sun Dec 09 17:15:11 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
+Sun Dec 09 17:15:11 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
+Sun Dec 09 17:15:11 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
+Sun Dec 09 17:15:11 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[21]: <-L/lib/../lib>
+Sun Dec 09 17:15:11 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
+Sun Dec 09 17:15:11 2018: argv[23]: <-L/usr/lib/../lib>
+Sun Dec 09 17:15:11 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
+Sun Dec 09 17:15:11 2018: argv[25]: <main.o>
+Sun Dec 09 17:15:11 2018: argv[26]: <vihard.o>
+Sun Dec 09 17:15:11 2018: argv[27]: <-lgcc>
+Sun Dec 09 17:15:11 2018: argv[28]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[29]: <-lgcc_s>
+Sun Dec 09 17:15:11 2018: argv[30]: <--no-as-needed>
+Sun Dec 09 17:15:11 2018: argv[31]: <-lc>
+Sun Dec 09 17:15:11 2018: argv[32]: <-lgcc>
+Sun Dec 09 17:15:11 2018: argv[33]: <--as-needed>
+Sun Dec 09 17:15:11 2018: argv[34]: <-lgcc_s>
+Sun Dec 09 17:15:11 2018: argv[35]: <--no-as-needed>
+Sun Dec 09 17:15:11 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
+Sun Dec 09 17:15:11 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
+Sun Dec 09 17:15:11 2018: skipping process with pid: 26048
+Sun Dec 09 17:15:11 2018: finalizing json file
+Sun Dec 09 17:15:11 2018: returned with code: 0
