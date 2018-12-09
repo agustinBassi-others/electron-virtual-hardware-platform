@@ -6,3 +6,5 @@ electron/release-builds/
 *.deb
 
 electron/dist/
+
+*.o
