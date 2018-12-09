@@ -6,3 +6,9 @@ electron/release-builds/
 *.deb
 
 electron/dist/
+
+*.o
+
+firm/code_analysis/\.scannerwork/cfamily/subprocess
+
+firm/code_analysis/main
