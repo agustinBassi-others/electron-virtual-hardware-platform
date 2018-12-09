@@ -39,3 +39,19 @@
 
     /* background: whitesmoke; */
 }
+
+.title{
+    font: 45px Font_AppText;
+    color: goldenrod;
+}
+
+.text{
+    font: 35px Font_AppText;
+    color: whitesmoke;
+}
+
+.link{
+    font: 35px Font_AppText;
+    color:rgb(0, 174, 255);
+
+}
