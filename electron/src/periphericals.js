@@ -117,6 +117,12 @@ const SerialCommandType_t = {
 }
 // Lista con todo el mapa de perifericos virtuales
 const PeriphMap_t = {
+  // Este periph es un parche para que cuando se llame a la funcion Logic_UpdateView()
+  // respondiendo al evento que el usuario conecto/desconecto el sistema embebido 
+  // haya un argumento del tipo PeriphMap_t en el llamado a la funcion.
+  // De esta manera se cambia el comportamiento orientado a eventos en vez de poll 
+  CONN_SWITCH: 'z',
+
   LEDR: 'a',
   LEDG: 'b',
   LEDB: 'z',
@@ -433,6 +439,12 @@ function Api_SerialManageConnection() {
     Log_Print(Log_t.NORMAL, "Logic_ManageSerialConnection", "State: Embedded System disconnected");
     Serial_WriteConnectionLabel("State: Embedded System disconnected");
   }
+
+  // Este es un parche para mantener un comportamiento orientado a eventos en vez de polling de la funcion
+  // llamada. Ademas, se esta llamando a una funcion de la capa superior lo cual es incorrecto. Mas alla de 
+  // eso soluciona el problema por ahora. 
+  // TODO: Hay que refactorizar el codigo para no hacer este llamado
+  Logic_UpdatePeriphericalsState(PeriphMap_t.CONN_SWITCH);
 }
 
 /**
@@ -501,12 +513,16 @@ function Logic_ParseCommandArrived(commString) {
         if (gpioState != GPIO_STATE_INVALID) {
           if (periphericalMap == PeriphMap_t.LED1) {
             Led1State = gpioState;
+            Logic_UpdatePeriphericalsState(PeriphMap_t.LED1);
           } else if (periphericalMap == PeriphMap_t.LED2) {
             Led2State = gpioState;
+            Logic_UpdatePeriphericalsState(PeriphMap_t.LED2);
           } else if (periphericalMap == PeriphMap_t.LED3) {
             Led3State = gpioState;
+            Logic_UpdatePeriphericalsState(PeriphMap_t.LED3);
           } else if (periphericalMap == PeriphMap_t.LED4) {
             Led4State = gpioState;
+            Logic_UpdatePeriphericalsState(PeriphMap_t.LED4);
           } else {
             DebugProcessedText = "COMMAND_GPIO_WRITE - Invalid peripherical received!";
           }
@@ -527,6 +543,7 @@ function Logic_ParseCommandArrived(commString) {
             dacIntValue = ANALOG_MAX_VALUE;
           }
           Dac1Value = dacIntValue;
+          Logic_UpdatePeriphericalsState(PeriphMap_t.DAC_CH1);
         }
 
         break;
@@ -544,6 +561,7 @@ function Logic_ParseCommandArrived(commString) {
             }
             LcdText = lcdStr;
           }
+          Logic_UpdatePeriphericalsState(PeriphMap_t.DISPLAY_LCD1);
         } else if (lcdLine == LcdLine_t.FIRST || lcdLine == LcdLine_t.SECOND || lcdLine == LcdLine_t.THIRD) {
 
           if (lcdStr != STRING_EMPTY) {
@@ -559,6 +577,7 @@ function Logic_ParseCommandArrived(commString) {
             } else {
               LcdText = lcdStr;
             }
+            Logic_UpdatePeriphericalsState(PeriphMap_t.DISPLAY_LCD1);
           }
 
         }
@@ -572,6 +591,7 @@ function Logic_ParseCommandArrived(commString) {
 
           if ((commString.charAt(5) != STRING_EMPTY) && (commString.charAt(5) != COMMAND_END)) {
             Segment7Text = commString.charAt(5);
+            Logic_UpdatePeriphericalsState(PeriphMap_t.DISPLAY__7SEGS);
           }
 
         }
@@ -780,7 +800,7 @@ function Logic_InitPeriphericals() {
 
   document.querySelector(".Segments7Cont_Display").innerHTML = Segment7Text;
 
-  setInterval(Logic_UpdatePeriphericalsState, INTERVAL_REFRESH_APP);
+  // setInterval(Logic_UpdatePeriphericalsState, INTERVAL_REFRESH_APP);
 
   setInterval(Api_SerialTryToListPorts, INTERVAL_LIST_PORTS);
 }
@@ -796,7 +816,55 @@ function Logic_InitPeriphericals() {
  * Entonces, para acceder a los objetos HTML de manera centralizada y organizada
  * esta funcion asigna a los objetos html el estado de las variables.
  */
-function Logic_UpdatePeriphericalsState() {
+function Logic_UpdatePeriphericalsState(peripheric) {
+
+  switch (peripheric){
+    case PeriphMap_t.LED1:
+      if (!Led1State) {
+        document.getElementById("GpioCont_ImgLed1").src = IMG_LED_OFF;
+      } else {
+        document.getElementById("GpioCont_ImgLed1").src = IMG_LED_RED;
+      }
+    break;
+
+    case PeriphMap_t.LED2:
+      if (!Led2State) {
+        document.getElementById("GpioCont_ImgLed2").src = IMG_LED_OFF;
+      } else {
+        document.getElementById("GpioCont_ImgLed2").src = IMG_LED_RED;
+      }
+    break;
+
+    case PeriphMap_t.LED3:
+      if (!Led3State) {
+        document.getElementById("GpioCont_ImgLed3").src = IMG_LED_OFF;
+      } else {
+        document.getElementById("GpioCont_ImgLed3").src = IMG_LED_RED;
+      }
+    break;
+
+    case PeriphMap_t.LED4:
+      if (!Led4State) {
+        document.getElementById("GpioCont_ImgLed4").src = IMG_LED_OFF;
+      } else {
+        document.getElementById("GpioCont_ImgLed4").src = IMG_LED_RED;
+      }
+    break;
+
+    case PeriphMap_t.DAC_CH1:
+      document.getElementById("AnalogCont_RangeDac").value = Dac1Value;
+    break;
+
+    case PeriphMap_t.DISPLAY_LCD1:
+      document.querySelector(".LcdCont_TextContainer p").innerHTML = LcdText;
+    break;
+
+    case PeriphMap_t.DISPLAY__7SEGS:
+      document.querySelector(".Segments7Cont_Display").innerHTML = Segment7Text;
+    break;
+
+  }
+
 
   if (FlagEmbeddedSysConnected) {
     document.getElementById("PortsCont_ImgPortSwitch").src = IMG_SWITCH_ON;
