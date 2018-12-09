@@ -65,3 +65,15 @@
     font: 15px Font_AppText;
     margin: 10px;
 }
+
+.InstructionsTitle{
+    padding: 15px;
+    font: 35px Font_AppText;
+    color: #ddd;
+}
+
+.InstructionsText{
+    padding: 15px;
+    font: 15px Font_AppText;
+    color: #ddd
+}
