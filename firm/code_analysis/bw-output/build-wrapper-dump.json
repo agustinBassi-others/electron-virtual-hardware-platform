@@ -20,7 +20,7 @@
 "stderr":"Using built-in specs.\nCOLLECT_GCC=gcc\nTarget: x86_64-linux-gnu\nConfigured with: ../src/configure -v --with-pkgversion='Ubuntu 4.8.4-2ubuntu1~14.04.3' --with-bugurl=file:///usr/share/doc/gcc-4.8/README.Bugs --enable-languages=c,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.8 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.8 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --disable-libmudflap --enable-plugin --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-4.8-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-4.8-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu\nThread model: posix\ngcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) \nCOLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'\n /usr/lib/gcc/x86_64-linux-gnu/4.8/cc1plus -E -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE - -mtune=generic -march=x86-64 -fstack-protector -Wformat -Wformat-security -dM\nignoring duplicate directory \"/usr/include/x86_64-linux-gnu/c++/4.8\"\nignoring nonexistent directory \"/usr/local/include/x86_64-linux-gnu\"\nignoring nonexistent directory \"/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../x86_64-linux-gnu/include\"\n#include \"...\" search starts here:\n#include <...> search starts here:\n /usr/include/c++/4.8\n /usr/include/x86_64-linux-gnu/c++/4.8\n /usr/include/c++/4.8/backward\n /usr/lib/gcc/x86_64-linux-gnu/4.8/include\n /usr/local/include\n /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed\n /usr/include/x86_64-linux-gnu\n /usr/include\nEnd of search list.\nCOMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/\nLIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/\nCOLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'\n"},
 {
 "compiler":"clang",
-"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "executable":"/usr/bin/gcc-4.8",
 "cmd":[
 "gcc",
@@ -30,7 +30,7 @@
 "-O2",
 "main.c"],
 "env":[
-"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt",
+"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.EWJhxC",
 "SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so",
 "DESKTOP_SESSION=cinnamon",
 "XAUTHORITY=/home/mint/.Xauthority",
@@ -51,7 +51,7 @@
 "SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002",
 "XDG_RUNTIME_DIR=/run/user/1000",
 "TEXTDOMAIN=im-config",
-"WINDOWID=117441189",
+"WINDOWID=115343368",
 "GDM_XSERVER_LOCATION=local",
 "LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:",
 "INSIDE_NEMO_PYTHON=",
@@ -86,7 +86,7 @@
 "QT_ACCESSIBILITY=1",
 "DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path",
 "TEXTDOMAINDIR=/usr/share/locale/",
-"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 "KIGITHUB=https://github.com/KiCad",
 "WINDOWPATH=8",
@@ -98,7 +98,7 @@
 "LD_PRELOAD="]},
 {
 "compiler":"clang",
-"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "executable":"/usr/bin/gcc-4.8",
 "cmd":[
 "gcc",
@@ -108,7 +108,7 @@
 "-O2",
 "vihard.c"],
 "env":[
-"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt",
+"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.EWJhxC",
 "SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so",
 "DESKTOP_SESSION=cinnamon",
 "XAUTHORITY=/home/mint/.Xauthority",
@@ -129,7 +129,7 @@
 "SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002",
 "XDG_RUNTIME_DIR=/run/user/1000",
 "TEXTDOMAIN=im-config",
-"WINDOWID=117441189",
+"WINDOWID=115343368",
 "GDM_XSERVER_LOCATION=local",
 "LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:",
 "INSIDE_NEMO_PYTHON=",
@@ -164,7 +164,7 @@
 "QT_ACCESSIBILITY=1",
 "DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path",
 "TEXTDOMAINDIR=/usr/share/locale/",
-"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 "KIGITHUB=https://github.com/KiCad",
 "WINDOWPATH=8",
@@ -176,7 +176,7 @@
 "LD_PRELOAD="]},
 {
 "compiler":"clang",
-"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"cwd":"/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "executable":"/usr/bin/gcc-4.8",
 "cmd":[
 "gcc",
@@ -188,7 +188,7 @@
 "main.o",
 "vihard.o"],
 "env":[
-"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.GPTPMt",
+"SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.EWJhxC",
 "SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so",
 "DESKTOP_SESSION=cinnamon",
 "XAUTHORITY=/home/mint/.Xauthority",
@@ -209,7 +209,7 @@
 "SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2002,unix/mint-pc:/tmp/.ICE-unix/2002",
 "XDG_RUNTIME_DIR=/run/user/1000",
 "TEXTDOMAIN=im-config",
-"WINDOWID=117441189",
+"WINDOWID=115343368",
 "GDM_XSERVER_LOCATION=local",
 "LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:",
 "INSIDE_NEMO_PYTHON=",
@@ -244,7 +244,7 @@
 "QT_ACCESSIBILITY=1",
 "DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path",
 "TEXTDOMAINDIR=/usr/share/locale/",
-"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/static_code_analysis",
+"PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis",
 "GJS_DEBUG_TOPICS=JS ERROR;JS LOG",
 "KIGITHUB=https://github.com/KiCad",
 "WINDOWPATH=8",
