@@ -1,47 +1,18 @@
 {
-  "name": "ViHard",
+  "name": "vihard",
   "productName": "ViHard",
-  "description": "Virtual Hardware Platform to emulate periphericals for Embedded Systems",
+  "description": "Virtual hardware platform to learn embedded systems programming",
   "author": "Agustin Bassi <jagustinbassi@gmail.com>",
   "license": "MIT",
-  "version": "0.1.4",
+  "version": "0.2.3",
   "repository": "https://github.com/agustinBassi/virtual_hard_platform",
   "main": "main.js",
   "scripts": {
-    "postinstall": "install-app-deps",
     "start": "electron .",
-    "start-full": "npm install && electron ./app",
-    "pack": "build --dir",
-    "dist": "build",
-    "pack-win": "build --dir --win",
-    "dist-win": "build --win"
-  },
-  "build": {
-    "appId": "ViHard",
-    "dmg": {
-      "contents": [
-        {
-          "x": 110,
-          "y": 150
-        },
-        {
-          "x": 240,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ]
-    },
-    "win": {
-      "target": "NSIS",
-      "icon": "assets/icon/win/icon.ico"
-    }
+    "package-mac":    "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win-32": "electron-packager . vihard --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='ViHard'",
+    "package-lin-32": "electron-packager . vihard --overwrite --asar=true --platform=linux --arch=ia32 --icon=assets/icons/png/512x512.png --prune=true --out=release-builds",
+    "package-lin-64": "electron-packager . vihard --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/512x512.png --prune=true --out=release-builds"
   },
   "keywords": [
     "Electron",
@@ -54,9 +25,8 @@
     "Raspberry"
   ],
   "devDependencies": {
-    "electron": "^2.0.10",
-    "electron-builder": "^20.28.4",
-    "electron-installer-debian": "^0.8.1"
+    "electron": "^2.0.14",
+    "electron-packager": "^13.0.0"
   },
   "dependencies": {
     "fs": "0.0.1-security",
