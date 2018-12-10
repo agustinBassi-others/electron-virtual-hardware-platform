@@ -109,11 +109,12 @@ function createWindow () {
 
   const windowWidth = View_GetScreenWidht();
   const windowHeight = View_GetScreenHeight() - 50;
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: windowWidth, 
     height: windowHeight,
-    icon: path.join(__dirname, 'assets/icons/png/icon.png')
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png')
   })
   // Oculta la barra de menu
   mainWindow.setMenuBarVisibility(false);
