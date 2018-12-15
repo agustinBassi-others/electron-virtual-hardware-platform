@@ -19,6 +19,7 @@
     border: 3px;
     border-style: double;
     border-color: darkolivegreen;
+    border-radius: 15px;
      
 }
 
@@ -36,22 +37,39 @@
     height: 96%;
 
     margin: 1%;
-
     /* background: whitesmoke; */
 }
 
+.icon{
+    width:80px;
+    height:80px;
+    margin-bottom: 10px;
+}
+
 .title{
-    font: 45px Font_AppText;
+    font: 35px Font_AppText;
     color: goldenrod;
 }
 
+.subtitle{
+    font: 30px Font_AppText;
+    color: goldenrod;
+    font-style: italic;
+}
+
 .text{
-    font: 35px Font_AppText;
+    font: 25px Font_AppText;
     color: whitesmoke;
 }
 
+.author{
+    font: 25px Font_AppText;
+    color: whitesmoke;
+    letter-spacing: 3px;
+}
+
 .link{
-    font: 35px Font_AppText;
+    font: 25px Font_AppText;
     color:rgb(0, 174, 255);
 
 }

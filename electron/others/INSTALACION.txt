@@ -1,0 +1,10 @@
+Instalacion ViHard
+------------------
+
+Pasos a seguir:
+
+    1. Descargar el archivo vihard_windows.zip o vihard_linux.zip.
+    2. Descomprimir el archivo.
+    3. Entrar a la carpeta.
+    4. Buscar el archivo ejecutable 'vihard' y hacer doble click para ejecutarlo.
+    5. Opcional: Crear un acceso directo al programa desde el escritorio.

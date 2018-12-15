@@ -7,38 +7,37 @@
         <button class="TabLink" id="TabLink_2" onclick="ShowSourceFile(event, 'vihard.c')">vihard.c</button>
         <button class="TabLink" id="TabLink_3" onclick="ShowSourceFile(event, 'test_vihard.c')">test_vihard.c</button>
     </div>
-    <div class="sourceContainer" style="display: flex; flex-direction: row;">
-        <div class="leftPanel" style=" width: 70%">
+    <div class="sourceContainer">
+        <div class="leftPanel">
             <div id="vihard.h" class="TabContent">
                 <iframe class="Iframe_Source" src="../assets/extra_files/vihard.h.html"></iframe>
-                <button class="Button_Source" onclick="CopyToClipboard('vihard.h')">Copiar al portapapeles 'vihard.h'</button>
+                <!-- <button class="Button_Source" onclick="CopyToClipboard('vihard.h')">Copiar al portapapeles 'vihard.h'</button> -->
             </div>
             
             <div id="vihard.c" class="TabContent">
                 <iframe class="Iframe_Source" src="../assets/extra_files/vihard.c.html"></iframe> 
-                <button class="Button_Source" onclick="CopyToClipboard('vihard.c')">Copiar al portapapeles 'vihard.c'</button>
+                <!-- <button class="Button_Source" onclick="CopyToClipboard('vihard.c')">Copiar al portapapeles 'vihard.c'</button> -->
             </div>
             
             <div id="test_vihard.c" class="TabContent">
                 <iframe class="Iframe_Source" src="../assets/extra_files/test_vihard.c.html"></iframe> 
-                <button class="Button_Source" onclick="CopyToClipboard('test_vihard.c')">Copiar al portapapeles 'test_vihard.c'</button>
+                <!-- <button class="Button_Source" onclick="CopyToClipboard('test_vihard.c')">Copiar al portapapeles 'test_vihard.c'</button> -->
             </div>
         </div>
-        <div class="rigthPanel">
+        <div class="rightPanel">
             <h1 class="InstructionsTitle">
-                Instrucciones
+                Instrucciones para programar</br> el sistema embebido
             </h1>
-            <p class="InstructionsText">
-                1- Abrir IDE para descargar firmware y crear proyecto</br>
-                2- Crear tres archivos con los siguientes nombres: </br>
-                3- main.c - vihard.h - vihard.c</br>
-                4- Dirigirse a la solapa “Firmware Embebido” de ViHard</br>
-                5- Copiar los archivos correspondientes</br>
-                6- Seleccionar la BOARD que se va a programar en vihard.h</br>
-                7- Compilar el programa y descargarlo al sistema embebido</br>
-                8- Conectar el sistema embebido a este programa</br>
-                9- FIN!!! Ver el comportamiento del hardware virtual</br>
-            </p>
+            <ol class="InstructionsText" type="1">
+                <li>Abrir software para programar el sistema embebido y crear nuevo proyecto</li>
+                <li>Crear tres archivos con los siguientes nombres: </br>
+                    vihard.h - vihard.c - test_vihard.c</li>
+                <li>Copiar el contenido de los archivos de esta pestaña en los archivos creados previamente</li>
+                <li>Seleccionar la 'BOARD' a programar editando las línes 41-43 del archivo vihard.h</li>
+                <li>Compilar el programa y descargarlo al sistema embebido</li>
+                <li>Conectar el sistema embebido a este programa por USB</li>
+                <li>Obsevar el comportamiento del hardware virtual</li>
+            </ol>
         </div>
     </div>
 </div>

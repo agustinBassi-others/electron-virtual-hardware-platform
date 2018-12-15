@@ -45,6 +45,7 @@ section{
     /* border-style; */
     border-style: double;
     border-color: darkolivegreen;
+    border-radius: 15px;
 }
 
 .ComponentsCont{
@@ -56,6 +57,11 @@ section{
     /* background-color: orange; */
 }
 
+.ComponentsCont_Left{
+    margin-left: 105px;
+    /* background-color: darkcyan; */
+}
+
 /*===========[ Puertos disponibles ]==========*/
 
 .PortsCont{
@@ -65,10 +71,10 @@ section{
     flex-direction: column;
     justify-content: space-between;
     align-self: center;
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
     /* border-top: 2px; */
-    border-bottom: 2px;
+    border-bottom: 1px;
     /* border-top-color: aliceblue; */
     border-bottom-color: aliceblue;
     /* border-top-style: dashed; */
@@ -107,18 +113,18 @@ section{
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
     color: darkgoldenrod;
-    margin-right: 30px;
-    margin-left: 25px;
+    margin-right: 10px;
+    margin-left: 92px;
 }
 
 .PortsCont_ImgReloadPorts{
     width: 20px;
     height: 20px;
-    margin-left: 20px;
+    margin-left: 160px;
 }
 
 .PortsCont_ImgPortSwitch{
-    margin-left: 220px;
+    margin-left: 30px;
 }
 
 .PortsCont_LblPortState{

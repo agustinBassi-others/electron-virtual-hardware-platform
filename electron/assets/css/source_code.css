@@ -19,6 +19,16 @@
     border: 3px;
     border-style: double;
     border-color: darkolivegreen;
+    border-radius: 15px;
+}
+
+.sourceContainer{
+    display: flex; 
+    flex-direction: row;
+}
+
+.leftPanel{
+    width: 70%;
 }
 
 .FilesTabs {
@@ -39,11 +49,13 @@
 }
 
 .FilesTabs button:hover {
-    background-color: #ddd;
+    border-radius: 15px;
+    background-color: rgb(55, 55, 55);
 }
 
 .FilesTabs button.active {
-    background-color: gray;
+    border-radius: 15px;
+    background-color: rgb(55, 55, 55);
 }
 
 .TabContent {
@@ -54,7 +66,7 @@
 
 .Iframe_Source{
     width: 100%;
-    height: 450px;
+    height: 500px;
     border: none;
 }
 
@@ -66,14 +78,22 @@
     margin: 10px;
 }
 
+.rightPanel{
+    width: 50%;
+}
+
 .InstructionsTitle{
-    padding: 15px;
+    margin: 5px 15px;
     font: 35px Font_AppText;
-    color: #ddd;
+    color:darkgoldenrod;
+    font-style: normal;
 }
 
 .InstructionsText{
-    padding: 15px;
-    font: 15px Font_AppText;
-    color: #ddd
+    margin-top: 50px;
+    padding-left: 30px;
+    padding-right: 40px;
+    font: 18px Font_AppText;
+    color: #ddd;
+    line-height: 33px
 }

@@ -21,8 +21,8 @@ body{
     color:darkgoldenrod;
     text-align: center;
     font: 40px Font_AppText;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     margin-left: 12px;
     margin-right: 12px;
     height: 40px;
@@ -57,8 +57,14 @@ body{
     text-decoration: none;
     text-align: center;
     color:whitesmoke;
-    width: 300px;
-    /* background-color: cornflowerblue; */
+    width: 210px;
+    background-color: cornflowerblue;
+    border-radius: 15px;
+    background: rgba(55, 55, 55, 0.5);
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /*===========[ Footer ]=======================*/
