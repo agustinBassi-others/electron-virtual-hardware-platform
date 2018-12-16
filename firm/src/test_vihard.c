@@ -339,6 +339,36 @@ static void TestVhIntegral(){
     }
 }
 
+void ReadPote_WriteLcd (void) 
+{ 
+    // VARIABLE PARA LEER EL VALOR DEL ADC 
+	int adcValue = 0; 
+	// ARREGLO DONDE SE GUARDA EL TEXTO A ENVIAR AL LCD 
+	char lcdText [20]; 
+ 
+	// CONFIGURA PLACA EDU CIAA NXP 
+	boardConfig(); 
+	// HABILITA ADC 
+	adcConfig( ADC_ENABLE ); 
+	// CONFIGURA BIBLIOTECA VIHARD 
+	Vh_BoardConfig(VIHARD_BAUDRATE); 
+	// ENVIA MENSAJE DE BIENVENIDA Y ESPERA 5 SEGUNDOS 
+	Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, "Bienvenido a ViHard!!!"); 
+	delay(5000); 
+ 
+	while (1){ 
+		// LEE EL VALOR DEL ADC 
+		adcValue = adcRead( CH1 ); 
+		// FORMATEA EL TEXTO CON EL VALOR DEL ADC 
+		stdioSprintf(lcdText, "Valor ADC: %d", adcValue); 
+		// ENVIA EL TEXTO AL LCD VIRTUAL 
+		Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText); 
+		// ESPERA 1 SEGUNDO 
+		delay(1000); 
+	} 
+ 
+} 
+
 #endif
 
 /*==================[external functions definition]==========================*/
