@@ -315,8 +315,16 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
  */
 bool_t Vh_BoardConfig (uint32_t baudRate)
 {
-    // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
-    UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
+    // dependiendo de la velocidad se establece el tiempo de espera entre lecturas
+    // si el baudrate es un valor desconocido le pone el equivalente a 115200
+    switch (baudRate){
+        case 115200: UsBetweenReads = 9;  break;
+        case 57600:  UsBetweenReads = 17;  break;
+        case 38400:  UsBetweenReads = 26;  break;
+        case 19200:  UsBetweenReads = 52;  break;
+        case 9600:   UsBetweenReads = 104; break;
+        default:     UsBetweenReads = 9;
+    }
     UART_CONFIG(baudRate);
 
     return TRUE;
