@@ -40,17 +40,19 @@
 
 /*==================[macros and definitions]=================================*/
 
-#define COMMAND_INIT            '{'
-#define COMMAND_END             '}'
-#define COMMAND_SEPARATOR       ';'
+#define COMMAND_INIT                       '{'
+#define COMMAND_END                        '}'
+#define COMMAND_SEPARATOR                  ';'
 
-#define MAX_ANALOG_VALUE        1023
+#define MAX_ANALOG_VALUE                   1023
 
-#define MS_BETWEEN_COMMANDS     7
+#define MAX_TIME_TO_WAIT_FOR_SERIAL_DATA   1000
 
-#define VH_GPIO_LOW		        '0'
-#define VH_GPIO_HIGH            '1'
-#define VH_GPIO_INVALID	        -1
+#define MS_BETWEEN_COMMANDS                7
+
+#define VH_GPIO_LOW		                  '0'
+#define VH_GPIO_HIGH                      '1'
+#define VH_GPIO_INVALID	                  -1
 
 /**
  * Posibles tipos de comandos que se pueden realizar. Este enum es utilizado
@@ -91,6 +93,8 @@ static void     DelayMs             (uint32_t delayMs);
 static void     DelayUs             (uint32_t delayMs);
 static bool_t   CheckIfValidCommand (ViHardCommand_t comm, ViHardPeriph_t perMap);
 static bool_t   AnalogValueToString (uint16_t numToConvert, char * strNumber);
+static uint8_t  WaitForSerialData   (char * buffer, uint16_t * timeWaited);
+static void     CleanSerialBuffer   (char * buffer, uint32_t size);
 
 /*==================[internal data definition]===============================*/
 
@@ -284,12 +288,9 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
             isValidCommand = TRUE;
         }
     }
-    else if (command == VH_7SEG_WRITE)
+    else if (command == VH_7SEG_WRITE && perMap == VH_7SEG)
     {
-        if (perMap == VH_7SEG)
-        {
-            isValidCommand = TRUE;
-        }
+        isValidCommand = TRUE;
     }
 
     if (isValidCommand)
@@ -298,6 +299,59 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
     }
 
     return isValidCommand;
+}
+
+/**
+ * Realiza la lectura de datos provenientes del puerto serie.
+ * Dentro de la funcion se chequea que los datos leidos sean una
+ * trama valida, es decir, se espera que la trama este comprendida
+ * dentro de los caracteres de control COMMAND_INIT y COMMAND_END.
+ * La forma de salir de la funcion es si se cumplio un tiempo determinado
+ * o si llego el dato COMMAND_END
+ * @param buffer el buffer donde se almacenaran los datos leidos
+ * @param timeToWait el tiempo que se espero para que lleguen datos
+ * @param bytesRead la cantidad de bytes leidos
+ */
+static uint8_t WaitForSerialData (char * buffer, uint16_t * timeWaited)
+{
+	bool_t flagCommandInit = FALSE;
+	uint8_t bytesRead = 0;
+	uint8_t dataSerial = 0;
+
+	// Espera a recibir data por un tiempo determinado
+	while (++(*timeWaited) < MAX_TIME_TO_WAIT_FOR_SERIAL_DATA)
+	{
+		if ((dataSerial = UartReadByte()) != 0)
+		{
+			if (dataSerial == COMMAND_INIT)
+			{
+				flagCommandInit = TRUE;
+			}
+			if (flagCommandInit)
+			{
+				buffer[bytesRead] = dataSerial;
+				if (buffer[bytesRead] == COMMAND_END)
+				{
+					break;
+				}
+				bytesRead++;
+			}
+		}
+	}
+	return bytesRead;
+}
+
+/**
+ * Limpia un buffer de cualquier tipo
+ * @param buffer el buffer a limpiar
+ * @param el tamaño a limpiar
+ */
+static void CleanSerialBuffer (char * buffer, uint32_t size){
+	uint32_t i;
+
+	for (i = 0; i < size; i++){
+		buffer[i] = 0;
+	}
 }
 
 /*==================[external functions definition]==========================*/
@@ -316,7 +370,7 @@ bool_t Vh_BoardConfig (uint32_t baudRate)
     // dependiendo de la velocidad se establece el tiempo de espera entre lecturas
     // si el baudrate es un valor desconocido le pone el equivalente a 115200
     switch (baudRate){
-        case 115200: UsBetweenReads = 9;  break;
+        case 115200: UsBetweenReads = 9;   break;
         case 57600:  UsBetweenReads = 17;  break;
         case 38400:  UsBetweenReads = 26;  break;
         case 19200:  UsBetweenReads = 52;  break;
@@ -362,10 +416,8 @@ bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
 {
     char stringCommand[10];
     bool_t pinState = TRUE;
-    uint8_t dataSerial = 0;
-    uint16_t counter = 0;
-    uint8_t i = 0;
-    bool_t flagCommandInit = FALSE;
+    uint16_t timeWaited = 0;
+    uint8_t bytesRead = 0;
 
     if (CheckIfValidCommand(VH_GPIO_READ, gpioPin))
     {
@@ -381,50 +433,24 @@ bool_t Vh_GpioRead (ViHardPeriph_t gpioPin)
 
         UartWriteString(stringCommand);
 
-        // limpia el buffer
-        for (i = 0; i < 10; i++)
-        {
-            stringCommand[i] = 0;
-        }
-        i = 0;
+        CleanSerialBuffer(stringCommand, 10);
 
-        // Espera a recibir data por un tiempo determinado
-        while (++counter < 1000 && i < 10)
-        {
-            if ((dataSerial = UartReadByte()) != 0)
-            {
-                if (dataSerial == COMMAND_INIT)
-                {
-                    flagCommandInit = TRUE;
-                }
-                if (flagCommandInit)
-                {
-                    stringCommand[i] = dataSerial;
-                    if (stringCommand[i] == '}')
-                    {
-                        break;
-                    }
-                    i++;
-                }
-            }
-        }
+        bytesRead = WaitForSerialData(stringCommand, &timeWaited);
 
-        // chequea si salio por timeout
-        if (counter < 1000)
+        // chequea si salio por timeout y
+		// chequea que todos lo que haya llegado sea una respuesta correcta
+        if (bytesRead == 8 &&
+			timeWaited < 1000 &&
+            stringCommand[0] == COMMAND_INIT &&
+            stringCommand[1] == VH_GPIO_READ &&
+            stringCommand[2] == COMMAND_SEPARATOR &&
+            stringCommand[4] == COMMAND_SEPARATOR &&
+            stringCommand[5] == VH_COMM_RESPONSE &&
+            stringCommand[6] == COMMAND_SEPARATOR &&
+            (stringCommand[7] == VH_GPIO_LOW ||
+            stringCommand[7] == VH_GPIO_HIGH))
         {
-            // chequea que todos lo que haya llegado
-            // sea una respuesta correcta
-            if (stringCommand[0] == COMMAND_INIT &&
-                stringCommand[1] == VH_GPIO_READ &&
-                stringCommand[2] == COMMAND_SEPARATOR &&
-                stringCommand[4] == COMMAND_SEPARATOR &&
-                stringCommand[5] == VH_COMM_RESPONSE &&
-                stringCommand[6] == COMMAND_SEPARATOR &&
-               (stringCommand[7] == VH_GPIO_LOW ||
-                stringCommand[7] == VH_GPIO_HIGH))
-            {
-                pinState = stringCommand[7] - '0';
-            }
+            pinState = stringCommand[7] - '0';
         }
     }
 
@@ -453,14 +479,11 @@ uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
 {
     char stringCommand[15];
     static uint16_t adcValue = 0;
-    uint8_t dataSerial = 0;
-    uint16_t counter = 0;
-    uint8_t i = 0;
-    bool_t flagCommandInit = FALSE;
+    uint16_t timeWaited = 0;
+    uint8_t bytesRead = 0;
 
     if (CheckIfValidCommand(VH_ADC_READ, adcChannel))
     {
-
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_ADC_READ;
         stringCommand[2] = COMMAND_SEPARATOR;
@@ -473,66 +496,36 @@ uint16_t Vh_AdcRead (ViHardPeriph_t adcChannel)
 
         UartWriteString(stringCommand);
 
-        // limpia el buffer
-        for (i = 0; i < 15; i++)
-        {
-            stringCommand[i] = 0;
-        }
-        i = 0;
+        CleanSerialBuffer(stringCommand, 15);
 
-        // Espera a recibir data por un tiempo determinado
-        while (++counter < 1000 && i < 15)
+        bytesRead = WaitForSerialData(stringCommand, &timeWaited);
+
+        // chequea si salio por timeout y
+        // chequea que todos lo que haya llegado sea una respuesta correcta
+        if (bytesRead == 11 &&
+            timeWaited < 1000 &&
+            stringCommand[0] == COMMAND_INIT &&
+            stringCommand[1] == VH_ADC_READ&&
+            stringCommand[2] == COMMAND_SEPARATOR &&
+            stringCommand[3] == adcChannel &&
+            stringCommand[4] == COMMAND_SEPARATOR &&
+            stringCommand[5] == VH_COMM_RESPONSE &&
+            stringCommand[6] == COMMAND_SEPARATOR &&
+            stringCommand[11] == COMMAND_END)
         {
-            if ((dataSerial = UartReadByte()) != 0)
+            adcValue = 0;
+            // unidades de mil
+            adcValue += (stringCommand[7] - '0') * 1000;
+            // centenas
+            adcValue += (stringCommand[8] - '0') * 100;
+            // decenas
+            adcValue += (stringCommand[9] - '0') * 10;
+            // unidades
+            adcValue += (stringCommand[10] - '0');
+
+            if (adcValue > MAX_ANALOG_VALUE)
             {
-                if (dataSerial == COMMAND_INIT)
-                {
-                    flagCommandInit = TRUE;
-                }
-                if (flagCommandInit)
-                {
-                    stringCommand[i] = dataSerial;
-                    if (stringCommand[i] == '}')
-                    {
-                        break;
-                    }
-                    i++;
-                }
-            }
-        }
-
-        // chequea si salio por timeout
-        if (i == 11 && counter < 1000)
-        {
-            // chequea que todos lo que haya llegado
-            // sea una respuesta correcta
-            if (stringCommand[0] == COMMAND_INIT
-                    && stringCommand[1] == VH_ADC_READ&&
-                    stringCommand[2] == COMMAND_SEPARATOR &&
-                    stringCommand[3] == adcChannel &&
-                    stringCommand[4] == COMMAND_SEPARATOR &&
-                    stringCommand[5] == VH_COMM_RESPONSE &&
-                    stringCommand[6] == COMMAND_SEPARATOR &&
-                    stringCommand[11] == COMMAND_END)
-            {
-                adcValue = 0;
-                // unidades de mil
-                adcValue += (stringCommand[7] - '0') * 1000;
-                // centenas
-                adcValue += (stringCommand[8] - '0') * 100;
-                // decenas
-                adcValue += (stringCommand[9] - '0') * 10;
-                // unidades
-                adcValue += (stringCommand[10] - '0');
-
-                if (adcValue > MAX_ANALOG_VALUE)
-                {
-                    adcValue = MAX_ANALOG_VALUE;
-                }
-                else if (adcValue < 0)
-                {
-                    adcValue = 0;
-                }
+                adcValue = MAX_ANALOG_VALUE;
             }
         }
     }
@@ -557,10 +550,6 @@ void Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
         if (dacValue > MAX_ANALOG_VALUE)
         {
             dacValue = MAX_ANALOG_VALUE;
-        }
-        else if (dacValue < 0)
-        {
-            dacValue = 0;
         }
 
         if (AnalogValueToString(dacValue, analogString))
