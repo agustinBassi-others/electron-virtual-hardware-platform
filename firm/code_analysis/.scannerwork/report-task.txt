@@ -1,7 +1,7 @@
 organization=agustinbassi-github
 projectKey=ViHardLib_001
 serverUrl=https://sonarcloud.io
-serverVersion=7.5.0.19741
+serverVersion=7.5.0.20127
 dashboardUrl=https://sonarcloud.io/dashboard?id=ViHardLib_001
-ceTaskId=AWeUp8pt9F5tYFz-WI55
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWeUp8pt9F5tYFz-WI55
+ceTaskId=AWe00pb2ehv-uB2o3K29
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWe00pb2ehv-uB2o3K29
