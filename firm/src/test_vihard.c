@@ -36,7 +36,7 @@
 
 /*==================[inclusions]=============================================*/
 
-#include "sapi.h"
+//#include "sapi.h"
 #include "vihard.h"
 
 /*==================[macros and definitions]=================================*/
@@ -45,19 +45,19 @@
 
 /*==================[internal functions declaration]=========================*/
 
-static void TestVhGpioWrite          ();
-static void TestVhDac                ();
-static void TestVh7Segments          ();
-static void TestVhDisplayWriteString ();
-static void TestVhGpioRead           ();
-static void TestVhGpioToggle         ();
-static void TestVhAdcRead            ();
+// static void TestVhGpioWrite          ();
+// static void TestVhDac                ();
+// static void TestVh7Segments          ();
+// static void TestVhDisplayWriteString ();
+// static void TestVhGpioRead           ();
+// static void TestVhGpioToggle         ();
+// static void TestVhAdcRead            ();
 static void TestVhIntegral           ();
 
-// Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
-#ifdef EDU_CIAA_NXP_CLOCK_SPEED
-    static void TestVhTimming        ();
-#endif
+// // Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
+// #ifdef EDU_CIAA_NXP_CLOCK_SPEED
+//     static void TestVhTimming        ();
+// #endif
 
 /*==================[internal data definition]===============================*/
 
@@ -66,216 +66,216 @@ static void TestVhIntegral           ();
 /*==================[internal functions definition]==========================*/
 
 
-static void TestVhGpioWrite (){
-    Vh_GpioWrite(VH_LED1, TRUE);
-    gpioWrite(LED1, TRUE);
-    delay(500);
+// static void TestVhGpioWrite (){
+//     Vh_GpioWrite(VH_LED1, TRUE);
+//     gpioWrite(LED1, TRUE);
+//     delay(500);
 
-    Vh_GpioWrite(VH_LED2, TRUE);
-    gpioWrite(LED2, TRUE);
-    delay(500);
+//     Vh_GpioWrite(VH_LED2, TRUE);
+//     gpioWrite(LED2, TRUE);
+//     delay(500);
 
-    Vh_GpioWrite(VH_LED3, TRUE);
-    gpioWrite(LED3, TRUE);
-    delay(500);
+//     Vh_GpioWrite(VH_LED3, TRUE);
+//     gpioWrite(LED3, TRUE);
+//     delay(500);
 
-    Vh_GpioWrite(VH_LED1, FALSE);
-    gpioWrite(LED1, FALSE);
-    delay(500);
+//     Vh_GpioWrite(VH_LED1, FALSE);
+//     gpioWrite(LED1, FALSE);
+//     delay(500);
 
-    Vh_GpioWrite(VH_LED2, FALSE);
-    gpioWrite(LED2, FALSE);
-    delay(500);
+//     Vh_GpioWrite(VH_LED2, FALSE);
+//     gpioWrite(LED2, FALSE);
+//     delay(500);
 
-    Vh_GpioWrite(VH_LED3, FALSE);
-    gpioWrite(LED3, FALSE);
-    delay(500);
-}
+//     Vh_GpioWrite(VH_LED3, FALSE);
+//     gpioWrite(LED3, FALSE);
+//     delay(500);
+// }
 
-static void TestVhDac (){
-    uint16_t dacValue = 0;
+// static void TestVhDac (){
+//     uint16_t dacValue = 0;
 
-    for (dacValue = 0; dacValue <= 1000; dacValue += 100){
-        Vh_DacWrite(VH_DAC_CH1, dacValue);
-        delay(1000);
-    }
-}
+//     for (dacValue = 0; dacValue <= 1000; dacValue += 100){
+//         Vh_DacWrite(VH_DAC_CH1, dacValue);
+//         delay(1000);
+//     }
+// }
 
-static void TestVh7Segments (){
-    uint8_t value = 0;
+// static void TestVh7Segments (){
+//     uint8_t value = 0;
 
-    for (value = '0'; value <= '9'; value++){
-        Vh_7SegmentsWrite(VH_7SEG, value);
-        delay (1000);
-    }
-}
+//     for (value = '0'; value <= '9'; value++){
+//         Vh_7SegmentsWrite(VH_7SEG, value);
+//         delay (1000);
+//     }
+// }
 
-static void TestVhDisplayWriteString    (){
-    Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, "Mensaje multilinea desde ViHard");
-    delay(2000);
+// static void TestVhDisplayWriteString    (){
+//     Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, "Mensaje multilinea desde ViHard");
+//     delay(2000);
 
-    Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "Linea 1");
-    delay(2000);
+//     Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "Linea 1");
+//     delay(2000);
 
-    Vh_LcdWriteString(VH_LCD1, LCD_LINE_SECOND, "Linea 2");
-    delay(2000);
+//     Vh_LcdWriteString(VH_LCD1, LCD_LINE_SECOND, "Linea 2");
+//     delay(2000);
 
-    Vh_LcdWriteString(VH_LCD1, LCD_LINE_THIRD, "Linea 3");
-    delay(2000);
+//     Vh_LcdWriteString(VH_LCD1, LCD_LINE_THIRD, "Linea 3");
+//     delay(2000);
 
-}
+// }
 
-static void TestVhGpioRead (){
-    if (!Vh_GpioRead(VH_TEC1)){
-        gpioWrite(LEDG, TRUE);
-    } else {
-        gpioWrite(LEDG, FALSE);
-    }
-    delay (50);
+// static void TestVhGpioRead (){
+//     if (!Vh_GpioRead(VH_TEC1)){
+//         gpioWrite(LEDG, TRUE);
+//     } else {
+//         gpioWrite(LEDG, FALSE);
+//     }
+//     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC2)){
-        gpioWrite(LED1, TRUE);
-    } else {
-        gpioWrite(LED1, FALSE);
-    }
-    delay (50);
+//     if (!Vh_GpioRead(VH_TEC2)){
+//         gpioWrite(LED1, TRUE);
+//     } else {
+//         gpioWrite(LED1, FALSE);
+//     }
+//     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC3)){
-        gpioWrite(LED2, TRUE);
-    } else {
-        gpioWrite(LED2, FALSE);
-    }
-    delay (50);
+//     if (!Vh_GpioRead(VH_TEC3)){
+//         gpioWrite(LED2, TRUE);
+//     } else {
+//         gpioWrite(LED2, FALSE);
+//     }
+//     delay (50);
 
-    if (!Vh_GpioRead(VH_TEC4)){
-        gpioWrite(LED3, TRUE);
-    } else {
-        gpioWrite(LED3, FALSE);
-    }
-    delay (50);
-}
+//     if (!Vh_GpioRead(VH_TEC4)){
+//         gpioWrite(LED3, TRUE);
+//     } else {
+//         gpioWrite(LED3, FALSE);
+//     }
+//     delay (50);
+// }
 
-static void TestVhGpioToggle (){
-    while (gpioRead(TEC1)){
-        Vh_GpioToggle(VH_LED1);
-        delay(500);
-    }
+// static void TestVhGpioToggle (){
+//     while (gpioRead(TEC1)){
+//         Vh_GpioToggle(VH_LED1);
+//         delay(500);
+//     }
 
-    while (gpioRead(TEC1)){
-        Vh_GpioToggle(VH_LED2);
-        delay(500);
-    }
+//     while (gpioRead(TEC1)){
+//         Vh_GpioToggle(VH_LED2);
+//         delay(500);
+//     }
 
-    while (gpioRead(TEC1)){
-        Vh_GpioToggle(VH_LED3);
-        delay(500);
-    }
+//     while (gpioRead(TEC1)){
+//         Vh_GpioToggle(VH_LED3);
+//         delay(500);
+//     }
 
-    while (gpioRead(TEC1)){
-        Vh_GpioToggle(VH_LED4);
-        delay(500);
-    }
-}
+//     while (gpioRead(TEC1)){
+//         Vh_GpioToggle(VH_LED4);
+//         delay(500);
+//     }
+// }
 
-static void TestVhAdcRead (){
-    uint16_t adcValue = 0;
+// static void TestVhAdcRead (){
+//     uint16_t adcValue = 0;
 
-    while(1){
-        adcValue = Vh_AdcRead(VH_ADC_CH1);
-        if (adcValue >= 0 && adcValue <= 250){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, FALSE);
-            gpioWrite(LED2, FALSE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 250 && adcValue <= 500){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, FALSE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 500 && adcValue <= 750){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, TRUE);
-            gpioWrite(LED3, FALSE);
-        } else if (adcValue > 750){
-            gpioWrite(LEDR, TRUE);
-            gpioWrite(LED1, TRUE);
-            gpioWrite(LED2, TRUE);
-            gpioWrite(LED3, TRUE);
-        }
-        delay(200);
-    }
-}
+//     while(1){
+//         adcValue = Vh_AdcRead(VH_ADC_CH1);
+//         if (adcValue >= 0 && adcValue <= 250){
+//             gpioWrite(LEDR, TRUE);
+//             gpioWrite(LED1, FALSE);
+//             gpioWrite(LED2, FALSE);
+//             gpioWrite(LED3, FALSE);
+//         } else if (adcValue > 250 && adcValue <= 500){
+//             gpioWrite(LEDR, TRUE);
+//             gpioWrite(LED1, TRUE);
+//             gpioWrite(LED2, FALSE);
+//             gpioWrite(LED3, FALSE);
+//         } else if (adcValue > 500 && adcValue <= 750){
+//             gpioWrite(LEDR, TRUE);
+//             gpioWrite(LED1, TRUE);
+//             gpioWrite(LED2, TRUE);
+//             gpioWrite(LED3, FALSE);
+//         } else if (adcValue > 750){
+//             gpioWrite(LEDR, TRUE);
+//             gpioWrite(LED1, TRUE);
+//             gpioWrite(LED2, TRUE);
+//             gpioWrite(LED3, TRUE);
+//         }
+//         delay(200);
+//     }
+// }
 
-// Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
-#ifdef EDU_CIAA_NXP_CLOCK_SPEED
-static void TestTimming(){
-  char lcdText[50];
+// // Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
+// #ifdef EDU_CIAA_NXP_CLOCK_SPEED
+// static void TestTimming(){
+//   char lcdText[50];
 
-  cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
+//   cyclesCounterConfig(EDU_CIAA_NXP_CLOCK_SPEED);
 
-  while(1){
+//   while(1){
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_7SegmentsWrite(VH_7SEG, '1');
-      stdioSprintf(lcdText, "7SegsWrite: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_7SegmentsWrite(VH_7SEG, '1');
+//       stdioSprintf(lcdText, "7SegsWrite: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_AdcRead(VH_ADC_CH1);
-      stdioSprintf(lcdText, "AdcRead: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_AdcRead(VH_ADC_CH1);
+//       stdioSprintf(lcdText, "AdcRead: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_DacWrite(VH_DAC_CH1, 145);
-      stdioSprintf(lcdText, "DacWrite: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_DacWrite(VH_DAC_CH1, 145);
+//       stdioSprintf(lcdText, "DacWrite: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_GpioRead(VH_TEC1);
-      stdioSprintf(lcdText, "GpioRead: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_GpioRead(VH_TEC1);
+//       stdioSprintf(lcdText, "GpioRead: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_GpioWrite(VH_LED2, 1);
-      stdioSprintf(lcdText, "GpioWrite: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_GpioWrite(VH_LED2, 1);
+//       stdioSprintf(lcdText, "GpioWrite: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_GpioToggle(VH_LED4);
-      stdioSprintf(lcdText, "GpioToggle: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_GpioToggle(VH_LED4);
+//       stdioSprintf(lcdText, "GpioToggle: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      while (gpioRead(TEC1));
-      delay(1000);
-      cyclesCounterReset();
-      Vh_LcdWriteString(VH_LCD1, (LcdLine_t) LCD_LINE_ALL, "Hola mensaje multilinea");
-      stdioSprintf(lcdText, "LcdWrite: %d us",
-              (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
-      Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
+//       while (gpioRead(TEC1));
+//       delay(1000);
+//       cyclesCounterReset();
+//       Vh_LcdWriteString(VH_LCD1, (LcdLine_t) LCD_LINE_ALL, "Hola mensaje multilinea");
+//       stdioSprintf(lcdText, "LcdWrite: %d us",
+//               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
+//       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
 
-      gpioToggle(LED3);
-  }
-}
-#endif
+//       gpioToggle(LED3);
+//   }
+// }
+// #endif
 
 static void TestVhIntegral(){
     const uint32_t timeToUpdateLcd = 35;
@@ -316,7 +316,7 @@ static void TestVhIntegral(){
             // Toggle del pin virtual VH_LED3
             Vh_GpioToggle(VH_LED4);
             // Toggle del led fisico de la EDU CIAA
-            gpioToggle(LED3);
+            // gpioToggle(LED3);
             counterToggleLed = 0;
         }
         // Pasado un tiempo actualiza el valor del display 7 segmentos
@@ -346,7 +346,7 @@ static void TestVhIntegral(){
 
 int main(void){
 
-	boardConfig();
+	// boardConfig();
 
 	Vh_BoardConfig(VIHARD_BAUDRATE);
 
