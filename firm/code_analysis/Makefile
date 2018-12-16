@@ -9,7 +9,7 @@
 # Macros
 
 CC = gcc
-CFLAGS = -g -Wall -O2
+CFLAGS = -g -Wall -O2 -DBOARD_PC
 SRC = test_vihard.c vihard.c vihard.h
 OBJ = test_vihard.o vihard.o
 
