@@ -825,7 +825,7 @@ function Logic_UpdatePeriphericalsState() {
   if (!Led4State) {
     document.getElementById("GpioCont_ImgLed4").src = IMG_LED_OFF;
   } else {
-    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_BLUE;
+    document.getElementById("GpioCont_ImgLed4").src = IMG_LED_VIOLET;
   }
 
   document.getElementById("AnalogCont_RangeDac").value = Dac1Value;

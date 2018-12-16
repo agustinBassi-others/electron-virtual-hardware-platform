@@ -5,7 +5,7 @@
     <div class="FilesTabs">
         <button class="TabLink" id="TabLink_1" onclick="ShowSourceFile(event, 'vihard.h')">vihard.h</button>
         <button class="TabLink" id="TabLink_2" onclick="ShowSourceFile(event, 'vihard.c')">vihard.c</button>
-        <button class="TabLink" id="TabLink_3" onclick="ShowSourceFile(event, 'test_vihard.c')">test_vihard.c</button>
+        <button class="TabLink" id="TabLink_3" onclick="ShowSourceFile(event, 'vihard_examples.c')">vihard_examples.c</button>
     </div>
     <div class="sourceContainer">
         <div class="leftPanel">
@@ -19,8 +19,8 @@
                 <!-- <button class="Button_Source" onclick="CopyToClipboard('vihard.c')">Copiar al portapapeles 'vihard.c'</button> -->
             </div>
             
-            <div id="test_vihard.c" class="TabContent">
-                <iframe class="Iframe_Source" src="../assets/extra_files/test_vihard.c.html"></iframe> 
+            <div id="vihard_examples.c" class="TabContent">
+                <iframe class="Iframe_Source" src="../assets/extra_files/vihard_examples.c.html"></iframe> 
                 <!-- <button class="Button_Source" onclick="CopyToClipboard('test_vihard.c')">Copiar al portapapeles 'test_vihard.c'</button> -->
             </div>
         </div>
@@ -29,14 +29,14 @@
                 Instrucciones para programar</br> el sistema embebido
             </h1>
             <ol class="InstructionsText" type="1">
-                <li>Abrir software para programar el sistema embebido y crear nuevo proyecto</li>
-                <li>Crear tres archivos con los siguientes nombres: </br>
-                    vihard.h - vihard.c - test_vihard.c</li>
-                <li>Copiar el contenido de los archivos de esta pestaña en los archivos creados previamente</li>
-                <li>Seleccionar la 'BOARD' a programar editando las línes 41-43 del archivo vihard.h</li>
+                <li>Abrir el software para programar el sistema embebido y crear un nuevo proyecto</li>
+                <li>Dentro del nuevo proyecto crear tres archivos: </br>
+                    vihard.h - vihard.c - vihard_examples.c</li>
+                <li>Copiar el contenido de cada archivo de esta pestaña en los archivos creados dentro del proyecto</li>
+                <li>Seleccionar la 'BOARD' a programar editando las líneas 41-44 del archivo vihard.h (por defecto EDU-CIAA-NXP)</li>
                 <li>Compilar el programa y descargarlo al sistema embebido</li>
                 <li>Conectar el sistema embebido a este programa por USB</li>
-                <li>Obsevar el comportamiento del hardware virtual</li>
+                <li>Presionar VH_TEC4 para ver los diferentes ejemplos</li>
             </ol>
         </div>
     </div>

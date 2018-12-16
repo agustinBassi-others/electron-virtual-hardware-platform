@@ -107,14 +107,14 @@ section{
     font: 15px Font_AppText;
     color: darkgoldenrod;
     margin-right: 10px;
-    margin-left: 195px;
+    margin-left: 240px;
 }
 
 .PortsCont_LblAviableBaudrate{
     font: 15px Font_AppText;
     color: darkgoldenrod;
     margin-right: 10px;
-    margin-left: 92px;
+    margin-left: 140px;
 }
 
 .PortsCont_ImgReloadPorts{

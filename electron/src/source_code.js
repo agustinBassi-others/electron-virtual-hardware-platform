@@ -33,8 +33,8 @@ function CopyToClipboard (fileToCopyToClipboard){
         fileContent = String_vihard_h;
     } else if (fileToCopyToClipboard == "vihard.c"){
         fileContent = String_vihard_c;
-    } else if (fileToCopyToClipboard == "test_vihard.c"){
-        fileContent = String_test_vihard_c;
+    } else if (fileToCopyToClipboard == "vihard_examples.c"){
+        fileContent = String_vihard_examples_c;
     }  
 
     // let fileContent = fs.readFileSync(fileToCopyToClipboard, 'utf8')
@@ -900,7 +900,7 @@ void Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char * str)
 
 `
 
-var String_test_vihard_c = `
+var String_vihard_examples_c = `
 /* Copyright 2018, Agustin Bassi.
  * All rights reserved.
  *
