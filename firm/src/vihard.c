@@ -1,7 +1,7 @@
 /* Copyright 2018, Agustin Bassi.
  * All rights reserved.
  *
- * This file is part ViHard library, a library of virtual hardware
+ * This file is part of ViHard library, a library of virtual hardware
  * for Embedded Systems.
  *
  * Redistribution and use in source and binary forms, with or without
