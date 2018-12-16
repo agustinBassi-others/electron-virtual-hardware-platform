@@ -1,205 +1,183 @@
-Sun Dec 16 00:02:31 2018: build-wrapper, version 5.1 (linux-x86)
-Sun Dec 16 00:02:31 2018: System name: Linux Nodename: mint-pc Release: 3.19.0-32-generic Version: #37~14.04.1-Ubuntu SMP Thu Oct 22 09:41:40 UTC 2015 Machine: x86_64
-Sun Dec 16 00:02:31 2018: socket path: /tmp/build-wrapper-socket.pzsNKi
-Sun Dec 16 00:02:31 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-i686.so
-Sun Dec 16 00:02:31 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-x86_64.so
-Sun Dec 16 00:02:31 2018: command executed as: <build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: command line received: <make clean all>
-Sun Dec 16 00:02:31 2018: env 0: <XDG_VTNR=8>
-Sun Dec 16 00:02:31 2018: env 1: <VSCODE_CLI=1>
-Sun Dec 16 00:02:31 2018: env 2: <XDG_SESSION_ID=c1>
-Sun Dec 16 00:02:31 2018: env 3: <SSH_AGENT_PID=2086>
-Sun Dec 16 00:02:31 2018: env 4: <TERM_PROGRAM=vscode>
-Sun Dec 16 00:02:31 2018: env 5: <GIO_LAUNCHED_DESKTOP_FILE_PID=8252>
-Sun Dec 16 00:02:31 2018: env 6: <QT_STYLE_OVERRIDE=gtk>
-Sun Dec 16 00:02:31 2018: env 7: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
-Sun Dec 16 00:02:31 2018: env 8: <TERM=xterm-256color>
-Sun Dec 16 00:02:31 2018: env 9: <VTE_VERSION=3409>
-Sun Dec 16 00:02:31 2018: env 10: <DESKTOP_STARTUP_ID=cinnamon-2343-mint-pc-/usr/share/code/code-2_TIME17491000>
-Sun Dec 16 00:02:31 2018: env 11: <SHELL=/bin/bash>
-Sun Dec 16 00:02:31 2018: env 12: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
-Sun Dec 16 00:02:31 2018: env 13: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
-Sun Dec 16 00:02:31 2018: env 14: <TERM_PROGRAM_VERSION=1.24.0>
-Sun Dec 16 00:02:31 2018: env 15: <GJS_DEBUG_OUTPUT=stderr>
-Sun Dec 16 00:02:31 2018: env 16: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
-Sun Dec 16 00:02:31 2018: env 17: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
-Sun Dec 16 00:02:31 2018: env 18: <USER=mint>
-Sun Dec 16 00:02:31 2018: env 19: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
-Sun Dec 16 00:02:31 2018: env 20: <CLUTTER_BACKEND=x11>
-Sun Dec 16 00:02:31 2018: env 21: <QT_ACCESSIBILITY=1>
-Sun Dec 16 00:02:31 2018: env 22: <INSIDE_NEMO_PYTHON=>
-Sun Dec 16 00:02:31 2018: env 23: <KICAD_PATH=/usr/share/kicad>
-Sun Dec 16 00:02:31 2018: env 24: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
-Sun Dec 16 00:02:31 2018: env 25: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
-Sun Dec 16 00:02:31 2018: env 26: <USERNAME=mint>
-Sun Dec 16 00:02:31 2018: env 27: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
-Sun Dec 16 00:02:31 2018: env 28: <GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop>
-Sun Dec 16 00:02:31 2018: env 29: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
-Sun Dec 16 00:02:31 2018: env 30: <PATH=/home/mint/Programas/anaconda3/bin:/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
-Sun Dec 16 00:02:31 2018: env 31: <DESKTOP_SESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: env 32: <KIGITHUB=https://github.com/KiCad>
-Sun Dec 16 00:02:31 2018: env 33: <VSCODE_NODE_CACHED_DATA_DIR_19754=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: env 34: <GDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: env 35: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: env 36: <ELECTRON_NO_ATTACH_CONSOLE=1>
-Sun Dec 16 00:02:31 2018: env 37: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: env 38: <LANG=en_US.UTF-8>
-Sun Dec 16 00:02:31 2018: env 39: <GNOME_KEYRING_PID=1940>
-Sun Dec 16 00:02:31 2018: env 40: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
-Sun Dec 16 00:02:31 2018: env 41: <CHROME_DESKTOP=Code.desktop>
-Sun Dec 16 00:02:31 2018: env 42: <MDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: env 43: <GDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: env 44: <CINNAMON_VERSION=2.8.8>
-Sun Dec 16 00:02:31 2018: env 45: <SHLVL=2>
-Sun Dec 16 00:02:31 2018: env 46: <HOME=/home/mint>
-Sun Dec 16 00:02:31 2018: env 47: <XDG_SEAT=seat0>
-Sun Dec 16 00:02:31 2018: env 48: <VSCODE_NLS_CONFIG={"locale":"en","availableLanguages":{}}>
-Sun Dec 16 00:02:31 2018: env 49: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
-Sun Dec 16 00:02:31 2018: env 50: <VSCODE_NODE_CACHED_DATA_DIR_8252=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: env 51: <XDG_SESSION_DESKTOP=cinnamon>
-Sun Dec 16 00:02:31 2018: env 52: <LOGNAME=mint>
-Sun Dec 16 00:02:31 2018: env 53: <VSCODE_IPC_HOOK=/run/user/1000/vscode-a9459cc2-1.24.0-main.sock>
-Sun Dec 16 00:02:31 2018: env 54: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
-Sun Dec 16 00:02:31 2018: env 55: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
-Sun Dec 16 00:02:31 2018: env 56: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: env 57: <LESSOPEN=| /usr/bin/lesspipe %s>
-Sun Dec 16 00:02:31 2018: env 58: <VSCODE_PID=8252>
-Sun Dec 16 00:02:31 2018: env 59: <MDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: env 60: <WINDOWPATH=8>
-Sun Dec 16 00:02:31 2018: env 61: <TEXTDOMAIN=im-config>
-Sun Dec 16 00:02:31 2018: env 62: <DISPLAY=:0>
-Sun Dec 16 00:02:31 2018: env 63: <XDG_RUNTIME_DIR=/run/user/1000>
-Sun Dec 16 00:02:31 2018: env 64: <MDM_LANG=es_AR.UTF-8>
-Sun Dec 16 00:02:31 2018: env 65: <XDG_CURRENT_DESKTOP=X-Cinnamon>
-Sun Dec 16 00:02:31 2018: env 66: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
-Sun Dec 16 00:02:31 2018: env 67: <LESSCLOSE=/usr/bin/lesspipe %s %s>
-Sun Dec 16 00:02:31 2018: env 68: <TEXTDOMAINDIR=/usr/share/locale/>
-Sun Dec 16 00:02:31 2018: env 69: <COLORTERM=gnome-terminal>
-Sun Dec 16 00:02:31 2018: env 70: <XAUTHORITY=/home/mint/.Xauthority>
-Sun Dec 16 00:02:31 2018: env 71: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: executing: <make clean all>
-Sun Dec 16 00:02:31 2018: initializing json file
-Sun Dec 16 00:02:31 2018: process created with pid: 30333
-Sun Dec 16 00:02:31 2018: parent pid: 30332
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: argv[0]: <build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: argv[1]: <-c>
-Sun Dec 16 00:02:31 2018: argv[2]: <>
-Sun Dec 16 00:02:31 2018: argv[3]: <make>
-Sun Dec 16 00:02:31 2018: argv[4]: <clean>
-Sun Dec 16 00:02:31 2018: argv[5]: <all>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30333
-Sun Dec 16 00:02:31 2018: process created with pid: 30334
-Sun Dec 16 00:02:31 2018: parent pid: 30333
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/make>
-Sun Dec 16 00:02:31 2018: argv[0]: <make>
-Sun Dec 16 00:02:31 2018: argv[1]: <clean>
-Sun Dec 16 00:02:31 2018: argv[2]: <all>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30334
-Sun Dec 16 00:02:31 2018: process created with pid: 30335
-Sun Dec 16 00:02:31 2018: parent pid: 30334
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </bin/rm>
-Sun Dec 16 00:02:31 2018: argv[0]: <rm>
-Sun Dec 16 00:02:31 2018: argv[1]: <-f>
-Sun Dec 16 00:02:31 2018: argv[2]: <test_vihard.o>
-Sun Dec 16 00:02:31 2018: argv[3]: <vihard.o>
-Sun Dec 16 00:02:31 2018: argv[4]: <test_vihard>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30335
-Sun Dec 16 00:02:31 2018: process created with pid: 30336
-Sun Dec 16 00:02:31 2018: parent pid: 30334
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/gcc-4.8>
-Sun Dec 16 00:02:31 2018: argv[0]: <gcc>
-Sun Dec 16 00:02:31 2018: argv[1]: <-c>
-Sun Dec 16 00:02:31 2018: argv[2]: <-g>
-Sun Dec 16 00:02:31 2018: argv[3]: <-Wall>
-Sun Dec 16 00:02:31 2018: argv[4]: <-O2>
-Sun Dec 16 00:02:31 2018: argv[5]: <-DBOARD_PC>
-Sun Dec 16 00:02:31 2018: argv[6]: <test_vihard.c>
-Sun Dec 16 00:02:31 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.pzsNKi>
-Sun Dec 16 00:02:31 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
-Sun Dec 16 00:02:31 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[3]: <ELECTRON_NO_ATTACH_CONSOLE=1>
-Sun Dec 16 00:02:31 2018: envp[4]: <DESKTOP_STARTUP_ID=cinnamon-2343-mint-pc-/usr/share/code/code-2_TIME17491000>
-Sun Dec 16 00:02:31 2018: envp[5]: <XAUTHORITY=/home/mint/.Xauthority>
-Sun Dec 16 00:02:31 2018: envp[6]: <GDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[7]: <VTE_VERSION=3409>
-Sun Dec 16 00:02:31 2018: envp[8]: <SHELL=/bin/bash>
-Sun Dec 16 00:02:31 2018: envp[9]: <VSCODE_NLS_CONFIG={"locale":"en","availableLanguages":{}}>
-Sun Dec 16 00:02:31 2018: envp[10]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: envp[11]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
-Sun Dec 16 00:02:31 2018: envp[12]: <GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop>
-Sun Dec 16 00:02:31 2018: envp[13]: <USERNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[14]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
-Sun Dec 16 00:02:31 2018: envp[15]: <MDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[16]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
-Sun Dec 16 00:02:31 2018: envp[17]: <MDM_LANG=es_AR.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[18]: <LESSOPEN=| /usr/bin/lesspipe %s>
-Sun Dec 16 00:02:31 2018: envp[19]: <QT_STYLE_OVERRIDE=gtk>
-Sun Dec 16 00:02:31 2018: envp[20]: <PATH=/home/mint/Programas/anaconda3/bin:/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
-Sun Dec 16 00:02:31 2018: envp[21]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
-Sun Dec 16 00:02:31 2018: envp[22]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
-Sun Dec 16 00:02:31 2018: envp[23]: <XDG_RUNTIME_DIR=/run/user/1000>
-Sun Dec 16 00:02:31 2018: envp[24]: <TEXTDOMAIN=im-config>
-Sun Dec 16 00:02:31 2018: envp[25]: <GDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[26]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
-Sun Dec 16 00:02:31 2018: envp[27]: <INSIDE_NEMO_PYTHON=>
-Sun Dec 16 00:02:31 2018: envp[28]: <XDG_SESSION_DESKTOP=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[29]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
-Sun Dec 16 00:02:31 2018: envp[30]: <GIO_LAUNCHED_DESKTOP_FILE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[31]: <DISPLAY=:0>
-Sun Dec 16 00:02:31 2018: envp[32]: <HOME=/home/mint>
-Sun Dec 16 00:02:31 2018: envp[33]: <MDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[34]: <XDG_SEAT=seat0>
-Sun Dec 16 00:02:31 2018: envp[35]: <SSH_AGENT_PID=2086>
-Sun Dec 16 00:02:31 2018: envp[36]: <VSCODE_NODE_CACHED_DATA_DIR_19754=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[37]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
-Sun Dec 16 00:02:31 2018: envp[38]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
-Sun Dec 16 00:02:31 2018: envp[39]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
-Sun Dec 16 00:02:31 2018: envp[40]: <VSCODE_CLI=1>
-Sun Dec 16 00:02:31 2018: envp[41]: <LOGNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[42]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[43]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
-Sun Dec 16 00:02:31 2018: envp[44]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
-Sun Dec 16 00:02:31 2018: envp[45]: <XDG_VTNR=8>
-Sun Dec 16 00:02:31 2018: envp[46]: <CLUTTER_BACKEND=x11>
-Sun Dec 16 00:02:31 2018: envp[47]: <KICAD_PATH=/usr/share/kicad>
-Sun Dec 16 00:02:31 2018: envp[48]: <COLORTERM=gnome-terminal>
-Sun Dec 16 00:02:31 2018: envp[49]: <SHLVL=2>
-Sun Dec 16 00:02:31 2018: envp[50]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[51]: <XDG_SESSION_ID=c1>
-Sun Dec 16 00:02:31 2018: envp[52]: <USER=mint>
-Sun Dec 16 00:02:31 2018: envp[53]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
-Sun Dec 16 00:02:31 2018: envp[54]: <GNOME_KEYRING_PID=1940>
-Sun Dec 16 00:02:31 2018: envp[55]: <TERM_PROGRAM=vscode>
-Sun Dec 16 00:02:31 2018: envp[56]: <VSCODE_IPC_HOOK=/run/user/1000/vscode-a9459cc2-1.24.0-main.sock>
-Sun Dec 16 00:02:31 2018: envp[57]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
-Sun Dec 16 00:02:31 2018: envp[58]: <MAKEFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[59]: <MFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[60]: <TERM_PROGRAM_VERSION=1.24.0>
-Sun Dec 16 00:02:31 2018: envp[61]: <CINNAMON_VERSION=2.8.8>
-Sun Dec 16 00:02:31 2018: envp[62]: <QT_ACCESSIBILITY=1>
-Sun Dec 16 00:02:31 2018: envp[63]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
-Sun Dec 16 00:02:31 2018: envp[64]: <TEXTDOMAINDIR=/usr/share/locale/>
-Sun Dec 16 00:02:31 2018: envp[65]: <VSCODE_NODE_CACHED_DATA_DIR_8252=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[66]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: envp[67]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
-Sun Dec 16 00:02:31 2018: envp[68]: <KIGITHUB=https://github.com/KiCad>
-Sun Dec 16 00:02:31 2018: envp[69]: <CHROME_DESKTOP=Code.desktop>
-Sun Dec 16 00:02:31 2018: envp[70]: <WINDOWPATH=8>
-Sun Dec 16 00:02:31 2018: envp[71]: <GJS_DEBUG_OUTPUT=stderr>
-Sun Dec 16 00:02:31 2018: envp[72]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
-Sun Dec 16 00:02:31 2018: envp[73]: <LANG=en_US.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[74]: <TERM=xterm-256color>
-Sun Dec 16 00:02:31 2018: envp[75]: <VSCODE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[76]: <MAKELEVEL=1>
-Sun Dec 16 00:02:31 2018: envp[77]: <LD_PRELOAD=>
-Sun Dec 16 00:02:31 2018: Probing C compiler: /usr/bin/gcc-4.8 
-Sun Dec 16 00:02:31 2018: exit code: 0
-Sun Dec 16 00:02:31 2018: stdout:
+Sun Dec 16 12:20:50 2018: build-wrapper, version 5.1 (linux-x86)
+Sun Dec 16 12:20:50 2018: System name: Linux Nodename: mint-pc Release: 3.19.0-32-generic Version: #37~14.04.1-Ubuntu SMP Thu Oct 22 09:41:40 UTC 2015 Machine: x86_64
+Sun Dec 16 12:20:50 2018: socket path: /tmp/build-wrapper-socket.496Ph1
+Sun Dec 16 12:20:50 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-i686.so
+Sun Dec 16 12:20:50 2018: dynamic library found: /home/mint/Programas/build-wrapper-linux-x86/libinterceptor-x86_64.so
+Sun Dec 16 12:20:50 2018: command executed as: <build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:50 2018: command line received: <make clean all>
+Sun Dec 16 12:20:50 2018: env 0: <XDG_VTNR=8>
+Sun Dec 16 12:20:50 2018: env 1: <SSH_AGENT_PID=2086>
+Sun Dec 16 12:20:50 2018: env 2: <XDG_SESSION_ID=c1>
+Sun Dec 16 12:20:50 2018: env 3: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 16 12:20:50 2018: env 4: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
+Sun Dec 16 12:20:50 2018: env 5: <TERM=xterm>
+Sun Dec 16 12:20:50 2018: env 6: <SHELL=/bin/bash>
+Sun Dec 16 12:20:50 2018: env 7: <VTE_VERSION=3409>
+Sun Dec 16 12:20:50 2018: env 8: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
+Sun Dec 16 12:20:50 2018: env 9: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 16 12:20:50 2018: env 10: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 16 12:20:50 2018: env 11: <WINDOWID=37748945>
+Sun Dec 16 12:20:50 2018: env 12: <OLDPWD=/home/mint>
+Sun Dec 16 12:20:50 2018: env 13: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
+Sun Dec 16 12:20:50 2018: env 14: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 16 12:20:50 2018: env 15: <USER=mint>
+Sun Dec 16 12:20:50 2018: env 16: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 16 12:20:50 2018: env 17: <QT_ACCESSIBILITY=1>
+Sun Dec 16 12:20:50 2018: env 18: <CLUTTER_BACKEND=x11>
+Sun Dec 16 12:20:50 2018: env 19: <INSIDE_NEMO_PYTHON=>
+Sun Dec 16 12:20:50 2018: env 20: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
+Sun Dec 16 12:20:50 2018: env 21: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 16 12:20:50 2018: env 22: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
+Sun Dec 16 12:20:50 2018: env 23: <USERNAME=mint>
+Sun Dec 16 12:20:50 2018: env 24: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 16 12:20:50 2018: env 25: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 16 12:20:50 2018: env 26: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 16 12:20:50 2018: env 27: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 16 12:20:50 2018: env 28: <DESKTOP_SESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: env 29: <GDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:50 2018: env 30: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: env 31: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:50 2018: env 32: <GNOME_KEYRING_PID=1940>
+Sun Dec 16 12:20:50 2018: env 33: <LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:50 2018: env 34: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 16 12:20:50 2018: env 35: <MDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:50 2018: env 36: <GDMSESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: env 37: <CINNAMON_VERSION=2.8.8>
+Sun Dec 16 12:20:50 2018: env 38: <SHLVL=1>
+Sun Dec 16 12:20:50 2018: env 39: <XDG_SEAT=seat0>
+Sun Dec 16 12:20:50 2018: env 40: <HOME=/home/mint>
+Sun Dec 16 12:20:50 2018: env 41: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 16 12:20:50 2018: env 42: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 16 12:20:50 2018: env 43: <LOGNAME=mint>
+Sun Dec 16 12:20:50 2018: env 44: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 16 12:20:50 2018: env 45: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
+Sun Dec 16 12:20:50 2018: env 46: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:50 2018: env 47: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 16 12:20:50 2018: env 48: <MDMSESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: env 49: <TEXTDOMAIN=im-config>
+Sun Dec 16 12:20:50 2018: env 50: <WINDOWPATH=8>
+Sun Dec 16 12:20:50 2018: env 51: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 16 12:20:50 2018: env 52: <DISPLAY=:0>
+Sun Dec 16 12:20:50 2018: env 53: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:50 2018: env 54: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 16 12:20:50 2018: env 55: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 16 12:20:50 2018: env 56: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 16 12:20:50 2018: env 57: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 16 12:20:50 2018: env 58: <COLORTERM=gnome-terminal>
+Sun Dec 16 12:20:50 2018: env 59: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 16 12:20:50 2018: env 60: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:50 2018: executing: <make clean all>
+Sun Dec 16 12:20:50 2018: initializing json file
+Sun Dec 16 12:20:50 2018: process created with pid: 1255
+Sun Dec 16 12:20:50 2018: parent pid: 1254
+Sun Dec 16 12:20:50 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: executable: </home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:50 2018: argv[0]: <build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:50 2018: argv[1]: <-c>
+Sun Dec 16 12:20:50 2018: argv[2]: <>
+Sun Dec 16 12:20:50 2018: argv[3]: <make>
+Sun Dec 16 12:20:50 2018: argv[4]: <clean>
+Sun Dec 16 12:20:50 2018: argv[5]: <all>
+Sun Dec 16 12:20:50 2018: skipping process with pid: 1255
+Sun Dec 16 12:20:50 2018: process created with pid: 1256
+Sun Dec 16 12:20:50 2018: parent pid: 1255
+Sun Dec 16 12:20:50 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: executable: </usr/bin/make>
+Sun Dec 16 12:20:50 2018: argv[0]: <make>
+Sun Dec 16 12:20:50 2018: argv[1]: <clean>
+Sun Dec 16 12:20:50 2018: argv[2]: <all>
+Sun Dec 16 12:20:50 2018: skipping process with pid: 1256
+Sun Dec 16 12:20:50 2018: process created with pid: 1257
+Sun Dec 16 12:20:50 2018: parent pid: 1256
+Sun Dec 16 12:20:50 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: executable: </bin/rm>
+Sun Dec 16 12:20:50 2018: argv[0]: <rm>
+Sun Dec 16 12:20:50 2018: argv[1]: <-f>
+Sun Dec 16 12:20:50 2018: argv[2]: <sonar_test.o>
+Sun Dec 16 12:20:50 2018: argv[3]: <vihard.o>
+Sun Dec 16 12:20:50 2018: argv[4]: <sonar_test>
+Sun Dec 16 12:20:50 2018: skipping process with pid: 1257
+Sun Dec 16 12:20:50 2018: process created with pid: 1258
+Sun Dec 16 12:20:50 2018: parent pid: 1256
+Sun Dec 16 12:20:50 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 16 12:20:50 2018: argv[0]: <gcc>
+Sun Dec 16 12:20:50 2018: argv[1]: <-c>
+Sun Dec 16 12:20:50 2018: argv[2]: <-g>
+Sun Dec 16 12:20:50 2018: argv[3]: <-Wall>
+Sun Dec 16 12:20:50 2018: argv[4]: <-O2>
+Sun Dec 16 12:20:50 2018: argv[5]: <-DBOARD_PC>
+Sun Dec 16 12:20:50 2018: argv[6]: <sonar_test.c>
+Sun Dec 16 12:20:50 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.496Ph1>
+Sun Dec 16 12:20:50 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 16 12:20:50 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 16 12:20:50 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 16 12:20:50 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 16 12:20:50 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:50 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 16 12:20:50 2018: envp[9]: <USERNAME=mint>
+Sun Dec 16 12:20:50 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 16 12:20:50 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 16 12:20:50 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 16 12:20:50 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:50 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 16 12:20:50 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 16 12:20:50 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 16 12:20:50 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
+Sun Dec 16 12:20:50 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
+Sun Dec 16 12:20:50 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 16 12:20:50 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 16 12:20:50 2018: envp[21]: <WINDOWID=37748945>
+Sun Dec 16 12:20:50 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:50 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 16 12:20:50 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 16 12:20:50 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 16 12:20:50 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
+Sun Dec 16 12:20:50 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 16 12:20:50 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 16 12:20:50 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:50 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 16 12:20:50 2018: envp[31]: <SSH_AGENT_PID=2086>
+Sun Dec 16 12:20:50 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
+Sun Dec 16 12:20:50 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
+Sun Dec 16 12:20:50 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 16 12:20:50 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 16 12:20:50 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:50 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 16 12:20:50 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 16 12:20:50 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 16 12:20:50 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 16 12:20:50 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 16 12:20:50 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 16 12:20:50 2018: envp[43]: <SHLVL=1>
+Sun Dec 16 12:20:50 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:50 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 16 12:20:50 2018: envp[46]: <USER=mint>
+Sun Dec 16 12:20:50 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 16 12:20:50 2018: envp[48]: <GNOME_KEYRING_PID=1940>
+Sun Dec 16 12:20:50 2018: envp[49]: <OLDPWD=/home/mint>
+Sun Dec 16 12:20:50 2018: envp[50]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
+Sun Dec 16 12:20:50 2018: envp[51]: <MAKEFLAGS=>
+Sun Dec 16 12:20:50 2018: envp[52]: <MFLAGS=>
+Sun Dec 16 12:20:50 2018: envp[53]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 16 12:20:50 2018: envp[54]: <QT_ACCESSIBILITY=1>
+Sun Dec 16 12:20:50 2018: envp[55]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 16 12:20:50 2018: envp[56]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 16 12:20:50 2018: envp[57]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:50 2018: envp[58]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 16 12:20:50 2018: envp[59]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 16 12:20:50 2018: envp[60]: <WINDOWPATH=8>
+Sun Dec 16 12:20:50 2018: envp[61]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 16 12:20:50 2018: envp[62]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 16 12:20:50 2018: envp[63]: <LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:50 2018: envp[64]: <TERM=xterm>
+Sun Dec 16 12:20:50 2018: envp[65]: <MAKELEVEL=1>
+Sun Dec 16 12:20:50 2018: envp[66]: <LD_PRELOAD=>
+Sun Dec 16 12:20:50 2018: Probing C compiler: /usr/bin/gcc-4.8 
+Sun Dec 16 12:20:50 2018: exit code: 0
+Sun Dec 16 12:20:50 2018: stdout:
 #define __DBL_MIN_EXP__ (-1021)
 #define __UINT_LEAST16_MAX__ 65535
 #define __ATOMIC_ACQUIRE 2
@@ -440,7 +418,7 @@ Sun Dec 16 00:02:31 2018: stdout:
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3
 
-Sun Dec 16 00:02:31 2018: stderr:
+Sun Dec 16 12:20:50 2018: stderr:
 Using built-in specs.
 COLLECT_GCC=gcc
 Target: x86_64-linux-gnu
@@ -463,9 +441,9 @@ COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
 COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
 
-Sun Dec 16 00:02:31 2018: Probing C++ compiler: /usr/bin/gcc-4.8 
-Sun Dec 16 00:02:31 2018: exit code: 0
-Sun Dec 16 00:02:31 2018: stdout:
+Sun Dec 16 12:20:50 2018: Probing C++ compiler: /usr/bin/gcc-4.8 
+Sun Dec 16 12:20:51 2018: exit code: 0
+Sun Dec 16 12:20:51 2018: stdout:
 #define __DBL_MIN_EXP__ (-1021)
 #define __UINT_LEAST16_MAX__ 65535
 #define __ATOMIC_ACQUIRE 2
@@ -713,7 +691,7 @@ Sun Dec 16 00:02:31 2018: stdout:
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3
 
-Sun Dec 16 00:02:31 2018: stderr:
+Sun Dec 16 12:20:51 2018: stderr:
 Using built-in specs.
 COLLECT_GCC=gcc
 Target: x86_64-linux-gnu
@@ -740,343 +718,321 @@ COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.8/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../:/lib/:/usr/lib/
 COLLECT_GCC_OPTIONS='-v' '-dM' '-E' '-mtune=generic' '-march=x86-64'
 
-Sun Dec 16 00:02:31 2018: process created with pid: 30337
-Sun Dec 16 00:02:31 2018: parent pid: 30336
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
-Sun Dec 16 00:02:31 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
-Sun Dec 16 00:02:31 2018: argv[1]: <-quiet>
-Sun Dec 16 00:02:31 2018: argv[2]: <-imultiarch>
-Sun Dec 16 00:02:31 2018: argv[3]: <x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[4]: <-D>
-Sun Dec 16 00:02:31 2018: argv[5]: <BOARD_PC>
-Sun Dec 16 00:02:31 2018: argv[6]: <test_vihard.c>
-Sun Dec 16 00:02:31 2018: argv[7]: <-quiet>
-Sun Dec 16 00:02:31 2018: argv[8]: <-dumpbase>
-Sun Dec 16 00:02:31 2018: argv[9]: <test_vihard.c>
-Sun Dec 16 00:02:31 2018: argv[10]: <-mtune=generic>
-Sun Dec 16 00:02:31 2018: argv[11]: <-march=x86-64>
-Sun Dec 16 00:02:31 2018: argv[12]: <-auxbase>
-Sun Dec 16 00:02:31 2018: argv[13]: <test_vihard>
-Sun Dec 16 00:02:31 2018: argv[14]: <-g>
-Sun Dec 16 00:02:31 2018: argv[15]: <-O2>
-Sun Dec 16 00:02:31 2018: argv[16]: <-Wall>
-Sun Dec 16 00:02:31 2018: argv[17]: <-fstack-protector>
-Sun Dec 16 00:02:31 2018: argv[18]: <-Wformat-security>
-Sun Dec 16 00:02:31 2018: argv[19]: <-o>
-Sun Dec 16 00:02:31 2018: argv[20]: </tmp/ccF80Znj.s>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30337
-Sun Dec 16 00:02:31 2018: process created with pid: 30342
-Sun Dec 16 00:02:31 2018: parent pid: 30336
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/as>
-Sun Dec 16 00:02:31 2018: argv[0]: <as>
-Sun Dec 16 00:02:31 2018: argv[1]: <--64>
-Sun Dec 16 00:02:31 2018: argv[2]: <-o>
-Sun Dec 16 00:02:31 2018: argv[3]: <test_vihard.o>
-Sun Dec 16 00:02:31 2018: argv[4]: </tmp/ccF80Znj.s>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30342
-Sun Dec 16 00:02:31 2018: process created with pid: 30343
-Sun Dec 16 00:02:31 2018: parent pid: 30334
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/gcc-4.8>
-Sun Dec 16 00:02:31 2018: argv[0]: <gcc>
-Sun Dec 16 00:02:31 2018: argv[1]: <-c>
-Sun Dec 16 00:02:31 2018: argv[2]: <-g>
-Sun Dec 16 00:02:31 2018: argv[3]: <-Wall>
-Sun Dec 16 00:02:31 2018: argv[4]: <-O2>
-Sun Dec 16 00:02:31 2018: argv[5]: <-DBOARD_PC>
-Sun Dec 16 00:02:31 2018: argv[6]: <vihard.c>
-Sun Dec 16 00:02:31 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.pzsNKi>
-Sun Dec 16 00:02:31 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
-Sun Dec 16 00:02:31 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[3]: <ELECTRON_NO_ATTACH_CONSOLE=1>
-Sun Dec 16 00:02:31 2018: envp[4]: <DESKTOP_STARTUP_ID=cinnamon-2343-mint-pc-/usr/share/code/code-2_TIME17491000>
-Sun Dec 16 00:02:31 2018: envp[5]: <XAUTHORITY=/home/mint/.Xauthority>
-Sun Dec 16 00:02:31 2018: envp[6]: <GDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[7]: <VTE_VERSION=3409>
-Sun Dec 16 00:02:31 2018: envp[8]: <SHELL=/bin/bash>
-Sun Dec 16 00:02:31 2018: envp[9]: <VSCODE_NLS_CONFIG={"locale":"en","availableLanguages":{}}>
-Sun Dec 16 00:02:31 2018: envp[10]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: envp[11]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
-Sun Dec 16 00:02:31 2018: envp[12]: <GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop>
-Sun Dec 16 00:02:31 2018: envp[13]: <USERNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[14]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
-Sun Dec 16 00:02:31 2018: envp[15]: <MDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[16]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
-Sun Dec 16 00:02:31 2018: envp[17]: <MDM_LANG=es_AR.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[18]: <LESSOPEN=| /usr/bin/lesspipe %s>
-Sun Dec 16 00:02:31 2018: envp[19]: <QT_STYLE_OVERRIDE=gtk>
-Sun Dec 16 00:02:31 2018: envp[20]: <PATH=/home/mint/Programas/anaconda3/bin:/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
-Sun Dec 16 00:02:31 2018: envp[21]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
-Sun Dec 16 00:02:31 2018: envp[22]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
-Sun Dec 16 00:02:31 2018: envp[23]: <XDG_RUNTIME_DIR=/run/user/1000>
-Sun Dec 16 00:02:31 2018: envp[24]: <TEXTDOMAIN=im-config>
-Sun Dec 16 00:02:31 2018: envp[25]: <GDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[26]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
-Sun Dec 16 00:02:31 2018: envp[27]: <INSIDE_NEMO_PYTHON=>
-Sun Dec 16 00:02:31 2018: envp[28]: <XDG_SESSION_DESKTOP=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[29]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
-Sun Dec 16 00:02:31 2018: envp[30]: <GIO_LAUNCHED_DESKTOP_FILE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[31]: <DISPLAY=:0>
-Sun Dec 16 00:02:31 2018: envp[32]: <HOME=/home/mint>
-Sun Dec 16 00:02:31 2018: envp[33]: <MDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[34]: <XDG_SEAT=seat0>
-Sun Dec 16 00:02:31 2018: envp[35]: <SSH_AGENT_PID=2086>
-Sun Dec 16 00:02:31 2018: envp[36]: <VSCODE_NODE_CACHED_DATA_DIR_19754=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[37]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
-Sun Dec 16 00:02:31 2018: envp[38]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
-Sun Dec 16 00:02:31 2018: envp[39]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
-Sun Dec 16 00:02:31 2018: envp[40]: <VSCODE_CLI=1>
-Sun Dec 16 00:02:31 2018: envp[41]: <LOGNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[42]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[43]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
-Sun Dec 16 00:02:31 2018: envp[44]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
-Sun Dec 16 00:02:31 2018: envp[45]: <XDG_VTNR=8>
-Sun Dec 16 00:02:31 2018: envp[46]: <CLUTTER_BACKEND=x11>
-Sun Dec 16 00:02:31 2018: envp[47]: <KICAD_PATH=/usr/share/kicad>
-Sun Dec 16 00:02:31 2018: envp[48]: <COLORTERM=gnome-terminal>
-Sun Dec 16 00:02:31 2018: envp[49]: <SHLVL=2>
-Sun Dec 16 00:02:31 2018: envp[50]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[51]: <XDG_SESSION_ID=c1>
-Sun Dec 16 00:02:31 2018: envp[52]: <USER=mint>
-Sun Dec 16 00:02:31 2018: envp[53]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
-Sun Dec 16 00:02:31 2018: envp[54]: <GNOME_KEYRING_PID=1940>
-Sun Dec 16 00:02:31 2018: envp[55]: <TERM_PROGRAM=vscode>
-Sun Dec 16 00:02:31 2018: envp[56]: <VSCODE_IPC_HOOK=/run/user/1000/vscode-a9459cc2-1.24.0-main.sock>
-Sun Dec 16 00:02:31 2018: envp[57]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
-Sun Dec 16 00:02:31 2018: envp[58]: <MAKEFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[59]: <MFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[60]: <TERM_PROGRAM_VERSION=1.24.0>
-Sun Dec 16 00:02:31 2018: envp[61]: <CINNAMON_VERSION=2.8.8>
-Sun Dec 16 00:02:31 2018: envp[62]: <QT_ACCESSIBILITY=1>
-Sun Dec 16 00:02:31 2018: envp[63]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
-Sun Dec 16 00:02:31 2018: envp[64]: <TEXTDOMAINDIR=/usr/share/locale/>
-Sun Dec 16 00:02:31 2018: envp[65]: <VSCODE_NODE_CACHED_DATA_DIR_8252=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[66]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: envp[67]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
-Sun Dec 16 00:02:31 2018: envp[68]: <KIGITHUB=https://github.com/KiCad>
-Sun Dec 16 00:02:31 2018: envp[69]: <CHROME_DESKTOP=Code.desktop>
-Sun Dec 16 00:02:31 2018: envp[70]: <WINDOWPATH=8>
-Sun Dec 16 00:02:31 2018: envp[71]: <GJS_DEBUG_OUTPUT=stderr>
-Sun Dec 16 00:02:31 2018: envp[72]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
-Sun Dec 16 00:02:31 2018: envp[73]: <LANG=en_US.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[74]: <TERM=xterm-256color>
-Sun Dec 16 00:02:31 2018: envp[75]: <VSCODE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[76]: <MAKELEVEL=1>
-Sun Dec 16 00:02:31 2018: envp[77]: <LD_PRELOAD=>
-Sun Dec 16 00:02:31 2018: process created with pid: 30344
-Sun Dec 16 00:02:31 2018: parent pid: 30343
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
-Sun Dec 16 00:02:31 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
-Sun Dec 16 00:02:31 2018: argv[1]: <-quiet>
-Sun Dec 16 00:02:31 2018: argv[2]: <-imultiarch>
-Sun Dec 16 00:02:31 2018: argv[3]: <x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[4]: <-D>
-Sun Dec 16 00:02:31 2018: argv[5]: <BOARD_PC>
-Sun Dec 16 00:02:31 2018: argv[6]: <vihard.c>
-Sun Dec 16 00:02:31 2018: argv[7]: <-quiet>
-Sun Dec 16 00:02:31 2018: argv[8]: <-dumpbase>
-Sun Dec 16 00:02:31 2018: argv[9]: <vihard.c>
-Sun Dec 16 00:02:31 2018: argv[10]: <-mtune=generic>
-Sun Dec 16 00:02:31 2018: argv[11]: <-march=x86-64>
-Sun Dec 16 00:02:31 2018: argv[12]: <-auxbase>
-Sun Dec 16 00:02:31 2018: argv[13]: <vihard>
-Sun Dec 16 00:02:31 2018: argv[14]: <-g>
-Sun Dec 16 00:02:31 2018: argv[15]: <-O2>
-Sun Dec 16 00:02:31 2018: argv[16]: <-Wall>
-Sun Dec 16 00:02:31 2018: argv[17]: <-fstack-protector>
-Sun Dec 16 00:02:31 2018: argv[18]: <-Wformat-security>
-Sun Dec 16 00:02:31 2018: argv[19]: <-o>
-Sun Dec 16 00:02:31 2018: argv[20]: </tmp/cccrgbDz.s>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30344
-Sun Dec 16 00:02:31 2018: process created with pid: 30345
-Sun Dec 16 00:02:31 2018: parent pid: 30343
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/as>
-Sun Dec 16 00:02:31 2018: argv[0]: <as>
-Sun Dec 16 00:02:31 2018: argv[1]: <--64>
-Sun Dec 16 00:02:31 2018: argv[2]: <-o>
-Sun Dec 16 00:02:31 2018: argv[3]: <vihard.o>
-Sun Dec 16 00:02:31 2018: argv[4]: </tmp/cccrgbDz.s>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30345
-Sun Dec 16 00:02:31 2018: process created with pid: 30346
-Sun Dec 16 00:02:31 2018: parent pid: 30334
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/gcc-4.8>
-Sun Dec 16 00:02:31 2018: argv[0]: <gcc>
-Sun Dec 16 00:02:31 2018: argv[1]: <-g>
-Sun Dec 16 00:02:31 2018: argv[2]: <-Wall>
-Sun Dec 16 00:02:31 2018: argv[3]: <-O2>
-Sun Dec 16 00:02:31 2018: argv[4]: <-DBOARD_PC>
-Sun Dec 16 00:02:31 2018: argv[5]: <-o>
-Sun Dec 16 00:02:31 2018: argv[6]: <test_vihard>
-Sun Dec 16 00:02:31 2018: argv[7]: <test_vihard.o>
-Sun Dec 16 00:02:31 2018: argv[8]: <vihard.o>
-Sun Dec 16 00:02:31 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.pzsNKi>
-Sun Dec 16 00:02:31 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
-Sun Dec 16 00:02:31 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[3]: <ELECTRON_NO_ATTACH_CONSOLE=1>
-Sun Dec 16 00:02:31 2018: envp[4]: <DESKTOP_STARTUP_ID=cinnamon-2343-mint-pc-/usr/share/code/code-2_TIME17491000>
-Sun Dec 16 00:02:31 2018: envp[5]: <XAUTHORITY=/home/mint/.Xauthority>
-Sun Dec 16 00:02:31 2018: envp[6]: <GDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[7]: <VTE_VERSION=3409>
-Sun Dec 16 00:02:31 2018: envp[8]: <SHELL=/bin/bash>
-Sun Dec 16 00:02:31 2018: envp[9]: <VSCODE_NLS_CONFIG={"locale":"en","availableLanguages":{}}>
-Sun Dec 16 00:02:31 2018: envp[10]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
-Sun Dec 16 00:02:31 2018: envp[11]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
-Sun Dec 16 00:02:31 2018: envp[12]: <GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop>
-Sun Dec 16 00:02:31 2018: envp[13]: <USERNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[14]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
-Sun Dec 16 00:02:31 2018: envp[15]: <MDMSESSION=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[16]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
-Sun Dec 16 00:02:31 2018: envp[17]: <MDM_LANG=es_AR.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[18]: <LESSOPEN=| /usr/bin/lesspipe %s>
-Sun Dec 16 00:02:31 2018: envp[19]: <QT_STYLE_OVERRIDE=gtk>
-Sun Dec 16 00:02:31 2018: envp[20]: <PATH=/home/mint/Programas/anaconda3/bin:/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
-Sun Dec 16 00:02:31 2018: envp[21]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
-Sun Dec 16 00:02:31 2018: envp[22]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
-Sun Dec 16 00:02:31 2018: envp[23]: <XDG_RUNTIME_DIR=/run/user/1000>
-Sun Dec 16 00:02:31 2018: envp[24]: <TEXTDOMAIN=im-config>
-Sun Dec 16 00:02:31 2018: envp[25]: <GDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[26]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
-Sun Dec 16 00:02:31 2018: envp[27]: <INSIDE_NEMO_PYTHON=>
-Sun Dec 16 00:02:31 2018: envp[28]: <XDG_SESSION_DESKTOP=cinnamon>
-Sun Dec 16 00:02:31 2018: envp[29]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
-Sun Dec 16 00:02:31 2018: envp[30]: <GIO_LAUNCHED_DESKTOP_FILE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[31]: <DISPLAY=:0>
-Sun Dec 16 00:02:31 2018: envp[32]: <HOME=/home/mint>
-Sun Dec 16 00:02:31 2018: envp[33]: <MDM_XSERVER_LOCATION=local>
-Sun Dec 16 00:02:31 2018: envp[34]: <XDG_SEAT=seat0>
-Sun Dec 16 00:02:31 2018: envp[35]: <SSH_AGENT_PID=2086>
-Sun Dec 16 00:02:31 2018: envp[36]: <VSCODE_NODE_CACHED_DATA_DIR_19754=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[37]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
-Sun Dec 16 00:02:31 2018: envp[38]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
-Sun Dec 16 00:02:31 2018: envp[39]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
-Sun Dec 16 00:02:31 2018: envp[40]: <VSCODE_CLI=1>
-Sun Dec 16 00:02:31 2018: envp[41]: <LOGNAME=mint>
-Sun Dec 16 00:02:31 2018: envp[42]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[43]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
-Sun Dec 16 00:02:31 2018: envp[44]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
-Sun Dec 16 00:02:31 2018: envp[45]: <XDG_VTNR=8>
-Sun Dec 16 00:02:31 2018: envp[46]: <CLUTTER_BACKEND=x11>
-Sun Dec 16 00:02:31 2018: envp[47]: <KICAD_PATH=/usr/share/kicad>
-Sun Dec 16 00:02:31 2018: envp[48]: <COLORTERM=gnome-terminal>
-Sun Dec 16 00:02:31 2018: envp[49]: <SHLVL=2>
-Sun Dec 16 00:02:31 2018: envp[50]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
-Sun Dec 16 00:02:31 2018: envp[51]: <XDG_SESSION_ID=c1>
-Sun Dec 16 00:02:31 2018: envp[52]: <USER=mint>
-Sun Dec 16 00:02:31 2018: envp[53]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
-Sun Dec 16 00:02:31 2018: envp[54]: <GNOME_KEYRING_PID=1940>
-Sun Dec 16 00:02:31 2018: envp[55]: <TERM_PROGRAM=vscode>
-Sun Dec 16 00:02:31 2018: envp[56]: <VSCODE_IPC_HOOK=/run/user/1000/vscode-a9459cc2-1.24.0-main.sock>
-Sun Dec 16 00:02:31 2018: envp[57]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
-Sun Dec 16 00:02:31 2018: envp[58]: <MAKEFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[59]: <MFLAGS=>
-Sun Dec 16 00:02:31 2018: envp[60]: <TERM_PROGRAM_VERSION=1.24.0>
-Sun Dec 16 00:02:31 2018: envp[61]: <CINNAMON_VERSION=2.8.8>
-Sun Dec 16 00:02:31 2018: envp[62]: <QT_ACCESSIBILITY=1>
-Sun Dec 16 00:02:31 2018: envp[63]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
-Sun Dec 16 00:02:31 2018: envp[64]: <TEXTDOMAINDIR=/usr/share/locale/>
-Sun Dec 16 00:02:31 2018: envp[65]: <VSCODE_NODE_CACHED_DATA_DIR_8252=/home/mint/.config/Code/CachedData/6a6e02cef0f2122ee1469765b704faf5d0e0d859>
-Sun Dec 16 00:02:31 2018: envp[66]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: envp[67]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
-Sun Dec 16 00:02:31 2018: envp[68]: <KIGITHUB=https://github.com/KiCad>
-Sun Dec 16 00:02:31 2018: envp[69]: <CHROME_DESKTOP=Code.desktop>
-Sun Dec 16 00:02:31 2018: envp[70]: <WINDOWPATH=8>
-Sun Dec 16 00:02:31 2018: envp[71]: <GJS_DEBUG_OUTPUT=stderr>
-Sun Dec 16 00:02:31 2018: envp[72]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
-Sun Dec 16 00:02:31 2018: envp[73]: <LANG=en_US.UTF-8>
-Sun Dec 16 00:02:31 2018: envp[74]: <TERM=xterm-256color>
-Sun Dec 16 00:02:31 2018: envp[75]: <VSCODE_PID=8252>
-Sun Dec 16 00:02:31 2018: envp[76]: <MAKELEVEL=1>
-Sun Dec 16 00:02:31 2018: envp[77]: <LD_PRELOAD=>
-Sun Dec 16 00:02:31 2018: process created with pid: 30347
-Sun Dec 16 00:02:31 2018: parent pid: 30346
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
-Sun Dec 16 00:02:31 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
-Sun Dec 16 00:02:31 2018: argv[1]: <--sysroot=/>
-Sun Dec 16 00:02:31 2018: argv[2]: <--build-id>
-Sun Dec 16 00:02:31 2018: argv[3]: <--eh-frame-hdr>
-Sun Dec 16 00:02:31 2018: argv[4]: <-m>
-Sun Dec 16 00:02:31 2018: argv[5]: <elf_x86_64>
-Sun Dec 16 00:02:31 2018: argv[6]: <--hash-style=gnu>
-Sun Dec 16 00:02:31 2018: argv[7]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[8]: <-dynamic-linker>
-Sun Dec 16 00:02:31 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
-Sun Dec 16 00:02:31 2018: argv[10]: <-z>
-Sun Dec 16 00:02:31 2018: argv[11]: <relro>
-Sun Dec 16 00:02:31 2018: argv[12]: <-o>
-Sun Dec 16 00:02:31 2018: argv[13]: <test_vihard>
-Sun Dec 16 00:02:31 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
-Sun Dec 16 00:02:31 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
-Sun Dec 16 00:02:31 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
-Sun Dec 16 00:02:31 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
-Sun Dec 16 00:02:31 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
-Sun Dec 16 00:02:31 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[21]: <-L/lib/../lib>
-Sun Dec 16 00:02:31 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[23]: <-L/usr/lib/../lib>
-Sun Dec 16 00:02:31 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
-Sun Dec 16 00:02:31 2018: argv[25]: <test_vihard.o>
-Sun Dec 16 00:02:31 2018: argv[26]: <vihard.o>
-Sun Dec 16 00:02:31 2018: argv[27]: <-lgcc>
-Sun Dec 16 00:02:31 2018: argv[28]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[29]: <-lgcc_s>
-Sun Dec 16 00:02:31 2018: argv[30]: <--no-as-needed>
-Sun Dec 16 00:02:31 2018: argv[31]: <-lc>
-Sun Dec 16 00:02:31 2018: argv[32]: <-lgcc>
-Sun Dec 16 00:02:31 2018: argv[33]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[34]: <-lgcc_s>
-Sun Dec 16 00:02:31 2018: argv[35]: <--no-as-needed>
-Sun Dec 16 00:02:31 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
-Sun Dec 16 00:02:31 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30347
-Sun Dec 16 00:02:31 2018: process created with pid: 30348
-Sun Dec 16 00:02:31 2018: parent pid: 30347
-Sun Dec 16 00:02:31 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
-Sun Dec 16 00:02:31 2018: executable: </usr/bin/ld.bfd>
-Sun Dec 16 00:02:31 2018: argv[0]: </usr/bin/ld>
-Sun Dec 16 00:02:31 2018: argv[1]: <--sysroot=/>
-Sun Dec 16 00:02:31 2018: argv[2]: <--build-id>
-Sun Dec 16 00:02:31 2018: argv[3]: <--eh-frame-hdr>
-Sun Dec 16 00:02:31 2018: argv[4]: <-m>
-Sun Dec 16 00:02:31 2018: argv[5]: <elf_x86_64>
-Sun Dec 16 00:02:31 2018: argv[6]: <--hash-style=gnu>
-Sun Dec 16 00:02:31 2018: argv[7]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[8]: <-dynamic-linker>
-Sun Dec 16 00:02:31 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
-Sun Dec 16 00:02:31 2018: argv[10]: <-z>
-Sun Dec 16 00:02:31 2018: argv[11]: <relro>
-Sun Dec 16 00:02:31 2018: argv[12]: <-o>
-Sun Dec 16 00:02:31 2018: argv[13]: <test_vihard>
-Sun Dec 16 00:02:31 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
-Sun Dec 16 00:02:31 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
-Sun Dec 16 00:02:31 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
-Sun Dec 16 00:02:31 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
-Sun Dec 16 00:02:31 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
-Sun Dec 16 00:02:31 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[21]: <-L/lib/../lib>
-Sun Dec 16 00:02:31 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
-Sun Dec 16 00:02:31 2018: argv[23]: <-L/usr/lib/../lib>
-Sun Dec 16 00:02:31 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
-Sun Dec 16 00:02:31 2018: argv[25]: <test_vihard.o>
-Sun Dec 16 00:02:31 2018: argv[26]: <vihard.o>
-Sun Dec 16 00:02:31 2018: argv[27]: <-lgcc>
-Sun Dec 16 00:02:31 2018: argv[28]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[29]: <-lgcc_s>
-Sun Dec 16 00:02:31 2018: argv[30]: <--no-as-needed>
-Sun Dec 16 00:02:31 2018: argv[31]: <-lc>
-Sun Dec 16 00:02:31 2018: argv[32]: <-lgcc>
-Sun Dec 16 00:02:31 2018: argv[33]: <--as-needed>
-Sun Dec 16 00:02:31 2018: argv[34]: <-lgcc_s>
-Sun Dec 16 00:02:31 2018: argv[35]: <--no-as-needed>
-Sun Dec 16 00:02:31 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
-Sun Dec 16 00:02:31 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
-Sun Dec 16 00:02:31 2018: skipping process with pid: 30348
-Sun Dec 16 00:02:31 2018: finalizing json file
-Sun Dec 16 00:02:31 2018: returned with code: 0
+Sun Dec 16 12:20:51 2018: process created with pid: 1259
+Sun Dec 16 12:20:51 2018: parent pid: 1258
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 16 12:20:51 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 16 12:20:51 2018: argv[1]: <-quiet>
+Sun Dec 16 12:20:51 2018: argv[2]: <-imultiarch>
+Sun Dec 16 12:20:51 2018: argv[3]: <x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[4]: <-D>
+Sun Dec 16 12:20:51 2018: argv[5]: <BOARD_PC>
+Sun Dec 16 12:20:51 2018: argv[6]: <sonar_test.c>
+Sun Dec 16 12:20:51 2018: argv[7]: <-quiet>
+Sun Dec 16 12:20:51 2018: argv[8]: <-dumpbase>
+Sun Dec 16 12:20:51 2018: argv[9]: <sonar_test.c>
+Sun Dec 16 12:20:51 2018: argv[10]: <-mtune=generic>
+Sun Dec 16 12:20:51 2018: argv[11]: <-march=x86-64>
+Sun Dec 16 12:20:51 2018: argv[12]: <-auxbase>
+Sun Dec 16 12:20:51 2018: argv[13]: <sonar_test>
+Sun Dec 16 12:20:51 2018: argv[14]: <-g>
+Sun Dec 16 12:20:51 2018: argv[15]: <-O2>
+Sun Dec 16 12:20:51 2018: argv[16]: <-Wall>
+Sun Dec 16 12:20:51 2018: argv[17]: <-fstack-protector>
+Sun Dec 16 12:20:51 2018: argv[18]: <-Wformat-security>
+Sun Dec 16 12:20:51 2018: argv[19]: <-o>
+Sun Dec 16 12:20:51 2018: argv[20]: </tmp/cceBe8lZ.s>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1259
+Sun Dec 16 12:20:51 2018: process created with pid: 1264
+Sun Dec 16 12:20:51 2018: parent pid: 1258
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/bin/as>
+Sun Dec 16 12:20:51 2018: argv[0]: <as>
+Sun Dec 16 12:20:51 2018: argv[1]: <--64>
+Sun Dec 16 12:20:51 2018: argv[2]: <-o>
+Sun Dec 16 12:20:51 2018: argv[3]: <sonar_test.o>
+Sun Dec 16 12:20:51 2018: argv[4]: </tmp/cceBe8lZ.s>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1264
+Sun Dec 16 12:20:51 2018: process created with pid: 1265
+Sun Dec 16 12:20:51 2018: parent pid: 1256
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 16 12:20:51 2018: argv[0]: <gcc>
+Sun Dec 16 12:20:51 2018: argv[1]: <-c>
+Sun Dec 16 12:20:51 2018: argv[2]: <-g>
+Sun Dec 16 12:20:51 2018: argv[3]: <-Wall>
+Sun Dec 16 12:20:51 2018: argv[4]: <-O2>
+Sun Dec 16 12:20:51 2018: argv[5]: <-DBOARD_PC>
+Sun Dec 16 12:20:51 2018: argv[6]: <vihard.c>
+Sun Dec 16 12:20:51 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.496Ph1>
+Sun Dec 16 12:20:51 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 16 12:20:51 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 16 12:20:51 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 16 12:20:51 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 16 12:20:51 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:51 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 16 12:20:51 2018: envp[9]: <USERNAME=mint>
+Sun Dec 16 12:20:51 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 16 12:20:51 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 16 12:20:51 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:51 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 16 12:20:51 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 16 12:20:51 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 16 12:20:51 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
+Sun Dec 16 12:20:51 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
+Sun Dec 16 12:20:51 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 16 12:20:51 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 16 12:20:51 2018: envp[21]: <WINDOWID=37748945>
+Sun Dec 16 12:20:51 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:51 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 16 12:20:51 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 16 12:20:51 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
+Sun Dec 16 12:20:51 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 16 12:20:51 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 16 12:20:51 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:51 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 16 12:20:51 2018: envp[31]: <SSH_AGENT_PID=2086>
+Sun Dec 16 12:20:51 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
+Sun Dec 16 12:20:51 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
+Sun Dec 16 12:20:51 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 16 12:20:51 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 16 12:20:51 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:51 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 16 12:20:51 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 16 12:20:51 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 16 12:20:51 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 16 12:20:51 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 16 12:20:51 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 16 12:20:51 2018: envp[43]: <SHLVL=1>
+Sun Dec 16 12:20:51 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:51 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 16 12:20:51 2018: envp[46]: <USER=mint>
+Sun Dec 16 12:20:51 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 16 12:20:51 2018: envp[48]: <GNOME_KEYRING_PID=1940>
+Sun Dec 16 12:20:51 2018: envp[49]: <OLDPWD=/home/mint>
+Sun Dec 16 12:20:51 2018: envp[50]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
+Sun Dec 16 12:20:51 2018: envp[51]: <MAKEFLAGS=>
+Sun Dec 16 12:20:51 2018: envp[52]: <MFLAGS=>
+Sun Dec 16 12:20:51 2018: envp[53]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 16 12:20:51 2018: envp[54]: <QT_ACCESSIBILITY=1>
+Sun Dec 16 12:20:51 2018: envp[55]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 16 12:20:51 2018: envp[56]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 16 12:20:51 2018: envp[57]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: envp[58]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 16 12:20:51 2018: envp[59]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 16 12:20:51 2018: envp[60]: <WINDOWPATH=8>
+Sun Dec 16 12:20:51 2018: envp[61]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 16 12:20:51 2018: envp[62]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 16 12:20:51 2018: envp[63]: <LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:51 2018: envp[64]: <TERM=xterm>
+Sun Dec 16 12:20:51 2018: envp[65]: <MAKELEVEL=1>
+Sun Dec 16 12:20:51 2018: envp[66]: <LD_PRELOAD=>
+Sun Dec 16 12:20:51 2018: process created with pid: 1266
+Sun Dec 16 12:20:51 2018: parent pid: 1265
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 16 12:20:51 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/cc1>
+Sun Dec 16 12:20:51 2018: argv[1]: <-quiet>
+Sun Dec 16 12:20:51 2018: argv[2]: <-imultiarch>
+Sun Dec 16 12:20:51 2018: argv[3]: <x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[4]: <-D>
+Sun Dec 16 12:20:51 2018: argv[5]: <BOARD_PC>
+Sun Dec 16 12:20:51 2018: argv[6]: <vihard.c>
+Sun Dec 16 12:20:51 2018: argv[7]: <-quiet>
+Sun Dec 16 12:20:51 2018: argv[8]: <-dumpbase>
+Sun Dec 16 12:20:51 2018: argv[9]: <vihard.c>
+Sun Dec 16 12:20:51 2018: argv[10]: <-mtune=generic>
+Sun Dec 16 12:20:51 2018: argv[11]: <-march=x86-64>
+Sun Dec 16 12:20:51 2018: argv[12]: <-auxbase>
+Sun Dec 16 12:20:51 2018: argv[13]: <vihard>
+Sun Dec 16 12:20:51 2018: argv[14]: <-g>
+Sun Dec 16 12:20:51 2018: argv[15]: <-O2>
+Sun Dec 16 12:20:51 2018: argv[16]: <-Wall>
+Sun Dec 16 12:20:51 2018: argv[17]: <-fstack-protector>
+Sun Dec 16 12:20:51 2018: argv[18]: <-Wformat-security>
+Sun Dec 16 12:20:51 2018: argv[19]: <-o>
+Sun Dec 16 12:20:51 2018: argv[20]: </tmp/cccLd3c9.s>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1266
+Sun Dec 16 12:20:51 2018: process created with pid: 1267
+Sun Dec 16 12:20:51 2018: parent pid: 1265
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/bin/as>
+Sun Dec 16 12:20:51 2018: argv[0]: <as>
+Sun Dec 16 12:20:51 2018: argv[1]: <--64>
+Sun Dec 16 12:20:51 2018: argv[2]: <-o>
+Sun Dec 16 12:20:51 2018: argv[3]: <vihard.o>
+Sun Dec 16 12:20:51 2018: argv[4]: </tmp/cccLd3c9.s>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1267
+Sun Dec 16 12:20:51 2018: process created with pid: 1268
+Sun Dec 16 12:20:51 2018: parent pid: 1256
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/bin/gcc-4.8>
+Sun Dec 16 12:20:51 2018: argv[0]: <gcc>
+Sun Dec 16 12:20:51 2018: argv[1]: <-g>
+Sun Dec 16 12:20:51 2018: argv[2]: <-Wall>
+Sun Dec 16 12:20:51 2018: argv[3]: <-O2>
+Sun Dec 16 12:20:51 2018: argv[4]: <-DBOARD_PC>
+Sun Dec 16 12:20:51 2018: argv[5]: <-o>
+Sun Dec 16 12:20:51 2018: argv[6]: <sonar_test>
+Sun Dec 16 12:20:51 2018: argv[7]: <sonar_test.o>
+Sun Dec 16 12:20:51 2018: argv[8]: <vihard.o>
+Sun Dec 16 12:20:51 2018: envp[0]: <SQ_WRAPPER_SOCKET=/tmp/build-wrapper-socket.496Ph1>
+Sun Dec 16 12:20:51 2018: envp[1]: <SQ_WRAPPER_LIBRARY=/home/mint/Programas/build-wrapper-linux-x86/libinterceptor-${PLATFORM}.so>
+Sun Dec 16 12:20:51 2018: envp[2]: <DESKTOP_SESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[3]: <XAUTHORITY=/home/mint/.Xauthority>
+Sun Dec 16 12:20:51 2018: envp[4]: <GDMSESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[5]: <VTE_VERSION=3409>
+Sun Dec 16 12:20:51 2018: envp[6]: <SHELL=/bin/bash>
+Sun Dec 16 12:20:51 2018: envp[7]: <_=/home/mint/Programas/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Sun Dec 16 12:20:51 2018: envp[8]: <XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg>
+Sun Dec 16 12:20:51 2018: envp[9]: <USERNAME=mint>
+Sun Dec 16 12:20:51 2018: envp[10]: <MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path>
+Sun Dec 16 12:20:51 2018: envp[11]: <MDMSESSION=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[12]: <XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/usr/local/share/:/usr/share/:/usr/share/mdm/>
+Sun Dec 16 12:20:51 2018: envp[13]: <MDM_LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:51 2018: envp[14]: <LESSOPEN=| /usr/bin/lesspipe %s>
+Sun Dec 16 12:20:51 2018: envp[15]: <QT_STYLE_OVERRIDE=gtk>
+Sun Dec 16 12:20:51 2018: envp[16]: <PATH=/home/mint/Programas/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/oracle_jdk8/bin:/usr/lib/jvm/oracle_jdk8/db/bin:/usr/lib/jvm/oracle_jdk8/jre/bin:/home/mint/Programas/sonar-scanner-3.2.0.1227-linux/bin/:/home/mint/Programas/build-wrapper-linux-x86>
+Sun Dec 16 12:20:51 2018: envp[17]: <GPG_AGENT_INFO=/run/user/1000/keyring-5Atabj/gpg:0:1>
+Sun Dec 16 12:20:51 2018: envp[18]: <SESSION_MANAGER=local/mint-pc:@/tmp/.ICE-unix/2016,unix/mint-pc:/tmp/.ICE-unix/2016>
+Sun Dec 16 12:20:51 2018: envp[19]: <XDG_RUNTIME_DIR=/run/user/1000>
+Sun Dec 16 12:20:51 2018: envp[20]: <TEXTDOMAIN=im-config>
+Sun Dec 16 12:20:51 2018: envp[21]: <WINDOWID=37748945>
+Sun Dec 16 12:20:51 2018: envp[22]: <GDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:51 2018: envp[23]: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Sun Dec 16 12:20:51 2018: envp[24]: <INSIDE_NEMO_PYTHON=>
+Sun Dec 16 12:20:51 2018: envp[25]: <XDG_SESSION_DESKTOP=cinnamon>
+Sun Dec 16 12:20:51 2018: envp[26]: <SSH_AUTH_SOCK=/run/user/1000/keyring-5Atabj/ssh>
+Sun Dec 16 12:20:51 2018: envp[27]: <DISPLAY=:0>
+Sun Dec 16 12:20:51 2018: envp[28]: <HOME=/home/mint>
+Sun Dec 16 12:20:51 2018: envp[29]: <MDM_XSERVER_LOCATION=local>
+Sun Dec 16 12:20:51 2018: envp[30]: <XDG_SEAT=seat0>
+Sun Dec 16 12:20:51 2018: envp[31]: <SSH_AGENT_PID=2086>
+Sun Dec 16 12:20:51 2018: envp[32]: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-m5qW2GC5vN,guid=e97c5bd15a9be6589b3507655c144953>
+Sun Dec 16 12:20:51 2018: envp[33]: <XDG_SESSION_COOKIE=eaba788b9ca22f989ab53f91595c5931-1544833363.310868-253793705>
+Sun Dec 16 12:20:51 2018: envp[34]: <J2REDIR=/usr/lib/jvm/oracle_jdk8/jre>
+Sun Dec 16 12:20:51 2018: envp[35]: <LOGNAME=mint>
+Sun Dec 16 12:20:51 2018: envp[36]: <J2SDKDIR=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:51 2018: envp[37]: <LESSCLOSE=/usr/bin/lesspipe %s %s>
+Sun Dec 16 12:20:51 2018: envp[38]: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Sun Dec 16 12:20:51 2018: envp[39]: <XDG_VTNR=8>
+Sun Dec 16 12:20:51 2018: envp[40]: <CLUTTER_BACKEND=x11>
+Sun Dec 16 12:20:51 2018: envp[41]: <KICAD_PATH=/usr/share/kicad>
+Sun Dec 16 12:20:51 2018: envp[42]: <COLORTERM=gnome-terminal>
+Sun Dec 16 12:20:51 2018: envp[43]: <SHLVL=1>
+Sun Dec 16 12:20:51 2018: envp[44]: <JAVA_HOME=/usr/lib/jvm/oracle_jdk8>
+Sun Dec 16 12:20:51 2018: envp[45]: <XDG_SESSION_ID=c1>
+Sun Dec 16 12:20:51 2018: envp[46]: <USER=mint>
+Sun Dec 16 12:20:51 2018: envp[47]: <XDG_CURRENT_DESKTOP=X-Cinnamon>
+Sun Dec 16 12:20:51 2018: envp[48]: <GNOME_KEYRING_PID=1940>
+Sun Dec 16 12:20:51 2018: envp[49]: <OLDPWD=/home/mint>
+Sun Dec 16 12:20:51 2018: envp[50]: <GNOME_KEYRING_CONTROL=/run/user/1000/keyring-5Atabj>
+Sun Dec 16 12:20:51 2018: envp[51]: <MAKEFLAGS=>
+Sun Dec 16 12:20:51 2018: envp[52]: <MFLAGS=>
+Sun Dec 16 12:20:51 2018: envp[53]: <CINNAMON_VERSION=2.8.8>
+Sun Dec 16 12:20:51 2018: envp[54]: <QT_ACCESSIBILITY=1>
+Sun Dec 16 12:20:51 2018: envp[55]: <DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path>
+Sun Dec 16 12:20:51 2018: envp[56]: <TEXTDOMAINDIR=/usr/share/locale/>
+Sun Dec 16 12:20:51 2018: envp[57]: <PWD=/home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: envp[58]: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Sun Dec 16 12:20:51 2018: envp[59]: <KIGITHUB=https://github.com/KiCad>
+Sun Dec 16 12:20:51 2018: envp[60]: <WINDOWPATH=8>
+Sun Dec 16 12:20:51 2018: envp[61]: <GJS_DEBUG_OUTPUT=stderr>
+Sun Dec 16 12:20:51 2018: envp[62]: <DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db>
+Sun Dec 16 12:20:51 2018: envp[63]: <LANG=es_AR.UTF-8>
+Sun Dec 16 12:20:51 2018: envp[64]: <TERM=xterm>
+Sun Dec 16 12:20:51 2018: envp[65]: <MAKELEVEL=1>
+Sun Dec 16 12:20:51 2018: envp[66]: <LD_PRELOAD=>
+Sun Dec 16 12:20:51 2018: process created with pid: 1269
+Sun Dec 16 12:20:51 2018: parent pid: 1268
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
+Sun Dec 16 12:20:51 2018: argv[0]: </usr/lib/gcc/x86_64-linux-gnu/4.8/collect2>
+Sun Dec 16 12:20:51 2018: argv[1]: <--sysroot=/>
+Sun Dec 16 12:20:51 2018: argv[2]: <--build-id>
+Sun Dec 16 12:20:51 2018: argv[3]: <--eh-frame-hdr>
+Sun Dec 16 12:20:51 2018: argv[4]: <-m>
+Sun Dec 16 12:20:51 2018: argv[5]: <elf_x86_64>
+Sun Dec 16 12:20:51 2018: argv[6]: <--hash-style=gnu>
+Sun Dec 16 12:20:51 2018: argv[7]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[8]: <-dynamic-linker>
+Sun Dec 16 12:20:51 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
+Sun Dec 16 12:20:51 2018: argv[10]: <-z>
+Sun Dec 16 12:20:51 2018: argv[11]: <relro>
+Sun Dec 16 12:20:51 2018: argv[12]: <-o>
+Sun Dec 16 12:20:51 2018: argv[13]: <sonar_test>
+Sun Dec 16 12:20:51 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
+Sun Dec 16 12:20:51 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
+Sun Dec 16 12:20:51 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
+Sun Dec 16 12:20:51 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
+Sun Dec 16 12:20:51 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
+Sun Dec 16 12:20:51 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[21]: <-L/lib/../lib>
+Sun Dec 16 12:20:51 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[23]: <-L/usr/lib/../lib>
+Sun Dec 16 12:20:51 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
+Sun Dec 16 12:20:51 2018: argv[25]: <sonar_test.o>
+Sun Dec 16 12:20:51 2018: argv[26]: <vihard.o>
+Sun Dec 16 12:20:51 2018: argv[27]: <-lgcc>
+Sun Dec 16 12:20:51 2018: argv[28]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[29]: <-lgcc_s>
+Sun Dec 16 12:20:51 2018: argv[30]: <--no-as-needed>
+Sun Dec 16 12:20:51 2018: argv[31]: <-lc>
+Sun Dec 16 12:20:51 2018: argv[32]: <-lgcc>
+Sun Dec 16 12:20:51 2018: argv[33]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[34]: <-lgcc_s>
+Sun Dec 16 12:20:51 2018: argv[35]: <--no-as-needed>
+Sun Dec 16 12:20:51 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
+Sun Dec 16 12:20:51 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1269
+Sun Dec 16 12:20:51 2018: process created with pid: 1270
+Sun Dec 16 12:20:51 2018: parent pid: 1269
+Sun Dec 16 12:20:51 2018: working directory: </home/mint/Escritorio/virtual_hard_platform/firm/code_analysis>
+Sun Dec 16 12:20:51 2018: executable: </usr/bin/ld.bfd>
+Sun Dec 16 12:20:51 2018: argv[0]: </usr/bin/ld>
+Sun Dec 16 12:20:51 2018: argv[1]: <--sysroot=/>
+Sun Dec 16 12:20:51 2018: argv[2]: <--build-id>
+Sun Dec 16 12:20:51 2018: argv[3]: <--eh-frame-hdr>
+Sun Dec 16 12:20:51 2018: argv[4]: <-m>
+Sun Dec 16 12:20:51 2018: argv[5]: <elf_x86_64>
+Sun Dec 16 12:20:51 2018: argv[6]: <--hash-style=gnu>
+Sun Dec 16 12:20:51 2018: argv[7]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[8]: <-dynamic-linker>
+Sun Dec 16 12:20:51 2018: argv[9]: </lib64/ld-linux-x86-64.so.2>
+Sun Dec 16 12:20:51 2018: argv[10]: <-z>
+Sun Dec 16 12:20:51 2018: argv[11]: <relro>
+Sun Dec 16 12:20:51 2018: argv[12]: <-o>
+Sun Dec 16 12:20:51 2018: argv[13]: <sonar_test>
+Sun Dec 16 12:20:51 2018: argv[14]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o>
+Sun Dec 16 12:20:51 2018: argv[15]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o>
+Sun Dec 16 12:20:51 2018: argv[16]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o>
+Sun Dec 16 12:20:51 2018: argv[17]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8>
+Sun Dec 16 12:20:51 2018: argv[18]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[19]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib>
+Sun Dec 16 12:20:51 2018: argv[20]: <-L/lib/x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[21]: <-L/lib/../lib>
+Sun Dec 16 12:20:51 2018: argv[22]: <-L/usr/lib/x86_64-linux-gnu>
+Sun Dec 16 12:20:51 2018: argv[23]: <-L/usr/lib/../lib>
+Sun Dec 16 12:20:51 2018: argv[24]: <-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..>
+Sun Dec 16 12:20:51 2018: argv[25]: <sonar_test.o>
+Sun Dec 16 12:20:51 2018: argv[26]: <vihard.o>
+Sun Dec 16 12:20:51 2018: argv[27]: <-lgcc>
+Sun Dec 16 12:20:51 2018: argv[28]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[29]: <-lgcc_s>
+Sun Dec 16 12:20:51 2018: argv[30]: <--no-as-needed>
+Sun Dec 16 12:20:51 2018: argv[31]: <-lc>
+Sun Dec 16 12:20:51 2018: argv[32]: <-lgcc>
+Sun Dec 16 12:20:51 2018: argv[33]: <--as-needed>
+Sun Dec 16 12:20:51 2018: argv[34]: <-lgcc_s>
+Sun Dec 16 12:20:51 2018: argv[35]: <--no-as-needed>
+Sun Dec 16 12:20:51 2018: argv[36]: </usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o>
+Sun Dec 16 12:20:51 2018: argv[37]: </usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o>
+Sun Dec 16 12:20:51 2018: skipping process with pid: 1270
+Sun Dec 16 12:20:51 2018: finalizing json file
+Sun Dec 16 12:20:51 2018: returned with code: 0

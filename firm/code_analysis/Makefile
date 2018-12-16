@@ -10,20 +10,20 @@
 
 CC = gcc
 CFLAGS = -g -Wall -O2 -DBOARD_PC
-SRC = test_vihard.c vihard.c vihard.h
-OBJ = test_vihard.o vihard.o
+SRC = sonar_test.c vihard.c vihard.h
+OBJ = sonar_test.o vihard.o
 
 
 # Reglas explicitas
 
 all: $(OBJ)
-	$(CC) $(CFLAGS) -o test_vihard $(OBJ)
+	$(CC) $(CFLAGS) -o sonar_test $(OBJ)
 
 clean:
-	$(RM) $(OBJ) test_vihard
+	$(RM) $(OBJ) sonar_test
 
 # Reglas implicitas
 
 funciones.o: vihard.c vihard.h
-test_vihard.o: test_vihard.c vihard.h
+sonar_test.o: sonar_test.c vihard.h
 

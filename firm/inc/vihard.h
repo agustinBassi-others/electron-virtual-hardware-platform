@@ -38,11 +38,10 @@
 #define _VIHARD_H_
 
 // Descomentar algunas de las siguientes lineas dependiendo la placa
-//#define BOARD_PC
-// #define BOARD_EDU_CIAA_NXP
+#define BOARD_EDU_CIAA_NXP
 //#define BOARD_CIAA_ZERO
 //#define BOARD_ARDUINO
-
+//#define BOARD_PC
 
 // Si no hay ninguna placa definida muestra un error de compilacion
 #if !defined(BOARD_EDU_CIAA_NXP) && \
@@ -60,6 +59,10 @@
 
 #include "stdio.h"
 
+#elif defined(BOARD_EDU_CIAA_NXP)
+
+#include "sapi.h"
+
 #elif defined(BOARD_CIAA_ZERO)
 
     // todo poner aca la llamada correcta
@@ -67,10 +70,6 @@
 #elif defined(BOARD_ARDUINO)
 
 	// todo poner aca la llamada correcta
-
-#elif defined(BOARD_EDU_CIAA_NXP)
-
-#include "sapi.h"
 
 #endif
 
@@ -93,14 +92,6 @@ extern "C" {
 #define UART_READ_BYTE(byteToRead)   printf("Se leera en la direccion: %d", &byteToRead)
 #define UART_WRITE_BYTE(byteToWrite) printf("Se escribe el byte: %d", (uint8_t) byteToWrite)
 
-#elif defined(BOARD_CIAA_ZERO)
-
-    // todo poner aca la llamada correcta
-
-#elif defined(BOARD_ARDUINO)
-
-    // todo poner aca la llamada correcta
-
 #elif defined(BOARD_EDU_CIAA_NXP)
 
 #define VIHARD_SERIAL_PORT           UART_USB
@@ -111,9 +102,15 @@ extern "C" {
 #define UART_READ_BYTE(byteToRead)   uartReadByte(VIHARD_SERIAL_PORT, &byteToRead)
 #define UART_WRITE_BYTE(byteToWrite) uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite)
 
+#elif defined(BOARD_CIAA_ZERO)
+
+// todo poner aca la llamada correcta
+
+#elif defined(BOARD_ARDUINO)
+
+// todo poner aca la llamada correcta
+
 #endif
-
-
 
 // Si los estados logicos estan definidos los elimina para asegurarse
 // que el valor de true y false sean los deseados

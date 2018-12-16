@@ -20,3 +20,5 @@ firm/code_analysis/\.cproject
 firm/code_analysis/\.project
 
 firm/code_analysis/test_vihard
+
+firm/code_analysis/sonar_test

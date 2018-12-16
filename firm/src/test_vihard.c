@@ -36,6 +36,7 @@
 
 /*==================[inclusions]=============================================*/
 
+#include "sapi.h"
 #include "vihard.h"
 
 /*==================[macros and definitions]=================================*/
@@ -43,10 +44,6 @@
 /*==================[internal data declaration]==============================*/
 
 /*==================[internal functions declaration]=========================*/
-
-#ifdef BOARD_EDU_CIAA_NXP
-
-/#include "sapi.h"
 
 static void TestVhIntegral           ();
 static void TestVhGpioWrite          ();
@@ -57,21 +54,16 @@ static void TestVhGpioRead           ();
 static void TestVhGpioToggle         ();
 static void TestVhAdcRead            ();
 
+// Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
 #ifdef EDU_CIAA_NXP_CLOCK_SPEED
     static void TestVhTimming        ();
 #endif
-
-#endif
-
- // Si la version de la sAPI tiene el modulo cyclesCounter se compila el bloque
 
 /*==================[internal data definition]===============================*/
 
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
-
-#ifdef BOARD_EDU_CIAA_NXP
 
  static void TestVhGpioWrite (){
      Vh_GpioWrite(VH_LED1, TRUE);
@@ -369,11 +361,7 @@ void ReadPote_WriteLcd (void)
  
 } 
 
-#endif
-
 /*==================[external functions definition]==========================*/
-
-#ifdef BOARD_EDU_CIAA_NXP
 
 int main(void){
 
@@ -394,19 +382,6 @@ int main(void){
 	}
 	return 0 ;
 }
-
-#else
-
-int main(void){
-
-	Vh_BoardConfig(VIHARD_BAUDRATE);
-
-	return 0 ;
-}
-
-#endif
-
-
 
 /*==================[end of file]============================================*/
 
