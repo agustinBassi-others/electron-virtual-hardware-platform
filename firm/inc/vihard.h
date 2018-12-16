@@ -38,10 +38,11 @@
 #define _VIHARD_H_
 
 // Descomentar algunas de las siguientes lineas dependiendo la placa
+//#define BOARD_PC
 // #define BOARD_EDU_CIAA_NXP
 //#define BOARD_CIAA_ZERO
 //#define BOARD_ARDUINO
-#define BOARD_PC
+
 
 // Si no hay ninguna placa definida muestra un error de compilacion
 #if !defined(BOARD_EDU_CIAA_NXP) && \
@@ -55,9 +56,9 @@
 
 #include <stdint.h>
 
-#if defined(BOARD_EDU_CIAA_NXP)
+#if defined(BOARD_PC)
 
-#include "sapi.h"
+#include "stdio.h"
 
 #elif defined(BOARD_CIAA_ZERO)
 
@@ -67,9 +68,9 @@
 
 	// todo poner aca la llamada correcta
 
-#elif defined(BOARD_PC)
+#elif defined(BOARD_EDU_CIAA_NXP)
 
-#include "stdio.h"
+#include "sapi.h"
 
 #endif
 
@@ -82,15 +83,15 @@ extern "C" {
 
 /*==================[macros]=================================================*/
 
-#if defined(BOARD_EDU_CIAA_NXP)
+#if defined(BOARD_PC)
 
-#define VIHARD_SERIAL_PORT           UART_USB
+#define VIHARD_SERIAL_PORT           0
 #define VIHARD_BAUDRATE              115200
-#define CLOCK_SPEED_MHZ              204
+#define CLOCK_SPEED_MHZ              0
 
-#define UART_CONFIG(baudrate)        uartConfig(VIHARD_SERIAL_PORT, baudrate)
-#define UART_READ_BYTE(byteToRead)   uartReadByte(VIHARD_SERIAL_PORT, &byteToRead)
-#define UART_WRITE_BYTE(byteToWrite) uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite)
+#define UART_CONFIG(baudrate)        printf("Velocidad vihard: %d", baudrate)
+#define UART_READ_BYTE(byteToRead)   printf("Se leera en la direccion: %d", &byteToRead)
+#define UART_WRITE_BYTE(byteToWrite) printf("Se escribe el byte: %d", (uint8_t) byteToWrite)
 
 #elif defined(BOARD_CIAA_ZERO)
 
@@ -100,15 +101,15 @@ extern "C" {
 
     // todo poner aca la llamada correcta
 
-#elif defined(BOARD_PC)
+#elif defined(BOARD_EDU_CIAA_NXP)
 
-#define VIHARD_SERIAL_PORT           0
+#define VIHARD_SERIAL_PORT           UART_USB
 #define VIHARD_BAUDRATE              115200
-#define CLOCK_SPEED_MHZ              0
+#define CLOCK_SPEED_MHZ              204
 
-#define UART_CONFIG(baudrate)        printf("Velocidad vihard: %d", baudrate)
-#define UART_READ_BYTE(byteToRead)   printf("Se leera en la direccion: %d", &byteToRead)
-#define UART_WRITE_BYTE(byteToWrite) printf("Se escribe el byte: %d", (uint8_t) byteToWrite)
+#define UART_CONFIG(baudrate)        uartConfig(VIHARD_SERIAL_PORT, baudrate)
+#define UART_READ_BYTE(byteToRead)   uartReadByte(VIHARD_SERIAL_PORT, &byteToRead)
+#define UART_WRITE_BYTE(byteToWrite) uartWriteByte(VIHARD_SERIAL_PORT, (uint8_t) byteToWrite)
 
 #endif
 
