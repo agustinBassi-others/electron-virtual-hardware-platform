@@ -46,7 +46,7 @@
 
 /*==================[internal functions declaration]=========================*/
 
-static void TestVhIntegral           ();
+static void TestVhIntegral ();
 
 /*==================[internal data definition]===============================*/
 
@@ -81,13 +81,13 @@ static void TestVhIntegral(){
 
 	while(1){
 		// Lee el ADC virtual y envia el valor al DAC virtual
-		Vh_AdcRead(VH_ADC_CH1, &adcValue);
+//		Vh_AdcRead(VH_ADC_CH1, &adcValue);
 		Vh_DacWrite(VH_DAC_CH1, adcValue);
 		// Enciende VH_LED1 si VHTEC1 esta pulsada, sino lo apaga
-		Vh_GpioRead(VH_TEC1, &stateTec1);
+//		Vh_GpioRead(VH_TEC1, &stateTec1);
 		Vh_GpioWrite(VH_LED1, !stateTec1);
 		// Enciende VH_LED2 si VHTEC2 esta pulsada, sino lo apaga
-		Vh_GpioRead(VH_TEC2, &stateTec2);
+//		Vh_GpioRead(VH_TEC2, &stateTec2);
 		Vh_GpioWrite(VH_LED2, !stateTec2);
 		// Pasado un tiempo togglea led virtual y led fisico de la EDU CIAA
 		if (++counterToggleLed >= timeToToggleLed){
