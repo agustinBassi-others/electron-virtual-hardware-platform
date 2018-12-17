@@ -223,7 +223,7 @@ static void TestTimming(){
       while (gpioRead(TEC1));
       delay(1000);
       cyclesCounterReset();
-      Vh_AdcRead(VH_ADC_CH1);
+//      Vh_AdcRead(VH_ADC_CH1);
       stdioSprintf(lcdText, "AdcRead: %d us",
               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);
@@ -239,7 +239,7 @@ static void TestTimming(){
       while (gpioRead(TEC1));
       delay(1000);
       cyclesCounterReset();
-      Vh_GpioRead(VH_TEC1);
+//      Vh_GpioRead(VH_TEC1);
       stdioSprintf(lcdText, "GpioRead: %d us",
               (uint32_t)cyclesCounterToUs(cyclesCounterRead()));
       Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, lcdText);

@@ -303,6 +303,20 @@ static bool_t CheckIfValidCommand (ViHardCommand_t command,
     return isValidCommand;
 }
 
+static void ExecuteInitPeriphericalsSetup ()
+{
+    Vh_GpioWrite(VH_LED1, FALSE);
+    Vh_GpioWrite(VH_LED2, FALSE);
+    Vh_GpioWrite(VH_LED3, FALSE);
+    Vh_GpioWrite(VH_LED4, FALSE);
+
+    Vh_DacWrite(VH_DAC_CH1, 0);
+
+    Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, " ");
+
+    Vh_7SegmentsWrite(VH_7SEG, '-');
+}
+
 /*==================[external functions definition]==========================*/
 
 /**
@@ -319,6 +333,8 @@ ViHardError_t Vh_BoardConfig (uint32_t baudRate)
     // Se calcula el tiempo entre lecturas dependiendo baudrate y se agrega 10%
     UsBetweenReads = round((1000000 / baudRate) + ((1000000 / baudRate) * 0.1));
     UART_CONFIG(baudRate);
+
+    ExecuteInitPeriphericalsSetup();
 
     return VH_EXEC_OK;
 }
@@ -563,7 +579,7 @@ ViHardError_t Vh_AdcRead (ViHardPeriph_t adcChannel, uint16_t * adcValue)
  * @param dacChannel pin analogico a escribir.
  * @param dacValue valor de 10 bits a escribir.
  */
-ViHardError_t Vh_DacWrite (ViHardPeriph_t dacChannel, uint16_t dacValue)
+ViHardError_t Vh_DacWrite (ViHardPeriph_t dacChannel, int16_t dacValue)
 {
 	ViHardError_t errorState = VH_EXEC_ERROR;
     char stringCommand[15];
@@ -660,7 +676,17 @@ ViHardError_t Vh_LcdWriteString (ViHardPeriph_t displayLcd, LcdLine_t line, char
     {
     	errorState = VH_EXEC_OK;
 
-        for (lenght = 0; str[lenght] != '\0'; lenght++);
+        for (lenght = 0; str[lenght] != '\0'; lenght++){
+            if (line == LCD_LINE_ALL && lenght >= 53){
+                break;
+            } else if (
+                    (line == LCD_LINE_FIRST ||
+                    line == LCD_LINE_SECOND ||
+                    line == LCD_LINE_THIRD) &&
+                    (lenght >= 18) ){
+                break;
+            }
+        }
 
         stringCommand[0] = COMMAND_INIT;
         stringCommand[1] = VH_LCD_WRITE_STRING;

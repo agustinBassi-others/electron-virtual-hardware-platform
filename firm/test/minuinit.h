@@ -56,7 +56,7 @@ extern "C" {
 #define MINUNIT_RUN_TEST(functionToTest) \
 	do { \
 		char *errorMessage = functionToTest(); \
-		AmountTestsRun++; \
+		AmountOfTestsRun++; \
 		if (errorMessage) \
 			return errorMessage; \
 	} while (0)
@@ -65,12 +65,12 @@ extern "C" {
 
 /*==================[external data declaration]==============================*/
 
-static int AmountTestsRun = 0;
+static int AmountOfTestsRun = 0;
 
 /*==================[external functions declaration]=========================*/
 
-int MinUnit_AmountTestsRun (void){
-	return AmountTestsRun;
+int MinUnit_GetAmountOfTestsRun (void){
+	return AmountOfTestsRun;
 }
 
 /*==================[cplusplus]==============================================*/

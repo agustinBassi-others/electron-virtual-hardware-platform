@@ -46,7 +46,7 @@
 #if !defined(BOARD_EDU_CIAA_NXP) && \
 	!defined(BOARD_CIAA_ZERO) && \
 	!defined(BOARD_ARDUINO)
-	#error "Se debe definir un BOARD al inicio del archivo virtual_hardware.h"
+	#error "Se debe definir un BOARD al inicio del archivo vihard.h"
 #endif
 
 /*==================[inclusions]=============================================*/
@@ -170,7 +170,7 @@ ViHardError_t Vh_GpioWrite      (ViHardPeriph_t gpioPin, bool_t pinState);
 ViHardError_t Vh_GpioToggle     (ViHardPeriph_t gpioPin);
 
 ViHardError_t Vh_AdcRead        (ViHardPeriph_t adcChannel, uint16_t * adcValueReturned);
-ViHardError_t Vh_DacWrite       (ViHardPeriph_t dacChannel, uint16_t dacValue);
+ViHardError_t Vh_DacWrite       (ViHardPeriph_t dacChannel, int16_t dacValue);
 
 ViHardError_t Vh_7SegmentsWrite (ViHardPeriph_t display7Segs, uint8_t asciiToShow);
 
