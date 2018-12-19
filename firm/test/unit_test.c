@@ -332,7 +332,7 @@ static char * T6_LcdBlankAtInit (){
     uartWriteString(UART_USB, "Running test: T6_LcdBlankAtInit()\n\r");
     uartWriteString(UART_USB, "In this test Vh_BoardInit() function is executed.\n\r");
     uartWriteString(UART_USB, "Between others commands, you should see the next value sended in serial console:\n\n\r");
-    uartWriteString(UART_USB, "{f;o; }\n\n\r");
+    uartWriteString(UART_USB, "{f;o;0; }\n\n\r");
     uartWriteString(UART_USB, "If you see the command, type '0' in serial console, else type '1'.\n\n\r");
 
     delay(10);
