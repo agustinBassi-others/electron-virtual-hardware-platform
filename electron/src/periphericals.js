@@ -158,10 +158,10 @@ let Tec1State = true;
 let Tec2State = true;
 let Tec3State = true;
 let Tec4State = true;
-let Adc1Value = 512;
-let Dac1Value = 512;
+let Adc1Value = 0;
+let Dac1Value = 0;
 let Segment7Text = "-";
-let LcdText = "Hello ViHard \\(-)/";
+let LcdText = "";
 
 let Obj_SerialPort;
 let LogLevel = Log_t.ERROR;
