@@ -215,12 +215,12 @@ static void RunExample_VhLcdWriteString    (){
     } else if (lcdLine == LCD_LINE_FIRST){
         Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "Linea 1");
     } else if (lcdLine == LCD_LINE_SECOND){
-        Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "Linea 2");
+        Vh_LcdWriteString(VH_LCD1, LCD_LINE_SECOND, "Linea 2");
     } else if (lcdLine == LCD_LINE_THIRD){
-        Vh_LcdWriteString(VH_LCD1, LCD_LINE_FIRST, "Linea 3");
+        Vh_LcdWriteString(VH_LCD1, LCD_LINE_THIRD, "Linea 3");
     }
 
-    delay(500);
+    delay(1000);
 }
 
 /*==================[external functions definition]==========================*/
@@ -229,7 +229,15 @@ int main(void){
 // Variable para determinar que ejemplo se debe correr
 static uint8_t exampleIndex = 0;
 // Arreglo para escribir en el display LCD el ejemplo que se esta ejecutando
-char messageExampleRunning [] = "Se esta ejecutando el ejemplo  ";
+char messageExampleRunning [7][55] = {
+        "Se esta ejecutando el ejemplo GpioWrite()",
+        "Se esta ejecutando el ejemplo GpioRead()",
+        "Se esta ejecutando el ejemplo GpioToggle()",
+        "Se esta ejecutando el ejemplo AdcRead()",
+        "Se esta ejecutando el ejemplo DacWrite()",
+        "Se esta ejecutando el ejemplo 7SegsWrite()",
+        "Se esta ejecutando el ejemplo LcdWriteString()",
+};
 
     // Configura la placa EDU-CIAA-NXP
     boardConfig();
@@ -242,8 +250,7 @@ char messageExampleRunning [] = "Se esta ejecutando el ejemplo  ";
     delay(5000);
 
     // Muestra que ejemplo se esta ejecutando
-    messageExampleRunning [30] = exampleIndex + '0';
-    Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, messageExampleRunning);
+    Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, messageExampleRunning[exampleIndex]);
 
     while(1) {
 
@@ -256,8 +263,7 @@ char messageExampleRunning [] = "Se esta ejecutando el ejemplo  ";
             }
 
             // Muestra en el LCD el ejemplo que se esta ejecutando
-            messageExampleRunning [30] = exampleIndex + '0';
-            Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, messageExampleRunning);
+            Vh_LcdWriteString(VH_LCD1, LCD_LINE_ALL, messageExampleRunning[exampleIndex]);
             delay(2000);
         }
 
